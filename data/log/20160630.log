@@ -1,0 +1,231 @@
+[2016-06-30 14:44:46] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/101ZWR-fxsvenv6602693.jpg','98034','1467269086','1',NULL,NULL,'0','1')
+[2016-06-30 14:44:46] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10337e_4b756a4b_f970_f651_9694_a8d2f7138bb5_1.jpg','39117','1467269086','1',NULL,NULL,'0','1')
+[2016-06-30 14:44:46] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10370f_8aa9a2a3_f5d9_76df_5432_0c8fffe8eb18_1.jpg','10218','1467269086','1',NULL,NULL,'0','1')
+[2016-06-30 14:46:13] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/101ZWR-fxsvenv6602693.jpg','98034','1467269173','1',NULL,NULL,'0','1')
+[2016-06-30 14:46:13] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10337e_4b756a4b_f970_f651_9694_a8d2f7138bb5_1.jpg','39117','1467269173','1',NULL,NULL,'0','1')
+[2016-06-30 14:46:13] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10370f_8aa9a2a3_f5d9_76df_5432_0c8fffe8eb18_1.jpg','10218','1467269173','1',NULL,NULL,'0','1')
+[2016-06-30 14:48:19] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/101ZWR-fxsvenv6602693.jpg','98034','1467269299','1',NULL,NULL,'0','1')
+[2016-06-30 14:48:19] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10337e_4b756a4b_f970_f651_9694_a8d2f7138bb5_1.jpg','39117','1467269299','1',NULL,NULL,'0','1')
+[2016-06-30 14:48:19] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10370f_8aa9a2a3_f5d9_76df_5432_0c8fffe8eb18_1.jpg','10218','1467269299','1',NULL,NULL,'0','1')
+[2016-06-30 14:49:25] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/101ZWR-fxsvenv6602693.jpg','98034','1467269365','1',NULL,NULL,'0','1')
+[2016-06-30 14:49:25] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10337e_4b756a4b_f970_f651_9694_a8d2f7138bb5_1.jpg','39117','1467269365','1',NULL,NULL,'0','1')
+[2016-06-30 14:49:26] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10370f_8aa9a2a3_f5d9_76df_5432_0c8fffe8eb18_1.jpg','10218','1467269366','1',NULL,NULL,'0','1')
+[2016-06-30 14:50:26] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/101ZWR-fxsvenv6602693.jpg','98034','1467269426','1',NULL,NULL,'0','1')
+[2016-06-30 14:50:26] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10337e_4b756a4b_f970_f651_9694_a8d2f7138bb5_1.jpg','39117','1467269426','1',NULL,NULL,'0','1')
+[2016-06-30 14:50:26] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10370f_8aa9a2a3_f5d9_76df_5432_0c8fffe8eb18_1.jpg','10218','1467269426','1',NULL,NULL,'0','1')
+[2016-06-30 14:50:43] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/101ZWR-fxsvenv6602693.jpg','98034','1467269443','1',NULL,NULL,'0','1')
+[2016-06-30 14:50:43] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10337e_4b756a4b_f970_f651_9694_a8d2f7138bb5_1.jpg','39117','1467269443','1',NULL,NULL,'0','1')
+[2016-06-30 14:50:43] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10370f_8aa9a2a3_f5d9_76df_5432_0c8fffe8eb18_1.jpg','10218','1467269443','1',NULL,NULL,'0','1')
+[2016-06-30 14:51:21] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/101ZWR-fxsvenv6602693.jpg','98034','1467269481','1',NULL,NULL,'0','1')
+[2016-06-30 14:51:21] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10337e_4b756a4b_f970_f651_9694_a8d2f7138bb5_1.jpg','39117','1467269481','1',NULL,NULL,'0','1')
+[2016-06-30 14:51:21] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('circle/theme/10/0/10370f_8aa9a2a3_f5d9_76df_5432_0c8fffe8eb18_1.jpg','10218','1467269481','1',NULL,NULL,'0','1')
+[2016-06-30 14:57:36] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467269856','1',NULL,NULL,'0','1')
+[2016-06-30 14:57:36] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467269856','1',NULL,NULL,'0','1')
+[2016-06-30 14:57:36] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467269856','1',NULL,NULL,'0','1')
+[2016-06-30 14:58:23] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467269903','1',NULL,NULL,'0','1')
+[2016-06-30 14:58:23] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467269903','1',NULL,NULL,'0','1')
+[2016-06-30 14:58:23] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467269903','1',NULL,NULL,'0','1')
+[2016-06-30 15:01:47] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467270107','1',NULL,NULL,'0','1')
+[2016-06-30 15:01:47] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467270107','1',NULL,NULL,'0','1')
+[2016-06-30 15:01:47] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467270107','1',NULL,NULL,'0','1')
+[2016-06-30 15:05:19] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467270319','1',NULL,NULL,'0','1')
+[2016-06-30 15:05:19] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467270319','1',NULL,NULL,'0','1')
+[2016-06-30 15:05:19] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467270319','1',NULL,NULL,'0','1')
+[2016-06-30 15:11:31] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467270691','1',NULL,NULL,'0','1')
+[2016-06-30 15:11:31] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467270691','1',NULL,NULL,'0','1')
+[2016-06-30 15:11:31] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467270691','1',NULL,NULL,'0','1')
+[2016-06-30 15:11:51] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467270711','1',NULL,NULL,'0','1')
+[2016-06-30 15:11:52] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467270712','1',NULL,NULL,'0','1')
+[2016-06-30 15:11:52] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467270712','1',NULL,NULL,'0','1')
+[2016-06-30 15:16:24] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467270984','1',NULL,NULL,'0','1')
+[2016-06-30 15:16:24] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467270984','1',NULL,NULL,'0','1')
+[2016-06-30 15:16:24] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467270984','1',NULL,NULL,'0','1')
+[2016-06-30 15:16:59] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467271019','1',NULL,NULL,'0','1')
+[2016-06-30 15:16:59] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467271019','1',NULL,NULL,'0','1')
+[2016-06-30 15:16:59] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467271019','1',NULL,NULL,'0','1')
+[2016-06-30 15:25:07] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467271507','1',NULL,NULL,'0','1')
+[2016-06-30 15:25:08] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467271508','1',NULL,NULL,'0','1')
+[2016-06-30 15:25:08] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467271508','1',NULL,NULL,'0','1')
+[2016-06-30 15:26:54] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467271614','1',NULL,NULL,'0','1')
+[2016-06-30 15:26:54] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467271614','1',NULL,NULL,'0','1')
+[2016-06-30 15:26:55] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467271615','1',NULL,NULL,'0','1')
+[2016-06-30 15:31:53] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467271913','1',NULL,NULL,'0','1')
+[2016-06-30 15:31:53] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467271913','1',NULL,NULL,'0','1')
+[2016-06-30 15:31:53] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467271913','1',NULL,NULL,'0','1')
+[2016-06-30 15:34:04] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467272044','1',NULL,NULL,'0','1')
+[2016-06-30 15:34:04] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467272044','1',NULL,NULL,'0','1')
+[2016-06-30 15:34:04] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467272044','1',NULL,NULL,'0','1')
+[2016-06-30 15:34:30] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','98034','1467272070','1',NULL,NULL,'0','1')
+[2016-06-30 15:34:30] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','39117','1467272070','1',NULL,NULL,'0','1')
+[2016-06-30 15:34:30] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/','10218','1467272070','1',NULL,NULL,'0','1')
+[2016-06-30 15:55:48] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206173488595071.jpg','98034','1467273348','1',NULL,NULL,'0','1')
+[2016-06-30 15:55:48] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206173489060992.jpg','39117','1467273348','1',NULL,NULL,'0','1')
+[2016-06-30 15:55:49] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206173489460247.jpg','10218','1467273348','1',NULL,NULL,'0','1')
+[2016-06-30 15:57:11] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206174317765079.jpg','98034','1467273431','1',NULL,NULL,'0','1')
+[2016-06-30 15:57:11] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206174318357077.jpg','39117','1467273431','1',NULL,NULL,'0','1')
+[2016-06-30 15:57:11] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206174318830452.jpg','10218','1467273431','1',NULL,NULL,'0','1')
+[2016-06-30 15:58:30] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206175103655449.jpg','98034','1467273510','1',NULL,NULL,'0','1')
+[2016-06-30 15:58:30] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206175104084612.jpg','39117','1467273510','1',NULL,NULL,'0','1')
+[2016-06-30 15:58:30] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206175104463992.jpg','10218','1467273510','1',NULL,NULL,'0','1')
+[2016-06-30 16:02:18] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206177380242319.jpg','98034','1467273738','1',NULL,NULL,'0','1')
+[2016-06-30 16:02:18] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206177381180987.jpg','39117','1467273738','1',NULL,NULL,'0','1')
+[2016-06-30 16:02:18] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206177381698373.jpg','10218','1467273738','1',NULL,NULL,'0','1')
+[2016-06-30 16:03:39] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206178198806189.jpg','98034','1467273819','1',NULL,NULL,'0','1')
+[2016-06-30 16:55:01] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206209012045044.jpg','10218','1467276901','1',NULL,'0','0','1')
+[2016-06-30 16:55:01] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206209012297461.jpg','39117','1467276901','1',NULL,'0','0','1')
+[2016-06-30 16:55:01] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206209012569709.jpg','132599','1467276901','1',NULL,'0','0','1')
+[2016-06-30 17:13:48] /long7/mobile/index.php?act=theme&op=image_upload&c_id=1 ( act=theme&op=image_upload ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_affix` (affix_filename,affix_filesize,affix_addtime,affix_type,member_id,theme_id,reply_id,circle_id) VALUES ('10/0/10/05206220281386427.jpg','98034','1467278028','1',NULL,'0','0','1')

@@ -1,0 +1,36 @@
+[2016-07-04 10:51:17] /long7/mobile/index.php?act=theme&op=ajax_likeyes&t_id=6 ( act=theme&op=ajax_likeyes ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_like` (theme_id,member_id,member_name,circle_id) VALUES ('0',NULL,NULL,'1')
+[2016-07-04 11:05:20] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&t_id=6&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_explog` (circle_id,member_id,member_name,el_exp,el_time,el_itemid,el_type,el_desc) VALUES ('0',NULL,NULL,'3','1467601520','6','4','')
+[2016-07-04 14:38:39] /long7/admin/index.php?act=login&op=login ( act=login&op=login ) 
+ERR: Db Error: La table 'wrzcnet.wrzcnet_lock' n'existe pas
+SELECT * FROM `wrzcnet_lock` WHERE ( pid = '000000000005' ) LIMIT 1  
+[2016-07-04 14:38:39] /long7/admin/index.php?act=login&op=login ( act=login&op=login ) 
+ERR: Db Error: La table 'wrzcnet.wrzcnet_admin' n'existe pas
+SELECT * FROM `wrzcnet_admin` as `admin`  WHERE  admin_name = 'admin' and admin_password = '7fef6171469e80d32c0559f88b377245'
+[2016-07-04 14:38:39] /long7/admin/index.php?act=login&op=login ( act=login&op=login ) 
+ERR: Db Error: La table 'wrzcnet.wrzcnet_lock' n'existe pas
+SELECT * FROM `wrzcnet_lock` WHERE ( pid = '00000000005' ) LIMIT 1  
+[2016-07-04 14:38:39] /long7/admin/index.php?act=login&op=login ( act=login&op=login ) 
+ERR: Db Error: La table 'wrzcnet.wrzcnet_lock' n'existe pas
+SELECT * FROM `wrzcnet_lock` WHERE ( pid = '00000000005' ) LIMIT 1  
+[2016-07-04 14:38:39] /long7/admin/index.php?act=login&op=login ( act=login&op=login ) 
+ERR: Db Error: La table 'wrzcnet.wrzcnet_lock' n'existe pas
+INSERT  INTO `wrzcnet_lock` (pid,pvalue,expiretime) VALUES ('00000000005','1','1467614919')
+[2016-07-04 14:45:13] /long7/admin/index.php?act=login&op=login ( act=login&op=login ) 
+ERR: Db Error: La table 'wrzcnet.wrzcnet_lock' n'existe pas
+SELECT * FROM `wrzcnet_lock` WHERE ( pid = '000000000005' ) LIMIT 1  
+[2016-07-04 14:45:13] /long7/admin/index.php?act=login&op=login ( act=login&op=login ) 
+ERR: Db Error: La table 'wrzcnet.wrzcnet_admin' n'existe pas
+SELECT * FROM `wrzcnet_admin` as `admin`  WHERE  admin_name = 'admin' and admin_password = '7fef6171469e80d32c0559f88b377245'
+[2016-07-04 14:45:13] /long7/admin/index.php?act=login&op=login ( act=login&op=login ) 
+ERR: Db Error: La table 'wrzcnet.wrzcnet_lock' n'existe pas
+SELECT * FROM `wrzcnet_lock` WHERE ( pid = '00000000005' ) LIMIT 1  
+[2016-07-04 14:45:13] /long7/admin/index.php?act=login&op=login ( act=login&op=login ) 
+ERR: Db Error: La table 'wrzcnet.wrzcnet_lock' n'existe pas
+SELECT * FROM `wrzcnet_lock` WHERE ( pid = '00000000005' ) LIMIT 1  
+[2016-07-04 14:45:13] /long7/admin/index.php?act=login&op=login ( act=login&op=login ) 
+ERR: Db Error: La table 'wrzcnet.wrzcnet_lock' n'existe pas
+INSERT  INTO `wrzcnet_lock` (pid,pvalue,expiretime) VALUES ('00000000005','1','1467615313')

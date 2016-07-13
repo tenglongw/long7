@@ -1,0 +1,3 @@
+[2016-07-12 17:25:40] //long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_explog` (circle_id,member_id,member_name,el_exp,el_time,el_itemid,el_type,el_desc) VALUES ('0',NULL,NULL,'3','1468315540','104','4','')

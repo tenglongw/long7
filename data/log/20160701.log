@@ -1,0 +1,15 @@
+[2016-07-01 11:00:25] /long7/circle/index.php?act=theme&op=ajax_likeyes&c_id=1&t_id=6 ( act=theme&op=ajax_likeyes ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_like` (theme_id,member_id,member_name,circle_id) VALUES ('6',NULL,NULL,'1')
+[2016-07-01 11:01:38] /long7/mobile/index.php?act=theme&op=ajax_likeyes&c_id=1&t_id=6 ( act=theme&op=ajax_likeyes ) 
+ERR: Db Error: Column 'theme_id' cannot be null
+INSERT  INTO `wrzcnet_circle_like` (theme_id,member_id,member_name,circle_id) VALUES (NULL,NULL,NULL,'1')
+[2016-07-01 11:03:06] /long7/mobile/index.php?act=theme&op=ajax_likeyes&c_id=1&t_id=6 ( act=theme&op=ajax_likeyes ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_like` (theme_id,member_id,member_name,circle_id) VALUES ('6',NULL,NULL,'1')
+[2016-07-01 11:09:08] /long7/mobile/index.php?act=theme&op=ajax_likeyes&c_id=1&t_id=6 ( act=theme&op=ajax_likeyes ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_like` (theme_id,member_id,member_name,circle_id) VALUES ('6',NULL,NULL,'1')
+[2016-07-01 11:13:46] /long7/mobile/index.php?act=theme&op=ajax_likeyes&c_id=1&t_id=6 ( act=theme&op=ajax_likeyes ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_like` (theme_id,member_id,member_name,circle_id) VALUES ('6',NULL,NULL,'1')

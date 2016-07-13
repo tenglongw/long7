@@ -1,0 +1,16 @@
+
+==========================PHP系统环境安装===============================
+系统要求：php5.3 + mysql5 或者php5.4+mysql5
+
+如想本机安装调试，又不会配置PHP运行环境，推荐下载
+PHP环境一键安装包：http://www.wygk.net.cn/dow/phpmysqlzend.rar
+里面有环境的安装和使用教程，可详细看看《php环境使用手册》。
+
+
+如果你本机测试PHP，则你的机子一定要安装VC9运行库,phpStudy安装路径不得有汉字。
+
+32位的VC9运行库下载：http://www.microsoft.com/zh-CN/download/details.aspx?id=5582
+64位的VC9运行库下载：http://www.microsoft.com/zh-CN/download/details.aspx?id=15336
+VC11运行库下载：http://www.microsoft.com/zh-CN/download/details.aspx?id=30679
+
+不能启动 参照：http://www.phpstudy.net/a.php/184.html

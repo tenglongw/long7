@@ -1,0 +1,57 @@
+[2016-06-22 18:45:05] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','a\'d\'fa\'d\'f啊但是fads','255','1','','1','4','1466592305')
+[2016-06-22 18:46:55] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊打发的阿斯蒂芬','255','1','','1','4','1466592415')
+[2016-06-22 18:47:21] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊打发十分阿飞','255','1','','1','4','1466592440')
+[2016-06-22 18:48:18] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','a\'s\'d\'fa\'s','255','1','','1','4','1466592498')
+[2016-06-22 18:48:51] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','阿斯顿发生','255','1','','1','4','1466592531')
+[2016-06-22 19:03:34] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','a\'d\'fa\'d\'s法大师傅啊等发达省份f\'da\'s\'ff','255','1','','1','4','1466593414')
+[2016-06-22 19:06:45] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊都发大水多舒服啊','255','1','','1','4','1466593605')
+[2016-06-22 19:06:56] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊都发大水多舒服啊','255','1','','1','4','1466593615')
+[2016-06-22 19:09:03] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊打发十分','255','1','','1','4','1466593743')
+[2016-06-22 19:09:34] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES (NULL,NULL,'255',NULL,NULL,NULL,'4','1466593774')
+[2016-06-22 19:09:47] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','阿道夫大师傅','255','1','','1','4','1466593787')
+[2016-06-22 19:10:16] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','阿道夫大师傅','255','1','','1','4','1466593816')
+[2016-06-22 19:10:30] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','阿道夫大师傅','255','1','','1','4','1466593830')
+[2016-06-22 19:13:30] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊打发法','255','1','','1','4','1466594009')
+[2016-06-22 19:20:26] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES (NULL,NULL,'255',NULL,NULL,NULL,'4','1466594426')
+[2016-06-22 19:21:08] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES (NULL,NULL,'255',NULL,NULL,NULL,'4','1466594468')
+[2016-06-22 19:22:00] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES (NULL,NULL,'255',NULL,NULL,NULL,'4','1466594520')
+[2016-06-22 19:22:11] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊但是fda','255','1','','1','4','1466594531')
+[2016-06-22 19:25:43] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','阿道夫大师傅','255','1','','1','4','1466594743')

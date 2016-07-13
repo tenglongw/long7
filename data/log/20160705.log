@@ -1,0 +1,21 @@
+[2016-07-05 14:48:35] /long7/admin/index.php?act=brand&op=brand&curpage=24 ( act=brand&op=brand ) 
+ERR: Db Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-10,10' at line 1
+SELECT * FROM `wrzcnet_brand` WHERE ( brand_apply = '1' ) ORDER BY brand_sort asc, brand_id desc LIMIT -10,10  
+[2016-07-05 17:38:59] //long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_explog` (circle_id,member_id,member_name,el_exp,el_time,el_itemid,el_type,el_desc) VALUES ('0',NULL,NULL,'3','1467711539','75','4','')
+[2016-07-05 17:39:48] //long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_explog` (circle_id,member_id,member_name,el_exp,el_time,el_itemid,el_type,el_desc) VALUES ('0',NULL,NULL,'3','1467711588','75','4','')
+[2016-07-05 18:31:03] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_explog` (circle_id,member_id,member_name,el_exp,el_time,el_itemid,el_type,el_desc) VALUES ('0',NULL,NULL,'3','1467714663','75','4','')
+[2016-07-05 18:31:41] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_explog` (circle_id,member_id,member_name,el_exp,el_time,el_itemid,el_type,el_desc) VALUES ('0',NULL,NULL,'3','1467714701','75','4','')
+[2016-07-05 18:44:39] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_threply` (theme_id,circle_id,member_id,member_name,reply_content,reply_addtime,is_closed) VALUES ('0','0',NULL,NULL,NULL,'1467715479','0')
+[2016-07-05 18:44:39] /long7/mobile/index.php?act=theme&op=ajax_likeyes&t_id=6&member_id=9&member_name=circle3 ( act=theme&op=ajax_likeyes ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_like` (theme_id,member_id,member_name,circle_id) VALUES ('0',NULL,NULL,'1')

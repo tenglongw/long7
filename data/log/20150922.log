@@ -1,0 +1,12 @@
+[2015-09-22 11:56:46] /admin/index.php?act=ownshop&op=add ( act=ownshop&op=add ) 
+ERR: Db Error: Duplicate entry '2' for key 'PRIMARY'
+INSERT  INTO `wrzcnet_member_common` (member_id) VALUES ('2')
+[2015-09-22 11:56:46] /admin/index.php?act=ownshop&op=add ( act=ownshop&op=add ) 
+ERR: Db Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''wrzcnet','wrzcnet','1','1','1442894206','1')' at line 1
+INSERT  INTO `wrzcnet_store` (store_name,member_id,member_name,seller_name,bind_all_gc,store_state,store_time,is_own_shop) VALUES ('广州创智凌云自营',,'wrzcnet','wrzcnet','1','1','1442894206','1')
+[2015-09-22 11:56:46] /admin/index.php?act=ownshop&op=add ( act=ownshop&op=add ) 
+ERR: Db Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ','0','1')' at line 1
+INSERT  INTO `wrzcnet_seller` (seller_name,member_id,store_id,seller_group_id,is_admin) VALUES ('wrzcnet',,,'0','1')
+[2015-09-22 11:56:46] /admin/index.php?act=ownshop&op=add ( act=ownshop&op=add ) 
+ERR: Db Error: Column count doesn't match value count at row 1
+INSERT  INTO `wrzcnet_store_extend` (store_id) VALUES ()

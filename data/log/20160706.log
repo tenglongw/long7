@@ -1,0 +1,21 @@
+[2016-07-06 13:20:13] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_threply` (theme_id,circle_id,member_id,member_name,reply_content,reply_addtime,is_closed) VALUES ('0','0',NULL,NULL,NULL,'1467782413','0')
+[2016-07-06 13:20:13] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_threply` (theme_id,circle_id,member_id,member_name,reply_content,reply_addtime,is_closed) VALUES ('0','0',NULL,NULL,NULL,'1467782413','0')
+[2016-07-06 13:20:13] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_threply` (theme_id,circle_id,member_id,member_name,reply_content,reply_addtime,is_closed) VALUES ('0','0',NULL,NULL,NULL,'1467782413','0')
+[2016-07-06 13:20:14] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_threply` (theme_id,circle_id,member_id,member_name,reply_content,reply_addtime,is_closed) VALUES ('0','0',NULL,NULL,NULL,'1467782414','0')
+[2016-07-06 13:20:14] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_threply` (theme_id,circle_id,member_id,member_name,reply_content,reply_addtime,is_closed) VALUES ('0','0',NULL,NULL,NULL,'1467782414','0')
+[2016-07-06 13:20:14] /long7/mobile/index.php?act=theme&op=ajax_likeyes&t_id=6&member_id=9&member_name=circle3 ( act=theme&op=ajax_likeyes ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_like` (theme_id,member_id,member_name,circle_id) VALUES ('0',NULL,NULL,'1')
+[2016-07-06 13:20:39] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_threply` (theme_id,circle_id,member_id,member_name,reply_content,reply_addtime,is_closed) VALUES ('0','0',NULL,NULL,NULL,'1467782439','0')

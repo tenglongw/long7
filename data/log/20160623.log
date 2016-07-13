@@ -1,0 +1,165 @@
+[2016-06-23 10:43:41] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','专题专题','255','1','','1','4','1466649821')
+[2016-06-23 11:03:49] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','adfadsfasdfadsfadf','255','1','','1','4','1466651029')
+[2016-06-23 11:04:48] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','adf垃圾的楼房啊领导发了看到&nbsp;','255','1','','1','4','1466651088')
+[2016-06-23 11:20:30] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊打发十分','255','1','','1','4','1466652030')
+[2016-06-23 15:08:02] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=111&themecontent=themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_name' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,circle_id,circle_name,thclass_id,thclass_name,member_id,member_name,is_identity,theme_addtime,lastspeak_time,theme_readperm,theme_special) VALUES (NULL,NULL,'1',NULL,NULL,NULL,NULL,NULL,'0','1466665682','1466665682','0','0')
+[2016-06-23 15:09:59] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=111&themecontent=themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_name' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,circle_id,circle_name,thclass_id,thclass_name,member_id,member_name,is_identity,theme_addtime,lastspeak_time,theme_readperm,theme_special) VALUES (NULL,NULL,'1',NULL,NULL,NULL,NULL,NULL,'0','1466665799','1466665799','0','0')
+[2016-06-23 15:10:15] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1 ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,circle_id,circle_name,thclass_id,thclass_name,member_id,member_name,is_identity,theme_addtime,lastspeak_time,theme_readperm,theme_special) VALUES ('111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','1',NULL,NULL,NULL,NULL,NULL,'0','1466665815','1466665815','0','0')
+[2016-06-23 15:12:05] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_content' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,circle_id,circle_name,thclass_id,thclass_name,member_id,member_name,is_identity,theme_addtime,lastspeak_time,theme_readperm,theme_special) VALUES ('1111$themecontent=lskdfjsldfjal',NULL,'1',NULL,NULL,NULL,'10','circle3','0','1466665925','1466665925','0','0')
+[2016-06-23 15:12:25] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1 ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_name' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,circle_id,circle_name,thclass_id,thclass_name,member_id,member_name,is_identity,theme_addtime,lastspeak_time,theme_readperm,theme_special) VALUES (NULL,NULL,'1',NULL,NULL,NULL,'10','circle3','0','1466665945','1466665945','0','0')
+[2016-06-23 15:12:29] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1 ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_name' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,circle_id,circle_name,thclass_id,thclass_name,member_id,member_name,is_identity,theme_addtime,lastspeak_time,theme_readperm,theme_special) VALUES (NULL,NULL,'1',NULL,NULL,NULL,'10','circle3','0','1466665949','1466665949','0','0')
+[2016-06-23 15:14:25] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1 ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_name' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,circle_id,circle_name,thclass_id,thclass_name,member_id,member_name,is_identity,theme_addtime,lastspeak_time,theme_readperm,theme_special) VALUES (NULL,NULL,'1',NULL,NULL,NULL,'10','circle3','0','1466666065','1466666065','0','0')
+[2016-06-23 15:14:50] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_content' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,circle_id,circle_name,thclass_id,thclass_name,member_id,member_name,is_identity,theme_addtime,lastspeak_time,theme_readperm,theme_special) VALUES ('1111$themecontent=lskdfjsldfjal',NULL,'1',NULL,NULL,NULL,'10','circle3','0','1466666090','1466666090','0','0')
+[2016-06-23 15:15:04] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_content' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,circle_id,circle_name,thclass_id,thclass_name,member_id,member_name,is_identity,theme_addtime,lastspeak_time,theme_readperm,theme_special) VALUES ('1111$themecontent=lskdfjsldfjal',NULL,'1',NULL,NULL,NULL,'10','circle3','0','1466666104','1466666104','0','0')
+[2016-06-23 15:30:44] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1 ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,circle_id,circle_name,member_id,member_name,is_identity,theme_addtime,lastspeak_time,theme_readperm,theme_special) VALUES ('111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','1',NULL,NULL,NULL,'0','1466667044','1466667044','0','0')
+[2016-06-23 15:31:17] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1 ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,circle_id,circle_name,member_id,member_name,theme_addtime,lastspeak_time) VALUES ('111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','1',NULL,NULL,NULL,'1466667076','1466667076')
+[2016-06-23 15:31:33] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1 ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,member_id,member_name,theme_addtime,lastspeak_time) VALUES ('111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent',NULL,NULL,'1466667093','1466667093')
+[2016-06-23 15:33:22] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1 ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,member_id,member_name,theme_addtime,lastspeak_time) VALUES ('111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent',NULL,NULL,'1466667202','1466667202')
+[2016-06-23 15:33:57] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_content' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,member_id,member_name,theme_addtime,lastspeak_time) VALUES ('1111$themecontent=lskdfjsldfjal',NULL,'10','circle3','1466667237','1466667237')
+[2016-06-23 15:34:39] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_content' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,theme_addtime,lastspeak_time) VALUES ('1111$themecontent=lskdfjsldfjal',NULL,'1466667279','1466667279')
+[2016-06-23 15:34:55] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_content' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,theme_addtime,lastspeak_time) VALUES ('1111$themecontent=lskdfjsldfjal',NULL,'1466667295','1466667295')
+[2016-06-23 15:35:39] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_content' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,theme_addtime,lastspeak_time) VALUES ('1111$themecontent=lskdfjsldfjal',NULL,'1466667339','1466667339')
+[2016-06-23 15:35:50] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_content' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,theme_addtime,lastspeak_time) VALUES ('1111$themecontent=lskdfjsldfjal',NULL,'1466667350','1466667350')
+[2016-06-23 15:36:29] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_content' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,theme_addtime,lastspeak_time) VALUES ('1111$themecontent=lskdfjsldfjal',NULL,'1466667389','1466667389')
+[2016-06-23 15:37:04] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_name' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,member_id,member_name,theme_addtime,lastspeak_time) VALUES (NULL,NULL,'10','circle3','1466667424','1466667424')
+[2016-06-23 15:37:22] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_name' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,member_id,member_name,theme_addtime,lastspeak_time) VALUES (NULL,NULL,'10','circle3','1466667442','1466667442')
+[2016-06-23 15:37:31] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_name' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,member_id,member_name,theme_addtime,lastspeak_time) VALUES (NULL,NULL,'10','circle3','1466667451','1466667451')
+[2016-06-23 15:37:39] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1&name=1111$themecontent=lskdfjsldfjal ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'theme_name' cannot be null
+INSERT  INTO `wrzcnet_circle_theme` (theme_name,theme_content,member_id,member_name,theme_addtime,lastspeak_time) VALUES (NULL,NULL,'10','circle3','1466667459','1466667459')
+[2016-06-23 15:39:36] /long7/circle/index.php?act=theme&op=save_theme&c_id=1&inajax=1 ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'member_id' cannot be null
+REPLACE  INTO `wrzcnet_circle_expmember` (member_id,circle_id,em_exp,em_time) VALUES (NULL,'1','2','2016-06-23')
+[2016-06-23 15:39:36] /long7/circle/index.php?act=theme&op=save_theme&c_id=1&inajax=1 ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_explog` (circle_id,member_id,member_name,el_exp,el_time,el_itemid,el_type,el_desc) VALUES ('1',NULL,NULL,'2','1466667576','14','2','发表话题获得经验')
+[2016-06-23 17:42:08] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','adf拉萨扩大解放了的拉萨的减肥了大家&nbsp;','255','1','','1','4','1466674927')
+[2016-06-23 17:44:20] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','拉萨的房间了拉萨的揭发老大发；啦是大家看法；了','255','1','','1','4','1466675060')
+[2016-06-23 17:45:38] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','阿斯蒂芬库里垃圾收到付款了；阿斯利康的风景阿里山的','255','1','','1','4','1466675137')
+[2016-06-23 17:45:59] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES (NULL,NULL,'255',NULL,NULL,NULL,'4','1466675159')
+[2016-06-23 17:46:14] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES (NULL,NULL,'255',NULL,NULL,NULL,'4','1466675174')
+[2016-06-23 17:48:10] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES (NULL,NULL,'255',NULL,NULL,NULL,'4','1466675290')
+[2016-06-23 17:48:28] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','爱的色放阿斯顿法定','255','1','','1','4','1466675308')
+[2016-06-23 18:12:30] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊打发十分','255','1','','1','4','1466676750')
+[2016-06-23 18:15:26] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊对方的','255','1','','1','4','1466676926')
+[2016-06-23 18:15:53] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊的事发生','255','1','','1','4','1466676953')
+[2016-06-23 18:16:26] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES (NULL,NULL,'255',NULL,NULL,NULL,'4','1466676986')
+[2016-06-23 18:16:31] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊的事发生','255','1','','1','4','1466676991')
+[2016-06-23 18:17:17] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊的事发生','255','1','','1','4','1466677037')
+[2016-06-23 18:37:53] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊的事发生','255','1','','1','4','1466678273')
+[2016-06-23 18:44:33] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES (NULL,NULL,'255',NULL,NULL,NULL,'4','1466678673')
+[2016-06-23 18:44:37] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES ('专题1','啊的事发生','255','1','','1','4','1466678677')
+[2016-06-23 18:44:48] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES (NULL,NULL,'255',NULL,NULL,NULL,'4','1466678688')
+[2016-06-23 18:45:06] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_add_time' in 'field list'
+INSERT  INTO `wrzcnet_store_special` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES (NULL,NULL,'255',NULL,NULL,NULL,'4','1466678706')
+[2016-06-23 18:47:02] /long7/shop/index.php?act=store_special&op=special_save ( act=store_special&op=special_save ) 
+ERR: Db Error: Unknown column 'sp_title' in 'field list'
+INSERT  INTO `wrzcnet_store_navigation` (sp_title,sp_content,sp_sort,sp_if_show,sp_url,sp_new_open,sp_store_id,sp_add_time) VALUES (NULL,NULL,'255',NULL,NULL,NULL,'4','1466678822')
+[2016-06-23 18:51:30] /long7/shop/index.php?act=store_special&op=special_edit&ssp_id=2 ( act=store_special&op=special_edit ) 
+ERR: Db Error: Unknown column 'sp_id' in 'where clause'
+SELECT * FROM `wrzcnet_store_special` WHERE ( sp_id = '2' ) LIMIT 1  
+[2016-06-23 18:51:40] /long7/shop/index.php?act=store_special&op=special_edit&ssp_id=2 ( act=store_special&op=special_edit ) 
+ERR: Db Error: Unknown column 'sp_id' in 'where clause'
+SELECT * FROM `wrzcnet_store_special` WHERE ( sp_id = '2' ) LIMIT 1  
+[2016-06-23 18:52:39] /long7/shop/index.php?act=store_special&op=special_edit&ssp_id=2 ( act=store_special&op=special_edit ) 
+ERR: Db Error: Unknown column 'sp_id' in 'where clause'
+SELECT * FROM `wrzcnet_store_special` WHERE ( sp_id = '2' ) LIMIT 1  
+[2016-06-23 18:55:53] /long7/shop/index.php?act=store_special&op=special_edit&ssp_id=2 ( act=store_special&op=special_edit ) 
+ERR: Db Error: Unknown column 'sp_id' in 'where clause'
+SELECT * FROM `wrzcnet_store_special` WHERE ( sp_id = NULL ) LIMIT 1  
+[2016-06-23 18:55:56] /long7/shop/index.php?act=store_special&op=special_edit&ssp_id=2 ( act=store_special&op=special_edit ) 
+ERR: Db Error: Unknown column 'sp_id' in 'where clause'
+SELECT * FROM `wrzcnet_store_special` WHERE ( sp_id = NULL ) LIMIT 1  
+[2016-06-23 19:05:41] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1 ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'member_id' cannot be null
+REPLACE  INTO `wrzcnet_circle_expmember` (member_id,circle_id,em_exp,em_time) VALUES (NULL,'1','2','2016-06-23')
+[2016-06-23 19:05:41] /long7/mobile/index.php?act=theme&op=save_theme&c_id=1&inajax=1 ( act=theme&op=save_theme ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_explog` (circle_id,member_id,member_name,el_exp,el_time,el_itemid,el_type,el_desc) VALUES ('1',NULL,NULL,'2','1466679941','15','2','')

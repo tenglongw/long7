@@ -1,0 +1,81 @@
+[2016-07-08 11:48:48] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('9','circle3','1',NULL,NULL,'随手拍[哈哈]','0','平台管理','1','1467949728')
+[2016-07-08 11:48:49] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,NULL,'多图片上传[哈哈]','0','平台管理','1','1467949729')
+[2016-07-08 11:48:49] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,NULL,'多图片','0','平台管理','1','1467949729')
+[2016-07-08 11:48:49] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,NULL,'','0','平台管理','1','1467949729')
+[2016-07-08 11:48:49] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949729')
+[2016-07-08 11:48:50] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949730')
+[2016-07-08 11:48:50] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949730')
+[2016-07-08 11:48:50] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949730')
+[2016-07-08 11:48:51] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949731')
+[2016-07-08 11:48:51] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949731')
+[2016-07-08 11:48:58] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949738')
+[2016-07-08 11:48:59] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949738')
+[2016-07-08 11:48:59] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949739')
+[2016-07-08 11:48:59] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949739')
+[2016-07-08 11:48:59] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949739')
+[2016-07-08 11:48:59] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949739')
+[2016-07-08 11:49:00] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949740')
+[2016-07-08 11:49:00] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,'111','themecontentthemecontentthemecontentthemecontentthemecontentthemecontentthemecontent','0','平台管理','1','1467949740')
+[2016-07-08 11:49:00] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,NULL,'The new version','0','平台管理','1','1467949740')
+[2016-07-08 11:49:00] /long7/admin/index.php?act=circle_theme&op=theme_list ( act=circle_theme&op=theme_list ) 
+ERR: Db Error: Column 'circle_name' cannot be null
+INSERT  INTO `wrzcnet_circle_recycle` (member_id,member_name,circle_id,circle_name,theme_name,recycle_content,recycle_opid,recycle_opname,recycle_type,recycle_time) VALUES ('10','circle3','1',NULL,NULL,'Juggling','0','平台管理','1','1467949740')
+[2016-07-08 13:47:22] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_threply` (theme_id,circle_id,member_id,member_name,reply_content,reply_addtime,is_closed) VALUES ('0','0',NULL,NULL,NULL,'1467956842','0')
+[2016-07-08 13:47:22] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_threply` (theme_id,circle_id,member_id,member_name,reply_content,reply_addtime,is_closed) VALUES ('0','0',NULL,NULL,NULL,'1467956842','0')
+[2016-07-08 13:47:22] /long7/mobile/index.php?act=theme&op=ajax_likeyes&t_id=6&member_id=9&member_name=circle3 ( act=theme&op=ajax_likeyes ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_like` (theme_id,member_id,member_name,circle_id) VALUES ('0',NULL,NULL,'1')
+[2016-07-08 13:47:22] /long7/mobile/index.php?act=theme&op=ajax_likeyes&t_id=6&member_id=9&member_name=circle3 ( act=theme&op=ajax_likeyes ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_like` (theme_id,member_id,member_name,circle_id) VALUES ('0',NULL,NULL,'1')
+[2016-07-08 13:47:23] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_threply` (theme_id,circle_id,member_id,member_name,reply_content,reply_addtime,is_closed) VALUES ('0','0',NULL,NULL,NULL,'1467956843','0')
+[2016-07-08 13:47:23] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_threply` (theme_id,circle_id,member_id,member_name,reply_content,reply_addtime,is_closed) VALUES ('0','0',NULL,NULL,NULL,'1467956843','0')
+[2016-07-08 13:58:35] /long7/mobile/index.php?act=theme&op=save_reply&c_id=1&inajax=1 ( act=theme&op=save_reply ) 
+ERR: Db Error: Column 'member_id' cannot be null
+INSERT  INTO `wrzcnet_circle_threply` (theme_id,circle_id,member_id,member_name,reply_content,reply_addtime,is_closed) VALUES ('0','0',NULL,NULL,NULL,'1467957515','0')

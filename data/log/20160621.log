@@ -1,0 +1,12 @@
+[2016-06-21 12:29:14] /long7/mobile/index.php?act=article&op=article_list&ac_id=7 ( act=article&op=article_list ) 
+ERR: Db Error: Unknown column 'upload_article_site_url' in 'field list'
+SELECT article.article_id,article.ac_id,article.article_url,article.article_title,article.article_time,upload_article_site_url/upload.file_name FROM `wrzcnet_article` as `article` join `wrzcnet_upload` as `upload` ON article.article_id=upload.item_id  WHERE  article.article_show = '1' order by article_sort asc,article_time desc limit 300
+[2016-06-21 12:30:25] /long7/mobile/index.php?act=article&op=article_list&ac_id=7 ( act=article&op=article_list ) 
+ERR: Db Error: Unknown column 'upload_article_site_urlupload.file_name' in 'field list'
+SELECT article.article_id,article.ac_id,article.article_url,article.article_title,article.article_time,upload_article_site_urlupload.file_name FROM `wrzcnet_article` as `article` join `wrzcnet_upload` as `upload` ON article.article_id=upload.item_id  WHERE  article.article_show = '1' order by article_sort asc,article_time desc limit 300
+[2016-06-21 12:31:38] /long7/mobile/index.php?act=article&op=article_list&ac_id=7 ( act=article&op=article_list ) 
+ERR: Db Error: Unknown column 'UPLOAD_ARTICLE_SITE_URLupload.file_name' in 'field list'
+SELECT article.article_id,article.ac_id,article.article_url,article.article_title,article.article_time,UPLOAD_ARTICLE_SITE_URLupload.file_name FROM `wrzcnet_article` as `article` join `wrzcnet_upload` as `upload` ON article.article_id=upload.item_id  WHERE  article.article_show = '1' order by article_sort asc,article_time desc limit 300
+[2016-06-21 12:32:26] /long7/mobile/index.php?act=article&op=article_list&ac_id=7 ( act=article&op=article_list ) 
+ERR: Db Error: Unknown column 'UPLOAD_ARTICLE_SITE_URL' in 'field list'
+SELECT article.article_id,article.ac_id,article.article_url,article.article_title,article.article_time,UPLOAD_ARTICLE_SITE_URL/upload.file_name FROM `wrzcnet_article` as `article` join `wrzcnet_upload` as `upload` ON article.article_id=upload.item_id  WHERE  article.article_show = '1' order by article_sort asc,article_time desc limit 300
