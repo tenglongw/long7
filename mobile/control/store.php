@@ -88,7 +88,7 @@ class storeControl extends mobileHomeControl{
         $groupbuy_list = Model('groupbuy')->getGroupbuyListByGoodsCommonIDString(implode(',', $commonid_array));
         $xianshi_list = Model('p_xianshi_goods')->getXianshiGoodsListByGoodsString(implode(',', $goodsid_array));
         foreach ($goods_list as $key => $value) {
-            //团购
+            /* //团购
             if (isset($groupbuy_list[$value['goods_commonid']])) {
                 $goods_list[$key]['goods_price'] = $groupbuy_list[$value['goods_commonid']]['groupbuy_price'];
                 $goods_list[$key]['group_flag'] = true;
@@ -102,7 +102,7 @@ class storeControl extends mobileHomeControl{
                 $goods_list[$key]['xianshi_flag'] = true;
             } else {
                 $goods_list[$key]['xianshi_flag'] = false;
-            }
+            } */
 
             //商品图片url
             $goods_list[$key]['goods_image_url'] = cthumb($value['goods_image'], 360, $value['store_id']); 
@@ -116,7 +116,7 @@ class storeControl extends mobileHomeControl{
     }
 
     /**
-     * 商品详细页
+     * 店铺专题页
      */
     public function store_detailOp() {
         $store_id = intval($_GET ['store_id']);
@@ -126,20 +126,43 @@ class storeControl extends mobileHomeControl{
         if (empty($store_info)) {
             output_error('店铺不存在');
         }
-        $store_detail['store_pf'] = $store_info['store_credit'];
-        $store_detail['store_info'] = $store_info;
-        // //店铺导航
-        // $model_store_navigation = Model('store_navigation');
-        // $store_navigation_list = $model_store_navigation->getStoreNavigationList(array('sn_store_id' => $store_id));
-        // $store_detail['store_navigation_list'] = $store_navigation_list;
-        // //幻灯片图片
-        // if($this->store_info['store_slide'] != '' && $this->store_info['store_slide'] != ',,,,'){
-        //     $store_detail['store_slide'] = explode(',', $this->store_info['store_slide']);
-        //     $store_detail['store_slide_url'] = explode(',', $this->store_info['store_slide_url']);
-        // }
-
+        $store_detail['store_pf'] = $store_info['store_credit_average'].'.0';
+       // $store_detail['store_info'] = $store_info;
+        //店铺导航
+//         $model_store_navigation = Model('store_navigation');
+//         $store_navigation_list = $model_store_navigation->getStoreNavigationList(array('sn_store_id' => $store_id));
+		//店铺商品
+        //查询条件
+        $condition = array();
+        if(!empty($_GET['store_id']) && intval($_GET['store_id']) > 0) {
+        	$condition['store_id'] = $_GET['store_id'];
+        } elseif (!empty($_GET['keyword'])) {
+        	$condition['goods_name|goods_jingle'] = array('like', '%' . $_GET['keyword'] . '%');
+        }
+        
+        //所需字段
+        $fieldstr = "goods_id,goods_name,goods_image";
+        
+        //排序方式
+        $order = $this->_goods_list_order($_GET['key'], $_GET['order']);
+        $model_goods = Model('goods');
+        $goods_list = $model_goods->getGoodsListByColorDistinct($condition, $fieldstr, $order);
+        //处理商品列表(团购、限时折扣、商品图片)
+        $goods_list = $this->_goods_list_extend($goods_list);
+        $store_detail['goods_list'] = $goods_list;
+		//店铺专题页内容
+        $model_store_special = Model('store_special');
+        $store_special_list = $model_store_special->getStoreSpecialList(array('sp_store_id' => $store_id),$field);
+        $store_detail['store_special'] = $store_special_list[0];
+        //幻灯片图片
+//         if($this->store_info['store_slide'] != '' && $this->store_info['store_slide'] != ',,,,'){
+//             $store_detail['store_slide'] = explode(',', $this->store_info['store_slide']);
+//             $store_detail['store_slide_url'] = explode(',', $this->store_info['store_slide_url']);
+//         }
+		//echo json_encode($store_special_list[0]);exit;
         //店铺详细信息处理
-        // $store_detail = $this->_store_detail_extend($store_info);
+         //$store_detail = $this->_store_detail_extend($store_info);
+        $store_detail['store_name'] = $store_info['store_name'];
         output_data($store_detail);
     }
 

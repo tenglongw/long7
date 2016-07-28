@@ -1198,7 +1198,7 @@ class goodsModel extends Model{
                     $tmp_array[] = $k;
                 }
             }
-            sort($tmp_array);
+           // sort($tmp_array);
             $spec_sign = implode('|', $tmp_array);
             $tpl_spec = array();
             $tpl_spec['sign'] = $spec_sign;

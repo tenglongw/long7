@@ -821,7 +821,6 @@ class buyModel {
      */
     public function buyStep1($cart_id, $ifcart, $invalid_cart, $member_id, $store_id) {
         $model_cart = Model('cart');
-
         $result = array();
 
         //取得POST ID和购买数量

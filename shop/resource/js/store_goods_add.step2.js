@@ -1,5 +1,5 @@
 $(function(){
-    // 取消回车提交表单
+    // 取消回车提交表单 
     $('input').keypress(function(e){
         var key = window.event ? e.keyCode : e.which;
         if (key.toString() == "13") {
@@ -125,32 +125,9 @@ $(function(){
             $(this).nextAll('div[nctype="div_freight"]').show();
     });
     
-    // 商品所在地
-    var area_select = $("#province_id");
-    areaInit(area_select,0);//初始化地区
-    $("#province_id").change(function (){
-        // 删除后面的select
-        $(this).nextAll("select").remove();
-        if (this.value > 0){
-            var text = $(this).get(0).options[$(this).get(0).selectedIndex].text;
-            var area_id = this.value;
-            var EP = new Array();
-            EP[1]= true;EP[2]= true;EP[9]= true;EP[22]= true;EP[34]= true;EP[35]= true;
-            if(typeof(nc_a[area_id]) != 'undefined'){//数组存在
-                var areas = new Array();
-                var option = "";
-                areas = nc_a[area_id];
-            if (typeof(EP[area_id]) == 'undefined'){
-                option = "<option value='0'>"+text+"(*)</option>";
-            }
-            $("<select name='city_id' id='city_id'>"+option+"</select>").insertAfter(this);
-                for (var i = 0; i <areas.length; i++){
-                    $(this).next("select").append("<option value='" + areas[i][0] + "'>" + areas[i][1] + "</option>");
-                }
-            }
-        }
-     });
-    
+    // 商品所在地 v2016
+    $("#region").nc_region({show_deep:2,tip_type:1});
+
     // 定时发布时间
     $('#starttime').datepicker({dateFormat: 'yy-mm-dd'});
     $('input[name="g_state"]').click(function(){

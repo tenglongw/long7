@@ -52,7 +52,7 @@ class voucherModel extends Model {
 	public function getCurrentAvailableVoucher($condition = array(), $goods_total = 0) {
 	   $condition['voucher_end_date'] = array('gt',TIMESTAMP);
 	   $condition['voucher_state'] = 1;
-	   $voucher_list = $this->table('voucher')->where($condition)->key('voucher_t_id')->select();
+	   $voucher_list = $this->table('voucher')->where($condition)->select();
 	   foreach ($voucher_list as $key => $voucher) {
 	       if ($goods_total < $voucher['voucher_limit']) {
 	           unset($voucher_list[$key]);
@@ -248,11 +248,11 @@ class voucherModel extends Model {
         }
 
         //更新过期代金券状态
-        $this->_checkVoucherExpire($member_id);
+       // $this->_checkVoucherExpire($member_id);
 
-		$field = 'voucher_id,voucher_code,voucher_title,voucher_desc,voucher_start_date,voucher_end_date,voucher_price,voucher_limit,voucher_state,voucher_order_id,voucher_store_id,store_name,store_id,store_domain,voucher_t_customimg';
+		$field = 'voucher_id,voucher_code,voucher_title,voucher_desc,voucher_start_date,voucher_end_date,voucher_price,voucher_limit,voucher_state,voucher_order_id,voucher_t_customimg';
 
-        $on = 'voucher.voucher_store_id = store.store_id,voucher.voucher_t_id=voucher_template.voucher_t_id';
+        $on = 'voucher.voucher_t_id=voucher_template.voucher_t_id';
 
 		$where = array('voucher_owner_id'=>$member_id);
         $voucher_state  = intval($voucher_state);
@@ -260,16 +260,16 @@ class voucherModel extends Model {
 			$where['voucher_state'] = $voucher_state;
 		}
 
-		$list = $this->table('voucher,store,voucher_template')->field($field)->join('inner,inner')->on($on)->where($where)->order('voucher_id desc')->page($page)->select();
-
+		$list = $this->table('voucher,voucher_template')->field($field)->join('inner')->on($on)->where($where)->order('voucher_id desc')->page($page)->select();
+		//echo json_encode($where);exit;
 		if(!empty($list) && is_array($list)){
 			foreach ($list as $key=>$val){
                 //代金券图片
-				if (empty($val['voucher_t_customimg']) || !file_exists(BASE_UPLOAD_PATH.DS.ATTACH_VOUCHER.DS.$val['store_id'].DS.$val['voucher_t_customimg'])){
+				/* if (empty($val['voucher_t_customimg']) || !file_exists(BASE_UPLOAD_PATH.DS.ATTACH_VOUCHER.DS.$val['store_id'].DS.$val['voucher_t_customimg'])){
 					$list[$key]['voucher_t_customimg'] = UPLOAD_SITE_URL.DS.defaultGoodsImage(60);
 				}else{
 					$list[$key]['voucher_t_customimg'] = UPLOAD_SITE_URL.DS.ATTACH_VOUCHER.DS.$val['store_id'].DS.str_ireplace('.', '_small.', $val['voucher_t_customimg']);
-				}
+				} */
                 //代金券状态文字
                 $list[$key]['voucher_state_text'] = $this->voucher_state_array[$val['voucher_state']];
 			}
@@ -389,6 +389,7 @@ class voucherModel extends Model {
         $points_arr['point_ordersn'] = $insert_arr['voucher_code'];
         $points_arr['pl_desc'] = L('home_voucher').$insert_arr['voucher_code'].L('points_pointorderdesc');
         Model('points')->savePointsLog('app',$points_arr,true);
+       // echo json_encode($insert_arr);exit;
         $result = $this->table('voucher')->insert($insert_arr);
         if ($result){
             //代金券模板的兑换数增加

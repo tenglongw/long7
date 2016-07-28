@@ -29,9 +29,9 @@ $arr = array(
 			5 => array(
 				'args' 	=> 'trade',
 				'text'	=> $lang['nc_trade']),
-			6 => array(
+			/* 6 => array(
 				'args'	=> 'website',
-				'text' 	=> $lang['nc_website']),
+				'text' 	=> $lang['nc_website']), */
 			7 => array(
 				'args'	=> 'operation',
 				'text'	=> $lang['nc_operation']),
@@ -150,21 +150,21 @@ $arr = array(
 				'nav' => 'operation',
 				'text' => $lang['nc_operation'],
 				'list' => array(
-					array('args'=>'setting,operation,operation',			    'text'=>$lang['nc_operation_set']),
+					/* array('args'=>'setting,operation,operation',			    'text'=>$lang['nc_operation_set']),
 					array('args'=>'groupbuy_template_list,groupbuy,operation',	'text'=>$lang['nc_groupbuy_manage']),
                     array('args'=>'index,vr_groupbuy,operation',               'text'=>'虚拟抢购设置'),
 					array('args'=>'xianshi_apply,promotion_xianshi,operation',	'text'=>$lang['nc_promotion_xianshi']),
 					array('args'=>'mansong_apply,promotion_mansong,operation',	'text'=>$lang['nc_promotion_mansong']),
 					array('args'=>'bundling_list,promotion_bundling,operation',	'text'=>$lang['nc_promotion_bundling']),
-					array('args'=>'goods_list,promotion_booth,operation',		'text'=>$lang['nc_promotion_booth']),
+					array('args'=>'goods_list,promotion_booth,operation',		'text'=>$lang['nc_promotion_booth']), */
 					array('args'=>'voucher_apply,voucher,operation',            'text'=>$lang['nc_voucher_price_manage']),
-					array('args'=>'index,bill,operation',					    'text'=>$lang['nc_bill_manage']),
+					/* array('args'=>'index,bill,operation',					    'text'=>$lang['nc_bill_manage']),
 					array('args'=>'index,vr_bill,operation',					'text'=>'虚拟订单结算'),
 					array('args'=>'activity,activity,operation',				'text'=>$lang['nc_activity_manage']),
-					array('args'=>'pointprod,pointprod,operation',				'text'=>$lang['nc_pointprod']),
+					array('args'=>'pointprod,pointprod,operation',				'text'=>$lang['nc_pointprod']), */
 					array('args'=>'index,mall_consult,operation',               'text'=>'平台客服'),
-                    array('args'=>'index,rechargecard,operation',               'text'=>'平台充值卡'),
-                    array('args'=>'index,delivery,operation',                   'text'=>'物流自提服务站')
+                    /* array('args'=>'index,rechargecard,operation',               'text'=>'平台充值卡'),
+                    array('args'=>'index,delivery,operation',                   'text'=>'物流自提服务站') */
 				)
 			),
 			8 => array(
@@ -210,6 +210,7 @@ if(C('mobile_isuse')){
 				'text' => $lang['nc_mobile'],
 				'list' => array(
 					array('args'=>'index_edit,mb_special,mobile',				'text'=>'首页编辑'),
+					array('args'=>'article,article,mobile',				'text'=>$lang['nc_article_manage']),
 					array('args'=>'goods_edit,mb_special,mobile',				'text'=>'商城编辑'),
 					array('args'=>'special_list,mb_special,mobile',				'text'=>'专题设置'),
 					array('args'=>'mb_category_list,mb_category,mobile',	'text'=>$lang['nc_mobile_catepic']),

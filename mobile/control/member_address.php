@@ -56,7 +56,7 @@ class member_addressControl extends mobileMemberControl {
         $condition['address_id'] = $address_id;
         $condition['member_id'] = $this->member_info['member_id'];
         $model_address->delAddress($condition);
-        output_data('1');
+        output_data(array('message' => '删除成功','status' => 0));
     }
 
     /**
@@ -69,9 +69,9 @@ class member_addressControl extends mobileMemberControl {
 
         $result = $model_address->addAddress($address_info);
         if($result) {
-            output_data(array('address_id' => $result));
+            output_data(array('status' => 0,'message' => '新增成功','address_id' => $result));
         } else {
-            output_error('保存失败');
+            output_error(array('status' => 1,'message' => '保存失败'));
         }
     }
 
@@ -93,9 +93,9 @@ class member_addressControl extends mobileMemberControl {
 
         $result = $model_address->editAddress($address_info, array('address_id' => $address_id));
         if($result) {
-            output_data('1');
+            output_data(array('message' => '保存成功','status' => 0));
         } else {
-            output_error('保存失败');
+            output_data(array('message' => '保存失败','status' => 1));
         }
     }
 
@@ -108,7 +108,7 @@ class member_addressControl extends mobileMemberControl {
             array("input"=>$_POST["true_name"],"require"=>"true","message"=>'姓名不能为空'),
             array("input"=>$_POST["area_info"],"require"=>"true","message"=>'地区不能为空'),
             array("input"=>$_POST["address"],"require"=>"true","message"=>'地址不能为空'),
-            array("input"=>$_POST['tel_phone'].$_POST['mob_phone'],'require'=>'true','message'=>'联系方式不能为空')
+            array("input"=>$_POST['mob_phone'],'require'=>'true','message'=>'联系方式不能为空')
         );
         $error = $obj_validate->validate();
         if ($error != ''){
@@ -122,7 +122,7 @@ class member_addressControl extends mobileMemberControl {
         $data['city_id'] = intval($_POST['city_id']);
         $data['area_info'] = $_POST['area_info'];
         $data['address'] = $_POST['address'];
-        $data['tel_phone'] = $_POST['tel_phone'];
+        $data['postcode'] = $_POST['postcode'];//邮编
         $data['mob_phone'] = $_POST['mob_phone'];
         return $data;
     }
@@ -132,7 +132,6 @@ class member_addressControl extends mobileMemberControl {
      */
     public function area_listOp() {
         $area_id = intval($_POST['area_id']);
-
         $model_area = Model('area');
 
         $condition = array();

@@ -88,22 +88,15 @@ if (cookie_skin) {
             <span class="mr10"><?php echo $output['type_info']['class_name'];?></span>
                         <input class="edit_gcategory" type="button" value="编辑">
                         <select style="display:none;" class="class-select">
-              <option value="0">请选择...</option>
-                                                        <option value="308">家用电器</option>
-                                                        <option value="1">服饰鞋帽</option>
-                                                        <option value="2">礼品箱包</option>
-                                                        <option value="3">家居家装</option>
-                                                        <option value="256">数码办公</option>
-                                                        <option value="470">个护化妆</option>
-                                                        <option value="530">珠宝手表</option>
-                                                        <option value="593">食品饮料</option>
-                                                        <option value="662">运动健康</option>
-                                                        <option value="730">汽车用品</option>
-                                                        <option value="825">玩具乐器</option>
-                                                        <option value="888">厨房餐饮</option>
-                                                        <option value="959">母婴用品</option>
-                                                        <option value="1037">生活服务</option>
-                                                      </select></td>
+              <option value="0"><?php echo $lang['nc_please_choose'];?>...</option>
+              <?php if(!empty($output['gc_list'])){ ?>
+              <?php foreach($output['gc_list'] as $k => $v){ ?>
+              <?php if ($v['gc_parent_id'] == 0) {?>
+              <option value="<?php echo $v['gc_id'];?>"><?php echo $v['gc_name'];?></option>
+              <?php } ?>
+              <?php } ?>
+              <?php } ?>
+            </select></td>
           <td class="vatop tips">选择分类，可关联大分类或更具体的下级分类。（只在后台快捷定位中起作用）</td>
         </tr>
         <tr>
@@ -122,23 +115,16 @@ if (cookie_skin) {
             <th class="required" colspan="15"><label style=" float: left; margin-right: 10px;">选择关联规格：</label>
               <input type="hidden" name="spec_checkbox" id="spec_checkbox" value="" />
               <div id="speccategory" style=" float: left;">
-                <select>
-                  <option value="0">请选择...</option>
-                                                                        <option value="308">家用电器</option>
-                                                                        <option value="1">服饰鞋帽</option>
-                                                                        <option value="2">礼品箱包</option>
-                                                                        <option value="3">家居家装</option>
-                                                                        <option value="256">数码办公</option>
-                                                                        <option value="470">个护化妆</option>
-                                                                        <option value="530">珠宝手表</option>
-                                                                        <option value="593">食品饮料</option>
-                                                                        <option value="662">运动健康</option>
-                                                                        <option value="730">汽车用品</option>
-                                                                        <option value="825">玩具乐器</option>
-                                                                        <option value="888">厨房餐饮</option>
-                                                                        <option value="959">母婴用品</option>
-                                                                        <option value="1037">生活服务</option>
-                                                                      </select>
+                <select class="class-select">
+              <option value="0"><?php echo $lang['nc_please_choose'];?>...</option>
+              <?php if(!empty($output['gc_list'])){ ?>
+              <?php foreach($output['gc_list'] as $k => $v){ ?>
+              <?php if ($v['gc_parent_id'] == 0) {?>
+              <option value="<?php echo $v['gc_id'];?>"><?php echo $v['gc_name'];?></option>
+              <?php } ?>
+              <?php } ?>
+              <?php } ?>
+            </select>
               </div>（快捷定位）            </th>
           </tr>
           <tr>
@@ -173,22 +159,15 @@ if (cookie_skin) {
             <th colspan="15"> <label for="member_name" style=" float: left; margin-right: 10px;">选择关联品牌：</label>
               <div id="brandcategory" style=" float: left;">
                 <select class="class-select">
-                  <option value="0">请选择...</option>
-                                                                        <option value="308">家用电器</option>
-                                                                        <option value="1">服饰鞋帽</option>
-                                                                        <option value="2">礼品箱包</option>
-                                                                        <option value="3">家居家装</option>
-                                                                        <option value="256">数码办公</option>
-                                                                        <option value="470">个护化妆</option>
-                                                                        <option value="530">珠宝手表</option>
-                                                                        <option value="593">食品饮料</option>
-                                                                        <option value="662">运动健康</option>
-                                                                        <option value="730">汽车用品</option>
-                                                                        <option value="825">玩具乐器</option>
-                                                                        <option value="888">厨房餐饮</option>
-                                                                        <option value="959">母婴用品</option>
-                                                                        <option value="1037">生活服务</option>
-                                                                      </select>
+              <option value="0"><?php echo $lang['nc_please_choose'];?>...</option>
+              <?php if(!empty($output['gc_list'])){ ?>
+              <?php foreach($output['gc_list'] as $k => $v){ ?>
+              <?php if ($v['gc_parent_id'] == 0) {?>
+              <option value="<?php echo $v['gc_id'];?>"><?php echo $v['gc_name'];?></option>
+              <?php } ?>
+              <?php } ?>
+              <?php } ?>
+            </select>
               </div>（快捷定位）            </th>
           </tr>
           <tr>

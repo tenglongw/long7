@@ -19,7 +19,7 @@ class addressModel extends Model {
      *
      * @param array $condition
      */
-    public function getDefaultAddressInfo($condition = array(), $order = 'is_default desc,dlyp_id asc,address_id desc') {
+    public function getDefaultAddressInfo($condition = array(), $order = 'address_id desc') {
         return $this->getAddressInfo($condition, $order);
     }
 

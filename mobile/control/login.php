@@ -32,30 +32,44 @@ class loginControl extends mobileHomeControl {
         	$result['message']='登陆失败';
         	echo json_encode($result);exit;
         }
+        $memberTemp = (Array)json_decode(cookie($_POST['username']));
+       // echo json_encode($memberTemp);
+        if(empty($memberTemp)){
+        	$result['status']=1;
+        	$result['message']='输入验证码已经失效，请重新获取';
+        	echo json_encode($result);exit;
+        }
+        if($_POST['password'] != $memberTemp['verify']){
+        	$result['status']=1;
+        	$result['message']='请输入正确的短信验证码！';
+        	echo json_encode($result);exit;
+        }
 		$model_member = Model('member');
         $array = array();
-        $array['member_name']	= $_POST['username'];
-        $array['member_passwd']	= md5($_POST['password']);
+        $array['member_mobile']	= $_POST['username'];
         $member_info = $model_member->getMemberInfo($array);
+       // echo json_encode($array);exit;
         if(!empty($member_info)) {
-            $token = $this->_get_token($member_info['member_id'], $member_info['member_name'], $_POST['client']);
-            if($token){
-            	$data['member_id'] = $member_info['member_id'];
-            	$data['member_name'] = $member_info['member_name'];
-            	$data['token'] = $token;
-            	$result['status']=0;
-            	$result['message']='登陆成功';
-            	$result['datas'] = $data;
-            	echo json_encode($result);exit;
-            } else {
-                $result['status']=1;
-	        	$result['message']='登陆失败';
-	        	echo json_encode($result);exit;
-            }
+        	$array['member_name']	= $_POST['username'];
+        	$return = $model_member->editMember(array('member_id'=>$member_info['member_id']),$array);
+        	
         } else {
-            $result['status']=1;
-            $result['message']='用户名密码错误';
-            echo json_encode($result);exit;
+           	$array['member_name']	= $_POST['username'];
+        	$member_info = $model_member->registerSms($array);
+        }
+        $token = $this->_get_token($member_info['member_id'], $member_info['member_name'], $_POST['client']);
+        if($token){
+        	$data['member_id'] = $member_info['member_id'];
+        	$data['member_name'] = $member_info['member_name'];
+        	$data['token'] = $token;
+        	$result['status']=0;
+        	$result['message']='登陆成功';
+        	$result['datas'] = $data;
+        	echo json_encode($result);exit;
+        } else {
+        	$result['status']=1;
+        	$result['message']='登陆失败,生成token失败';
+        	echo json_encode($result);exit;
         }
     }
 
@@ -118,4 +132,26 @@ class loginControl extends mobileHomeControl {
         }
 
     }
+    //发送短信获取短信验证码
+    public function sendSmsOp(){
+    	$mobileNum = $_POST['mobileNum'];
+    	if(empty($mobileNum)){
+    		$return['status'] = 1;
+    		$return['message'] = '手机号不能为空';
+    		echo json_encode($return);exit;
+    	}
+    	//echo json_encode($mobileNum);exit;
+    	$verify = rand(123456,999999);
+    	$mobile=urlencode($mobileNum);
+    	$url="http://115.29.14.183:3000/openService?action=sendInterfaceTemplateSms&account=N00000008559&password=Qycbz8p2Hj&num=".$mobile."&templateNum=1&var1=".$verify."&md5=81f0e1f0-32df-11e3-a2e6-1d21429e5f46";
+    	$res = (Array)json_decode(file_get_contents($url));
+    	if($res['success']==true){
+    		$res['verify'] = $verify;
+    		$temp['verify'] = $verify;
+    		$temp['time'] = time();
+    		setNcCookie($mobile,json_encode($temp),600);
+    	}
+    	echo json_encode($res);exit;
+    }
+    
 }

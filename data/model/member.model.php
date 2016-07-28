@@ -50,6 +50,17 @@ class memberModel extends Model {
     public function getMemberList($condition = array(), $field = '*', $page = 0, $order = 'member_id desc', $limit = '') {
        return $this->table('member')->where($condition)->page($page)->order($order)->limit($limit)->select();
     }
+    
+    /**
+     * 所有会员列表
+     * @param array $condition
+     * @param string $field
+     * @param number $page
+     * @param string $order
+     */
+    public function getMemberAllList($condition = array(), $field = '*', $order = 'member_id desc') {
+    	return $this->table('member')->where($condition)->order($order)->select();
+    }
 
     /**
      * 会员数量
@@ -151,6 +162,70 @@ class memberModel extends Model {
 		}
 		return $member_info;
 	}
+/**
+     * 注册
+     */
+    public function registerSms($register_info) {
+		// 注册验证
+		$obj_validate = new Validate();
+		$obj_validate->validateparam = array(
+		array("input"=>$register_info["member_name"],		"require"=>"true",		"message"=>'用户名不能为空'),
+		/* array("input"=>$register_info["password"],		"require"=>"true",		"message"=>'密码不能为空'),
+		array("input"=>$register_info["password_confirm"],"require"=>"true",	"validator"=>"Compare","operator"=>"==","to"=>$register_info["password"],"message"=>'密码与确认密码不相同'),
+		array("input"=>$register_info["email"],			"require"=>"true",		"validator"=>"email", "message"=>'电子邮件格式不正确'), */
+		);
+		$error = $obj_validate->validate();
+		if ($error != ''){
+            return array('error' => $error);
+		}
+
+        // 验证用户名是否重复
+		$check_member_name	= $this->getMemberInfo(array('member_mobile'=>$register_info['member_mobile']));
+		if(is_array($check_member_name) and count($check_member_name) > 0) {
+            return array('error' => '用户名已存在');
+		}
+
+       /*  // 验证邮箱是否重复
+		$check_member_email	= $this->getMemberInfo(array('member_email'=>$register_info['email']));
+		if(is_array($check_member_email) and count($check_member_email)>0) {
+            return array('error' => '邮箱已存在');
+		} */
+		// 会员添加
+		$member_info	= array();
+		$member_info['member_name']		= $register_info['member_name'];
+		$member_info['member_mobile']	= $register_info['member_mobile'];
+		//$member_info['member_passwd']	= $register_info['password'];
+		//$member_info['member_email']		= $register_info['email'];
+		//添加邀请人(推荐人)会员积分 by mall.wrtx.cn
+		$member_info['inviter_id']		= $register_info['inviter_id'];
+		$insert_id	= $this->addMember($member_info);
+		if($insert_id) {
+		    //添加会员积分
+			if (C('points_isuse')){
+				Model('points')->savePointsLog('regist',array('pl_memberid'=>$insert_id,'pl_membername'=>$register_info['username']),false);
+				//添加邀请人(推荐人)会员积分 by mall.wrtx.cn
+				$inviter_name = Model('member')->table('member')->getfby_member_id($member_info['inviter_id'],'member_name');
+				Model('points')->savePointsLog('inviter',array('pl_memberid'=>$register_info['inviter_id'],'pl_membername'=>$inviter_name,'invited'=>$member_info['member_name']));
+			}
+
+            // 添加默认相册
+            $insert['ac_name']      = '买家秀';
+            $insert['member_id']    = $insert_id;
+            $insert['ac_des']       = '买家秀默认相册';
+            $insert['ac_sort']      = 1;
+            $insert['is_default']   = 1;
+            $insert['upload_time']  = TIMESTAMP;
+            $this->table('sns_albumclass')->insert($insert);
+
+            $member_info['member_id'] = $insert_id;
+            $member_info['is_buy'] = 1;
+
+            return $member_info;
+		} else {
+            return array('error' => '注册失败');
+		}
+
+    }
 
     /**
      * 注册
@@ -240,6 +315,7 @@ class memberModel extends Model {
 		    $member_info['member_old_login_ip']	= $member_info['member_login_ip'];
 
 		    $member_info['member_truename']		= $param['member_truename'];
+		    $member_info['member_mobile']		= $param['member_mobile'];
 		    $member_info['member_qq']			= $param['member_qq'];
 		    $member_info['member_sex']			= $param['member_sex'];
 		    $member_info['member_avatar']		= $param['member_avatar'];

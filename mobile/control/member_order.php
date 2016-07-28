@@ -113,6 +113,39 @@ class member_orderControl extends mobileMemberControl {
             output_data('1');
         }
     }
+    /**
+     * 支付完成，修改订单状态
+     */
+    public function order_payOp() {
+    	$model_order = Model('order');
+    	$logic_order = Logic('order');
+    	$order_id = intval($_POST['order_id']);
+    
+    	$condition = array();
+    	$condition['order_id'] = $order_id;
+    	$condition['buyer_id'] = $this->member_info['member_id'];
+    	$order_info	= $model_order->getOrderInfo($condition);
+    	$if_allow = $model_order->getOrderOperateState('system_receive_pay',$order_info);
+    	if (!$if_allow) {
+    		//output_error('无权操作');
+    		$return['status'] = 1;
+    		$return['message'] = '无权操作';
+    		echo json_encode($return);exit;
+    	}
+    	$post['payment_code'] = $order_info['payment_code'];
+    	$order_list[] = $order_info;
+    	$result = $logic_order->changeOrderReceivePay($order_list,'buyer', $this->member_info['member_name'], $post);
+    	if(!$result['state']) {
+    		//output_error($result['msg']);
+    		$return['status'] = 1;
+    		$return['message'] = $result['msg'];
+    	} else {
+    		$return['status'] = 0;
+    		$return['message'] = '修改成功';
+    		//output_data('1');
+    	}
+    	echo json_encode($return);exit;
+    }
 
     /**
      * 订单确认收货

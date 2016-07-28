@@ -18,7 +18,7 @@
     <input type="hidden" id="tid" name="tid" value="<?php echo $output['t_info']['voucher_t_id'];?>"/>
     <table class="table tb-type2">
       <tbody>
-      	<tr class="noborder">
+      	<!-- <tr class="noborder">
           <td colspan="2" class="required"><label><?php echo $lang['admin_voucher_storename'].$lang['nc_colon'];?></label></td>
         </tr>
         <tr class="noborder">
@@ -31,7 +31,7 @@
         <tr class="noborder">
           <td class="vatop rowform"><input type="text" class="readonly txt" value="<?php echo $output['store_class'][$output['t_info']['voucher_t_sc_id']]['sc_name'];?>" readonly></td>
           <td class="vatop tips"></td>
-        </tr>
+        </tr> -->
         <tr class="noborder">
           <td colspan="2" class="required"><label><?php echo $lang['admin_voucher_template_title'].$lang['nc_colon'];?></label></td>
         </tr>
@@ -53,7 +53,7 @@
           <td class="vatop rowform"><input type="text" class="readonly txt" value="<?php echo $output['t_info']['voucher_t_price'];?>" readonly></td>
           <td class="vatop tips"></td>
         </tr>
-        <tr class="noborder">
+       <!--  <tr class="noborder">
           <td colspan="2" class="required"><label><?php echo $lang['admin_voucher_template_total'].$lang['nc_colon'];?></label></td>
         </tr>
         <tr class="noborder">
@@ -66,7 +66,7 @@
         <tr class="noborder">
           <td class="vatop rowform"><input type="text" class="readonly txt" value="<?php echo $output['t_info']['voucher_t_eachlimit'];?>" readonly></td>
           <td class="vatop tips"></td>
-        </tr>
+        </tr> -->
         <tr class="noborder">
           <td colspan="2" class="required"><label><?php echo $lang['admin_voucher_template_orderpricelimit'].$lang['nc_colon'];?></label></td>
         </tr>
@@ -74,14 +74,14 @@
           <td class="vatop rowform"><input type="text" class="readonly txt" value="<?php echo $output['t_info']['voucher_t_limit'];?>" readonly></td>
           <td class="vatop tips"></td>
         </tr>
-        <tr class="noborder">
+       <tr class="noborder">
           <td colspan="2" class="required"><label><?php echo $lang['admin_voucher_template_describe'].$lang['nc_colon'];?></label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><textarea rows="6" readonly="readonly" class="readonly tarea"><?php echo $output['t_info']['voucher_t_desc'];?></textarea></td>
           <td class="vatop tips"></td>
         </tr>
-        <tr class="noborder">
+         <!-- <tr class="noborder">
           <td colspan="2" class="required"><label><?php echo $lang['admin_voucher_template_image'].$lang['nc_colon'];?></label></td>
         </tr>
         <tr class="noborder">
@@ -113,7 +113,7 @@
         <tr class="noborder">
           <td class="vatop rowform"><input type="text" class="txt" id="points" name="points" value="<?php echo $output['t_info']['voucher_t_points'];?>"></td>
           <td class="vatop tips"></td>
-        </tr>
+        </tr> -->
         <tr class="noborder">
           <td colspan="2" class="required"><label><?php echo $lang['nc_status'].$lang['nc_colon'];?></label></td>
         </tr>
@@ -125,7 +125,7 @@
           </td>
           <td class="vatop tips"></td>
         </tr>
-        <tr class="noborder">
+        <!-- <tr class="noborder">
           <td colspan="2" class="required"><label><?php echo '是否推荐'.$lang['nc_colon'];?></label></td>
         </tr>
         <tr class="noborder">
@@ -135,7 +135,7 @@
             <input type="radio" value="1" <?php if($output['t_info']['voucher_t_recommend'] == '1'){ ?>checked="checked"<?php } ?> name="recommend" id="recommend1">
             <input type="radio" value="0" <?php if($output['t_info']['voucher_t_recommend'] == '0'){ ?>checked="checked"<?php } ?> name="recommend" id="recommend0"></td>
           <td class="vatop tips"></td>
-        </tr>
+        </tr> -->
       </tbody>
       <tfoot>
         <tr class="tfoot">

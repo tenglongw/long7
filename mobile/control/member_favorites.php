@@ -23,7 +23,7 @@ class member_favoritesControl extends mobileMemberControl {
     public function favorites_listOp() {
 		$model_favorites = Model('favorites');
 
-        $favorites_list = $model_favorites->getGoodsFavoritesList(array('member_id'=>$this->member_info['member_id']), '*', $this->page);
+        $favorites_list = $model_favorites->getGoodsFavoritesList(array('member_id'=>$_POST['member_id']), '*', $this->page);
         $page_count = $model_favorites->gettotalpage();
         $favorites_id = '';
         foreach ($favorites_list as $value){
@@ -54,7 +54,7 @@ class member_favoritesControl extends mobileMemberControl {
 		$favorites_model = Model('favorites');
 
 		//判断是否已经收藏
-        $favorites_info = $favorites_model->getOneFavorites(array('fav_id'=>$goods_id,'fav_type'=>'goods','member_id'=>$this->member_info['member_id']));
+        $favorites_info = $favorites_model->getOneFavorites(array('fav_id'=>$goods_id,'fav_type'=>'goods','member_id'=>$_POST['member_id']));
 		if(!empty($favorites_info)) {
             output_error('您已经收藏了该商品');
 		}
@@ -62,14 +62,14 @@ class member_favoritesControl extends mobileMemberControl {
 		//判断商品是否为当前会员所有
 		$goods_model = Model('goods');
 		$goods_info = $goods_model->getGoodsInfoByID($goods_id);
-		$seller_info = Model('seller')->getSellerInfo(array('member_id'=>$this->member_info['member_id']));
+		$seller_info = Model('seller')->getSellerInfo(array('member_id'=>$_POST['member_id']));
 		if ($goods_info['store_id'] == $seller_info['store_id']) {
             output_error('您不能收藏自己发布的商品');
 		}
 
 		//添加收藏
 		$insert_arr = array();
-		$insert_arr['member_id'] = $this->member_info['member_id'];
+		$insert_arr['member_id'] = $_POST['member_id'];
 		$insert_arr['fav_id'] = $goods_id;
 		$insert_arr['fav_type'] = 'goods';
 		$insert_arr['fav_time'] = TIMESTAMP;
@@ -78,10 +78,15 @@ class member_favoritesControl extends mobileMemberControl {
 		if ($result){
 			//增加收藏数量
 			$goods_model->editGoodsById(array('goods_collect' => array('exp', 'goods_collect + 1')), $goods_id);
-            output_data('1');
+            //output_data('1');
+			$return['status'] = 0;
+			$return['message'] = '收藏成功';
 		}else{
-            output_error('收藏失败');
+            //output_error('收藏失败');
+			$return['status'] = 1;
+			$return['message'] = '收藏失败';
 		}
+		echo json_encode($return);exit;
     }
 
     /**
@@ -97,9 +102,12 @@ class member_favoritesControl extends mobileMemberControl {
 
         $condition = array();
         $condition['fav_id'] = $fav_id;
-        $condition['member_id'] = $this->member_info['member_id'];
+        $condition['member_id'] = $_POST['member_id'];
         $model_favorites->delFavorites($condition);
-        output_data('1');
+        //output_data('1');
+        $return['status'] = 0;
+        $return['message'] = '收藏成功';
+        echo json_encode($return);exit;
     }
 
 }

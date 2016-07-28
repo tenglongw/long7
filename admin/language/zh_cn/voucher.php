@@ -15,8 +15,8 @@ $lang['admin_voucher_cancel_confirm']    	= '您确认进行取消操作吗？';
 $lang['admin_voucher_verify_confirm']    	= '您确认进行审核操作吗？';
 //菜单
 $lang['admin_voucher_apply_manage']= '套餐申请管理';
-$lang['admin_voucher_quota_manage']= '套餐管理';
-$lang['admin_voucher_template_manage']= '店铺代金券';
+$lang['admin_voucher_template_add']= '添加代金券';
+$lang['admin_voucher_template_manage']= '代金券';
 $lang['admin_voucher_template_edit']= '编辑代金券';
 $lang['admin_voucher_setting']		= '设置';
 $lang['admin_voucher_pricemanage']		= '面额设置';

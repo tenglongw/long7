@@ -34,7 +34,7 @@
     <dl>
       <dt><?php echo $lang['store_special_content'].$lang['nc_colon'];?></dt>
       <dd>
-        <?php showEditor('sp_content',$output['sp_info']['sp_content'],'600px','300px','','false',$output['editor_multimedia']); ?>
+        <?php showEditor('sp_content',$output['sp_info']['sp_content']); ?>
       </dd>
     </dl>
     <dl>

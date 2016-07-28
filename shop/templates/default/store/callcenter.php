@@ -22,7 +22,7 @@
         <?php }elseif($val['type'] == 2){?>
         <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=<?php echo $val['num'];?>&site=cntaobao&s=1&charset=<?php echo CHARSET;?>" ><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<?php echo $val['num'];?>&site=cntaobao&s=2&charset=<?php echo CHARSET;?>" alt="<?php echo $lang['nc_message_me'];?>"/></a>
         <?php }elseif($val['type'] == 3){?>
-        <span c_name="<?php echo $val['name'];?>" member_id="<?php echo $val['num'];?>"></span>
+        <span c_name="<?php echo $val['name'];?>" member_id="<?php echo $val['num'];?>"><?php echo $val['name'];?></span>
         <?php }?>
         </span></dd>
       <?php }?>

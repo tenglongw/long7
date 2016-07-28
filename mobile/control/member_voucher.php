@@ -24,7 +24,10 @@ class member_voucherControl extends mobileMemberControl {
 		$model_voucher = Model('voucher');
         $voucher_list = $model_voucher->getMemberVoucherList($this->member_info['member_id'], $_POST['voucher_state'], $this->page);
         $page_count = $model_voucher->gettotalpage();
-
+		foreach ($voucher_list as $key=>$val){
+			$voucher_list[$key]['voucher_start_date'] = date('Y-m-d', $val['voucher_start_date']);
+			$voucher_list[$key]['voucher_end_date'] = date('Y-m-d', $val['voucher_end_date']);
+		}
         output_data(array('voucher_list' => $voucher_list), mobile_page($page_count));
     }
 }

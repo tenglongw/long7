@@ -19,7 +19,7 @@ class store_specialModel extends Model{
 	 * @param array $condition
 	 *
 	 */
-	public function getStoreSpecialList($condition, $page='', $order='', $field='*') {
+	public function getStoreSpecialList($condition, $page='', $order='', $field='ssp_id,sp_content') {
         $result = $this->field($field)->where($condition)->page($page)->order($order)->select();
         return $result;
 	}

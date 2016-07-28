@@ -25,8 +25,8 @@
     <table class="tb-type1 noborder search">
       <tbody>
         <tr>
-          <th><label for="store_name"><?php echo $lang['admin_voucher_storename'];?></label></th>
-          <td><input type="text" value="<?php echo $_GET['store_name'];?>" name="store_name" id="store_name" class="txt" style="width:100px;"></td>
+          <!-- <th><label for="store_name"><?php echo $lang['admin_voucher_storename'];?></label></th>
+          <td><input type="text" value="<?php echo $_GET['store_name'];?>" name="store_name" id="store_name" class="txt" style="width:100px;"></td> -->
           <th><label for="store_name"><?php echo $lang['admin_voucher_template_adddate'];?></label></th>
           <td><input type="text" id="sdate" name="sdate" class="txt date" value="<?php echo $_GET['sdate'];?>" >~<input type="text" id="edate" name="edate" class="txt date" value="<?php echo $_GET['edate'];?>" ></td>
           <th><label><?php echo $lang['nc_state'];?></label></th>
@@ -39,7 +39,7 @@
           		<?php } ?>
           		<?php } ?>
             </select></td>
-          <td>
+          <td style="display: none">
           	<select name="recommend">
           		<option value="" selected>是否推荐</option>
           		<option value="1" <?php if('1' === $_GET['recommend']) echo 'selected';?>>已推荐</option>
@@ -70,14 +70,14 @@
       <thead>
           <tr class="thead">
           	  <th class="w24">&nbsp;</th>
-              <th class="align-left"><span><?php echo $lang['admin_voucher_storename'];?></span></th>
+              <!-- <th class="align-left"><span><?php echo $lang['admin_voucher_storename'];?></span></th> -->
               <th class="align-left"><span><?php echo $lang['admin_voucher_template_title'];?></span></th>
               <th class="align-center"><span><?php echo $lang['admin_voucher_template_price'];?></span></th>
               <th class="align-center"><span><?php echo $lang['admin_voucher_template_orderpricelimit'];?></span></th>
               <th class="align-center"><span><?php echo $lang['admin_voucher_template_enddate'];?></span></th>
               <th class="align-center"><span><?php echo $lang['admin_voucher_template_adddate'];?></span></th>
               <th class="align-center"><span><?php echo $lang['nc_state'];?></span></th>
-              <th class="align-center"><?php echo $lang['nc_recommend'];?></th>
+             <!--  <th class="align-center"><?php echo $lang['nc_recommend'];?></th> -->
               <th class="align-center"><span><?php echo $lang['nc_handle'];?></span></th>
           </tr>
       </thead>
@@ -86,11 +86,11 @@
         <?php foreach($output['list'] as $k => $val){ ?>
         <tr class="hover">
         	<td>&nbsp;</td>
-            <td class="align-left"><a href="<?php echo urlShop('show_store','index', array('store_id'=>$val['voucher_t_store_id']));?>" ><span><?php echo $val['voucher_t_storename'];?></span></a>
+           <!--  <td class="align-left"><a href="<?php echo urlShop('show_store','index', array('store_id'=>$val['voucher_t_store_id']));?>" ><span><?php echo $val['voucher_t_storename'];?></span></a>
 <?php if (isset($output['flippedOwnShopIds'][$val['voucher_t_store_id']])) { ?>
             <span class="ownshop">[自营]</span>
 <?php } ?>
-            </td>
+            </td> -->
             <td class="align-left"><span><?php echo $val['voucher_t_title'];?></span></td>
             <td class="align-center"><span><?php echo $val['voucher_t_price'];?></span></td>
             <td class="align-center"><span><?php echo $val['voucher_t_limit'];?></span></td>
@@ -103,11 +103,11 @@
             	}
             } ?>
             </span></td>
-            <td class="align-center yes-onoff"><?php if($val['voucher_t_recommend'] == '0'){ ?>
+            <!-- <td class="align-center yes-onoff"><?php if($val['voucher_t_recommend'] == '0'){ ?>
             <a href="JavaScript:void(0);" class="disabled" ajax_branch='voucher_t_recommend' nc_type="inline_edit" fieldname="voucher_t_recommend" fieldid="<?php echo $val['voucher_t_id']?>" fieldvalue="0" title="<?php echo $lang['nc_editable'];?>"><img src="<?php echo ADMIN_TEMPLATES_URL;?>/images/transparent.gif"></a>
             <?php }else{ ?>
             <a href="JavaScript:void(0);" class="enabled" ajax_branch='voucher_t_recommend' nc_type="inline_edit" fieldname="voucher_t_recommend" fieldid="<?php echo $val['voucher_t_id']?>" fieldvalue="1"  title="<?php echo $lang['nc_editable'];?>"><img src="<?php echo ADMIN_TEMPLATES_URL;?>/images/transparent.gif"></a>
-            <?php } ?></td>
+            <?php } ?></td> -->
             <td class="nowrap align-center"><a href="index.php?act=voucher&op=templateedit&tid=<?php echo $val['voucher_t_id'];?>"><?php echo $lang['nc_edit'];?></a></td>
         </tr>
         <?php } ?>

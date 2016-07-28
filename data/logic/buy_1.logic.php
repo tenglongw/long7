@@ -168,11 +168,13 @@ class buy_1Logic {
 	    $voucher_list = array();
 	    $model_voucher = Model('voucher');
 	    foreach ($store_goods_total as $store_id => $goods_total) {
-	        $condition = array();
-	        $condition['voucher_store_id'] = $store_id;
-	        $condition['voucher_owner_id'] = $member_id;
-	        $voucher_list[$store_id] = $model_voucher->getCurrentAvailableVoucher($condition,$goods_total);
+	       // $condition['voucher_store_id'] = $store_id;
+	        $_total += $goods_total;
 	    }
+	    $condition = array();
+	    $condition['voucher_owner_id'] = $member_id;
+	    $voucher_list = $model_voucher->getCurrentAvailableVoucher($condition,$_total);
+	    
 	    return $voucher_list;
 	}
 
@@ -184,16 +186,21 @@ class buy_1Logic {
 	 */
 	public function reParseVoucherList($input_voucher_list = array(), $store_goods_total = array(), $member_id) {
 	    if (empty($input_voucher_list) || !is_array($input_voucher_list)) return array();
-	    $store_voucher_list = $this->getStoreAvailableVoucherList($store_goods_total, $member_id);
-	    foreach ($input_voucher_list as $store_id => $voucher) {
-	        $tmp = $store_voucher_list[$store_id];
-	        if (is_array($tmp) && isset($tmp[$voucher['voucher_t_id']])) {
-	            $input_voucher_list[$store_id]['voucher_id'] = $tmp[$voucher['voucher_t_id']]['voucher_id'];
-	            $input_voucher_list[$store_id]['voucher_code'] = $tmp[$voucher['voucher_t_id']]['voucher_code'];
-	            $input_voucher_list[$store_id]['voucher_owner_id'] = $tmp[$voucher['voucher_t_id']]['voucher_owner_id'];
-	        } else {
-	            unset($input_voucher_list[$store_id]);
-	        }
+	    $member_voucher_list = $this->getStoreAvailableVoucherList($store_goods_total, $member_id);
+	    foreach ($input_voucher_list as $ikey => $voucher) {
+	    	foreach($member_voucher_list as $mkey => $mvoucher){
+	    		if($mvoucher['voucher_t_id'] == $voucher['voucher_t_id']){
+	    			$tmp = $mvoucher;
+	    			//$tmp = $store_voucher_list[$store_id];
+	    			if (is_array($tmp) && isset($tmp[$voucher['voucher_t_id']])) {
+	    				$input_voucher_list[$store_id]['voucher_id'] = $tmp[$voucher['voucher_t_id']]['voucher_id'];
+	    				$input_voucher_list[$store_id]['voucher_code'] = $tmp[$voucher['voucher_t_id']]['voucher_code'];
+	    				$input_voucher_list[$store_id]['voucher_owner_id'] = $tmp[$voucher['voucher_t_id']]['voucher_owner_id'];
+	    			} else {
+	    				unset($input_voucher_list[$store_id]);
+	    			}
+	    		}
+	    	}
 	    }
 	    return $input_voucher_list;
 	}
@@ -350,7 +357,6 @@ class buy_1Logic {
      */
     public function calcStoreFreight($freight_list, $city_id) {
 		if (!is_array($freight_list) || empty($freight_list) || empty($city_id)) return;
-
 		//免费和固定运费计算结果
 		$return_list = $freight_list['iscalced'];
 

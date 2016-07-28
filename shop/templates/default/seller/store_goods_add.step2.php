@@ -112,7 +112,7 @@ catch(e){}
         <dt>商品分类：</dt>
         <dd id="gcategory"><?php echo $output['goods_class']['gc_tag_name']?> 
           <input type="hidden" id="cate_id" name="cate_id" value="<?php echo $output['goods_class']['gc_id']?>" class="text" />
-          <input type="hidden" name="cate_name" value="家用电器 >大家电 >家庭影院" class="text"/>
+          <input type="hidden" name="cate_name" value="<?php echo $output['goods_class']['gc_tag_name']?>" class="text"/>
         </dd>
       </dl>
       <dl>
@@ -204,7 +204,7 @@ catch(e){}
           <ul class="spec">
           <?php foreach ($output['spec_list']['26']['value'] as $value){?>
 				 <li><span nctype="input_checkbox">
-              <input type="checkbox" value="<?php echo $value['sp_value_name']?>" nc_type="<?php echo $value['sp_value_id']?>" class="sp_val" name="sp_val[1][<?php echo $value['sp_value_id']?>]">
+              <input type="checkbox" value="<?php echo $value['sp_value_name']?>" nc_type="<?php echo $value['sp_value_id']?>" class="sp_val" name="sp_val[26][<?php echo $value['sp_value_id']?>]">
               </span><span nctype="pv_name"><?php echo $value['sp_value_name']?></span></li>
 			<?php 
               }?>
@@ -623,7 +623,7 @@ catch(e){}
         </dd>
       </dl>
       <!-- 商品物流信息 E -->
-      <h3 id="demo5" nctype="virtual_null" >发票信息</h3>
+      <!-- <h3 id="demo5" nctype="virtual_null" >发票信息</h3>
       <dl nctype="virtual_null" >
         <dt>是否开增值税发票：</dt>
         <dd>
@@ -641,7 +641,7 @@ catch(e){}
           </ul>
           <p class="hint"></p>
         </dd>
-      </dl>
+      </dl> -->
       <h3 id="demo6">其他信息</h3>
       <dl>
         <dt>本店分类：</dt>
@@ -1048,8 +1048,8 @@ function goods_stock_set()
                     });
                     var spec_bunch = 'i_';
                     spec_bunch += tmp_spec_td[0];
-                   // spec_bunch += tmp_spec_td[1];
-                    spec_bunch += tmp_spec_td[2];
+                   spec_bunch += tmp_spec_td[1];
+                    //spec_bunch += tmp_spec_td[2];
                    // spec_bunch += tmp_spec_td[3];
                     str += '<input type="hidden" name="spec[' + spec_bunch + '][goods_id]" nc_type="' + spec_bunch + '|id" value="" />';
                     if (td_1[2] != null) 

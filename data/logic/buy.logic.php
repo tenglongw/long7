@@ -58,7 +58,6 @@ class buyLogic {
         if(!$result['state']) {
             return $result;
         }
-
         //得到页面所需要数据：收货地址、发票、代金券、预存款、商品列表等信息
         $result = $this->getBuyStep1Data($member_id,$result['data']);
         return $result;
@@ -181,17 +180,17 @@ class buyLogic {
         $result['address_info'] = Model('address')->getDefaultAddressInfo(array('member_id'=>$member_id));
 
         //输出有货到付款时，在线支付和货到付款及每种支付下商品数量和详细列表
-        $pay_goods_list = $this->_logic_buy_1->getOfflineGoodsPay($goods_list);
+       /*  $pay_goods_list = $this->_logic_buy_1->getOfflineGoodsPay($goods_list);
         if (!empty($pay_goods_list['offline'])) {
             $result['pay_goods_list'] = $pay_goods_list;
             $result['ifshow_offpay'] = true;
         } else {
             //如果所购商品只支持线上支付，支付方式不允许修改
             $result['deny_edit_payment'] = true;
-        }
+        } */
 
         //发票 :只有所有商品都支持增值税发票才提供增值税发票
-        foreach ($goods_list as $goods) {
+        /* foreach ($goods_list as $goods) {
         	if (!intval($goods['goods_vat'])) {
         	    $vat_deny = true;break;
         	}
@@ -214,7 +213,7 @@ class buyLogic {
             $inv_info['content'] = '不需要发票';
         }
         $result['inv_info'] = $inv_info;
-
+ */
         $buyer_info	= Model('member')->getMemberInfoByID($member_id);
         if (floatval($buyer_info['available_predeposit']) > 0) {
             $result['available_predeposit'] = $buyer_info['available_predeposit'];
@@ -249,7 +248,6 @@ class buyLogic {
 
             //第1步 表单验证
             $this->_createOrderStep1();
-    
             //第2步 得到购买商品信息
             $this->_createOrderStep2();
     
@@ -261,11 +259,12 @@ class buyLogic {
 
             //第5步 处理预存款
             $this->_createOrderStep5();
-            $model->commit();
 
             //第6步 订单后续处理
             $this->_createOrderStep6();
 
+            $model->commit();
+    		echo json_encode($this->_order_data);exit;
             return callback(true,'',$this->_order_data);
 
         }catch (Exception $e){
@@ -387,7 +386,7 @@ class buyLogic {
         //收货地址城市编号
         $input_city_id = intval($input_address_info['city_id']);
 
-        //是否开增值税发票
+       /*  //是否开增值税发票
         $input_if_vat = $this->buyDecrypt($post['vat_hash'], $this->_member_info['member_id']);
         if (!in_array($input_if_vat,array('allow_vat','deny_vat'))) {
             throw new Exception('订单保存出现异常[值税发票出现错误]，请重试');
@@ -405,7 +404,7 @@ class buyLogic {
         $input_if_offpay_batch = $this->buyDecrypt($post['offpay_hash_batch'], $this->_member_info['member_id']);
         if (!is_array($input_if_offpay_batch)) {
             throw new Exception('订单保存出现异常[部分店铺付款方式出现异常]，请重试');
-        }
+        } */
 
         //付款方式:在线支付/货到付款(online/offline)
         if (!in_array($post['pay_name'],array('online','offline'))) {
@@ -413,7 +412,7 @@ class buyLogic {
         }
         $input_pay_name = $post['pay_name'];
 
-        //验证发票信息
+        /* //验证发票信息
         if (!empty($post['invoice_id'])) {
             $input_invoice_id = intval($post['invoice_id']);
             if ($input_invoice_id > 0) {
@@ -422,21 +421,22 @@ class buyLogic {
                     throw new Exception('请正确填写发票信息');
                 }
             }
-        }
+        } */
 
         //验证代金券
         $input_voucher_list = array();
         if (!empty($post['voucher']) && is_array($post['voucher'])) {
-            foreach ($post['voucher'] as $store_id => $voucher) {
-                if (preg_match_all('/^(\d+)\|(\d+)\|([\d.]+)$/',$voucher,$matchs)) {
-                    if (floatval($matchs[3][0]) > 0) {
-                        $input_voucher_list[$store_id]['voucher_t_id'] = $matchs[1][0];
-                        $input_voucher_list[$store_id]['voucher_price'] = $matchs[3][0];
+            foreach ($post['voucher'] as $key => $voucher) {
+                //if (preg_match_all('/^(\d+)\|(\d+)\|([\d.]+)$/',$voucher,$matchs)) {
+                    if ($voucher > 0) {
+                    	$temp['voucher_t_id'] = $voucher;
+                    	$input_voucher_list[] = $temp;
+                        //$input_voucher_list[$store_id]['voucher_t_id'] = $matchs[1][0];
+                        //$input_voucher_list[$store_id]['voucher_price'] = $matchs[3][0];
                     }
-                }
+                //}
             }
         }
-
         //保存数据
         $this->_order_data['input_buy_items'] = $input_buy_items;
         $this->_order_data['input_city_id'] = $input_city_id;
@@ -492,11 +492,11 @@ class buyLogic {
 
         }
 
-        //F码验证
+       /*  //F码验证
         $fc_id = $this->_checkFcode($goods_list, $post['fcode']);
         if(!$fc_id) {
             throw new Exception('F码商品验证错误');
-        }
+        } */
         //保存数据
         $this->_order_data['goods_list'] = $goods_list;
         $this->_order_data['store_cart_list'] = $store_cart_list;
@@ -538,7 +538,7 @@ class buyLogic {
         list($need_calc_sid_list,$cancel_calc_sid_list) = $this->_logic_buy_1->getStoreFreightDescList($store_final_goods_total);
         $freight_list = $this->_logic_buy_1->getStoreFreightList($goods_list,array_keys($cancel_calc_sid_list));
         $store_freight_total = $this->_logic_buy_1->calcStoreFreight($freight_list,$input_city_id);
-
+		echo json_encode($store_freight_total);exit;
         //计算店铺最终订单实际支付金额(加上运费)
         $store_final_order_total = $this->_logic_buy_1->reCalcGoodsTotal($store_final_goods_total,$store_freight_total,'freight');
 
@@ -808,7 +808,6 @@ class buyLogic {
         if (!empty($this->_post_data['rcb_pay'])) {
             $order_list = $this->_logic_buy_1->rcbPay($this->_order_data['order_list'], $this->_post_data, $buyer_info);
         }
-        
         //使用预存款支付
         if (!empty($this->_post_data['pd_pay'])) {
             $this->_logic_buy_1->pdPay($order_list ? $order_list :$this->_order_data['order_list'], $this->_post_data, $buyer_info);

@@ -65,6 +65,7 @@ class QueueDB {
      * 初始化
      */
     public function __construct() {
+    	//echo json_encode(extension_loaded('redis'));exit;
         if ( !extension_loaded('redis') ) {
             throw_exception('redis failed to load');
         }

@@ -321,17 +321,22 @@ class member_snsfriendControl extends mobileMemberControl {
 		$page	= new Page();
 		$page->setEachNum(15);
 		$page->setStyle('admin');
-		$follow_list = $friend_model->listFriend(array('friend_frommid'=>"{$_SESSION['member_id']}"),'*',$page,'detail');
+		$follow_list = $friend_model->listFriend(array('friend_frommid'=>"{$_POST['member_id']}"),'*',$page,'simple');
 		if (!empty($follow_list)){
 			foreach ($follow_list as $k=>$v){
-				$v['sex_class'] = $this->m_sex($v['member_sex']);
+				//$v['sex_class'] = $this->m_sex($v['member_sex']);
+				$v['friend_frommavatar'] = getMemberAvatarForID($v['friend_frommid']);
+				$v['friend_tomavatar'] = getMemberAvatarForID($v['friend_tomid']);
 				$follow_list[$k] = $v;
 			}
 		}
-		Tpl::output('follow_list',$follow_list);
+		/* Tpl::output('follow_list',$follow_list);
 		Tpl::output('show_page',$page->show());
 		self::profile_menu('follow');
-		Tpl::showpage('member_snsfriend_follow');
+		Tpl::showpage('member_snsfriend_follow'); */
+		$result['status'] = 0;
+		$result['attention_list'] = $follow_list;
+		echo json_encode($result);exit;
 	}
 	/**
 	 * 粉丝列表
@@ -342,17 +347,22 @@ class member_snsfriendControl extends mobileMemberControl {
 		$page	= new Page();
 		$page->setEachNum(15);
 		$page->setStyle('admin');
-		$fan_list = $friend_model->listFriend(array('friend_tomid'=>"{$_SESSION['member_id']}"),'*',$page,'fromdetail');
+		$fan_list = $friend_model->listFriend(array('friend_tomid'=>"{$_POST['member_id']}"),'*',$page,'simple');
 		if (!empty($fan_list)){
 			foreach ($fan_list as $k=>$v){
-				$v['sex_class'] = $this->m_sex($v['member_sex']);
+				//$v['sex_class'] = $this->m_sex($v['member_sex']);
+				$v['friend_frommavatar'] = getMemberAvatarForID($v['friend_frommid']);
+				$v['friend_tomavatar'] = getMemberAvatarForID($v['friend_tomid']);
 				$fan_list[$k] = $v;
 			}
 		}
-		Tpl::output('fan_list',$fan_list);
+		/* Tpl::output('fan_list',$fan_list);
 		Tpl::output('show_page',$page->show());
 		self::profile_menu('fan');
-		Tpl::showpage('member_snsfriend_fan');
+		Tpl::showpage('member_snsfriend_fan'); */
+		$result['status'] = 0;
+		$result['fan_list'] = $fan_list;
+		echo json_encode($result);exit;
 	}
 	/**
 	 * 用户中心右边，小导航
