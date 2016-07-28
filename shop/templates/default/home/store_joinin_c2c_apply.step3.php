@@ -79,7 +79,7 @@ $(document).ready(function(){
         var category_id = '';
         var category_name = '';
         var class_count = 0;
-        var validation = false;
+        var validation = true;
         $('#gcategory').find('select').each(function() {
             if(parseInt($(this).val(), 10) > 0) {
                 var name = $(this).find('option:selected').text();
