@@ -264,7 +264,7 @@ class buyLogic {
             $this->_createOrderStep6();
 
             $model->commit();
-    		echo json_encode($this->_order_data);exit;
+    		//echo json_encode($this->_order_data);exit;
             return callback(true,'',$this->_order_data);
 
         }catch (Exception $e){
@@ -313,33 +313,33 @@ class buyLogic {
         //$if_include_platform_store = array_key_exists(DEFAULT_PLATFORM_STORE_ID,$freight_list['iscalced']) || array_key_exists(DEFAULT_PLATFORM_STORE_ID,$freight_list['nocalced']);
     
         //$offline_store_id_array = Model('store')->getOwnShopIds();
-        $order_platform_store_ids = array();
+//         $order_platform_store_ids = array();
     
-        if (is_array($freight_list['iscalced']))
-        foreach (array_keys($freight_list['iscalced']) as $k)
-        //if (in_array($k, $offline_store_id_array))
-            $order_platform_store_ids[$k] = null;
+//         if (is_array($freight_list['iscalced']))
+//         foreach (array_keys($freight_list['iscalced']) as $k)
+//         //if (in_array($k, $offline_store_id_array))
+//             $order_platform_store_ids[$k] = null;
     
-        if (is_array($freight_list['nocalced']))
-        foreach (array_keys($freight_list['nocalced']) as $k)
-        //if (in_array($k, $offline_store_id_array))
-            $order_platform_store_ids[$k] = null;
+//         if (is_array($freight_list['nocalced']))
+//         foreach (array_keys($freight_list['nocalced']) as $k)
+//         //if (in_array($k, $offline_store_id_array))
+//             $order_platform_store_ids[$k] = null;
     
-        //if ($order_platform_store_ids) {
-            $allow_offpay_batch = Model('offpay_area')->checkSupportOffpayBatch($area_id, array_keys($order_platform_store_ids));
-    /*
-            //JS验证使用
-            $data['allow_offpay'] = array_filter($allow_offpay_batch) ? '1' : '0';
-            $data['allow_offpay_batch'] = $allow_offpay_batch;
-        } else {*/
-            //JS验证使用
-            $data['allow_offpay'] = array_filter($allow_offpay_batch) ? '1' : '0';
-            $data['allow_offpay_batch'] = $allow_offpay_batch;
-        //}
+//         //if ($order_platform_store_ids) {
+//             $allow_offpay_batch = Model('offpay_area')->checkSupportOffpayBatch($area_id, array_keys($order_platform_store_ids));
+//     /*
+//             //JS验证使用
+//             $data['allow_offpay'] = array_filter($allow_offpay_batch) ? '1' : '0';
+//             $data['allow_offpay_batch'] = $allow_offpay_batch;
+//         } else {*/
+//             //JS验证使用
+//             $data['allow_offpay'] = array_filter($allow_offpay_batch) ? '1' : '0';
+//             $data['allow_offpay_batch'] = $allow_offpay_batch;
+//         //}
 
-        //PHP验证使用
-        $data['offpay_hash'] = $this->buyEncrypt($data['allow_offpay'] ? 'allow_offpay' : 'deny_offpay', $member_id);
-        $data['offpay_hash_batch'] = $this->buyEncrypt($data['allow_offpay_batch'], $member_id);
+//         //PHP验证使用
+//         $data['offpay_hash'] = $this->buyEncrypt($data['allow_offpay'] ? 'allow_offpay' : 'deny_offpay', $member_id);
+//         $data['offpay_hash_batch'] = $this->buyEncrypt($data['allow_offpay_batch'], $member_id);
 
         return $data;
     }
@@ -538,7 +538,7 @@ class buyLogic {
         list($need_calc_sid_list,$cancel_calc_sid_list) = $this->_logic_buy_1->getStoreFreightDescList($store_final_goods_total);
         $freight_list = $this->_logic_buy_1->getStoreFreightList($goods_list,array_keys($cancel_calc_sid_list));
         $store_freight_total = $this->_logic_buy_1->calcStoreFreight($freight_list,$input_city_id);
-		echo json_encode($store_freight_total);exit;
+		//echo json_encode($store_freight_total);exit;
         //计算店铺最终订单实际支付金额(加上运费)
         $store_final_order_total = $this->_logic_buy_1->reCalcGoodsTotal($store_final_goods_total,$store_freight_total,'freight');
 

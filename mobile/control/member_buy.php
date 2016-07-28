@@ -50,12 +50,14 @@ class member_buyControl extends mobileMemberControl {
                 $store_cart_list[$key]['freight'] = '1';
             }
             $store_cart_list[$key]['store_name'] = $value[0]['store_name'];  */
-        	$store_cart_list['goods_list'] = $value;
+        	foreach ($value as $gkey=>$gvalue){
+	        	$store_cart_list[] = $gvalue;
+        	}
         }
         $buy_list = array();
         $buy_list['store_voucher_list'] = $result['store_voucher_list'];
-        $buy_list['goods_list'] = $store_cart_list['goods_list'];
-        $buy_list['goods_count'] = count($store_cart_list['goods_list']);
+        $buy_list['goods_list'] = $store_cart_list;
+        $buy_list['goods_count'] = count($store_cart_list);
         $buy_list['freight_hash'] = $result['freight_list'];
         if(empty($result['address_info'])){
 	        $buy_list['address_flag'] = 'false';
@@ -68,8 +70,9 @@ class member_buyControl extends mobileMemberControl {
 //         $buy_list['inv_info'] = $result['inv_info'];
         //$buy_list['available_predeposit'] = $result['available_predeposit'];
         //$buy_list['available_rc_balance'] = $result['available_rc_balance'];
-       // $data = $logic_buy->changeAddr($result['freight_list'], $result['address_info']['city_id'], $result['address_info']['area_id'], $this->member_info['member_id']);
+        $data = $logic_buy->changeAddr($result['freight_list'], $result['address_info']['city_id'], $result['address_info']['area_id'], $this->member_info['member_id']);
         //echo json_encode($data);exit;
+        $buy_list['freight_list'] = $data;
         output_data($buy_list);
     }
 

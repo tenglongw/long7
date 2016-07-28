@@ -367,16 +367,22 @@ class buy_1Logic {
 		if (!empty($nocalced_list) && is_array($nocalced_list)) {
 		    //如果有商品使用的运费模板，先计算这些商品的运费总金额
             $model_transport = Model('transport');
+            //echo json_encode($nocalced_list);exit;
             foreach ($nocalced_list as $store_id => $value) {
                 if (is_array($value)) {
+                	//$store['id']=$value['id'];
                     foreach ($value as $transport_id => $buy_num) {
                         $freight_total = $model_transport->calc_transport($transport_id,$buy_num, $city_id);
+                        
                         if (empty($return_list[$store_id])) {
+                        	//$store['freight'] = $freight_total;
                             $return_list[$store_id] = $freight_total;
                         } else {
+                        	//$store['freight'] += $freight_total;
                             $return_list[$store_id] += $freight_total;
                         }
                     }
+                    //$return_list[] = $store;
                 }
             }
 		}

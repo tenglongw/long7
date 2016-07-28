@@ -31,7 +31,6 @@ class member_orderControl extends mobileMemberControl {
         $condition['buyer_id'] = $this->member_info['member_id'];
 
         $order_list_array = $model_order->getNormalOrderList($condition, $this->page, '*', 'order_id desc','', array('order_goods'));
-
         $order_group_list = array();
         $order_pay_sn_array = array();
         foreach ($order_list_array as $value) {

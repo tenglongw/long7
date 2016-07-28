@@ -141,15 +141,8 @@ class indexControl extends mobileHomeControl{
      * android客户端版本号
      */
     public function apk_versionOp() {
-		$version = C('mobile_apk_version');
-		$url = C('mobile_apk');
-        if(empty($version)) {
-           $version = '';
-        }
-        if(empty($url)) {
-            $url = '';
-        }
-
-        output_data(array('version' => $version, 'url' => $url));
+		$model_setting = Model('setting');
+		$mobile_apk_version = $model_setting->getRowSetting('mobile_apk_version');
+        output_data(array('version' => $mobile_apk_version['value']));
     }
 }
