@@ -54,8 +54,7 @@ class member_orderControl extends mobileMemberControl {
             if ($value['order_state'] == ORDER_STATE_NEW) {
                 $order_group_list[$value['pay_sn']]['pay_amount'] += $value['order_amount'] - $value['rcb_amount'] - $value['pd_amount'];
             }
-            $order_group_list[$value['pay_sn']]['add_time'] = $value['add_time'];
-
+            $order_group_list[$value['pay_sn']]['add_time'] = date('Y-m-d H:i',$value['add_time']);
             //记录一下pay_sn，后面需要查询支付单表
             $order_pay_sn_array[] = $value['pay_sn'];
         }
@@ -63,13 +62,15 @@ class member_orderControl extends mobileMemberControl {
         $new_order_group_list = array();
         foreach ($order_group_list as $key => $value) {
             $value['pay_sn'] = strval($key);
-            $new_order_group_list[] = $value;
+            foreach ($value['order_list'] as $okey => $oval){
+            	$new_order_group_list[] = $oval;
+            }
         }
 
         $page_count = $model_order->gettotalpage();
 
-        $array_data = array('order_group_list' => $new_order_group_list);
-        if(isset($_GET['getpayment'])&&$_GET['getpayment']=="true"){
+        $array_data = array('order_list' => $new_order_group_list);
+        /* if(isset($_GET['getpayment'])&&$_GET['getpayment']=="true"){
             $model_mb_payment = Model('mb_payment');
 
             $payment_list = $model_mb_payment->getMbPaymentOpenList();
@@ -81,7 +82,7 @@ class member_orderControl extends mobileMemberControl {
                 }
             }
             $array_data['payment_list'] = $payment_array;
-        }
+        } */
 
 
         //output_data(array('order_group_list' => $array_data), mobile_page($page_count));
@@ -102,15 +103,23 @@ class member_orderControl extends mobileMemberControl {
         $order_info	= $model_order->getOrderInfo($condition);
         $if_allow = $model_order->getOrderOperateState('buyer_cancel',$order_info);
         if (!$if_allow) {
-            output_error('无权操作');
+            //output_error('无权操作');
+        	$return['status'] = 1;
+        	$return['message'] = '无权操作';
+        	echo json_encode($return);exit;
         }
 
         $result = $logic_order->changeOrderStateCancel($order_info,'buyer', $this->member_info['member_name'], '其它原因');
         if(!$result['state']) {
-            output_error($result['msg']);
+            //output_error($result['msg']);
+        	$return['status'] = 1;
+        	$return['message'] = $result['msg'];
         } else {
-            output_data('1');
+            //output_data('1');
+        	$return['status'] = 0;
+        	$return['message'] = '取消订单成功';
         }
+        echo json_encode($return);exit;
     }
     /**
      * 支付完成，修改订单状态
@@ -118,22 +127,34 @@ class member_orderControl extends mobileMemberControl {
     public function order_payOp() {
     	$model_order = Model('order');
     	$logic_order = Logic('order');
-    	$order_id = intval($_POST['order_id']);
-    
+    	$order_id = $_POST['order_id'];
+    	$pay_sn = $_POST['pay_sn'];
     	$condition = array();
     	$condition['order_id'] = $order_id;
     	$condition['buyer_id'] = $this->member_info['member_id'];
-    	$order_info	= $model_order->getOrderInfo($condition);
-    	$if_allow = $model_order->getOrderOperateState('system_receive_pay',$order_info);
-    	if (!$if_allow) {
-    		//output_error('无权操作');
-    		$return['status'] = 1;
-    		$return['message'] = '无权操作';
-    		echo json_encode($return);exit;
+    	if(empty($order_id)){
+	    	$order_list	= $model_order->getOrderList(array('pay_sn'=>$pay_sn,'order_state'=>ORDER_STATE_NEW));
+	    	$post['payment_code'] = $order_list[0]['payment_code'];
+	    	$if_allow = $model_order->getOrderOperateState('system_receive_pay',$order_list[0]);
+	    	if (!$if_allow) {
+	    		//output_error('无权操作');
+	    		$return['status'] = 1;
+	    		$return['message'] = '无权操作';
+	    		echo json_encode($return);exit;
+	    	}
+	    	$result = $logic_order->changeOrderReceivePay($order_list,'buyer', $this->member_info['member_name'], $post);
+    	}else{
+	    	$order_info	= $model_order->getOrderInfo($condition);
+	    	$post['payment_code'] = $order_info['payment_code'];
+	    	$if_allow = $model_order->getOrderOperateState('system_receive_pay',$order_info);
+	    	if (!$if_allow) {
+	    		//output_error('无权操作');
+	    		$return['status'] = 1;
+	    		$return['message'] = '无权操作';
+	    		echo json_encode($return);exit;
+	    	}
+	    	$result = $logic_order->changeOrderReceivePay_ordersn($order_info,'buyer', $this->member_info['member_name'], $post);
     	}
-    	$post['payment_code'] = $order_info['payment_code'];
-    	$order_list[] = $order_info;
-    	$result = $logic_order->changeOrderReceivePay($order_list,'buyer', $this->member_info['member_name'], $post);
     	if(!$result['state']) {
     		//output_error($result['msg']);
     		$return['status'] = 1;

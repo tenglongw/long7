@@ -33,7 +33,7 @@ class buyLogic {
      * @var obj
      */
     private $_logic_buy_1;
-
+    
     public function __construct() {
         $this->_logic_buy_1 = Logic('buy_1');
     }
@@ -429,7 +429,7 @@ class buyLogic {
             foreach ($post['voucher'] as $key => $voucher) {
                 //if (preg_match_all('/^(\d+)\|(\d+)\|([\d.]+)$/',$voucher,$matchs)) {
                     if ($voucher > 0) {
-                    	$temp['voucher_t_id'] = $voucher;
+                    	$temp['voucher_id'] = $voucher;
                     	$input_voucher_list[] = $temp;
                         //$input_voucher_list[$store_id]['voucher_t_id'] = $matchs[1][0];
                         //$input_voucher_list[$store_id]['voucher_price'] = $matchs[3][0];
@@ -829,19 +829,20 @@ class buyLogic {
         $notice_list = $this->_order_data['notice_list'];
         $fc_id = $this->_order_data['fc_id'];
         $ifgroupbuy = $this->_order_data['ifgroupbuy'];
-
+        $logic_queue = logic('queue');
         //变更库存和销量
-        QueueClient::push('createOrderUpdateStorage', $goods_buy_quantity);
-
+       // QueueClient::push('createOrderUpdateStorage', $goods_buy_quantity);
+        $logic_queue->createOrderUpdateStorage($goods_buy_quantity);
         //更新使用的代金券状态
         if (!empty($input_voucher_list) && is_array($input_voucher_list)) {
-            QueueClient::push('editVoucherState', $input_voucher_list);
+            //QueueClient::push('editVoucherState', $input_voucher_list);
+            $logic_queue->editVoucherState($input_voucher_list);
         }
 
         //更新F码使用状态
-        if ($fc_id) {
+        /* if ($fc_id) {
             QueueClient::push('updateGoodsFCode', $fc_id);
-        }
+        } */
 
         //更新抢购购买人数和数量
         if ($ifgroupbuy) {
@@ -851,7 +852,8 @@ class buyLogic {
                         $groupbuy_info = array();
                         $groupbuy_info['groupbuy_id'] = $goods_info['groupbuy_id'];
                         $groupbuy_info['quantity'] = $goods_info['goods_num'];
-                        QueueClient::push('editGroupbuySaleCount', $groupbuy_info);
+                        //QueueClient::push('editGroupbuySaleCount', $groupbuy_info);
+                        $logic_queue->editGroupbuySaleCount($groupbuy_info);
                     }
                 }
             }
@@ -872,13 +874,15 @@ class buyLogic {
                 $data['order_sn_list'][$v['order_id']]['order_sn'] = $v['order_sn'];
                 $data['order_sn_list'][$v['order_id']]['add_time'] = $v['add_time'];
             }
-            QueueClient::push('saveDeliveryOrder', $data);
+            //QueueClient::push('saveDeliveryOrder', $data);
+            $logic_queue->saveDeliveryOrder($data);
         }
 
         //发送提醒类信息
         if (!empty($notice_list)) {
             foreach ($notice_list as $code => $value) {
-                QueueClient::push('sendStoreMsg', array('code' => $code, 'store_id' => key($value), 'param' => current($value)));
+                //QueueClient::push('sendStoreMsg', array('code' => $code, 'store_id' => key($value), 'param' => current($value)));
+            	$logic_queue->sendStoreMsg(array('code' => $code, 'store_id' => key($value), 'param' => current($value)));
             }
         }
 

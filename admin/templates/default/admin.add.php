@@ -96,7 +96,7 @@ if (cookie_skin) {
 -->
 </style>
 <div align="center">
-  
+  <!-- 
   <table width="816" border="0" align="center" cellpadding="2" cellspacing="1" class="table_southidc">
     <tr>
       <td height="25" colspan="2" class="back_southidc"><div align="center"><span style="font-weight: bold">免费版不能保存！需要请联系注册正式版！</span></div></td>
@@ -116,7 +116,7 @@ if (cookie_skin) {
    
     </tr>
   </table>
- 
+  -->
 </div>
 </div>
 <script>

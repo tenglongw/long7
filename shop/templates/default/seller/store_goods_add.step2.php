@@ -101,10 +101,11 @@ catch(e){}
 </ul>
 <?php }?>
 <div class="item-publish">
-  <form method="post" id="goods_form" action="http://localhost/long7/shop/index.php?act=store_goods_add&op=save_goods">
+
+  <form method="post" id="goods_form" action="http://localhost/long7/shop/index.php?<?php if ($output['goods']['goods_commonid']!='') echo 'act=store_goods_online&op=edit_save_goods'; else echo 'act=store_goods_add&op=save_goods' ?>">
     <input type="hidden" name="form_submit" value="ok" />
-   <!--  <input type="hidden" name="commonid" value="100170" /> -->
-    <input type="hidden" name="type_id" value="44" />
+   <input type="hidden" name="commonid" value="<?php echo $output['goods']['goods_commonid']?>" />
+    <input type="hidden" name="type_id" value="<?php echo $output['goods']['type_id']?>" />
     <input type="hidden" name="ref_url" value="" />
     <div class="ncsc-form-goods">
       <h3 id="demo1">商品基本信息</h3>
@@ -118,7 +119,7 @@ catch(e){}
       <dl>
         <dt><i class="required">*</i>商品名称：</dt>
         <dd>
-          <input name="g_name" type="text" class="text w400" value="" />
+          <input name="g_name" type="text" class="text w400" value="<?php echo $output['goods']['goods_name']?>" />
           <span></span>
           <p class="hint">商品标题名称长度至少3个字符，最长50个汉字</p>
         </dd>
@@ -126,7 +127,7 @@ catch(e){}
       <dl>
         <dt>商品卖点：</dt>
         <dd>
-          <textarea name="g_jingle" class="textarea h60 w400"></textarea>
+          <textarea name="g_jingle" class="textarea h60 w400" ><?php echo $output['goods']['goods_jingle']?></textarea>
           <span></span>
           <p class="hint">商品卖点最长不能超过140个汉字</p>
         </dd>
@@ -134,7 +135,7 @@ catch(e){}
       <dl>
         <dt nc_type="no_spec"><i class="required">*</i>商品价格：</dt>
         <dd nc_type="no_spec">
-          <input name="g_price" value="" type="text"  class="text w60" /><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
+          <input name="g_price" value="<?php echo $output['goods']['goods_price']?>" type="text"  class="text w60" /><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
           <p class="hint">价格必须是0.01~9999999之间的数字，且不能高于市场价。<br>
             此价格为商品实际销售价格，如果商品存在规格，该价格显示最低价格。</p>
         </dd>
@@ -142,81 +143,48 @@ catch(e){}
       <dl>
         <dt><i class="required">*</i>市场价：</dt>
         <dd>
-          <input name="g_marketprice" value="" type="text" class="text w60" /><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
+          <input name="g_marketprice" value="<?php echo $output['goods']['goods_marketprice']?>" type="text" class="text w60" /><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
           <p class="hint">价格必须是0.01~9999999之间的数字，此价格仅为市场参考售价，请根据该实际情况认真填写。</p>
         </dd>
       </dl>
       <dl>
         <dt>成本价：</dt>
         <dd>
-          <input name="g_costprice" value="" type="text" class="text w60" /><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
+          <input name="g_costprice" value="<?php echo $output['goods']['goods_costprice']?>" type="text" class="text w60" /><em class="add-on"><i class="icon-renminbi"></i></em> <span></span>
           <p class="hint">价格必须是0.00~9999999之间的数字，此价格为商户对所销售的商品实际成本价格进行备注记录，非必填选项，不会在前台销售页面中显示。</p>
         </dd>
       </dl>
       <dl>
         <dt>折扣：</dt>
         <dd>
-          <input name="g_discount" value="" type="text" class="text w60" readonly="readonly" style="background:#E7E7E7 none;" /><em class="add-on">%</em>
+          <input name="g_discount" value="<?php echo $output['goods']['goods_discount']?>" type="text" class="text w60" readonly="readonly" style="background:#E7E7E7 none;" /><em class="add-on">%</em>
           <p class="hint">根据销售价与市场价比例自动生成，不需要编辑。</p>
         </dd>
       </dl>
-            <dl nc_type="spec_group_dl_0" nctype="spec_group_dl" class="spec-bg" spec_img="t">
+      <?php foreach ($output['spec_list'] as $key=>$val){?>
+      <dl nc_type="spec_group_dl_0" nctype="spec_group_dl" class="spec-bg" spec_img="t">
             <dt>
-          <input name="sp_name[1]" type="text" class="text w60 tip2 tr" title="自定义规格类型名称，规格值名称最多不超过4个字" value="颜色" maxlength="4" nctype="spec_name" data-param="{id:1,name:&#39;颜色&#39;}">
-          ：</dt>
-        <dd nctype="sp_group_val">
-          <ul class="spec">
-           <?php foreach ($output['spec_list']['1']['value'] as $value){?>
-				 <li><span nctype="input_checkbox">
-              <input type="checkbox" value="<?php echo $value['sp_value_name']?>" nc_type="<?php echo $value['sp_value_id']?>" class="sp_val" name="sp_val[1][<?php echo $value['sp_value_id']?>]">
-              </span><span nctype="pv_name"><?php echo $value['sp_value_name']?></span></li>
-			<?php 
-              }?>
-               <li data-param="{gc_id:107,sp_id:1,url:&#39;http://localhost/shop/index.php?act=store_goods_add&amp;op=ajax_add_spec&#39;}">
-              <!-- <div nctype="specAdd1" style="display: block;"><a href="javascript:void(0);" class="ncsc-btn" nctype="specAdd"><i class="icon-plus"></i>添加规格值</a></div> -->
-              <div nctype="specAdd2" style="display: none;">
-                <input class="text w60" type="text" placeholder="规格值名称" maxlength="20">
-                <a href="javascript:void(0);" nctype="specAddSubmit" class="ncsc-btn ncsc-btn-acidblue ml5 mr5">确认</a><a href="javascript:void(0);" nctype="specAddCancel" class="ncsc-btn ncsc-btn-orange">取消</a></div>
-            </li>
-          </ul>
-                  </dd>
-      </dl>
-               <!--    <dl nc_type="spec_group_dl_1" nctype="spec_group_dl" class="spec-bg">
-        <dt>
-          <input name="sp_name[25]" type="text" class="text w60 tip2 tr" title="自定义规格类型名称，规格值名称最多不超过4个字" value="套餐类型" maxlength="4" nctype="spec_name" data-param="{id:25,name:&#39;套餐类型&#39;}">
-          ：</dt>
-        <dd>
-          <ul class="spec">
-                                                <li data-param="{gc_id:107,sp_id:25,url:&#39;http://b2b2c.wrtx.cn/shop/index.php?act=store_goods_add&amp;op=ajax_add_spec&#39;}">
-              <div nctype="specAdd1" style="display: block;"><a href="javascript:void(0);" class="ncsc-btn" nctype="specAdd"><i class="icon-plus"></i>添加规格值</a></div>
-              <div nctype="specAdd2" style="display: none;">
-                <input class="text w60" type="text" placeholder="规格值名称" maxlength="20">
-                <a href="javascript:void(0);" nctype="specAddSubmit" class="ncsc-btn ncsc-btn-acidblue ml5 mr5">确认</a><a href="javascript:void(0);" nctype="specAddCancel" class="ncsc-btn ncsc-btn-orange">取消</a></div>
-            </li>
-          </ul>
-                  </dd>
-      </dl> -->
-                  <dl nc_type="spec_group_dl_2" nctype="spec_group_dl" class="spec-bg">
-        <dt>
-          <input name="sp_name[26]" type="text" class="text w60 tip2 tr" title="自定义规格类型名称，规格值名称最多不超过4个字" value="尺寸" maxlength="4" nctype="spec_name" data-param="{id:26,name:&#39;尺寸&#39;}">
-          ：</dt>
-        <dd>
-          <ul class="spec">
-          <?php foreach ($output['spec_list']['26']['value'] as $value){?>
-				 <li><span nctype="input_checkbox">
-              <input type="checkbox" value="<?php echo $value['sp_value_name']?>" nc_type="<?php echo $value['sp_value_id']?>" class="sp_val" name="sp_val[26][<?php echo $value['sp_value_id']?>]">
-              </span><span nctype="pv_name"><?php echo $value['sp_value_name']?></span></li>
-			<?php 
-              }?>
-               <li data-param="{gc_id:107,sp_id:26,url:&#39;http://localhost/shop/index.php?act=store_goods_add&amp;op=ajax_add_spec&#39;}">
-              <!-- <div nctype="specAdd1"><a href="javascript:void(0);" class="ncsc-btn" nctype="specAdd"><i class="icon-plus"></i>添加规格值</a></div> -->
-              <div nctype="specAdd2" style="display:none;">
-                <input class="text w60" type="text" placeholder="规格值名称" maxlength="20">
-                <a href="javascript:void(0);" nctype="specAddSubmit" class="ncsc-btn ncsc-btn-acidblue ml5 mr5">确认</a><a href="javascript:void(0);" nctype="specAddCancel" class="ncsc-btn ncsc-btn-orange">取消</a></div>
-            </li>
-          </ul>
-                  </dd>
-      </dl>
+	          <?php echo $val['sp_name']?><input name="sp_name[<?php echo $key?>]" type="hidden" class="text w60 tip2 tr" title="自定义规格类型名称，规格值名称最多不超过4个字" value="<?php echo $val['sp_name']?>" maxlength="4" nctype="spec_name" data-param="{id:<?php $key?>,name:&#39;<?php $val['sp_name']?>&#39;}">
+	          ：</dt>
+	        <dd nctype="sp_group_val">
+	          <ul class="spec">
+	           <?php foreach ($val['value'] as $value){?>
+	           	<li><span nctype="input_checkbox">
+	              <input type="checkbox" <?php if(!empty($output['spec_json'])){ foreach ($output['spec_json'] as $sjkey=>$sjval){ foreach ($sjval as $sjvkey=>$sjvalue){ if($value['sp_value_id']==$sjvkey){?> checked=true<?php }}}}?> value="<?php echo $value['sp_value_name']?>" nc_type="<?php echo $value['sp_value_id']?>" class="sp_val" name="sp_val[<?php echo $key?>][<?php echo $value['sp_value_id']?>]">
+	              </span><span nctype="pv_name"><?php echo $value['sp_value_name']?></span></li>
+				<?php 
+	              }?>
+	               <li data-param="{gc_id:107,sp_id:1,url:&#39;http://localhost/shop/index.php?act=store_goods_add&amp;op=ajax_add_spec&#39;}">
+	              <!-- <div nctype="specAdd1" style="display: block;"><a href="javascript:void(0);" class="ncsc-btn" nctype="specAdd"><i class="icon-plus"></i>添加规格值</a></div> -->
+	              <div nctype="specAdd2" style="display: none;">
+	                <input class="text w60" type="text" placeholder="规格值名称" maxlength="20">
+	                <a href="javascript:void(0);" nctype="specAddSubmit" class="ncsc-btn ncsc-btn-acidblue ml5 mr5">确认</a><a href="javascript:void(0);" nctype="specAddCancel" class="ncsc-btn ncsc-btn-orange">取消</a></div>
+	            </li>
+	          </ul>
+	                  </dd>
+	      </dl>
+     <?php }?>
+            
                 <!--   <dl nc_type="spec_group_dl_3" nctype="spec_group_dl" class="spec-bg">
         <dt>
           <input name="sp_name[27]" type="text" class="text w60 tip2 tr" title="自定义规格类型名称，规格值名称最多不超过4个字" value="材质" maxlength="4" nctype="spec_name" data-param="{id:27,name:&#39;材质&#39;}">
@@ -236,9 +204,11 @@ catch(e){}
         <dd class="spec-dd">
           <table border="0" cellpadding="0" cellspacing="0" class="spec_table">
             <thead>
-                                        <tr><th nctype="spec_name_1">颜色</th>
+                <tr>
+                	<?php foreach ($output['spec_list'] as $key=>$val){?>
+                		<th nctype="spec_name_<?php echo $key?>"><?php echo $val['sp_name']?></th>
+                	<?php }?>
                          <!--  <th nctype="spec_name_25">套餐类型</th> -->
-                          <th nctype="spec_name_26">尺寸</th>
                           <!-- <th nctype="spec_name_27">材质</th> -->
                                           <th class="w90"><span class="red">*</span>市场价
                 <div class="batch"><i class="icon-edit" title="批量操作"></i>
@@ -281,7 +251,7 @@ catch(e){}
       <dl>
         <dt nc_type="no_spec"><i class="required">*</i>商品库存：</dt>
         <dd nc_type="no_spec">
-          <input name="g_storage" value="" type="text" class="text w60" />
+          <input name="g_storage" value="<?php echo $output['goods']['g_storage']?>" type="text" class="text w60" />
           <span></span>
           <p class="hint">商铺库存数量必须为0~999999999之间的整数<br/>若启用了库存配置，则系统自动计算商品的总数，此处无需卖家填写</p>
         </dd>
@@ -289,7 +259,7 @@ catch(e){}
       <dl>
         <dt>库存预警值：</dt>
         <dd>
-          <input name="g_alarm" value="" type="text" class="text w60" />
+          <input name="g_alarm" value="<?php echo $output['goods']['goods_storage_alarm']?>" type="text" class="text w60" />
           <span></span>
           <p class="hint">设置最低库存预警值。当库存低于预警值时商家中心商品列表页库存列红字提醒。<br>
             请填写0~255的数字，0为不预警。</p>
@@ -309,8 +279,8 @@ catch(e){}
         <dd>
           <div class="ncsc-goods-default-pic">
             <div class="goodspic-uplaod">
-              <div class="upload-thumb"> <img nctype="goods_image" src=""/> </div>
-              <input type="hidden" name="image_path" id="image_path" nctype="goods_image" value="1_04957413414435179.jpg" />
+              <div class="upload-thumb"> <img nctype="goods_image" src="<?php echo $output['goods']['goods_image_url']?>"/> </div>
+              <input type="hidden" name="image_path" id="image_path" nctype="goods_image" value="<?php echo $output['goods']['goods_image']?>" />
               <span></span>
               <p class="hint">上传商品默认主图，如多规格值时将默认使用该图或分规格上传各规格主图；支持jpg、gif、png格式上传或从图片空间中选择，建议使用<font color="red">尺寸800x800像素以上、大小不超过1M的正方形图片</font>，上传后的图片将会自动保存在图片空间的默认分类中。</p>
               <div class="handle">
@@ -382,24 +352,6 @@ catch(e){}
         </dd>
       </dl>
             <dl>
-        <!-- <dt>商品属性：</dt>
-        <dd>
-        	<input name="spec" type="hidden" value="<?php echo $output['sign_i']?>">
-            <span class="mr30">
-          		<label class="mr5">颜色</label>
-          		<?php foreach ($output['spec_list']['1']['value'] as $value){?>
-                 <input type="checkbox" name="color[]" value="<?php echo $value['sp_value_id']?>" > <?php echo $value['sp_value_name']?></input>
-          		<?php 
-          		}?>
-             </span>
-             <span class="mr30">
-          		<label class="mr5">尺寸</label>
-          		<?php foreach ($output['spec_list']['26']['value'] as $value){?>
-                 <input type="checkbox" name="size[]" value="<?php echo $value['sp_value_id']?>" > <?php echo $value['sp_value_name']?></input>
-          		<?php 
-          		}?>
-             </span>
-        </dd> -->
       </dl>
             <dl>
         <dt>商品描述：</dt>
@@ -410,7 +362,7 @@ catch(e){}
                <li class="selected"><a href="#panel-2" jquery1239647486215="9"><i class="icon-mobile-phone"></i>手机端</a></li> -->
             </ul>
             <div id="panel-1" class="ui-tabs-panel" jquery1239647486215="4">
-              <textarea id="g_body" name="g_body" style="width:100%;height:480px;visibility:hidden;"><img src="/long7/data/upload/shop/store/goods/1/1_04957416187033211_1280.jpg" alt="image" /><img src="/long7/data/upload/shop/store/goods/1/1_04957416256542380_1280.jpg" alt="image" /></textarea>
+              <textarea id="g_body" name="g_body" style="width:100%;height:480px;visibility:hidden;"></textarea>
 <script src="/long7/data/resource/kindeditor/kindeditor-min.js" charset="utf-8"></script>
 <script src="/long7/data/resource/kindeditor/lang/zh_CN.js" charset="utf-8"></script>
 <script>
@@ -961,7 +913,7 @@ $(function(){
 function into_array(){
 		
 		spec_group_checked_0 = new Array();
-		$('dl[nc_type="spec_group_dl_0"]').find('input[type="checkbox"]:checked').each(function(){
+		$('dl[nc_type="spec_group_dl_0"]:first').find('input[type="checkbox"]:checked').each(function(){
 			i = $(this).attr('nc_type');
 			v = $(this).val();
 			c = null;
@@ -988,8 +940,8 @@ function into_array(){
 		spec_group_checked[1] = spec_group_checked_1; */
 
 		
-		spec_group_checked_2 = new Array();
-		$('dl[nc_type="spec_group_dl_2"]').find('input[type="checkbox"]:checked').each(function(){
+		 spec_group_checked_2 = new Array();
+		$('dl[nc_type="spec_group_dl_0"]:last').find('input[type="checkbox"]:checked').each(function(){
 			i = $(this).attr('nc_type');
 			v = $(this).val();
 			c = null;
@@ -1000,7 +952,7 @@ function into_array(){
 		});
 
 		spec_group_checked[2] = spec_group_checked_2;
-
+ 
 		
 		/* spec_group_checked_3 = new Array();
 		$('dl[nc_type="spec_group_dl_3"]').find('input[type="checkbox"]:checked').each(function(){

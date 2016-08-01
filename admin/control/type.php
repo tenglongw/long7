@@ -319,7 +319,6 @@ class typeControl extends SystemControl {
 			showMessage($lang['param_error']);
 		}
 		Tpl::output('type_info', $type_info['0']);
-
 		//品牌
 		$model_brand	= Model('brand');
 		$brand_list		= $model_brand->getBrandPassedList(array());
@@ -368,10 +367,10 @@ class typeControl extends SystemControl {
 				$sp_related[] = $val['sp_id'];
 			}
 		}
+		//echo json_encode($s_list);exit;
 		unset($spec_related);
 		Tpl::output('spec_related', $sp_related);
 		Tpl::output('spec_list', $s_list);
-
 
 		// 一级分类列表
 		$gc_list = Model('goods_class')->getGoodsClassListByParentId(0);

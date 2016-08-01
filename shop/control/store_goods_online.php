@@ -78,8 +78,10 @@ class store_goods_onlineControl extends BaseSellerControl {
             $goodscommon_info['mb_body'] = unserialize($goodscommon_info['mobile_body']);
             $goodscommon_info['mobile_body'] = json_encode($goodscommon_info['mb_body']);
         }
+        $goodscommon_info['goods_image_url'] = cthumb($goodscommon_info['goods_image'], 360, $goodscommon_info['store_id']);
         Tpl::output('goods', $goodscommon_info);
-
+        //echo json_encode($goodscommon_info);exit;
+	
         if (intval($_GET['class_id']) > 0) {
             $goodscommon_info['gc_id'] = intval($_GET['class_id']);
         }
@@ -95,7 +97,7 @@ class store_goods_onlineControl extends BaseSellerControl {
         Tpl::output('spec_list', $spec_list);
         Tpl::output('attr_list', $attr_list);
         Tpl::output('brand_list', $brand_list);
-
+		//echo json_encode($spec_json);exit;
         // 取得商品规格的输入值
         $goods_array = $model_goods->getGoodsList($where, 'goods_id,goods_marketprice,goods_price,goods_storage,goods_serial,goods_storage_alarm,goods_spec');
         $sp_value = array();
@@ -262,28 +264,35 @@ class store_goods_onlineControl extends BaseSellerControl {
             $bind_info = $model_bind_class->getStoreBindClassInfo($where);
             if (empty($bind_info))
             {
-                $where['class_3'] =  0;
-                $bind_info = $model_bind_class->getStoreBindClassInfo($where);
-                if (empty($bind_info))
-                {
-                    $where['class_2'] =  0;
-                    $where['class_3'] =  0;
-                    $bind_info = $model_bind_class->getStoreBindClassInfo($where);
-                    if (empty($bind_info))
-                    {
-                        $where['class_1'] =  0;
-                        $where['class_2'] =  0;
-                        $where['class_3'] =  0;
-                        $bind_info = $model_bind_class->getStoreBindClassInfo($where);
-                        if (empty($bind_info))
-                        {
-                            showDialog(L('store_goods_index_again_choose_category2'));
-                        }
-                    }
-
-                }
-
-            }
+				$where ['class_3'] = 0;
+				$bind_info = $model_bind_class->getStoreBindClassInfo ( $where );
+				if (empty ( $bind_info )) {
+					$where ['class_2'] = 0;
+					$where ['class_3'] = 0;
+					$bind_info = $model_bind_class->getStoreBindClassInfo ( $where );
+					if (empty ( $bind_info )) {
+						$where ['class_1'] = 0;
+						$where ['class_2'] = 0;
+						$where ['class_3'] = 0;
+						$bind_info = Model ( 'store_bind_class' )->getStoreBindClassInfo ( $where );
+						if (empty ( $bind_info )) {
+							$where ['class_1'] = $class_2;
+							$where ['class_2'] = $gc_id;
+							$where ['class_3'] = 0;
+							$bind_info = Model ( 'store_bind_class' )->getStoreBindClassInfo ( $where );
+							if (empty ( $bind_info )) {
+								$where ['class_1'] = $gc_id;
+								$where ['class_2'] = 0;
+								$where ['class_3'] = 0;
+								$bind_info = Model ( 'store_bind_class' )->getStoreBindClassInfo ( $where );
+								if (empty ( $bind_info )) {
+									showDialog ( L ( 'store_goods_index_again_choose_category2' ) );
+								}
+							}
+						}
+					}
+				}
+			}
         }
         // 分类信息
         $goods_class = Model('goods_class')->getGoodsClassLineForTag(intval($_POST['cate_id']));

@@ -72,7 +72,14 @@ class member_buyControl extends mobileMemberControl {
         //$buy_list['available_rc_balance'] = $result['available_rc_balance'];
         $data = $logic_buy->changeAddr($result['freight_list'], $result['address_info']['city_id'], $result['address_info']['area_id'], $this->member_info['member_id']);
         //echo json_encode($data);exit;
-        $buy_list['freight_list'] = $data;
+        if($data['state']=='success'){
+        	foreach ($data['content'] as $store_id=>$val){
+        		if(!empty($val)){
+        			$freight +=$val;
+        		}
+        	}
+        }
+        $buy_list['freight'] = $freight;
         output_data($buy_list);
     }
 
@@ -142,10 +149,14 @@ class member_buyControl extends mobileMemberControl {
      */
     public function change_addressOp() {
         $logic_buy = Logic('buy');
-
         $data = $logic_buy->changeAddr($_POST['freight_hash'], $_POST['city_id'], $_POST['area_id'], $this->member_info['member_id']);
         if(!empty($data) && $data['state'] == 'success' ) {
-            output_data($data);
+        	foreach ($data['content'] as $store_id=>$val){
+        		if(!empty($val)){
+        			$freight +=$val;
+        		}
+        	}
+            output_data(array('freight'=>$freight));
         } else {
             output_error('地址修改失败');
         }

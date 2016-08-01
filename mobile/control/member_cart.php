@@ -102,20 +102,13 @@ class member_cartControl extends mobileMemberControl {
      * 购物车删除
      */
     public function cart_delOp() {
-        $cart_id = intval($_POST['cart_id']);
-
         $model_cart = Model('cart');
-
-        if($cart_id > 0) {
-            $condition = array();
-            $condition['buyer_id'] = $_POST['member_id'];
-            $condition['cart_id'] = $cart_id;
-
-            $model_cart->delCart('db', $condition);
-        }
+        $condition = array();
+        $condition['buyer_id'] = $_POST['member_id'];
+        $condition['cart_id'] = array('in',$_POST['cart_id']);
+        $model_cart->delCart('db', $condition);
 		$result['status']=0;
 		$result['message'] = '删除成功';
-       // output_data('1');
        echo json_encode($result);exit;
     }
     

@@ -68,7 +68,7 @@ if (cookie_skin) {
       </tbody>
     </table>
     <input type="hidden" name="form_submit" value="ok" />
-    <input type="hidden" name="t_id" value="46" />
+    <input type="hidden" name="t_id" value="<?php echo $output['type_info']['type_id']?>" />
     <table class="table tb-type2">
       <tbody>
         <tr class="noborder">
@@ -139,13 +139,16 @@ if (cookie_skin) {
                         <tr class="hover edit">
               <td colspan="15"><h6 class="clear" id="spec_h6_0">默认</h6>
                             <ul class="nofloat">
-                            	<?php foreach ($output['spec_list']['107']['spec'] as $value){
-                            		?>
-                            		<li class="left w33pre h36"><input class="checkitem"
-									nc_type="change_default_spec_value" type="checkbox" value="<?php echo $value['sp_id']?>"
-									name="spec_id[]"> <?php echo $value['sp_name']?> </li>
-                            		<?php 
-                            	}?>
+                            	<?php foreach ($output['spec_list'] as $key=>$val){
+									//if($key == $output['type_info']['class_id']){?>
+	                            	<?php foreach ($output['spec_list'][$key]['spec'] as $value){
+	                            		?>
+	                            		<li class="left w33pre h36"><input class="checkitem"
+										nc_type="change_default_spec_value" type="checkbox" value="<?php echo $value['sp_id']?>"
+										name="spec_id[]"> <?php echo $value['sp_name']?>(<?php echo $value['class_name']?>) </li>
+	                            		<?php 
+	                            	//}?>
+                            	<?php }}?>
 								
 							</ul></td></tr>
                       </tbody>

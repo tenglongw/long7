@@ -28,14 +28,14 @@
     <input type="hidden" name="form_submit" value="ok" />
     <table class="table tb-type2">
       <tbody>
-        <!-- <tr class="noborder">
+        <tr class="noborder">
           <td colspan="2" class="required"><label class="" for="mobile_apk">安卓安装包:</label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform">
             <input type="text" name="mobile_apk" id="mobile_apk" value="<?php echo $output['mobile_apk']['value'];?>" class="txt"></td>
           <td class="vatop tips"></td>
-        </tr> -->
+        </tr>
         <tr class="noborder">
           <td colspan="2" class="required"><label class="" for="mobile_apk">当前安卓安装包版本:</label></td>
         </tr>

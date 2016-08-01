@@ -328,7 +328,7 @@ class orderLogic {
                 throw new Exception('更新支付单状态失败');
             }
 
-            $model_pd = Model('predeposit');
+            /* $model_pd = Model('predeposit');
             foreach($order_list as $order_info) {
                 $order_id = $order_info['order_id'];
                 if ($order_info['order_state'] != ORDER_STATE_NEW) continue;
@@ -353,14 +353,14 @@ class orderLogic {
                     $data_pd['order_sn'] = $order_info['order_sn'];
                     $model_pd->changePd('order_comb_pay',$data_pd);
                 }
-            }
+            } */
 
             //更新订单状态
             $update_order = array();
             $update_order['order_state'] = ORDER_STATE_PAY;
             $update_order['payment_time'] = ($post['payment_time'] ? strtotime($post['payment_time']) : TIMESTAMP);
             $update_order['payment_code'] = $post['payment_code'];
-            $update = $model_order->editOrder($update_order,array('pay_sn'=>$order_info['pay_sn'],'order_state'=>ORDER_STATE_NEW));
+            $update = $model_order->editOrder($update_order,array('pay_sn'=>$order_list[0]['pay_sn'],'order_state'=>ORDER_STATE_NEW));
             if (!$update) {
                 throw new Exception('操作失败');
             }
@@ -369,7 +369,7 @@ class orderLogic {
             $model_order->rollback();
             return callback(false,$e->getMessage());
         }
-
+		//echo json_encode($order_list);exit;
         foreach($order_list as $order_info) {
 			//防止重复发送消息 v 3 - 3 3 h a o . c o m
 			if ($order_info['order_state'] != ORDER_STATE_NEW) continue;
@@ -404,5 +404,104 @@ class orderLogic {
         }
 
         return callback(true,'操作成功');
+    }
+    
+    /**
+     * 收到货款
+     * @param array $order_info
+     * @param string $role 操作角色 buyer、seller、admin、system 分别代表买家、商家、管理员、系统
+     * @param string $user 操作人
+     * @return array
+     */
+    public function changeOrderReceivePay_ordersn($order_info, $role, $user = '', $post = array()) {
+    	$model_order = Model('order');
+    
+    	try {
+    		$model_order->beginTransaction();
+    
+    		$data = array();
+    		$data['api_pay_state'] = 1;
+//     		$update = $model_order->editOrderPay($data,array('pay_sn'=>$order_list[0]['pay_sn']));
+    		$update = $model_order->editOrderPay($data,array('pay_sn'=>$order_info['pay_sn']));
+    		if (!$update) {
+    			throw new Exception('更新支付单状态失败');
+    		}
+    
+    		/* $model_pd = Model('predeposit');
+    		 foreach($order_list as $order_info) {
+    		 $order_id = $order_info['order_id'];
+    		 if ($order_info['order_state'] != ORDER_STATE_NEW) continue;
+    		 //下单，支付被冻结的充值卡
+    		 $rcb_amount = floatval($order_info['rcb_amount']);
+    		 if ($rcb_amount > 0) {
+    		 $data_pd = array();
+    		 $data_pd['member_id'] = $order_info['buyer_id'];
+    		 $data_pd['member_name'] = $order_info['buyer_name'];
+    		 $data_pd['amount'] = $rcb_amount;
+    		 $data_pd['order_sn'] = $order_info['order_sn'];
+    		 $model_pd->changeRcb('order_comb_pay',$data_pd);
+    		 }
+    
+    		 //下单，支付被冻结的预存款
+    		 $pd_amount = floatval($order_info['pd_amount']);
+    		 if ($pd_amount > 0) {
+    		 $data_pd = array();
+    		 $data_pd['member_id'] = $order_info['buyer_id'];
+    		 $data_pd['member_name'] = $order_info['buyer_name'];
+    		 $data_pd['amount'] = $pd_amount;
+    		 $data_pd['order_sn'] = $order_info['order_sn'];
+    		 $model_pd->changePd('order_comb_pay',$data_pd);
+    		 }
+    		 } */
+    
+    		//更新订单状态
+    		$update_order = array();
+    		$update_order['order_state'] = ORDER_STATE_PAY;
+    		$update_order['payment_time'] = ($post['payment_time'] ? strtotime($post['payment_time']) : TIMESTAMP);
+    		$update_order['payment_code'] = $post['payment_code'];
+    		$update = $model_order->editOrder($update_order,array('order_sn'=>$order_info['order_sn'],'order_state'=>ORDER_STATE_NEW));
+    		if (!$update) {
+    			throw new Exception('操作失败');
+    		}
+    		$model_order->commit();
+    	} catch (Exception $e) {
+    		$model_order->rollback();
+    		return callback(false,$e->getMessage());
+    	}
+    	//echo json_encode($order_list);exit;
+    	//foreach($order_list as $order_info) {
+    		//防止重复发送消息 v 3 - 3 3 h a o . c o m
+    		if ($order_info['order_state'] != ORDER_STATE_NEW) continue;
+    		$order_id = $order_info['order_id'];
+    		// 支付成功发送买家消息
+    		$param = array();
+    		$param['code'] = 'order_payment_success';
+    		$param['member_id'] = $order_info['buyer_id'];
+    		$param['param'] = array(
+    				'order_sn' => $order_info['order_sn'],
+    				'order_url' => urlShop('member_order', 'show_order', array('order_id' => $order_info['order_id']))
+    		);
+    		QueueClient::push('sendMemberMsg', $param);
+    
+    		// 支付成功发送店铺消息
+    		$param = array();
+    		$param['code'] = 'new_order';
+    		$param['store_id'] = $order_info['store_id'];
+    		$param['param'] = array(
+    				'order_sn' => $order_info['order_sn']
+    		);
+    		QueueClient::push('sendStoreMsg', $param);
+    
+    		//添加订单日志
+    		$data = array();
+    		$data['order_id'] = $order_id;
+    		$data['log_role'] = $role;
+    		$data['log_user'] = $user;
+    		$data['log_msg'] = '收到了货款 ( 支付平台交易号 : '.$post['trade_no'].' )';
+    		$data['log_orderstate'] = ORDER_STATE_PAY;
+    		$model_order->addOrderLog($data);
+    	//}
+    
+    	return callback(true,'操作成功');
     }
 }

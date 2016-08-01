@@ -42,7 +42,8 @@ class groupControl extends mobileHomeControl{
 		//if(intval($_GET['cream']) == 1){
 		//	$where['is_digest'] = 1;
 		//}
-		$theme_list = $model->table('circle_theme')->where($where)->order('is_stick desc,lastspeak_time desc')->page(20)->select();
+		$theme_list = $model->table('circle_theme')->where($where)->order('is_stick desc,lastspeak_time desc')->page($this->page)->select();
+		$page_count = $model->gettotalpage();
 		//$theme_list = array_under_reset($theme_list, 'theme_id');
 		//Tpl::output('show_page', $model->showpage('2'));
 		//Tpl::output('theme_list', $theme_list);
@@ -168,7 +169,8 @@ class groupControl extends mobileHomeControl{
 			}
 		}
 		$return['theme_count'] = count($theme_list);
-		output_data($return);
+		output_data($return, mobile_page($page_count));
+		//output_data($return);
 	}
 	
 	/**

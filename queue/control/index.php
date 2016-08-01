@@ -15,7 +15,7 @@ class indexControl {
         if (ob_get_level()) ob_end_clean();
 
         $model_queue = Model('queue',BASE_PATH);
-
+		echo 1111;exit;
         $worker = new QueueServer();
         while (true) {
             $list_key = $worker->scan();
@@ -36,5 +36,8 @@ class indexControl {
             }
             sleep(1);
         }
+    }
+    public function pushMesge(){
+    	QueueClient::push('updateGoodsFCode', 1);
     }
 }

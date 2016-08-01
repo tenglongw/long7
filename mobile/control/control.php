@@ -23,7 +23,11 @@ class mobileControl{
         Language::read('mobile');
 
         //分页数处理
-        $page = intval($_GET['page']);
+        $page = $_POST['page'];
+        if(empty($page)){
+        	$page = $_GET['page'];
+        }
+        $page = intval($page);
         if($page > 0) {
             $this->page = $page;
         }

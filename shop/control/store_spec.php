@@ -141,7 +141,6 @@ class store_specControl extends BaseSellerControl {
         if ($deep != 4) {
             $gc_list = $model_goodsclass->getGoodsClass($_SESSION['store_id'], $id, $deep);
         }
-      // echo json_encode($gc_info);exit;
         // 分类不为空输出分类信息
         if (!empty($gc_list)) {
             $data = array('type' => 'class', 'data' => $gc_list, 'deep' => $deep);

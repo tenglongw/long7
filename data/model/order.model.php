@@ -117,7 +117,6 @@ class orderModel extends Model {
         	if (!empty($extend)) $order_list[$order['order_id']] = $order;
         }
         if (empty($order_list)) $order_list = $list;
-
         //追加返回订单扩展表信息
         if (in_array('order_common',$extend)) {
             $order_common_list = $this->getOrderCommonList(array('order_id'=>array('in',array_keys($order_list))));
