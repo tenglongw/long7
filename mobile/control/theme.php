@@ -992,14 +992,27 @@ class themeControl extends mobileHomeControl{
 	public function ajax_likeyesOp(){
 		// 话题信息
 		$this->themeInfo();
+		//点赞列表
 		$like_info = Model()->table('circle_like')->where(array('theme_id'=>$this->t_id, 'member_id'=>$_POST['member_id']))->find();
 		if(empty($like_info)){
 			// 插入话题赞表
 			Model()->table('circle_like')->insert(array('theme_id'=>$this->t_id, 'member_id'=>$_POST['member_id'], 'member_name'=>$_POST['member_name'], 'circle_id'=>1));
 			// 更新赞数量
 			Model()->table('circle_theme')->update(array('theme_id'=>$this->t_id, 'theme_likecount'=>array('exp', 'theme_likecount+1')));
+			$like_list = Model()->table('circle_like')->where(array('theme_id'=>$this->t_id))->select();
+			foreach ($like_list as $lkey=>$lval){
+				if($val['theme_id'] == $lval['theme_id']){
+					$like['reply_image'] = getMemberAvatarForID($lval['member_id']);
+					$like['member_name'] = $lval['member_name'];
+					$like['member_id'] = $lval['member_id'];
+					$like_list[] = $like;
+				}
+			
+			}
 			$result['status']=0;
 			$result['message']='成功';
+			$result['like_list']=$like_list;
+			$result['like_count'] = count($like_list);
 		}else{
 			$result['status']=1;
 			$result['message']='失败';
@@ -1022,8 +1035,22 @@ class themeControl extends mobileHomeControl{
 			Model()->table('circle_like')->where(array('theme_id'=>$this->t_id, 'member_id'=>$_POST['member_id']))->delete();
 			// 更新赞数量
 			Model()->table('circle_theme')->update(array('theme_id'=>$this->t_id, 'theme_likecount'=>array('exp', 'theme_likecount-1')));
+			$like_list = Model()->table('circle_like')->where(array('theme_id'=>$this->t_id))->select();
 			$result['status']=0;
 			$result['message']='成功';
+			foreach ($like_list as $lkey=>$lval){
+				if($val['theme_id'] == $lval['theme_id']){
+					$like['reply_image'] = getMemberAvatarForID($lval['member_id']);
+					$like['member_name'] = $lval['member_name'];
+					$like['member_id'] = $lval['member_id'];
+					$like_list[] = $like;
+				}
+					
+			}
+			$result['status']=0;
+			$result['message']='成功';
+			$result['like_list']=$like_list;
+			$result['like_count'] = count($like_list);
 		}
 		echo json_encode($result); exit;
 	}

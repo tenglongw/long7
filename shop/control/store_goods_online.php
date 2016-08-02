@@ -97,7 +97,9 @@ class store_goods_onlineControl extends BaseSellerControl {
         Tpl::output('spec_list', $spec_list);
         Tpl::output('attr_list', $attr_list);
         Tpl::output('brand_list', $brand_list);
-		//echo json_encode($spec_json);exit;
+        Tpl::output('spec_value', unserialize($goodscommon_info['spec_value']));
+        
+		//echo json_encode(unserialize($goodscommon_info['spec_value']));exit;
         // 取得商品规格的输入值
         $goods_array = $model_goods->getGoodsList($where, 'goods_id,goods_marketprice,goods_price,goods_storage,goods_serial,goods_storage_alarm,goods_spec');
         $sp_value = array();
@@ -217,7 +219,7 @@ class store_goods_onlineControl extends BaseSellerControl {
      * 编辑商品保存
      */
     public function edit_save_goodsOp() {
-
+// 		echo json_encode($_POST['g_storage']);exit;
         $common_id = intval ( $_POST ['commonid'] );
         if (!chksubmit() || $common_id <= 0) {
             showDialog(L('store_goods_index_goods_edit_fail'), urlShop('store_goods_online', 'index'));

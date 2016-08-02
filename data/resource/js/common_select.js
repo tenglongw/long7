@@ -34,18 +34,23 @@ if(typeof(regionChange) != 'function'){//检测是否已经被定义过，防止
 	    var selects = $(this).siblings("select").andSelf();
 	    var id = '';
 	    var names = new Array();
+	    var ids = new Array();
 	    for (i = 0; i < selects.length; i++){
 	        sel = selects[i];
 	        if (sel.value > 0){
 	            id = sel.value;
 	            name = sel.options[sel.selectedIndex].text;
 	            names.push(name);
+	            ids.push(id);
 	        }
 	    }
 	    $(".area_ids").val(id);
 	    $(".area_name").val(name);
 	    $(".area_names").val(names.join("\t"));
-	    
+	    if(ids.length>1){
+	    	$("#city_id").val(ids[1]);
+	    }
+	    console.log("ids="+ids);
 	    if (this.value > 0){//下级地区
 	        var area_id = this.value;
 	        if(typeof(nc_a[area_id]) == 'object' && nc_a[area_id].length > 0){//数组存在
@@ -57,7 +62,7 @@ if(typeof(regionChange) != 'function'){//检测是否已经被定义过，防止
 }
 
 function regionEdit()
-{
+{console.log("regionEdit");
     $(this).siblings("select").show();
     $(this).siblings("span").andSelf().hide();
 }

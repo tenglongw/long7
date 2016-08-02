@@ -4,22 +4,22 @@
 <head>
 <meta charset="utf-8">
 <title>商家中心</title>
-<link href="/long7/shop/templates/default/css/base.css" rel="stylesheet" type="text/css">
-<link href="/long7/shop/templates/default/css/seller_center.css" rel="stylesheet" type="text/css">
-<link href="/long7/shop/resource/font/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="<?php echo SHOP_TEMPLATES_URL;?>/css/base.css" rel="stylesheet" type="text/css">
+<link href="<?php echo SHOP_TEMPLATES_URL;?>/css/seller_center.css" rel="stylesheet" type="text/css">
+<link href="<?php echo SHOP_RESOURCE_SITE_URL;?>/font/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 <!--[if IE 7]>
   <link rel="stylesheet" href="/shop/resource/font/font-awesome/css/font-awesome-ie7.min.css">
 <![endif]-->
 <script>
 var COOKIE_PRE = '53C0_';var _CHARSET = 'utf-8';var SITEURL = '/long7/shop';var RESOURCE_SITE_URL = '/long7/data/resource';var SHOP_RESOURCE_SITE_URL = '/long7/shop/resource';var SHOP_TEMPLATES_URL = '/long7/shop/templates/default';</script>
-<script type="text/javascript" src="/long7/data/resource/js/jquery.js"></script>
-<script type="text/javascript" src="/long7/shop/resource/js/seller.js"></script>
-<script type="text/javascript" src="/long7/data/resource/js/waypoints.js"></script>
-<script type="text/javascript" src="/long7/data/resource/js/jquery-ui/jquery.ui.js"></script>
-<script type="text/javascript" src="/long7/data/resource/js/jquery.validation.min.js"></script>
-<script type="text/javascript" src="/long7/data/resource/js/common.js"></script>
-<script type="text/javascript" src="/long7/data/resource/js/member.js" charset="utf-8"></script>
-<script type="text/javascript" src="/long7/data/resource/js/dialog/dialog.js" id="dialog_js" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.js"></script>
+<script type="text/javascript" src="<?php echo SHOP_RESOURCE_SITE_URL;?>/js/seller.js"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/waypoints.js"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery-ui/jquery.ui.js"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.validation.min.js"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/common.js"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/member.js" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/dialog/dialog.js" id="dialog_js" charset="utf-8"></script>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -46,26 +46,26 @@ catch(e){}
 </head>
 
 <body>
-<script type="text/javascript" src="/long7/data/resource/js/ToolTip.js"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/ToolTip.js"></script>
 <div id="append_parent"></div>
 <div id="ajaxwaitid"></div>
 <div class="ncsc-layout wrapper">
   <div id="layoutRight" class="ncsc-layout-rightgood">
     <div class="main-content" id="mainContent">
-      <script src="/long7/data/resource/js/jquery.ajaxContent.pack.js"></script>
-<script src="/long7/data/resource/js/jquery-ui/i18n/zh-CN.js"></script>
-<script src="/long7/data/resource/js/common_select.js"></script>
-<script type="text/javascript" src="/long7/data/resource/js/fileupload/jquery.iframe-transport.js" charset="utf-8"></script>
-<script type="text/javascript" src="/long7/data/resource/js/fileupload/jquery.ui.widget.js" charset="utf-8"></script>
-<script type="text/javascript" src="/long7/data/resource/js/fileupload/jquery.fileupload.js" charset="utf-8"></script>
-<script src="/long7/data/resource/js/jquery.poshytip.min.js"></script>
-<script src="/long7/data/resource/js/jquery.mousewheel.js"></script>
-<script type="text/javascript" src="/long7/data/resource/js/jquery.charCount.js"></script>
+      <script src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.ajaxContent.pack.js"></script>
+<script src="<?php echo RESOURCE_SITE_URL;?>/js/jquery-ui/i18n/zh-CN.js"></script>
+<script src="<?php echo RESOURCE_SITE_URL;?>/js/common_select.js"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/fileupload/jquery.iframe-transport.js" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/fileupload/jquery.ui.widget.js" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/fileupload/jquery.fileupload.js" charset="utf-8"></script>
+<script src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.poshytip.min.js"></script>
+<script src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.charCount.js"></script>
 <!--[if lt IE 8]>
   <script src="/data/resource/js/json2.js"></script>
 <![endif]-->
-<script src="/long7/shop/resource/js/store_goods_add.step2.js"></script>
-<link rel="stylesheet" type="text/css" href="/long7/data/resource/js/jquery-ui/themes/ui-lightness/jquery.ui.css"  />
+<script src="<?php echo SHOP_RESOURCE_SITE_URL;?>/js/store_goods_add.step2.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo RESOURCE_SITE_URL;?>/js/jquery-ui/themes/ui-lightness/jquery.ui.css"  />
 <style type="text/css">
 #fixedNavBar { filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#CCFFFFFF', endColorstr='#CCFFFFFF');background:rgba(255,255,255,0.8); width: 90px; margin-left: 510px; border-radius: 4px; position: fixed; z-index: 999; top: 172px; left: 50%;}
 #fixedNavBar h3 { font-size: 12px; line-height: 24px; text-align: center; margin-top: 4px;}
@@ -170,7 +170,7 @@ catch(e){}
 	          <ul class="spec">
 	           <?php foreach ($val['value'] as $value){?>
 	           	<li><span nctype="input_checkbox">
-	              <input type="checkbox" <?php if(!empty($output['spec_json'])){ foreach ($output['spec_json'] as $sjkey=>$sjval){ foreach ($sjval as $sjvkey=>$sjvalue){ if($value['sp_value_id']==$sjvkey){?> checked=true<?php }}}}?> value="<?php echo $value['sp_value_name']?>" nc_type="<?php echo $value['sp_value_id']?>" class="sp_val" name="sp_val[<?php echo $key?>][<?php echo $value['sp_value_id']?>]">
+	              <input type="checkbox" <?php if(!empty($output['spec_value'])){ foreach ($output['spec_value'] as $sjkey=>$sjval){ foreach ($sjval as $sjvkey=>$sjvalue){ if($value['sp_value_id']==$sjvkey){?> checked=true<?php }}}}?> value="<?php echo $value['sp_value_name']?>" nc_type="<?php echo $value['sp_value_id']?>" class="sp_val" name="sp_val[<?php echo $key?>][<?php echo $value['sp_value_id']?>]">
 	              </span><span nctype="pv_name"><?php echo $value['sp_value_name']?></span></li>
 				<?php 
 	              }?>
@@ -301,8 +301,8 @@ catch(e){}
         <dd>
           <div class="ncsc-brand-select">
             <div class="selection">
-              <input name="b_name" id="b_name" value="" type="text" class="text w180" readonly="readonly" />
-              <input type="hidden" name="b_id" id="b_id" value="230" />
+              <input name="b_name" id="b_name" type="text" class="text w180" value="<?php echo $output['goods']['brand_name']?>" readonly="readonly" />
+              <input type="hidden" name="b_id" id="b_id" value="<?php echo $output['goods']['brand_id']?>" />
               <em class="add-on" nctype="add-on"><i class="icon-collapse"></i></em></div>
             <div class="ncsc-brand-select-container">
               <div class="brand-index" data-tid="44" data-url="/long7/shop/index.php?act=store_goods_add&op=ajax_get_brand">
@@ -362,9 +362,9 @@ catch(e){}
                <li class="selected"><a href="#panel-2" jquery1239647486215="9"><i class="icon-mobile-phone"></i>手机端</a></li> -->
             </ul>
             <div id="panel-1" class="ui-tabs-panel" jquery1239647486215="4">
-              <textarea id="g_body" name="g_body" style="width:100%;height:480px;visibility:hidden;"></textarea>
-<script src="/long7/data/resource/kindeditor/kindeditor-min.js" charset="utf-8"></script>
-<script src="/long7/data/resource/kindeditor/lang/zh_CN.js" charset="utf-8"></script>
+              <textarea id="g_body" name="g_body" style="width:100%;height:480px;visibility:hidden;"><?php echo $output['goods']['goods_body']?></textarea>
+<script src="<?php echo RESOURCE_SITE_URL;?>/kindeditor/kindeditor-min.js" charset="utf-8"></script>
+<script src="<?php echo RESOURCE_SITE_URL;?>/kindeditor/lang/zh_CN.js" charset="utf-8"></script>
 <script>
 	var KE;
   KindEditor.ready(function(K) {
@@ -375,7 +375,7 @@ catch(e){}
             'superscript', '|', 'selectall', 'clearhtml','quickformat','|',
             'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
             'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'flash', 'media', 'table', 'hr', 'emoticons', 'link', 'unlink', '|', 'about'],
-						cssPath : "/data/resource/kindeditor/themes/default/default.css",
+						cssPath : "/long7/data/resource/kindeditor/themes/default/default.css",
 						allowImageUpload : false,
 						allowFlashUpload : false,
 						allowMediaUpload : false,
@@ -480,7 +480,7 @@ catch(e){}
       <!-- 只有可发布虚拟商品才会显示 S -->
             <!-- 只有可发布虚拟商品才会显示 E --> 
       <!-- F码商品专有项 S -->
-      <dl class="special-02" nctype="virtual_null" >
+      <!-- <dl class="special-02" nctype="virtual_null" >
         <dt>F码商品：</dt>
         <dd>
           <ul class="ncsc-form-radio-list">
@@ -513,7 +513,7 @@ catch(e){}
           <span></span>
           <p class="hint">请填写3~5位的英文字母。建议每次生成的F码使用不同的前缀。</p>
         </dd>
-      </dl>
+      </dl>-->
             <!-- F码商品专有项 E --> 
       <!-- 预售商品 S -->
       <dl class="special-03" nctype="virtual_null" >
@@ -521,11 +521,11 @@ catch(e){}
         <dd>
           <ul class="ncsc-form-radio-list">
             <li>
-              <input type="radio" name="is_presell" id="is_presell_1" value="1" >
+              <input type="radio" name="is_presell" id="is_presell_1" value="1" <?php if($output['goods']['is_presell']=="1"){?>checked<?php }?> >
               <label for="is_presell_1">是</label>
             </li>
             <li>
-              <input type="radio" name="is_presell" id="is_presell_0" value="0" checked>
+              <input type="radio" name="is_presell" id="is_presell_0" value="0" <?php if($output['goods']['is_presell']=="0"){?>checked<?php }?> >
               <label for="is_presell_0">否</label>
             </li>
           </ul>
@@ -535,7 +535,7 @@ catch(e){}
       <dl class="special-03" nctype="is_presell" style="display:none;">
         <dt><i class="required">*</i>发货日期：</dt>
         <dd>
-          <input type="text" name="g_deliverdate" id="g_deliverdate" class="w80 text" value=""><em class="add-on"><i class="icon-calendar"></i></em>
+          <input type="text" name="g_deliverdate" id="g_deliverdate" class="w80 text" value="<?php echo $output['goods']['presell_deliverdate']?>"><em class="add-on"><i class="icon-calendar"></i></em>
           <span></span>
           <p class="hint">商家发货时间。</p>
         </dd>
@@ -549,6 +549,7 @@ catch(e){}
           <p id="region">
             <select class="d_inline" name="province_id" id="province_id">
             </select>
+            <input type="hidden" name="city_id" id="city_id" >
           </p>
         </dd>
       </dl>
@@ -557,18 +558,18 @@ catch(e){}
         <dd>
           <ul class="ncsc-form-radio-list">
             <li>
-              <input id="freight_0" nctype="freight" name="freight" class="radio" type="radio" checked="checked" value="0">
+              <input id="freight_0" nctype="freight" name="freight" class="radio" type="radio" <?php if($output['goods']['transport_id']=="0"){?>checked<?php }?> value="0">
               <label for="freight_0">固定运费</label>
               <div nctype="div_freight" >
-                <input id="g_freight" class="w50 text" nc_type='transport' type="text" value="0.00" name="g_freight"><em class="add-on"><i class="icon-renminbi"></i></em> </div>
+                <input id="g_freight" class="w50 text" nc_type='transport' type="text" value="<?php echo $output['goods']['goods_freight']?>" name="g_freight"><em class="add-on"><i class="icon-renminbi"></i></em> </div>
             </li>
             <li>
-              <input id="freight_1" nctype="freight" name="freight" class="radio" type="radio"  value="1">
+              <input id="freight_1" nctype="freight" name="freight" class="radio" type="radio" <?php if($output['goods']['transport_id'] != "0"){?>checked<?php }?> value="1">
               <label for="freight_1">使用运费模板</label>
               <div nctype="div_freight" style="display: none;">
-                <input id="transport_id" type="hidden" value="0" name="transport_id">
-                <input id="transport_title" type="hidden" value="" name="transport_title">
-                <span id="postageName" class="transport-name" ></span><a href="JavaScript:void(0);" onClick="window.open('index.php?act=store_transport&type=select')" class="ncsc-btn" id="postageButton"><i class="icon-truck"></i>选择运费模板</a> </div>
+                <input id="transport_id" type="hidden" value="<?php echo $output['goods']['transport_id']?>" name="transport_id">
+                <input id="transport_title" type="hidden" value="<?php echo $output['goods']['transport_title']?>" name="transport_title">
+                <span id="postageName" class="transport-name" <?php if($output['goods']['transport_id'] != "0"){?>style="display: inline-block;"<?php }?> ><?php echo $output['goods']['transport_title']?></span><a href="JavaScript:void(0);" onClick="window.open('index.php?act=store_transport&type=select')" class="ncsc-btn" id="postageButton"><i class="icon-truck"></i>选择运费模板</a> </div>
             </li>
           </ul>
           <p class="hint">运费设置为 0 元，前台商品将显示为免运费。</p>
@@ -596,24 +597,39 @@ catch(e){}
       </dl> -->
       <h3 id="demo6">其他信息</h3>
       <dl>
-        <dt>本店分类：</dt>
-        <dd><span class="new_add"><a href="javascript:void(0)" id="add_sgcategory" class="ncsc-btn">新增分类</a> </span>
-                    <select name="sgcate_id[]" class="sgcategory">
-            <option value="0">请选择...</option>
-                                    <option value="1">多用户商城系统</option>
-                                    <option value="2">分类信息网站系统</option>
-                                    <option value="3">地方门户网站系统</option>
-                                    <option value="4">手机网站管理系统</option>
-                                    <option value="5">交友婚恋网站系统</option>
-                                    <option value="6">人才招聘网站系统</option>
-                                    <option value="7">房产门户网站系统</option>
-                                    <option value="8">汽车门户网站系统</option>
-                                    <option value="9">微信公众号营销系统</option>
-                                    <option value="10">微信商城系统</option>
-                                    <option value="11">创智凌云o2o系统</option>
-                </select>
-                    <p class="hint">商品可以从属于店铺的多个分类之下，店铺分类可以由 "商家中心 -> 店铺 -> 店铺分类" 中自定义</p>
-        </dd>
+        <dt><?php echo $lang['store_goods_index_store_goods_class'].$lang['nc_colon'];?></dt>
+      <dd><span class="new_add"><a href="javascript:void(0)" id="add_sgcategory" class="ncsc-btn"><?php echo $lang['store_goods_index_new_class'];?></a> </span>
+        <?php if (!empty($output['store_class_goods'])) { ?>
+        <?php foreach ($output['store_class_goods'] as $v) { ?>
+        <select name="sgcate_id[]" class="sgcategory">
+          <option value="0"><?php echo $lang['nc_please_choose'];?></option>
+          <?php foreach ($output['store_goods_class'] as $val) { ?>
+          <option value="<?php echo $val['stc_id']; ?>" <?php if ($v==$val['stc_id']) { ?>selected="selected"<?php } ?>><?php echo $val['stc_name']; ?></option>
+          <?php if (is_array($val['child']) && count($val['child'])>0){?>
+          <?php foreach ($val['child'] as $child_val){?>
+          <option value="<?php echo $child_val['stc_id']; ?>" <?php if ($v==$child_val['stc_id']) { ?>selected="selected"<?php } ?>>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $child_val['stc_name']; ?></option>
+          <?php }?>
+          <?php }?>
+          <?php } ?>
+        </select>
+        <?php } ?>
+        <?php } else { ?>
+        <select name="sgcate_id[]" class="sgcategory">
+          <option value="0"><?php echo $lang['nc_please_choose'];?></option>
+          <?php if (!empty($output['store_goods_class'])){?>
+          <?php foreach ($output['store_goods_class'] as $val) { ?>
+          <option value="<?php echo $val['stc_id']; ?>"><?php echo $val['stc_name']; ?></option>
+          <?php if (is_array($val['child']) && count($val['child'])>0){?>
+          <?php foreach ($val['child'] as $child_val){?>
+          <option value="<?php echo $child_val['stc_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $child_val['stc_name']; ?></option>
+          <?php }?>
+          <?php }?>
+          <?php } ?>
+          <?php } ?>
+        </select>
+        <?php } ?>
+        <p class="hint"><?php echo $lang['store_goods_index_belong_multiple_store_class'];?></p>
+      </dd>
       </dl>
       <dl>
         <dt>商品发布：</dt>
@@ -621,14 +637,14 @@ catch(e){}
           <ul class="ncsc-form-radio-list">
             <li>
               <label>
-                <input name="g_state" value="1" type="radio" checked="checked" />
+                <input name="g_state" value="1" type="radio" <?php if($output['goods']['goods_state']=="1"){?>checked<?php }?>  />
                 立即发布 </label>
             </li>
             <li>
               <label>
-                <input name="g_state" value="0" type="radio" nctype="auto" />
+                <input name="g_state" value="0" type="radio" <?php if($output['goods']['goods_state']=="0"){?>checked<?php }?> nctype="auto" />
                 发布时间 </label>
-              <input type="text" class="w80 text" name="starttime" disabled="disabled" style="background:#E7E7E7 none;" id="starttime" value="2016-03-29" />
+              <input type="text" class="w80 text" name="starttime" disabled="disabled" style="background:#E7E7E7 none;" id="starttime" value="<?php echo $output['goods']['goods_selltime']?>" />
               <select disabled="disabled" style="background:#E7E7E7 none;" name="starttime_H" id="starttime_H">
                                 <option value="00" >00</option>
                                 <option value="01" >01</option>
@@ -671,7 +687,7 @@ catch(e){}
               分 </li>
             <li>
               <label>
-                <input name="g_state" value="0" type="radio"  />
+                <input name="g_state" value="0"  <?php if($output['goods']['goods_state']=="0"){?>checked<?php }?> type="radio"  />
                 放入仓库 </label>
             </li>
           </ul>
@@ -682,11 +698,11 @@ catch(e){}
         <dd>
           <ul class="ncsc-form-radio-list">
             <li>
-              <input type="radio" name="is_appoint" id="is_appoint_1" value="1"  >
+              <input type="radio" name="is_appoint" id="is_appoint_1" value="1" <?php if($output['goods']['is_appoint']=="1"){?>checked<?php }?> >
               <label for="is_appoint_1">是</label>
             </li>
             <li>
-              <input type="radio" name="is_appoint" id="is_appoint_0" value="0"  checked>
+              <input type="radio" name="is_appoint" id="is_appoint_0" value="0"  <?php if($output['goods']['is_appoint']=="0"){?>checked<?php }?>>
               <label for="is_appoint_0">否</label>
             </li>
           </ul>
@@ -696,7 +712,7 @@ catch(e){}
       <dl nctype="is_appoint"  style="display:none;">
         <dt><i class="required">*</i>发售日期：</dt>
         <dd>
-          <input type="text" name="g_saledate" id="g_saledate" class="w80 text" value="">
+          <input type="text" name="g_saledate" id="g_saledate" class="w80 text" value="<?php echo $output['goods']['appoint_satedate']?>">
           <span></span>
           <p class="hint">预约商品的发售日期。</p>
         </dd>
@@ -707,12 +723,12 @@ catch(e){}
           <ul class="ncsc-form-radio-list">
             <li>
               <label>
-                <input name="g_commend" value="1" checked="checked"  type="radio" />
+                <input name="g_commend" value="1" <?php if($output['goods']['goods_commend']=="1"){?>checked<?php }?>  type="radio" />
                 是</label>
             </li>
             <li>
               <label>
-                <input name="g_commend" value="0"  type="radio"/>
+                <input name="g_commend" value="0" <?php if($output['goods']['goods_commend']=="0"){?>checked<?php }?>  type="radio"/>
                 否</label>
             </li>
           </ul>
@@ -870,7 +886,7 @@ $(function(){
 			}
         }
     });
-    	setTimeout("setArea(0, 0)", 1000);
+    	setTimeout("setArea(<?php echo $output['goods']['areaid_1']?>, <?php echo $output['goods']['areaid_2']?>)", 1000);
 	});
 // 按规格存储规格值数据
 var spec_group_checked = [];
@@ -1038,6 +1054,7 @@ function goods_stock_set()
     }
     else
     {
+        console.log(str);
         $('tbody[nc_type="spec_table"]').empty().html(str) .find('input[nc_type]').each(function ()
         {
             s = $(this).attr('nc_type');
@@ -1054,7 +1071,7 @@ function goods_stock_set()
                 $(this).val($('input[name="g_price"]').val());
             }
             if ($(this).attr('data_type') == 'stock' && $(this).val() == '') {
-                $(this).val('0');
+                $(this).val($('input[name="g_storage"]').val());
             }
             if ($(this).attr('data_type') == 'alarm' && $(this).val() == '') {
                 $(this).val('0');
@@ -1077,7 +1094,7 @@ function goods_stock_set()
 
 
 </script> 
-<script src="/long7/shop/resource/js/scrolld.js"></script>
+<script src="<?php echo SHOP_RESOURCE_SITE_URL;?>/js/scrolld.js"></script>
 <script type="text/javascript">$("[id*='Btn']").stop(true).on('click', function (e) {e.preventDefault();$(this).scrolld();})</script>
     </div>
   </div>
@@ -1117,17 +1134,27 @@ $(document).ready(function(){
         }
     });
 </script>
-<script type="text/javascript" src="/long7/data/resource/js/jquery.cookie.js"></script>
-<link href="/long7/data/resource/js/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="/long7/data/resource/js/perfect-scrollbar.min.js"></script>
-<script type="text/javascript" src="/long7/data/resource/js/qtip/jquery.qtip.min.js"></script>
-<link href="/long7/data/resource/js/qtip/jquery.qtip.min.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.cookie.js"></script>
+<link href="<?php echo RESOURCE_SITE_URL;?>/js/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/qtip/jquery.qtip.min.js"></script>
+<link href="<?php echo RESOURCE_SITE_URL;?>/js/qtip/jquery.qtip.min.css" rel="stylesheet" type="text/css">
 <!-- 对比 -->
-<script src="/long7/shop/resource/js/compare.js"></script>
+<script src="<?php echo SHOP_RESOURCE_SITE_URL;?>/js/compare.js"></script>
 <script type="text/javascript">
+
+
 $(function(){
 	// Membership card
 	$('[nctype="mcard"]').membershipCard({type:'shop'});
+	$.each($("input"),function(){
+	    var fd = $(this).attr("checked");
+	   
+	    if(fd){
+	      $(this).trigger("click");
+	      $(this).trigger("click");
+	    } 
+	});
 });
 </script><style type="text/css">
 <!--

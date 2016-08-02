@@ -126,8 +126,8 @@ $(function(){
     });
     
     // 商品所在地 v2016
-    $("#region").nc_region({show_deep:2,tip_type:1});
-
+    //$("#region").nc_region({show_deep:2,tip_type:1});
+    regionInit("region");
     // 定时发布时间
     $('#starttime').datepicker({dateFormat: 'yy-mm-dd'});
     $('input[name="g_state"]').click(function(){
@@ -691,6 +691,7 @@ function insert_editor(file_path) {
 function setArea(area1, area2) {
     $('#province_id').val(area1).change();
     $('#city_id').val(area2);
+    $("#province_id").next().val(area2);
 }
 
 // 插入品牌
