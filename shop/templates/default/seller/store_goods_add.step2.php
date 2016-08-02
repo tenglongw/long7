@@ -1054,7 +1054,6 @@ function goods_stock_set()
     }
     else
     {
-        console.log(str);
         $('tbody[nc_type="spec_table"]').empty().html(str) .find('input[nc_type]').each(function ()
         {
             s = $(this).attr('nc_type');
@@ -1155,6 +1154,9 @@ $(function(){
 	      $(this).trigger("click");
 	    } 
 	});
+	<?php foreach ($output['sp_value'] as $key=>$val){?>
+		$('[nc_type="<?php echo $key?>"]').val(<?php echo $val?>);
+	<?php }?>
 });
 </script><style type="text/css">
 <!--
