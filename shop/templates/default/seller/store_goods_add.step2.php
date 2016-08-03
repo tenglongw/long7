@@ -164,7 +164,7 @@ catch(e){}
       <?php foreach ($output['spec_list'] as $key=>$val){?>
       <dl nc_type="spec_group_dl_0" nctype="spec_group_dl" class="spec-bg" spec_img="t">
             <dt>
-	          <?php echo $val['sp_name']?><input name="sp_name[<?php echo $key?>]" type="hidden" class="text w60 tip2 tr" title="自定义规格类型名称，规格值名称最多不超过4个字" value="<?php echo $val['sp_name']?>" maxlength="4" nctype="spec_name" data-param="{id:<?php $key?>,name:&#39;<?php $val['sp_name']?>&#39;}">
+	          <?php echo $val['sp_name']?><input name="sp_name[<?php echo $key?>]" type="hidden" class="text w60 tip2 tr" title="自定义规格类型名称，规格值名称最多不超过4个字" value="<?php echo $val['sp_name']?>" maxlength="4" nctype="spec_name" data-param="{id:<?php echo $key?>,name:&#39;<?php echo $val['sp_name']?>&#39;}">
 	          ：</dt>
 	        <dd nctype="sp_group_val">
 	          <ul class="spec">
@@ -174,8 +174,8 @@ catch(e){}
 	              </span><span nctype="pv_name"><?php echo $value['sp_value_name']?></span></li>
 				<?php 
 	              }?>
-	               <li data-param="{gc_id:107,sp_id:1,url:&#39;http://localhost/shop/index.php?act=store_goods_add&amp;op=ajax_add_spec&#39;}">
-	              <!-- <div nctype="specAdd1" style="display: block;"><a href="javascript:void(0);" class="ncsc-btn" nctype="specAdd"><i class="icon-plus"></i>添加规格值</a></div> -->
+	               <li data-param="{gc_id:<?php echo $output['goods_class']['gc_id']?>,sp_id:<?php echo $key?>,url:&#39;http://121.43.96.196/long7/shop/index.php?act=store_goods_add&amp;op=ajax_add_spec&#39;}">
+	              <div nctype="specAdd1" style="display: block;"><a href="javascript:void(0);" class="ncsc-btn" nctype="specAdd"><i class="icon-plus"></i>添加规格值</a></div>
 	              <div nctype="specAdd2" style="display: none;">
 	                <input class="text w60" type="text" placeholder="规格值名称" maxlength="20">
 	                <a href="javascript:void(0);" nctype="specAddSubmit" class="ncsc-btn ncsc-btn-acidblue ml5 mr5">确认</a><a href="javascript:void(0);" nctype="specAddCancel" class="ncsc-btn ncsc-btn-orange">取消</a></div>
@@ -1055,7 +1055,7 @@ function goods_stock_set()
     else
     {
         $('tbody[nc_type="spec_table"]').empty().html(str) .find('input[nc_type]').each(function ()
-        {
+        {console.log("data_type=="+$(this).attr('data_type'));
             s = $(this).attr('nc_type');
             try {
                 $(this).val(V[s]);

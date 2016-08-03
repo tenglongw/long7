@@ -139,7 +139,7 @@ class store_goods_onlineControl extends BaseSellerControl {
             Tpl::output('spec_checked', $spec_checked);
         }
         Tpl::output ( 'sp_value', $sp_value );
-
+		//echo json_encode($sp_value);exit;
         // 实例化店铺商品分类模型
         $store_goods_class = Model('store_goods_class')->getClassTree(array('store_id' => $_SESSION ['store_id'], 'stc_state' => '1'));
         Tpl::output('store_goods_class', $store_goods_class);

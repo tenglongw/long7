@@ -123,21 +123,22 @@ class themeControl extends mobileHomeControl{
 				$count = Model()->table('circle_affix')->where($where)->count();
 				if($count < 10){
 					$partpath = themePartPath($_POST['member_id']);
-					$upload = new ManyUploadFile();
+					//$upload = new ManyUploadFile();
+					$upload = new UploadFile();
 					$upload->set('default_dir', ATTACH_CIRCLE.'/theme/'.$partpath);
-					//$upload->set('thumb_width',	1024);
-					//$upload->set('thumb_height', 160);
-					//$upload->set('thumb_ext', '_160x160');
+					$upload->set('thumb_width',	160);
+					$upload->set('thumb_height', 160);
+					$upload->set('thumb_ext', '_160x160');
 					$file['tmp_name']= $_FILES["uploadFile".$i]["tmp_name"];
 					$file['name']= $_FILES["uploadFile".$i]["name"];
 					$file['type']= $_FILES["uploadFile".$i]["type"];
 					$file['size']= $_FILES["uploadFile".$i]["size"];
-					$result = $upload->upfile($file);		// 暂时的名字
+					$result = $upload->upfile("uploadFile".$i);		// 暂时的名字
 					//echo json_encode($result);exit;
 					if ($result){
 						$insert = array();
 						$insert['affix_filename']	= $partpath.'/'.$upload->file_name;
-						//$insert['affix_filethumb']	= $partpath.'/'.$upload->thumb_image;
+						$insert['affix_filethumb']	= $partpath.'/'.$upload->thumb_image;
 						$insert['affix_filesize']	= intval($_FILES["uploadFile".$i]["size"]);
 						$insert['affix_addtime']	= time();
 						$insert['affix_type']		= ($_GET['type'] == 'reply')?2:1;
@@ -150,8 +151,8 @@ class themeControl extends mobileHomeControl{
 							$data['msg']		= 'success';
 							//$data['file_id']	= $id;
 							//$data['file_name']	= $upload->file_name;
-							//$data['file_url']	= themeImageUrl($partpath.'/'.$upload->thumb_image);
-							$data['file_url']= themeImageUrl($partpath.'/'.$upload->file_name);
+							$data['file_url']	= themeImageUrl($partpath.'/'.$upload->thumb_image);
+							//$data['file_url']= themeImageUrl($partpath.'/'.$upload->file_name);
 						}
 					}
 				}
