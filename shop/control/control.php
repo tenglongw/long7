@@ -1039,15 +1039,16 @@ class BaseSellerControl extends Control {
                 array('name' => '评价管理', 'act'=>'store_evaluate', 'op'=>'list'),
                 array('name' => '物流工具', 'act'=>'store_transport', 'op'=>'index'),
             )),
-            /* 'promotion' => array('name' => '促销', 'child' => array(
+             'promotion' => array('name' => '促销', 'child' => array(
                 array('name' => '抢购管理', 'act'=>'store_groupbuy', 'op'=>'index'),
-                array('name' => '限时折扣', 'act'=>'store_promotion_xianshi', 'op'=>'xianshi_list'),
-                array('name' => '满即送', 'act'=>'store_promotion_mansong', 'op'=>'mansong_list'),
-                array('name' => '优惠套装', 'act'=>'store_promotion_bundling', 'op'=>'bundling_list'),
-                array('name' => '推荐展位', 'act' => 'store_promotion_booth', 'op' => 'booth_goods_list'),
-                array('name' => '代金券管理', 'act'=>'store_voucher', 'op'=>'templatelist'),
+             	array('name' => '摇号管理', 'act'=>'store_lotnumber', 'op'=>'index'),
+                //array('name' => '限时折扣', 'act'=>'store_promotion_xianshi', 'op'=>'xianshi_list'),
+               // array('name' => '满即送', 'act'=>'store_promotion_mansong', 'op'=>'mansong_list'),
+               //array('name' => '优惠套装', 'act'=>'store_promotion_bundling', 'op'=>'bundling_list'),
+               // array('name' => '推荐展位', 'act' => 'store_promotion_booth', 'op' => 'booth_goods_list'),
+               // array('name' => '代金券管理', 'act'=>'store_voucher', 'op'=>'templatelist'),
                 array('name' => '活动管理', 'act'=>'store_activity', 'op'=>'store_activity'),
-            )), */
+            )), 
             'store' => array('name' => '店铺', 'child' => array(
                 array('name' => '店铺设置', 'act'=>'store_setting', 'op'=>'store_setting'),
                 array('name' => '店铺装修', 'act'=>'store_decoration', 'op'=>'decoration_setting'),
@@ -1125,7 +1126,8 @@ class BaseSellerControl extends Control {
                 5 => 'xianshi',
                 6 => 'mansong',
                 7 => 'bundling',
-                8 => 'groupbuy'
+                8 => 'groupbuy',
+        		9 => 'lotnumber'
             );
         $param_flip = array_flip($param);
         if (!in_array($type, $param) || empty($data)) {

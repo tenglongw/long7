@@ -104,8 +104,40 @@ class indexControl extends mobileHomeControl{
 				$result['special'][] = $temp;
 			}
 		}
+		$result['class_list'] = $this->_get_root_class();
 		echo json_encode($result);exit;
 		//$this->_output_special($result, $_GET['type']);
+	}
+	
+	/**
+	 * 返回一级分类列表
+	 */
+	private function _get_root_class() {
+		$model_goods_class = Model('goods_class');
+		$model_mb_category = Model('mb_category');
+	
+		$goods_class_array = Model('goods_class')->getGoodsClassForCacheModel();
+		$class_list = $model_goods_class->getGoodsClassListByParentId(0);
+		//echo json_encode($class_list);exit;
+		$mb_categroy = $model_mb_category->getLinkList(array());
+		$mb_categroy = array_under_reset($mb_categroy, 'gc_id');
+		foreach ($class_list as $key => $value) {
+			if(!empty($mb_categroy[$value['gc_id']])) {
+				$class_list[$key]['image'] = UPLOAD_SITE_URL.DS.ATTACH_MOBILE.DS.'category'.DS.$mb_categroy[$value['gc_id']]['gc_thumb'];
+			} else {
+				$class_list[$key]['image'] = '';
+			}
+	
+			$class_list[$key]['text'] = '';
+			$child_class_string = $goods_class_array[$value['gc_id']]['child'];
+			$child_class_array = explode(',', $child_class_string);
+			foreach ($child_class_array as $child_class) {
+				$class_list[$key]['text'] .= $goods_class_array[$child_class]['gc_name'] . '/';
+			}
+			$class_list[$key]['text'] = rtrim($class_list[$key]['text'], '/');
+		}
+	
+		return $class_list;
 	}
 
     /**

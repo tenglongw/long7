@@ -1,4 +1,18 @@
 <?php defined('InWrzcNet') or exit('Access Invalid!'); return array (
+  1097 => 
+  array (
+    'gc_id' => '1097',
+    'gc_name' => '全部',
+    'type_id' => '0',
+    'type_name' => '',
+    'gc_parent_id' => '0',
+    'commis_rate' => '0',
+    'gc_sort' => '1',
+    'gc_virtual' => '0',
+    'gc_title' => '',
+    'gc_keywords' => '',
+    'gc_description' => '',
+  ),
   1086 => 
   array (
     'gc_id' => '1086',

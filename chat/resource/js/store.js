@@ -103,10 +103,10 @@
 	    }
 	}
 	function getconnect(){
-		$.getScript(connect_url+"/resource/socket.io.js", function(){
+		//$.getScript(connect_url+"/resource/socket.io.js", function(){
 			clearInterval(interval);
-			if ( typeof io === "object" ) {
-			  socket = io.connect(connect_url, { 'resource': 'resource', 'reconnect': false });
+			//if ( typeof io === "object" ) {
+			  socket = io.connect("ws://localhost:3000");
 			  socket.on('connect', function () {
 			    connect = 1;
 				send_state();
@@ -134,6 +134,6 @@
                     interval = setInterval( getconnect, 60000);//断开1分钟后重新连接服务器
                 });
 			  });
-		  }
-		});
+		  //}
+		//});
 	}

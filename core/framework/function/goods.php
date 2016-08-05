@@ -125,6 +125,27 @@ function gthumb($image_name = '', $type = ''){
 }
 
 /**
+ * 取得抢购缩略图的完整URL路径
+ *
+ * @param string $imgurl 商品名称
+ * @param string $type 缩略图类型  值为small,mid,max
+ * @return string
+ */
+function lthumb($image_name = '', $type = ''){
+	if (!in_array($type, array('small','mid','max'))) $type = 'small';
+	if (empty($image_name)){
+		return UPLOAD_SITE_URL.'/'.defaultGoodsImage('240');
+	}
+	list($base_name, $ext) = explode('.', $image_name);
+	list($store_id) = explode('_', $base_name);
+	$file_path = ATTACH_LOTNUMBER.DS.$store_id.DS.$base_name.'_'.$type.'.'.$ext;
+	if(!file_exists(BASE_UPLOAD_PATH.DS.$file_path)) {
+		return UPLOAD_SITE_URL.'/'.defaultGoodsImage('240');
+	}
+	return UPLOAD_SITE_URL.DS.$file_path;
+}
+
+/**
  * 取得买家缩略图的完整URL路径
  *
  * @param string $imgurl 商品名称

@@ -158,13 +158,14 @@ $arr = array(
 					array('args'=>'bundling_list,promotion_bundling,operation',	'text'=>$lang['nc_promotion_bundling']),
 					array('args'=>'goods_list,promotion_booth,operation',		'text'=>$lang['nc_promotion_booth']), */
 					array('args'=>'voucher_apply,voucher,operation',            'text'=>$lang['nc_voucher_price_manage']),
+					array('args'=>'index,authentication,operation',            'text'=>'会员认证'),
 					/* array('args'=>'index,bill,operation',					    'text'=>$lang['nc_bill_manage']),
-					array('args'=>'index,vr_bill,operation',					'text'=>'虚拟订单结算'),
+					array('args'=>'index,vr_bill,operation',					'text'=>'虚拟订单结算'),*/
 					array('args'=>'activity,activity,operation',				'text'=>$lang['nc_activity_manage']),
-					array('args'=>'pointprod,pointprod,operation',				'text'=>$lang['nc_pointprod']), */
+					//array('args'=>'pointprod,pointprod,operation',				'text'=>$lang['nc_pointprod']), 
 					array('args'=>'index,mall_consult,operation',               'text'=>'平台客服'),
-                    /* array('args'=>'index,rechargecard,operation',               'text'=>'平台充值卡'),
-                    array('args'=>'index,delivery,operation',                   'text'=>'物流自提服务站') */
+                    /* array('args'=>'index,rechargecard,operation',               'text'=>'平台充值卡'),*/
+                    array('args'=>'index,delivery,operation',                   'text'=>'物流自提服务站') 
 				)
 			),
 			8 => array(

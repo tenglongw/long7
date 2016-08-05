@@ -24,6 +24,7 @@ class Chat {
 			$web_html = <<<EOT
 					<link href="{$css_url}/css/chat.css" rel="stylesheet" type="text/css">
 					<link href="{$css_url}/css/home_login.css" rel="stylesheet" type="text/css">
+					<script src="{$node_url}/resource/socket.io.js"></script>
 					<div style="clear: both;"></div>
 					<div id="web_chat_dialog" style="display: none;float:right;">
 					</div>

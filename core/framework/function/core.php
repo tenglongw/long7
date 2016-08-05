@@ -1874,6 +1874,26 @@ function themeImagePath($param){
 function themeImageUrl($param){
 	return UPLOAD_SITE_URL.'/'.ATTACH_CIRCLE.'/theme/'.$param;
 }
+
+/**
+ * 认证图片绝对路径
+ *
+ * @param $param string 文件名称
+ * @return string
+ */
+function idcardImagePath($param){
+	return BASE_UPLOAD_PATH.'/'.ATTACH_IDCARD.'/'.$param;
+}
+
+/**
+ * 话题图片url
+ *
+ * @param $param string
+ * @return string
+ */
+function idcardImageUrl($param){
+	return UPLOAD_SITE_URL.'/'.ATTACH_IDCARD.'/'.$param;
+}
 /**
  * 圈子logo
  *
