@@ -49,6 +49,8 @@ class shopControl extends mobileHomeControl {
             $simply_store_list[$key]['store_name'] = $own_store_list[$key]['store_name'];
             $simply_store_list[$key]['store_address'] = $own_store_list[$key]['store_address'];
             $simply_store_list[$key]['store_area_info'] = $own_store_list[$key]['area_info'];
+            $simply_store_list[$key]['store_x'] = $own_store_list[$key]['store_x'];
+            $simply_store_list[$key]['store_y'] = $own_store_list[$key]['store_y'];
 
         }
 		

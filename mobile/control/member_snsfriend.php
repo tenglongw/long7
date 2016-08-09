@@ -243,10 +243,10 @@ class member_snsfriendControl extends mobileMemberControl {
 		}
 		//取消关注
 		$friend_model = Model('sns_friend');
-		$result = $friend_model->delFriend(array('friend_frommid'=>"{$member_id}",'friend_tomid'=>"$follow_member_id"));
+		$result = $friend_model->delFriend(array('friend_frommid'=>$member_id,'friend_tomid'=>$follow_member_id));
 		if($result){
 			//更新对方的关注状态
-			$friend_model->editFriend(array('friend_followstate'=>'1'),array('friend_frommid'=>"$$follow_member_id",'friend_tomid'=>"{$member_id}"));
+			$friend_model->editFriend(array('friend_followstate'=>'1'),array('friend_frommid'=>$follow_member_id,'friend_tomid'=>$member_id));
 			$return = json_encode(array('status'=>'0','message'=>'取消关注成功'));
 		}else{
 			$return = json_encode(array('status'=>'1','message'=>'取消关注失败'));
@@ -335,6 +335,7 @@ class member_snsfriendControl extends mobileMemberControl {
 		self::profile_menu('follow');
 		Tpl::showpage('member_snsfriend_follow'); */
 		$result['status'] = 0;
+		$result['attention_cont'] = count($follow_list);
 		$result['attention_list'] = $follow_list;
 		echo json_encode($result);exit;
 	}
@@ -361,6 +362,7 @@ class member_snsfriendControl extends mobileMemberControl {
 		self::profile_menu('fan');
 		Tpl::showpage('member_snsfriend_fan'); */
 		$result['status'] = 0;
+		$result['fan_count'] = count($fan_list);
 		$result['fan_list'] = $fan_list;
 		echo json_encode($result);exit;
 	}

@@ -48,6 +48,42 @@ class store_lotnumberControl extends BaseSellerControl {
         self::profile_menu('groupbuy_list');
         Tpl::showpage('store_lotnumber.list');
     }
+    
+    /**
+     * 抢购列表
+     **/
+    public function get_prizeOp() {
+    	$model = Model();
+    	$result = $model->table('member_lotnumber')->where(array('ml_id'=>$_GET['ml_id']))->update(array('state'=>'2'));
+    	if($result){
+      		showDialog('修改成功','index.php?act=store_lotnumber&op=get_memberlist&lotnumber_id='.$_GET[lotnumber_id],'succ');
+        }else {
+            showDialog('修改失败','index.php?act=store_lotnumber&op=get_memberlist&lotnumber_id='.$_GET[lotnumber_id]);
+        }
+    }
+    /**
+     * 抢购列表
+     **/
+    public function get_memberlistOp() {
+    	$model = Model();
+    	$member_list = $model->table('member_lotnumber')->where(array('lotnumber_id'=>$_GET['lotnumber_id']))->select();
+    	foreach ($member_list as $key=>$val){
+    		if($val['state']=='0'){
+    			$val['state_msg'] = '已报名';
+    		}elseif($val['state']=='1'){
+    			$val['state_msg'] = '已中奖';
+    		}else{
+    			$val['state_msg'] = '已领取';
+    		}
+    		$result[]=$val;
+    	}
+    	Tpl::output('member_list',$result);
+    	Tpl::output('lotnumber_id',$_GET['lotnumber_id']);
+    	Tpl::output('show_page',$model->showpage());
+    	//echo json_encode($groupbuy_list);exit;
+    	self::profile_menu('groupbuy_list');
+    	Tpl::showpage('store_lotnumber_member.list');
+    }
 
     /**
      * 添加抢购页面
@@ -92,7 +128,10 @@ class store_lotnumberControl extends BaseSellerControl {
         $param['upper_limit'] = intval($_POST['upper_limit']);
         $param['store_id'] = $_SESSION['store_id'];
         $param['store_name'] = $_SESSION['store_name'];
-        $param['store_logo'] = $this->store_info['store_label'];
+        $store_id = intval($_SESSION['store_id']);
+        $store_model = Model('store');
+        $store_info = $store_model->getStoreInfoByID(array('store_id'=>$store_id));
+        $param['store_avatar'] =$store_info['store_avatar'];
         //保存
         $result = $model_groupbuy->addLotnumber($param);
         if($result) {
@@ -111,9 +150,9 @@ class store_lotnumberControl extends BaseSellerControl {
             $this->storeAutoShare($data_array, 'groupbuy');
 
             $this->recordSellerLog('发布摇号活动，摇号名称：'.$param['groupbuy_name'].'，商品名称：'.$param['goods_name']);
-            showDialog(Language::get('groupbuy_add_success'),'index.php?act=store_groupbuy','succ');
+            showDialog(Language::get('groupbuy_add_success'),'index.php?act=store_lotnumber','succ');
         }else {
-            showDialog(Language::get('groupbuy_add_fail'),'index.php?act=store_groupbuy');
+            showDialog(Language::get('groupbuy_add_fail'),'index.php?act=store_lotnumber');
         }
     }
 

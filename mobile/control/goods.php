@@ -165,6 +165,7 @@ class goodsControl extends mobileHomeControl{
      */
     public function goods_detailOp() {
         $goods_id = intval($_GET['goods_id']);
+        $member_id = $_GET['member_id'];
         // 商品详细信息
         $model_goods = Model('goods');
         $goods_detail = $model_goods->getGoodsDetail($goods_id);
@@ -200,7 +201,15 @@ class goodsControl extends mobileHomeControl{
  */
         //商品详细信息处理
         $goods_detail = $this->_goods_detail_extend($goods_detail);
-		
+        //是否收藏
+        if(!empty($member_id)){
+	        $model_favorites = Model('favorites');
+	         
+	        $favorites = $model_favorites->getOneFavorites(array('member_id'=>$member_id,'fav_id'=>$goods_id));
+	        if(!empty($favorites)){
+	        	$goods_detail['is_fagvorites'] = true;
+	        }
+        }
 		//v3-b11 抢购商品是否开始
 		$goods_info=$goods_detail['goods_info'];
 		//print_r($goods_info);
@@ -289,6 +298,7 @@ class goodsControl extends mobileHomeControl{
         unset($goods_detail['goods_info']['buynow_text']);
         unset($goods_detail['groupbuy_info']);
         unset($goods_detail['xianshi_info']);
+        $goods_detail['is_fagvorites'] = false;
 
         return $goods_detail;
     }

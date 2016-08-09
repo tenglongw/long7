@@ -106,7 +106,7 @@ class member_favoritesControl extends mobileMemberControl {
         $model_favorites->delFavorites($condition);
         //output_data('1');
         $return['status'] = 0;
-        $return['message'] = '收藏成功';
+        $return['message'] = '取消收藏成功';
         echo json_encode($return);exit;
     }
 

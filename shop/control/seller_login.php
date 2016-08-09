@@ -74,6 +74,7 @@ class seller_loginControl extends BaseSellerControl {
                 $_SESSION['seller_is_admin'] = intval($seller_info['is_admin']);
                 $_SESSION['store_id'] = intval($seller_info['store_id']);
                 $_SESSION['store_name']	= $store_info['store_name'];
+                $_SESSION['store_label']	= $store_info['store_label'];
                 $_SESSION['is_own_shop'] = (bool) $store_info['is_own_shop'];
                 $_SESSION['bind_all_gc'] = (bool) $store_info['bind_all_gc'];
                 $_SESSION['seller_limits'] = explode(',', $seller_group_info['limits']);

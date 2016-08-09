@@ -50,7 +50,7 @@ class loginControl extends mobileHomeControl {
         $member_info = $model_member->getMemberInfo($array);
        // echo json_encode($array);exit;
         if(!empty($member_info)) {
-        	$array['member_name']	= $_POST['username'];
+        	//$array['member_name']	= $_POST['username'];
         	$return = $model_member->editMember(array('member_id'=>$member_info['member_id']),$array);
         	
         } else {
@@ -61,6 +61,7 @@ class loginControl extends mobileHomeControl {
         if($token){
         	$data['member_id'] = $member_info['member_id'];
         	$data['member_name'] = $member_info['member_name'];
+        	setNcCookie("username",$member_info['member_name'],null);
         	$data['token'] = $token;
         	$result['status']=0;
         	$result['message']='登陆成功';

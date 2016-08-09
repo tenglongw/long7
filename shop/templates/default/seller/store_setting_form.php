@@ -112,15 +112,15 @@
     </dl>
     <?php }?>
     <dl>
-      <dt>QQ<?php echo $lang['nc_colon'];?></dt>
+      <dt>店铺横坐标<?php echo $lang['nc_colon'];?></dt>
       <dd>
-        <input class="w200 text" name="store_qq" type="text"  id="store_qq" value="<?php echo $output['store_info']['store_qq'];?>" />
+        <input class="w200 text" name="store_x" type="text"  id="store_x" value="<?php echo $output['store_info']['store_x'];?>" />
       </dd>
     </dl>
     <dl>
-      <dt><?php echo $lang['store_setting_wangwang'].$lang['nc_colon'];?></dt>
+      <dt>店铺纵坐标<?php echo $lang['nc_colon'];?></dt>
       <dd>
-        <input class="text w200" name="store_ww" type="text"  id="store_ww" value="<?php echo $output['store_info']['store_ww'];?>" />
+        <input class="text w200" name="store_y" type="text"  id="store_y" value="<?php echo $output['store_info']['store_y'];?>" />
       </dd>
     </dl>
     <dl>

@@ -30,8 +30,17 @@ class member_statureControl extends mobileMemberControl {
         $param['member_id'] = $this->member_info['member_id'];
         $param['member_name'] = $this->member_info['member_name'];
        // echo json_encode($param);exit;
-
-        $result = $model_stature->add($param);
+        $where = array();
+        $where['member_id'] = $this->member_info['member_id'];
+        $stature = $model_stature->getStatureByMember($where);
+        if($stature){
+        	$stature['shoe_size'] = $_POST['shoe_size'];
+        	$stature['clothing_size'] = $_POST['clothing_size'];
+        	$stature['addtime'] = time();
+        	$result = $model_stature->editStature($stature,array('stature_id'=>$stature['stature_id']));
+        }else{
+	        $result = $model_stature->add($param);
+        }
 
         if($result) {
             $return['status'] = 0;
@@ -55,6 +64,7 @@ class member_statureControl extends mobileMemberControl {
     	$result = $model_stature->getStatureByMember($param);
     
     	if($result) {
+    		$result['member_image'] = getMemberAvatarForID($this->member_info['member_id']);
     		$return['status'] = 0;
     		$return['stature'] = $result;
     		echo json_encode($return);exit;

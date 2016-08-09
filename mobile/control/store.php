@@ -163,6 +163,8 @@ class storeControl extends mobileHomeControl{
         //店铺详细信息处理
          //$store_detail = $this->_store_detail_extend($store_info);
         $store_detail['store_name'] = $store_info['store_name'];
+        $store_detail['store_x'] = $store_info['store_x'];
+        $store_detail['store_y'] = $store_info['store_y'];
         output_data($store_detail);
     }
 

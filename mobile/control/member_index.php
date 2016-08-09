@@ -79,11 +79,13 @@ class member_indexControl extends mobileMemberControl {
 		$lang	= Language::getLangContent();
 	
 		$model_member	= Model('member');
-	
+		$model = Model();
 		$member_array	= array();
 		$member_array['member_name']	= $_POST['member_name'];
 		$member_array['member_avatar']	= $_POST['member_avatar'];
 		$update = $model_member->editMember(array('member_id'=>$_POST['member_id']),$member_array);
+		//修改社区名字
+		$model->table('circle_theme')->where(array('member_id'=>$_POST['member_id']))->update(array('member_name'=>$_POST['member_name']));
 		if($update){
 			$result['status'] = 0;
 			$result['message'] = '更新成功';
