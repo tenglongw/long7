@@ -125,15 +125,19 @@ class store_lotnumberControl extends BaseSellerControl {
         $param['end_time'] = strtotime($_POST['end_time']);
         $param['lotnumber_price'] = floatval($_POST['groupbuy_price']);
         $param['lotnumber_image'] = $_POST['groupbuy_image'];
-        $param['upper_limit'] = intval($_POST['upper_limit']);
+        $param['rule_id'] = intval($_POST['rule_id']);//规则
+        $param['apply_quantity'] = intval($_POST['apply_quantity']);//允许报名人数
+        $param['win_quantity'] = intval($_POST['win_quantity']);//设定中奖人数
+        $param['win_rate'] = floatval($_POST['win_rate']);//设定中奖率
         $param['store_id'] = $_SESSION['store_id'];
         $param['store_name'] = $_SESSION['store_name'];
-        $store_id = intval($_SESSION['store_id']);
-        $store_model = Model('store');
-        $store_info = $store_model->getStoreInfoByID(array('store_id'=>$store_id));
-        $param['store_avatar'] =$store_info['store_avatar'];
+//         $store_id = intval($_SESSION['store_id']);
+//         $store_model = Model('store');
+//         $store_info = $store_model->getStoreInfoByID(array('store_id'=>$store_id));
+        $param['store_avatar'] =$this->store_info['store_avatar'];
         //保存
         $result = $model_groupbuy->addLotnumber($param);
+       // echo json_encode($result);exit;
         if($result) {
             // 自动发布动态
             // group_id,group_name,goods_id,goods_price,groupbuy_price,group_pic,rebate,start_time,end_time
@@ -388,20 +392,20 @@ class store_lotnumberControl extends BaseSellerControl {
      */
     private function profile_menu($menu_key='') {
         $menu_array	= array(
-            1=>array('menu_key'=>'groupbuy_list','menu_name'=>L('nc_member_path_group_list'),'menu_url'=>urlShop('store_groupbuy', 'groupbuy_list'))
+            1=>array('menu_key'=>'groupbuy_list','menu_name'=>L('nc_member_path_group_list'),'menu_url'=>urlShop('store_lotnumber', 'groupbuy_list'))
         );
         switch ($menu_key){
         case 'groupbuy_add':
-            $menu_array[] = array('menu_key'=>'groupbuy_add','menu_name'=>L('nc_member_path_new_group'),'menu_url'=>'index.php?act=store_groupbuy&op=groupbuy_add');
+            $menu_array[] = array('menu_key'=>'groupbuy_add','menu_name'=>L('nc_member_path_new_group'),'menu_url'=>'index.php?act=store_lotnumber&op=groupbuy_add');
             break;
         case 'groupbuy_add_vr':
-            $menu_array[] = array('menu_key'=>'groupbuy_add_vr','menu_name'=>'新增虚拟抢购','menu_url'=>'index.php?act=store_groupbuy&op=groupbuy_add_vr');
+            $menu_array[] = array('menu_key'=>'groupbuy_add_vr','menu_name'=>'新增虚拟抢购','menu_url'=>'index.php?act=store_lotnumber&op=groupbuy_add_vr');
             break;
         case 'groupbuy_quota_add':
-            $menu_array[] = array('menu_key'=>'groupbuy_quota_add','menu_name'=>'购买套餐','menu_url'=>urlShop('store_groupbuy', 'groupbuy_quota_add'));
+            $menu_array[] = array('menu_key'=>'groupbuy_quota_add','menu_name'=>'购买套餐','menu_url'=>urlShop('store_lotnumber', 'groupbuy_quota_add'));
             break;
         case 'groupbuy_edit':
-            $menu_array[] = array('menu_key'=>'groupbuy_edit','menu_name'=>L('nc_member_path_edit_group'),'menu_url'=>'index.php?act=store_groupbuy');
+            $menu_array[] = array('menu_key'=>'groupbuy_edit','menu_name'=>L('nc_member_path_edit_group'),'menu_url'=>'index.php?act=store_lotnumber');
             break;
         case 'cancel':
             $menu_array[] = array('menu_key'=>'groupbuy_cancel','menu_name'=>L('nc_member_path_cancel_group'));

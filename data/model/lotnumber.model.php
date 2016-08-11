@@ -182,8 +182,8 @@ class lotnumberModel extends Model{
     public function addLotnumber($param){
 
         $param['state'] = self::LOTNUMBER_STATE_NORMAL;
-       // $param['recommended'] = 0;
-       // echo json_encode($param);exit;
+        $param['apply_count'] = 0;
+       //echo json_encode($param);exit;
         $result = $this->insert($param);
         return $result;
     }
@@ -197,16 +197,7 @@ class lotnumberModel extends Model{
      *
      */
     public function editGroupbuy($update, $condition) {
-        $groupbuy_list = $this->getGroupbuyList($condition, null, '', 'goods_commonid');
         $result = $this->where($condition)->update($update);
-        if ($result) {
-            if (!empty($groupbuy_list)) {
-                foreach ($groupbuy_list as $val) {
-                    // 更新商品抢购缓存
-                    $this->_dGoodsGroupbuyCache($val['goods_commonid']);
-                }
-            }
-        }
         return $result;
     }
 

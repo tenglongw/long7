@@ -82,6 +82,30 @@ class member_chatControl extends mobileMemberControl {
 			output_error('发送失败，请稍后重新发送');
 		}
 	}
+	/**
+	 * 查询新消息消息
+	 *
+	 */
+	public function get_msgOp(){
+		$member = array();
+		$model_chat	= Model('web_chat');
+		$member_id = $this->member_info['member_id'];
+		$member_name = $this->member_info['member_name'];
+		$condition['t_id'] = $member_id;
+		$msg_id = 0;
+		if(!empty($_POST['msg_id'])){
+			$msg_id = $_POST['msg_id'];
+		}
+		$condition['msg_id'] = $msg_id;
+		$msg_list = $model_chat->getMsgToList($condition);
+		$result['msg_list'] = $msg_list;
+		if(!empty($msg_list)){
+			$result['last_msg_id'] = $msg_list[0]['m_id'];
+		}else{
+			$result['last_msg_id'] = $msg_id;
+		}
+		 output_data($result);
+	}
 
 	/**
 	 * 商品图片和名称

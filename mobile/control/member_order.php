@@ -30,7 +30,17 @@ class member_orderControl extends mobileMemberControl {
         $condition = array();
         $condition['buyer_id'] = $this->member_info['member_id'];
 
-        $order_list_array = $model_order->getNormalOrderList($condition, $this->page, '*', 'order_id desc','', array('order_goods'));
+        $page_count = $model_order->gettotalpage();
+        $current_page = intval($_POST['curpage']);
+        //计算记录偏移量
+        if($current_page == 1){
+        	$order_list_array = $model_order->getNormalOrderList($condition, $this->page, '*', 'order_id desc','', array('order_goods'));
+        }else{
+        	$offset = $this->page*($current_page - 1);
+        	$limit = $offset.','.$current_page*$this->page;
+        	//echo $limit;exit;
+        	$order_list_array = $model_order->getNormalOrderList($condition, null, '*', 'order_id desc',$limit, array('order_goods'));
+        }
         $order_group_list = array();
         $order_pay_sn_array = array();
         foreach ($order_list_array as $value) {
@@ -67,7 +77,6 @@ class member_orderControl extends mobileMemberControl {
             }
         }
 
-        $page_count = $model_order->gettotalpage();
 
         $array_data = array('order_list' => $new_order_group_list);
         /* if(isset($_GET['getpayment'])&&$_GET['getpayment']=="true"){

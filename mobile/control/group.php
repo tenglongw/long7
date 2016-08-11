@@ -42,8 +42,21 @@ class groupControl extends mobileHomeControl{
 		//if(intval($_GET['cream']) == 1){
 		//	$where['is_digest'] = 1;
 		//}
-		$theme_list = $model->table('circle_theme')->where($where)->order('is_stick desc,lastspeak_time desc')->page($this->page)->select();
-		$page_count = $model->gettotalpage();
+		$page_count = $model->table('circle_theme')->where($where)->count();
+		$pages=intval($page_count/50);
+		if($page_count%50){
+			$pages++;
+		}
+		$current_page = intval($_POST['curpage']);
+		//计算记录偏移量
+// 		if($current_page == 1){
+			$theme_list = $model->table('circle_theme')->where($where)->order('is_stick desc,lastspeak_time desc')->page(50)->select();
+// 		}else{
+// 			$offset = $this->page*($current_page - 1);
+// 			$limit = $offset.','.$current_page*$this->page;
+// 			//echo json_encode($limit);exit;
+// 			$theme_list = $model->table('circle_theme')->where($where)->order('is_stick desc,lastspeak_time desc')->limit($limit)->select();
+// 		}
 		//$theme_list = array_under_reset($theme_list, 'theme_id');
 		//Tpl::output('show_page', $model->showpage('2'));
 		//Tpl::output('theme_list', $theme_list);
@@ -169,7 +182,179 @@ class groupControl extends mobileHomeControl{
 			}
 		}
 		$return['theme_count'] = count($theme_list);
-		output_data($return, mobile_page($page_count));
+		output_data($return, mobile_page($pages));
+		//output_data($return);
+	}
+	
+	public function index_pageOp(){
+		// 圈子信息
+		//$this->circleInfo();
+	
+		// 圈主和管理信息
+		//$this->manageList();
+	
+		// 会员信息
+		//$this->memberInfo();
+	
+		// sidebar相关
+		//$this->sidebar();
+	
+		$model = Model();
+		// 话题列表
+		$where = array();
+		$where['circle_id']	= $_GET['c_id'];
+		if(!empty($_POST['member_id'])){
+			$where['member_id']	= $_POST['member_id'];
+		}
+		//$thc_id = intval($_GET['thc_id']);
+		//if($thc_id > 0){
+		//	$where['thclass_id']= $thc_id;
+		//	Tpl::output('thc_id', $thc_id);
+		//}
+		//if(intval($_GET['cream']) == 1){
+		//	$where['is_digest'] = 1;
+		//}
+		$page_count = $model->table('circle_theme')->where($where)->count();
+		$pages=intval($page_count/$this->page);
+		if($page_count%$this->page){
+			$pages++;
+		}
+		$current_page = intval($_POST['curpage']);
+		//计算记录偏移量
+		// 		if($current_page == 1){
+		// 			$theme_list = $model->table('circle_theme')->where($where)->order('is_stick desc,lastspeak_time desc')->page($this->page)->select();
+		// 		}else{
+		$offset = $this->page*($current_page - 1);
+		$limit = $offset.','.$current_page*$this->page;
+		//echo json_encode($limit);exit;
+		$theme_list = $model->table('circle_theme')->where($where)->order('is_stick desc,lastspeak_time desc')->limit($limit)->select();
+		// 		}
+		//$theme_list = array_under_reset($theme_list, 'theme_id');
+		//Tpl::output('show_page', $model->showpage('2'));
+		//Tpl::output('theme_list', $theme_list);
+	
+		if(!empty($theme_list)){
+			foreach($theme_list as $key=>$val){
+				$themeid_array[$key] = $theme_list[$key]['theme_id'];
+			}
+		}
+		$affix_list = $model->table('circle_affix')->where(array('affix_type'=>1,'theme_id'=>array('in', $themeid_array)))->select();
+		if(!empty($theme_list)){
+			//$affix_list = array_under_reset($affix_list, 'theme_id', 2);
+			//Tpl::output('affix_list', $affix_list);
+		}
+		//回复列表
+		$reply_list = $model->table('circle_threply')->where(array('theme_id'=>array('in', $themeid_array)))->order('reply_id desc')->select();
+		if(!empty($reply_list)){
+			foreach($reply_list as $key=>$val){
+				$reply_list[$key]['member_avatar'] = getMemberAvatarForID($val['member_id']);
+				$reply_list[$key]['reply_addtime'] = date('Y-m-d H:i', $val['reply_addtime']);
+				$reply_list[$key]['reply_content'] = removeUBBTag($val['reply_content']);
+			}
+		}
+		//点赞列表
+		$like_list = $model->table('circle_like')->where(array('theme_id'=>array('in', $themeid_array)))->select();
+	
+		if(!empty($theme_list)){
+			foreach ($theme_list as $key=>$val){
+				$result[$key]['theme_id'] = $val['theme_id'];
+				$result[$key]['theme_content'] = $val['theme_content'];
+				$result[$key]['member_id'] = $val['member_id'];
+				$result[$key]['member_name'] = $val['member_name'];
+				$result[$key]['member_image'] = getMemberAvatarForID($val['member_id']);
+				$result[$key]['theme_addtime'] = $date3=date('m-d H:i',$val['theme_addtime']);
+				$result[$key]['theme_likecount'] = $val['theme_likecount'];
+				$result[$key]['theme_commentcount'] = $val['theme_commentcount'];
+				$result[$key]['theme_sharecount'] = $val['theme_sharecount'];
+				$result[$key]['theme_forwardcount'] = $val['theme_forwardcount'];
+				$result[$key]['is_forward'] = $val['is_forward'];
+				if($val['is_forward']=='1'){
+					$result[$key]['forward_content'] = $val['theme_name'];
+					$result[$key]['forward_member_id'] = $val['forward_member_id'];
+					$result[$key]['forward_member_name'] = $val['forward_member_name'];
+				}
+				foreach ($affix_list as $akey=>$aval){
+					//foreach ($aval as $avkey=>$avval){
+					if($val['theme_id']== $aval['theme_id']){
+						$affix['affix_id'] = $aval['affix_id'];
+						$affix['affix_filename'] = themeImageUrl($partpath.'/'.$aval['affix_filename']);
+						$affix['affix_filethumb'] = themeImageUrl($partpath.'/'.$aval['affix_filethumb']);
+						$result[$key]['affix_list'][] = $affix;
+					}
+						
+					//}
+				}
+				foreach ($like_list as $lkey=>$lval){
+					if($val['theme_id'] == $lval['theme_id']){
+						$like['reply_image'] = getMemberAvatarForID($lval['member_id']);
+						$like['member_name'] = $lval['member_name'];
+						$like['member_id'] = $lval['member_id'];
+						$result[$key]['like_list'][] = $like;
+					}
+	
+				}
+	
+				foreach ($reply_list as $rkey=>$rval){
+					if($val['theme_id']== $rval['theme_id']){
+						$reply['reply_id'] = $rval['reply_id'];
+						$reply['reply_content'] = $rval['reply_content'];
+						$reply['reply_image'] = getMemberAvatarForID($rval['member_id']);
+						$reply['member_name'] = $rval['member_name'];
+						$reply['member_id'] = $rval['member_id'];
+						$result[$key]['reply_list'][] = $reply;
+					}
+	
+				}
+			}
+		}
+	
+		// 今日话题数
+		// 当天时间戳
+		/* $year = date("Y");$month = date("m");$day = date("d");
+			$dayBegin = mktime(0,0,0,$month,$day,$year);
+			$todaythcount = $model->table('circle_theme')->where(array('theme_addtime'=>array('egt',$dayBegin), 'circle_id'=>$this->c_id))->count(); */
+		//Tpl::output('todaythcount', $todaythcount);
+	
+		//展示形式，默认以图文展示 list/preview
+		if($_GET['type'] != ''){
+			$display_mode = ($_GET['type'] == 'list')?'list':'preview';
+			setNcCookie('circleDisplayMode', $display_mode, 30*24*60*60);
+		}else{
+			$display_mode = cookie('circleDisplayMode') ? cookie('circleDisplayMode') : 'preview';
+		}
+		//Tpl::output('display_mode',$display_mode);
+	
+		/* // 话题分类
+			$where = array();
+			$where['circle_id']		= $this->c_id;
+			$where['thclass_status']= 1;
+			$thclass_list = $model->table('circle_thclass')->where($where)->order('thclass_sort asc')->select();
+			$thclass_list = array_under_reset($thclass_list, 'thclass_id'); */
+		//Tpl::output('thclass_list', $thclass_list);
+	
+		// Read Permission
+		//$readperm = $this->readPermissions($this->cm_info);
+		//Tpl::output('readperm', $readperm);
+		//Tpl::output('m_readperm', $this->m_readperm);
+	
+		//$this->circleSEO($this->circle_info['circle_name']);
+		// breadcrumb navigation
+		//$this->breadcrumd();
+		//Tpl::showpage('group');
+		//查询是否已经关注
+		$return = array();
+		$return['$theme_list'] = $result;
+	
+		if(!empty($_POST['self_member_id'])){
+			$sns_friend	= $model->table('sns_friend')->where(array('friend_frommid'=>$_POST['self_member_id'], 'friend_tomid'=>$_POST['member_id']))->select();
+			if(!empty($sns_friend)){
+				$return['isAttention']=0;
+			}else{
+				$return['isAttention']=1;
+			}
+		}
+		$return['theme_count'] = count($theme_list);
+		output_data($return, mobile_page($pages));
 		//output_data($return);
 	}
 	

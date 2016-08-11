@@ -53,7 +53,16 @@ class goodsControl extends mobileHomeControl{
             pagecmd('setEachNum',$this->page);
             pagecmd('setTotalNum',$indexer_count);
         } else {
-            $goods_list = $model_goods->getGoodsListByColorDistinct($condition, $fieldstr, $order, $this->page);
+        	$current_page = intval($_POST['curpage']);
+        	//计算记录偏移量
+        	if($current_page == 1){
+        		$goods_list = $model_goods->getGoodsListByColorDistinct($condition, $fieldstr, $order, $this->page,null);
+        	}else{
+        		$offset = $this->page*($current_page - 1);
+        		$limit = $offset.','.$current_page*$this->page;
+	        	//echo $limit;exit;
+	            $goods_list = $model_goods->getGoodsListByColorDistinct($condition, $fieldstr, $order, null,$limit);
+        	}
         }
         $page_count = $model_goods->gettotalpage();
 

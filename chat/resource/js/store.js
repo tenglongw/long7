@@ -2,6 +2,7 @@
 	var seller_list = new Array();//商家客服
 	var msg_limits = new Array();//消息权限
 	var store_msg_list = new Array();//商家收到消息
+	var last_msg_id = 0;//最后一次消息id
 	var store_msg_obj = {};
 	$(function(){
 		if(user['seller_id'] != '') {
@@ -47,7 +48,7 @@
 				  	}
 				  	if ( user_info['recent'] == 1 ) recent_list[u_id] = user_info;
 				}
-				setTimeout("getconnect()",1000);
+			  	setInterval("getconnect()",6000);
 				$("#web_chat_dialog").prepend(chat_user_list);
 				$("#web_chat_dialog").after(web_info['html_store_msg']);
 
@@ -72,6 +73,25 @@
 		    }
 		}
 	});
+	
+	function get_new_msg(){
+		var ajaxurl = CHAT_SITE_URL+'/index.php?act=web_chat&op=get_msg&n=99&t_id='+user['u_id']+'&msg_id='+last_msg_id;
+		$.ajax({
+			type: "GET",
+			url: ajaxurl,
+			dataType:"jsonp",
+			async: true,
+		    success: function(m_list){
+		    	msg_list = m_list['msg_list'];
+		    	console.log(msg_list);
+		    	if(last_msg_id>0){
+		    		get_msg(msg_list);
+		    	}
+		    	last_msg_id = m_list['last_msg_id'];
+		  }
+		});
+	}
+	
 	function update_sellers(){
 		var obj_seller = $("#chat_sellers");
 		for (var u_id in seller_list){
@@ -104,21 +124,25 @@
 	}
 	function getconnect(){
 		//$.getScript(connect_url+"/resource/socket.io.js", function(){
-			clearInterval(interval);
+//			clearInterval(interval);
 			//if ( typeof io === "object" ) {
-			  socket = io.connect("ws://localhost:3000");
-			  socket.on('connect', function () {
-			    connect = 1;
+//			  socket = io.connect("http://localhost:3000");
+//			  socket.on('connect', function () {
+			    /*connect = 1;
 				send_state();
 			    socket.on('get_state', function (u_list) {
 			      get_state(u_list);
 			      update_sellers();
-			    });
-			  	$("#web_chat_dialog").show();
-			  	store_msg_obj = $("#store_msg_dialog");
-			  	if($("#new_msg_dialog").size()==0) $("#web_chat_dialog").after(web_info['msg_dialog']);
-			  	obj = $("#new_msg_dialog");
-			    socket.emit('update_user', user);
+			    });*/
+		send_state();
+//		get_state(u_list);
+		update_sellers();
+	  	$("#web_chat_dialog").show();
+	  	store_msg_obj = $("#store_msg_dialog");
+	  	if($("#new_msg_dialog").size()==0) $("#web_chat_dialog").after(web_info['msg_dialog']);
+	  	obj = $("#new_msg_dialog");
+	  	get_new_msg();
+			  	/* socket.emit('update_user', user);
 			    socket.on('get_msg', function (msg_list) {
 			      get_msg(msg_list);
 			    });
@@ -132,8 +156,8 @@
                     connect = 0;
                     $("#web_chat_dialog").hide();
                     interval = setInterval( getconnect, 60000);//断开1分钟后重新连接服务器
-                });
-			  });
+                });*/
+//			  });
 		  //}
 		//});
 	}

@@ -1159,6 +1159,23 @@ function getMbSpecialImageUrl($image_name = '') {
 }
 
 /**
+ * 获取运单图片地址
+ */
+function getMbSpecialThumbImageUrl($image_name = '') {
+	$name_array = explode('_', $image_name);
+	if(count($name_array) == 3) {
+		$image_path = DS . ATTACH_MOBILE . DS . 'special' . DS . $name_array[0] . DS . $image_name;
+	} else {
+		$image_path = DS . ATTACH_MOBILE . DS . 'special' . DS . $image_name;
+	}
+	if(is_file(BASE_UPLOAD_PATH . $image_path)) {
+		return UPLOAD_SITE_URL . $image_path;
+	} else {
+		return UPLOAD_SITE_URL.'/'.defaultGoodsImage('240');
+	}
+}
+
+/**
  * 加载文件
  *
  * 使用require_once函数，只适用于加载框架内类库文件

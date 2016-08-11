@@ -25,7 +25,7 @@
           <td class="vatop rowform"><input type="text" value="<?php echo $output['article_array']['article_title'];?>" name="article_title" id="article_title" class="txt"></td>
           <td class="vatop tips"></td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td colspan="2" class="required"><label class="validation" for="cate_id"><?php echo $lang['article_add_class'];?>:</label></td>
         </tr>
         <tr class="noborder">
@@ -45,7 +45,7 @@
         <tr class="noborder">
           <td class="vatop rowform"><input type="text" value="<?php echo $output['article_array']['article_url'];?>" name="article_url" id="article_url" class="txt"></td>
           <td class="vatop tips"><?php echo $lang['article_add_url_tip'];?></td>
-        </tr>
+        </tr> -->
         <tr>
           <td colspan="2" class="required"><label for="if_show"><?php echo $lang['article_add_show'];?>:</label></td>
         </tr>

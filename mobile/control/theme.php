@@ -1251,8 +1251,18 @@ class themeControl extends mobileHomeControl{
 				$param['itemid']		= $this->t_id;
 				Model('circle_exp')->saveExp($param);
 			}
+			// 回复
+			$reply_list = Model()->table('circle_threply')->where(array('theme_id'=>$this->t_id, 'circle_id'=>$this->c_id))->order('reply_id desc')->select();
+			if(!empty($reply_list)){
+				foreach($reply_list as $key=>$val){
+					$reply_list[$key]['member_avatar'] = getMemberAvatarForID($val['member_id']);
+					$reply_list[$key]['reply_addtime'] = date('Y-m-d H:i', $val['reply_addtime']);
+					$reply_list[$key]['reply_content'] = removeUBBTag($val['reply_content']);
+				}
+			}
 			$result['status'] = 0;
 			$result['message'] = '成功';
+			$result['reply_list'] = $reply_list;
 
 		}else{
 			$result['status'] = 1;

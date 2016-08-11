@@ -224,13 +224,17 @@ class mb_specialControl extends SystemControl{
             $upload->set('default_dir', ATTACH_MOBILE . DS . 'special' . DS . $prefix);
             $upload->set('fprefix', $prefix);
             $upload->set('allow_type', array('gif', 'jpg', 'jpeg', 'png'));
-
+            $upload->set('thumb_width',	640);
+            $upload->set('thumb_height', 350);
+            $upload->set('thumb_ext', '_640x350');
             $result = $upload->upfile('special_image');
             if(!$result) {
                 $data['error'] = $upload->error;
             }
             $data['image_name'] = $upload->file_name;
             $data['image_url'] = getMbSpecialImageUrl($data['image_name']);
+            $data['image_thumb_name'] = $upload->thumb_image;
+            $data['image_thumb_url'] = getMbSpecialThumbImageUrl($data['image_thumb_name']);
         }
         echo json_encode($data);
     }

@@ -38,6 +38,11 @@ class indexControl extends mobileHomeControl{
         	$result['status'] = 200;
         	if($key==0){
         		$result['adv_list'] = $value['adv_list']['item'];
+        		foreach ($result['adv_list'] as $akey=>$aval){
+        			$name_array = explode('.', $aval['image']);
+        			$size = count($name_array);
+        			$result['adv_list'][$akey]['image'] =str_replace('.'.$name_array[$size-1],'_640x350.'.$name_array[$size-1],  $aval['image']);
+        		}
         	}
         }
         $result['article_list'] = $article_list;

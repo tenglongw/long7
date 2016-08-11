@@ -126,7 +126,7 @@ class articleControl extends SystemControl{
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
 				array("input"=>$_POST["article_title"], "require"=>"true", "message"=>$lang['article_add_title_null']),
-				array("input"=>$_POST["ac_id"], "require"=>"true", "message"=>$lang['article_add_class_null']),
+				//array("input"=>$_POST["ac_id"], "require"=>"true", "message"=>$lang['article_add_class_null']),
 				//array("input"=>$_POST["article_url"], 'validator'=>'Url', "message"=>$lang['article_add_url_wrong']),
 				array("input"=>$_POST["article_content"], "require"=>"true", "message"=>$lang['article_add_content_null']),
 				array("input"=>$_POST["article_sort"], "require"=>"true", 'validator'=>'Number', "message"=>$lang['article_add_sort_int']),
@@ -223,7 +223,7 @@ class articleControl extends SystemControl{
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
 				array("input"=>$_POST["article_title"], "require"=>"true", "message"=>$lang['article_add_title_null']),
-				array("input"=>$_POST["ac_id"], "require"=>"true", "message"=>$lang['article_add_class_null']),
+				//array("input"=>$_POST["ac_id"], "require"=>"true", "message"=>$lang['article_add_class_null']),
 				//array("input"=>$_POST["article_url"], 'validator'=>'Url', "message"=>$lang['article_add_url_wrong']),
 				array("input"=>$_POST["article_content"], "require"=>"true", "message"=>$lang['article_add_content_null']),
 				array("input"=>$_POST["article_sort"], "require"=>"true", 'validator'=>'Number', "message"=>$lang['article_add_sort_int']),

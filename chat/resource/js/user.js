@@ -1,7 +1,7 @@
 // by mall.wrtx.cn 调出图片
 	var interval = 1;//断开后计时
 	var new_interval = 1;//消息提醒计时
-	var connect = 0;//连接状态
+	var connect = 1;//连接状态
 	var new_msg = 0;//新消息数
 	var obj = {};
 	var socket = {};
@@ -157,10 +157,11 @@
 
 		if(connect === 1) {
 		    if(n > 0) {
-    		    socket.emit('get_state', u_list);
+//    		    socket.emit('get_state', u_list);
+		    	get_state(u_list);
     		} else {
     		    if (user['u_id'] == '') {
-        		    socket.disconnect();
+//        		    socket.disconnect();
     		    }
     		}
 		} else {
@@ -222,7 +223,7 @@
 			update_recent();
 			update_friends();
 		} else {
-		    socket.disconnect();
+//		    socket.disconnect();
 		}
 	}
 	function show_obj(){//弹出框
@@ -276,7 +277,7 @@
 					return false;
 				} else {
 					if ( connect === 1 ) {
-						socket.emit('send_msg', t_msg);
+						//socket.emit('send_msg', t_msg);
 						$("#send_message").val('');
 						$("#send_message").focus();
 						$("#send_alert").html('');
@@ -293,7 +294,11 @@
 	function get_msg(list){//接收消息
 		var msg = {};
 		for (var k in list){
-			msg = list[k];
+			m_list = list[k];
+			if(m_list.length<=0){
+				continue;
+			}
+			msg = m_list[0];
 			var m_id = msg['m_id'];
 			var u_id = msg['f_id'];
 			set_user(u_id,msg['f_name']);
@@ -552,7 +557,11 @@
 		for (var m_id in msg_list[u_id]){
 			if(obj.find("div[m_id='"+m_id+"']").size()==0) {
 				var msg = msg_list[u_id][m_id];
-				show_f_msg(msg);
+				if(msg['t_id'] == u_id){
+					show_t_msg(msg);
+				}else if(msg['f_id'] == u_id){
+					show_f_msg(msg);
+				}
 				update_msg(u_id);
 				delete msg_list[u_id][m_id];//删除消息
 				if ( m_id > max_id ) max_id = m_id;
@@ -665,7 +674,8 @@
 		var obj_chat = $(".chat-list");
 		if (new_msg > 0 || obj_chat.css("display") == 'none') {
 			obj_chat.show("slide" ,{ direction: 'right' }, 300);
-			if (new_msg > 0) show_dialog();
+			//if (new_msg > 0) show_dialog();
+			update_dialog();
 		} else {
 			obj_chat.hide("slide" ,{ direction: 'right' }, 300);
 		}
@@ -702,7 +712,7 @@
 				new_n++;
     		    if ( connect === 1 ) $(document).attr('title','新消息('+new_msg+')    '+web_info['html_title']);
     		    if ( new_n % 3 > 1 ) $(document).attr('title',web_info['html_title']);
-    		}, 500);
+    		}, 6000);
     		$("#new_msg").show().html(new_msg);
     	} else {
     	  	new_msg = 0;
@@ -752,7 +762,7 @@
 		if ( typeof msg_list[u_id] === "undefined" ) msg_list[u_id] = new Array();
 	}
 	function set_user_info(u_id,k,v){//设置会员信息
-		if ( typeof user_list[u_id] === "undefined" ) set_user(u_id,'');
+		if ( typeof user_list[u_id] === "undefined" ) set_user(u_id,v);
 		user_list[u_id][k] = v;
 	}
 	function close_chat_log(u_id){
@@ -846,34 +856,34 @@
 		obj.find(".user-tab-bar").perfectScrollbar();
 	}
 	function getconnect(){
-		$.getScript(connect_url+"/resource/socket.io.js", function(){
-			clearInterval(interval);
-			if ( typeof io === "object" ) {
-			  socket = io.connect(connect_url, { 'resource': 'resource', 'reconnect': false });
-			  socket.on('connect', function () {
+		//$.getScript(connect_url+"/resource/socket.io.js", function(){
+//			clearInterval(interval);
+			//if ( typeof io === "object" ) {
+//			 socket = io.connect("http://localhost:3000");
+//			  socket.on('connect', function () {
 			    connect = 1;
-				  send_state();
-			    socket.on('get_state', function (u_list) {
-			      get_state(u_list);
-			    });
+//				 send_state();
+//			    socket.on('get_state', function (u_list) {
+//			      get_state(u_list);
+//			    });
 				  if(user['u_id'] == '') return false;//未登录时不取消息
 
 			  	$("#web_chat_dialog").show();
 			  	if($("#new_msg_dialog").size()==0) $("#web_chat_dialog").after(web_info['msg_dialog']);
 			  	obj = $("#new_msg_dialog");
-			    socket.emit('update_user', user);
-			    socket.on('get_msg', function (msg_list) {
-			      get_msg(msg_list);
-			    });
-				  socket.on('del_msg', function (msg) {
-				  	del_msg(msg);
-				  });
-				  socket.on('disconnect', function () {
-				    connect = 0;
-				    $("#web_chat_dialog").hide();
-				    interval = setInterval( getconnect, 60000);//断开1分钟后重新连接服务器
-				  });
-			  });
-		  }
-		});
+//			    socket.emit('update_user', user);
+//			    socket.on('get_msg', function (msg_list) {
+//			      get_msg(msg_list);
+//			    });
+//				  socket.on('del_msg', function (msg) {
+//				  	del_msg(msg);
+//				  });
+//				  socket.on('disconnect', function () {
+//				    connect = 0;
+//				    $("#web_chat_dialog").hide();
+//				    interval = setInterval( getconnect, 60000);//断开1分钟后重新连接服务器
+//				  });
+//			  });
+		  //}
+		//});
 	}

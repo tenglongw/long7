@@ -24,7 +24,7 @@ class member_lotnumberControl extends mobileMemberControl {
 		$model_lotnumber = Model('lotnumber');
 		$model = Model();
 		$condition	= array();
-		$condition ['field'] = 'DISTINCT lotnumber.lotnumber_name,lotnumber.lotnumber_image,lotnumber.lotnumber_price,lotnumber.store_id';
+		$condition ['field'] = 'DISTINCT lotnumber.lotnumber_id,lotnumber.lotnumber_name,lotnumber.lotnumber_image,lotnumber.lotnumber_price,lotnumber.store_id';
         $condition['limit'] = '300';
         $condition['state'] = '1';
         $condition['join_type'] = $_POST['join_type'];//'left join'
@@ -47,14 +47,16 @@ class member_lotnumberControl extends mobileMemberControl {
 		$lotnumber_id = intval($_POST['lotnumber_id']);
 		$store_id = intval($_POST['store_id']);
 		$lotnumber_model = Model('lotnumber');
-		
+		$store_model = Model('store');
 		$lotnumber_info = $lotnumber_model->getLotnumberInfo(array('lotnumber_id'=>$lotnumber_id));
 		if (empty ($lotnumber_info['store_avatar'])) {
 			$lotnumber_info['store_avatar_url'] = UPLOAD_SITE_URL . '/' . ATTACH_COMMON . DS . $output ['setting_config'] ['default_store_avatar'];
 		} else {
 			$lotnumber_info['store_avatar_url'] = UPLOAD_SITE_URL . '/' . ATTACH_STORE . '/' . $lotnumber_info['store_avatar'];
 		}
+		$store_info = $store_model->getStoreInfoByID($store_id);
 		$result['store_name'] = $lotnumber_info['store_name'];
+		$result['area_info'] = $store_info['area_info'];
 		$result['store_avatar_url'] = $lotnumber_info['store_avatar_url'];
 		$result['lotnumber_id'] = $lotnumber_info['lotnumber_id'];
 		$result['apply_count'] = $lotnumber_info['apply_count'];
@@ -68,6 +70,7 @@ class member_lotnumberControl extends mobileMemberControl {
     public function lotnumber_submitOp() {
     	$model = Model();
 		$authentication_model = Model('authentication');
+		$lotnumber_model = Model('lotnumber');
 		$lotnumber_id = intval($_POST['lotnumber_id']);
 		$lotnumber_model = Model('lotnumber');
 		$authentication_info = $authentication_model->getAuthenticationInfo(array('member_id'=>$_POST['member_id'],'atct_state'=>'1'));
@@ -82,8 +85,17 @@ class member_lotnumberControl extends mobileMemberControl {
 			$return['message'] = "已经报名，不允许重复报名";
 			echo json_encode($return);exit;
 		}
+		//检查报名数量
+		$lotnumber_info = $lotnumber_model->getLotnumberInfo(array('lotnumber_id'=>$lotnumber_id));
+		if($lotnumber_info['apply_count']>=$lotnumber_info['apply_quantity']){
+			$return['status'] = 1;
+			$return['message'] = "报名人数已满";
+			echo json_encode($return);exit;
+		}
 		$result = $model->table('member_lotnumber')->insert($insert);
+		//更新报名数量
 		if($result){
+			$lotnumber_model->editGroupbuy(array('apply_count'=>array('exp', 'apply_count+1')), array('lotnumber_id'=>$lotnumber_id));
 			$return['status'] = 0;
 			$return['message'] = "提交成功";
 		}else{

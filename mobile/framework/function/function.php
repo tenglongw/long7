@@ -34,6 +34,9 @@ function mobile_page($page_count) {
     //输出是否有下一页
     $extend_data = array();
     $current_page = intval($_GET['curpage']);
+    if(empty($current_page)){
+    	$current_page = intval($_POST['curpage']);
+    }
     if($current_page <= 0) {
         $current_page = 1;
     }

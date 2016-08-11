@@ -87,7 +87,7 @@ class goodsModel extends Model{
      * @param number $page
      * @return array
      */
-    public function getGoodsListByColorDistinct($condition, $field = '*', $order = 'goods_id asc', $page = 0) {
+    public function getGoodsListByColorDistinct($condition, $field = '*', $order = 'goods_id asc', $page = 0,$limit='') {
         $condition['goods_state']   = self::STATE1;
         $condition['goods_verify']  = self::VERIFY1;
         $condition = $this->_getRecursiveClass($condition);
@@ -95,7 +95,7 @@ class goodsModel extends Model{
         $count = $this->getGoodsOnlineCount($condition,"distinct CONCAT(goods_commonid,',',color_id)");
         $goods_list = array();
         if ($count != 0) {
-            $goods_list = $this->getGoodsOnlineList($condition, $field, $page, $order, 0, 'nc_distinct', false, $count);
+            $goods_list = $this->getGoodsOnlineList($condition, $field, $page, $order, $limit, 'nc_distinct', false, $count);
         }
         return $goods_list;
     }

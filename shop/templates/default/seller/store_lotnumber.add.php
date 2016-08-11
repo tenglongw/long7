@@ -126,28 +126,39 @@
         <p class="hint"><?php echo $lang['group_pic_explain2'];?></p>
         </dd>
     </dl> -->
-    <!-- <dl>
-      <dt><?php echo $lang['groupbuy_class'].$lang['nc_colon'];?></dt>
-      <dd>
-        <select id="class_id" name="class_id" class="w80">
-          <option value="0"><?php echo $lang['text_no_limit']; ?></option>
-        </select>
-        <select id="s_class_id" name="s_class_id" class="w80">
-          <option value="0"><?php echo $lang['text_no_limit']; ?></option>
-        </select>
-        <span></span>
-        <p class="hint"><?php echo $lang['groupbuy_class_tip'];?></p>
-      </dd>
-    </dl> 
     <dl>
-      <dt><?php echo $lang['virtual_quantity'].$lang['nc_colon'];?></dt>
+      <dt><?php echo $lang['lotnumber_rule'].$lang['nc_colon'];?></dt>
       <dd>
-        <input class="w70 text" id="virtual_quantity" name="virtual_quantity" type="text" value="0"/>
+        <select id="rule_id" name="rule_id" class="w120">
+          <option value="0"><?php echo $lang['text_no_rule1']; ?></option>
+          <option value="1"><?php echo $lang['text_no_rule2']; ?></option>
+        </select>
         <span></span>
-        <p class="hint"><?php echo $lang['virtual_quantity_explain'];?></p>
+        <p class="hint"><?php echo $lang['lotnumber_rule_tip'];?></p>
       </dd>
-    </dl>-->
-    <input class="w70 text" id="upper_limit" type="hidden" name="upper_limit" type="text" value="1"/>
+    </dl>
+    <dl>
+      <dt><?php echo '报名数量'.$lang['nc_colon'];?></dt>
+      <dd>
+        <input class="w70 text" id="apply_quantity" name="apply_quantity" type="text" value="0"/>
+        <span></span>
+        <p class="hint"><?php echo $lang['apply_quantity_explain'];?></p>
+      </dd>
+    </dl>
+    <dl>
+      <dt><?php echo $lang['win_quantity'].$lang['nc_colon'];?></dt>
+      <dd>
+        <input class="w70 text" id="win_quantity" name="win_quantity" type="text" value="0"/>
+        <span></span>
+      </dd>
+    </dl>
+    <dl>
+      <dt><?php echo $lang['win_rate'].$lang['nc_colon'];?></dt>
+      <dd>
+        <input class="w70 text" id="win_rate" name="win_rate" type="text" value="0"/>%
+        <span></span>
+      </dd>
+    </dl>
     <!-- <dl>
       <dt><?php echo $lang['sale_quantity'].$lang['nc_colon'];?></dt>
       <dd>
@@ -410,6 +421,17 @@ $(document).ready(function(){
             loadingMsg:"<?php echo SHOP_TEMPLATES_URL;?>/images/loading.gif",
             target:'#des_demo'
     });
+    $('#rule_id').change(function(){
+        var val = $('#rule_id').val();
+        if('0'==val){
+            $('#win_rate').parent().parent().attr('style','display:none');
+            $('#win_quantity').parent().parent().attr('style','');
+        }else{
+        	$('#win_quantity').parent().parent().attr('style','display:none');
+        	$('#win_rate').parent().parent().attr('style','');
+        }
+     });
+    $('#rule_id').trigger("change");
 });
 
 function insert_editor(file_path){

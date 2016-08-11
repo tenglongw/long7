@@ -11,16 +11,6 @@ defined('InWrzcNet') or exit('Access Invalid!');
 class web_chatModel extends Model{
 
 	/**
-	 * get chat msg
-	 *
-	 * @param
-	 * @return array
-	 */
-	public function getMsgList($condition = array(),$page = 10) {
-		$result = $this->table('chat_msg')->where($condition)->page($page)->order('m_id')->select();
-		return $result;
-	}
-	/**
 	 * add chat msg
 	 *
 	 * @param
@@ -100,6 +90,22 @@ class web_chatModel extends Model{
 		if(!empty($list) && is_array($list)) {
 			foreach($list as $k => $v) {
 				$v['time'] = date("Y-m-d H:i:s",$v['add_time']);
+				$list[$k] = $v;
+			}
+		}
+		return $list;
+	}
+	/**
+	* get chat msg
+	*
+	* @param
+	* @return array
+	*/
+	public function getMsgList($condition = array()) {
+		$list = $this->table('chat_msg')->where($condition)->order('m_id desc')->select();
+		if(!empty($list) && is_array($list)) {
+			foreach($list as $k => $v) {
+				$v['add_time'] = date("Y-m-d H:i:s",$v['add_time']);
 				$list[$k] = $v;
 			}
 		}
@@ -279,6 +285,27 @@ class web_chatModel extends Model{
 	        $list = $this->getLogList($condition_sql,$page);
 	    }
 	    return $list;
+	}
+	/**
+	 * 单个会员的消息记录
+	 *
+	 * @param
+	 * @return array
+	 */
+	public function getMsgToList($condition = array(),$page = 10) {
+		$list = array();
+		$t_id = intval($condition['t_id']);
+		if ($t_id > 0) {
+			$condition_sql = " (t_id = '".$t_id."' or f_id = '".$t_id."' )";
+		} else {
+			$condition_sql = " (f_id = '".$f_id."' or t_id = '".$f_id."')";
+		}
+		$msg_id = intval($condition['msg_id']);
+		if (!empty($msg_id)) {
+			$condition_sql .= " and m_id > '".$msg_id."'";
+		}
+		$list = $this->getMsgList($condition_sql);
+		return $list;
 	}
 	/**
 	 * 会员相关的信息

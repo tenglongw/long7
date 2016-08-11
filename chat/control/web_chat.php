@@ -29,9 +29,9 @@ class web_chatControl extends BaseControl {
 		$f_id = intval($_POST['f_id']);
 		$t_id = intval($_POST['t_id']);
 		$t_name = trim($_POST['t_name']);
-		if (($member_id < 1) || ($member_id != $f_id)) $this->error(Language::get('nc_member_chat_login'));
-		$member = $model_chat->getMember($t_id);
-		if ($t_name != $member['member_name']) $this->error(Language::get('nc_member_chat_name_error'));
+// 		if (($member_id < 1) || ($member_id != $f_id)) $this->error(Language::get('nc_member_chat_login'));
+// 		$member = $model_chat->getMember($t_id);
+// 		if ($t_name != $member['member_name']) $this->error(Language::get('nc_member_chat_name_error'));
 
 		$msg = array();
 		$msg['f_id'] = $f_id;
@@ -64,6 +64,7 @@ class web_chatControl extends BaseControl {
 		$add_time30 = strtotime($add_time)-60*60*24*30;
 		$member_list = $model_chat->getRecentList(array('f_id'=> $f_id,'add_time'=>array('egt',$add_time30)),10,$member_list);
 		$member_list = $model_chat->getRecentFromList(array('t_id'=> $f_id,'add_time'=>array('egt',$add_time30)),10,$member_list);
+		//echo json_encode($member_list);exit;
 		$this->json($member_list);
 	}
 	/**
@@ -108,6 +109,36 @@ class web_chatControl extends BaseControl {
 			$member = $model_chat->getMember($member_id);
 			$this->json($member);
 		}
+	}
+	/**
+	 * 查询新消息消息
+	 *
+	 */
+	public function get_msgOp(){
+		$member = array();
+		$model_chat	= Model('web_chat');
+		$condition['t_id'] = $_GET['t_id'];
+		$msg_id = 0;
+		if(!empty($_GET['msg_id'])){
+			$msg_id = $_GET['msg_id'];
+		}
+		$condition['msg_id'] = $msg_id;
+		$msg_list = $model_chat->getMsgToList($condition);
+		$m_list = array();
+		foreach ($msg_list as $key=>$val){
+			if($val['f_id']==$_SESSION['member_id']){
+				$m_list[$val['t_id']][] = $val;
+			}else{
+				$m_list[$val['f_id']][] = $val;
+			}
+		}
+		$result['msg_list'] = $m_list;
+		if(!empty($msg_list)){
+			$result['last_msg_id'] = $msg_list[0]['m_id'];
+		}else{
+			$result['last_msg_id'] = $msg_id;
+		}
+		$this->json($result);
 	}
 	/**
 	 * chat log

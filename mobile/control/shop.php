@@ -35,17 +35,30 @@ class shopControl extends mobileHomeControl {
         } elseif (!empty($_GET['keyword'])) {
             //$condition['store_name'] = array('like', '%' . $_GET['keyword'] . '%');
         }
+        $current_page = intval($_POST['curpage']);
         //所需字段
         $fields = "*";
         //排序方式
         $order = $this->_store_list_order($_GET['key'], $_GET['order']);
-        $store_list = $model_store->where($condition)->order($order)->page(10)->select();
         $page_count = $model_store->gettotalpage();
+        //计算记录偏移量
+        if($current_page == 1){
+	        $store_list = $model_store->where($condition)->order($order)->page($this->page)->select();
+        }else{
+	        $offset = $this->page*($current_page - 1);
+        	$limit = $offset.','.$current_page*$this->page;
+        	$store_list = $model_store->where($condition)->order($order)->limit($limit)->select();
+        }
         $own_store_list = $store_list;
         $simply_store_list = array();
         foreach ($own_store_list as $key => $value) {
 
             $simply_store_list[$key]['store_id'] = $own_store_list[$key]['store_id'];
+            if (empty ($own_store_list[$key]['store_avatar'])) {
+            	$simply_store_list[$key]['store_avatar_url'] = UPLOAD_SITE_URL.DS.ATTACH_COMMON.DS.C('default_store_avatar');
+            } else {
+            	$simply_store_list[$key]['store_avatar_url'] = UPLOAD_SITE_URL.DS.ATTACH_STORE.DS.$own_store_list[$key]['store_avatar'];
+            }
             $simply_store_list[$key]['store_name'] = $own_store_list[$key]['store_name'];
             $simply_store_list[$key]['store_address'] = $own_store_list[$key]['store_address'];
             $simply_store_list[$key]['store_area_info'] = $own_store_list[$key]['area_info'];
