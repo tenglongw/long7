@@ -933,6 +933,19 @@ function getMemberAvatarForID($id){
 		return UPLOAD_SITE_URL.'/'.ATTACH_COMMON.DS.C('default_user_portrait');
 	}
 }
+
+/**
+ * 个人中心北京图片
+ * @param string $member_id
+ * @return string
+ */
+function getMemberBackgroundForID($id){
+	if(file_exists(BASE_UPLOAD_PATH.'/'.ATTACH_AVATAR.'/background_'.$id.'.jpg')){
+		return UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/background_'.$id.'.jpg';
+	}else{
+		return UPLOAD_SITE_URL.'/'.ATTACH_COMMON.DS.C('default_user_portrait');
+	}
+}
 /**
  * 取得店铺标志
  *

@@ -25,10 +25,10 @@ class goodsControl extends mobileHomeControl{
 
         //查询条件
         $condition = array();
-        if(!empty($_GET['gc_id']) && intval($_GET['gc_id']) > 0) {
-            $condition['gc_id'] = $_GET['gc_id'];
-        } elseif (!empty($_GET['keyword'])) {
-            $condition['goods_name|goods_jingle'] = array('like', '%' . $_GET['keyword'] . '%');
+        if(!empty($_POST['gc_id']) && intval($_POST['gc_id']) > 0) {
+            $condition['gc_id'] = $_POST['gc_id'];
+        } elseif (!empty($_POST['keyword'])) {
+            $condition['goods_name|goods_jingle'] = array('like', '%' . trim($_POST['keyword']) . '%');
         }
 
         //所需字段

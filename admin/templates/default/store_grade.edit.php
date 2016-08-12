@@ -24,18 +24,18 @@
           <td class="vatop rowform"><input type="text" value="<?php echo $output['grade_array']['sg_name'];?>" id="sg_name" name="sg_name" class="txt"></td>
         </tr>
         <tr>
-          <td colspan="2" class="required"><label for="sg_goods_limit"><?php echo $lang['allow_pubilsh_product_num'];?>:</label></td>
+          <td colspan="2" class="required"><label for="sg_goods_limit"><?php echo $lang['store_trade_amount_min'];?>:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="<?php echo $output['grade_array']['sg_goods_limit'];?>" id="sg_goods_limit" name="sg_goods_limit" class="txt"></td>
+          <td class="vatop rowform"><input type="text" value="<?php echo $output['grade_array']['sg_trade_amount_min'];?>" id="trade_amount_min" name="trade_amount_min" class="txt"></td>
           <td class="vatop tips"><?php echo $lang['zero_said_no_limit'];?></td>
         </tr>
-        <tr><td colspan="2" class="required"><label> <?php echo $lang['allow_upload_album_num'];?>:</label></td>
+        <tr><td colspan="2" class="required"><label> <?php echo $lang['store_trade_amount_max'];?>:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="<?php echo $output['grade_array']['sg_album_limit'];?>" id="sg_album_limit" name="sg_album_limit" class="txt"></td><td class="vatop tips"><?php echo $lang['zero_said_no_limit'];?></td>
+          <td class="vatop rowform"><input type="text" value="<?php echo $output['grade_array']['sg_trade_amount_max'];?>" id="trade_amount_max" name="trade_amount_max" class="txt"></td><td class="vatop tips"><?php echo $lang['zero_said_no_limit'];?></td>
 		</tr>
-        <tr>
+        <!-- <tr>
           <td colspan="2" class="required"><label for="skin_limit"><?php echo $lang['optional_template_num'];?>:</label></td>
         </tr>
         <tr class="noborder">
@@ -79,7 +79,7 @@
             <input type="text" value="<?php echo $output['grade_array']['sg_sort'];?>" id="sg_sort" name="sg_sort" class="txt">
             <?php }?></td>
           <td class="vatop tips"><?php echo $lang['grade_sort_tip']; //数值越大表明级别越高?></td>
-        </tr>
+        </tr> -->
       </tbody>
       <tfoot>
         <tr class="tfoot">

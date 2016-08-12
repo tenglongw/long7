@@ -38,7 +38,7 @@
       <input nctype="image_name" name="item_data[image]" type="hidden" value="<?php echo $item_data['image'];?>">
       <input nctype="image_type" name="item_data[type]" type="hidden" value="<?php echo $item_data['type'];?>">
       <input nctype="image_data" name="item_data[data]" type="hidden" value="<?php echo $item_data['data'];?>">
-      <a nctype="btn_edit_item_image" data-desc="640*260" href="javascript:;"><i class="icon-edit"></i>编辑</a>
+      <a nctype="btn_edit_item_image" data-desc="1200*250" href="javascript:;"><i class="icon-edit"></i>编辑</a>
       <?php } ?>
     </div>
   </div>

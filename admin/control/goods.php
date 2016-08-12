@@ -105,7 +105,6 @@ class goodsControl extends SystemControl{
         Tpl::output('verify', array('1' => '通过', '0' => '未通过', '10' => '等待审核'));
 
         Tpl::output('ownShopIds', array_fill_keys(Model('store')->getOwnShopIds(), true));
-
         switch ($_GET['type']) {
             // 禁售
             case 'lockup':

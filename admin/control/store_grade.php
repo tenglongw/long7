@@ -75,8 +75,8 @@ class store_gradeControl extends SystemControl{
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
 				array("input"=>$_POST["sg_name"], "require"=>"true", "message"=>$lang['store_grade_name_no_null']),
-				array("input"=>$_POST["sg_goods_limit"], "require"=>"true", 'validator'=>'Number', "message"=>$lang['allow_pubilsh_product_num_only_lnteger']),
-				array("input"=>$_POST["sg_sort"], "require"=>"true", 'validator'=>'Number', "message"=>$lang['sort_only_lnteger']),
+				array("input"=>$_POST["trade_amount_min"], "require"=>"true", 'validator'=>'Number', "message"=>$lang['store_trade_amount_min_only_lnteger']),
+				array("input"=>$_POST["trade_amount_max"], "require"=>"true", 'validator'=>'Number', "message"=>$lang['store_trade_amount_max_only_lnteger']),
 			);
 			$error = $obj_validate->validate();
 			if ($error != ''){
@@ -87,19 +87,19 @@ class store_gradeControl extends SystemControl{
 					showMessage($lang['now_store_grade_name_is_there']);
 				}
 				//验证级别是否存在
-				if (!$this->checkGradeSort(array('sg_sort'=>trim($_POST['sg_sort'])))){
-					showMessage($lang['add_gradesortexist']);
-				}
+// 				if (!$this->checkGradeSort(array('sg_sort'=>trim($_POST['sg_sort'])))){
+// 					showMessage($lang['add_gradesortexist']);
+// 				}
 				$insert_array = array();
 				$insert_array['sg_name'] = trim($_POST['sg_name']);
-				$insert_array['sg_goods_limit'] = trim($_POST['sg_goods_limit']);
-				$insert_array['sg_space_limit'] = '100';
-				$insert_array['sg_album_limit'] = '' === trim($_POST['sg_album_limit']) ? 1000 : intval($_POST['sg_album_limit']);
-				$insert_array['sg_function'] = $_POST['sg_function']?implode('|',$_POST['sg_function']):'';
-				$insert_array['sg_price'] = abs(floatval($_POST['sg_price']));
-				$insert_array['sg_description'] = trim($_POST['sg_description']);
-				$insert_array['sg_sort'] = trim($_POST['sg_sort']);
-				$insert_array['sg_template'] = 'default';
+				$insert_array['sg_trade_amount_min'] = intval($_POST['trade_amount_min']);
+				$insert_array['sg_trade_amount_max'] = intval($_POST['trade_amount_max']);
+// 				$insert_array['sg_album_limit'] = '' === trim($_POST['sg_album_limit']) ? 1000 : intval($_POST['sg_album_limit']);
+// 				$insert_array['sg_function'] = $_POST['sg_function']?implode('|',$_POST['sg_function']):'';
+// 				$insert_array['sg_price'] = abs(floatval($_POST['sg_price']));
+// 				$insert_array['sg_description'] = trim($_POST['sg_description']);
+// 				$insert_array['sg_sort'] = trim($_POST['sg_sort']);
+// 				$insert_array['sg_template'] = 'default';
 
 				$result = $model_grade->add($insert_array);
 				if ($result){
@@ -131,8 +131,8 @@ class store_gradeControl extends SystemControl{
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
 				array("input"=>$_POST["sg_name"], "require"=>"true", "message"=>$lang['store_grade_name_no_null']),
-				array("input"=>$_POST["sg_goods_limit"], "require"=>"true", 'validator'=>'Number', "message"=>$lang['allow_pubilsh_product_num_only_lnteger']),
-				array("input"=>$_POST["sg_sort"], "require"=>"true", 'validator'=>'Number', "message"=>$lang['sort_only_lnteger']),
+				array("input"=>$_POST["trade_amount_min"], "require"=>"true", 'validator'=>'Number', "message"=>$lang['store_trade_amount_min_only_lnteger']),
+				array("input"=>$_POST["trade_amount_max"], "require"=>"true", 'validator'=>'Number', "message"=>$lang['store_trade_amount_max_only_lnteger']),
 			);
 			$error = $obj_validate->validate();
 			if ($error != ''){
@@ -146,19 +146,19 @@ class store_gradeControl extends SystemControl{
 				if (!$this->checkGradeName(array('sg_name'=>trim($_POST['sg_name']),'sg_id'=>intval($_POST['sg_id'])))){
 					showMessage($lang['now_store_grade_name_is_there'],'index.php?act=store_grade&op=store_grade_edit&sg_id='.intval($_POST['sg_id']));
 				}
-				//验证级别是否存在
-				if (!$this->checkGradeSort(array('sg_sort'=>trim($_POST['sg_sort']),'sg_id'=>intval($_POST['sg_id'])))){
-					showMessage($lang['add_gradesortexist'],'index.php?act=store_grade&op=store_grade_edit&sg_id='.intval($_POST['sg_id']));
-				}
+// 				//验证级别是否存在
+// 				if (!$this->checkGradeSort(array('sg_sort'=>trim($_POST['sg_sort']),'sg_id'=>intval($_POST['sg_id'])))){
+// 					showMessage($lang['add_gradesortexist'],'index.php?act=store_grade&op=store_grade_edit&sg_id='.intval($_POST['sg_id']));
+// 				}
 				$update_array = array();
 				$update_array['sg_id'] = intval($_POST['sg_id']);
 				$update_array['sg_name'] = trim($_POST['sg_name']);
-				$update_array['sg_goods_limit'] = trim($_POST['sg_goods_limit']);
-				$update_array['sg_album_limit'] = trim($_POST['sg_album_limit']);
-				$update_array['sg_function'] = $_POST['sg_function']?implode('|',$_POST['sg_function']):'';
-				$update_array['sg_price'] = abs(floatval($_POST['sg_price']));
-				$update_array['sg_description'] = trim($_POST['sg_description']);
-				$update_array['sg_sort'] = trim($_POST['sg_sort']);
+				$update_array['sg_trade_amount_min'] = intval($_POST['trade_amount_min']);
+				$update_array['sg_trade_amount_max'] = intval($_POST['trade_amount_max']);
+// 				$update_array['sg_function'] = $_POST['sg_function']?implode('|',$_POST['sg_function']):'';
+// 				$update_array['sg_price'] = abs(floatval($_POST['sg_price']));
+// 				$update_array['sg_description'] = trim($_POST['sg_description']);
+// 				$update_array['sg_sort'] = trim($_POST['sg_sort']);
 
 				$result = $model_grade->update($update_array);
 				if ($result){
@@ -172,11 +172,11 @@ class store_gradeControl extends SystemControl{
 		}
 
 		$grade_array = $model_grade->getOneGrade(intval($_GET['sg_id']));
-		if (empty($grade_array)){
-			showMessage($lang['illegal_parameter']);
-		}
+// 		if (empty($grade_array)){
+// 			showMessage($lang['illegal_parameter']);
+// 		}
 		//附加功能
-		$grade_array['sg_function'] = explode('|',$grade_array['sg_function']);
+// 		$grade_array['sg_function'] = explode('|',$grade_array['sg_function']);
 
 		Tpl::output('grade_array',$grade_array);
 		Tpl::showpage('store_grade.edit');

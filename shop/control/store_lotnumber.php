@@ -54,7 +54,7 @@ class store_lotnumberControl extends BaseSellerControl {
      **/
     public function get_prizeOp() {
     	$model = Model();
-    	$result = $model->table('member_lotnumber')->where(array('ml_id'=>$_GET['ml_id']))->update(array('state'=>'2'));
+    	$result = $model->table('member_lotnumber')->where(array('ml_id'=>$_GET['ml_id']))->update(array('state'=>'3'));
     	if($result){
       		showDialog('修改成功','index.php?act=store_lotnumber&op=get_memberlist&lotnumber_id='.$_GET[lotnumber_id],'succ');
         }else {

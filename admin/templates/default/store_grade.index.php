@@ -31,12 +31,12 @@
       <thead>
         <tr class="thead">
           <th class="w24">&nbsp;</th>
-          <th><?php echo $lang['grade_sortname']; ?></th>
+          <!-- <th><?php echo $lang['grade_sortname']; ?></th> -->
           <th><?php echo $lang['store_grade_name'];?></th>
-          <th class="align-center"><?php echo $lang['allow_pubilsh_product_num'];?></th>
-          <th class="align-center"><?php echo $lang['allow_upload_album_num'];?></th>
-          <th class="align-center"><?php echo $lang['optional_template_num'];?></th>
-          <th class="align-center"><?php echo $lang['charges_standard'];?></th>
+          <th class="align-center"><?php echo $lang['store_trade_amount_min'];?></th>
+          <th class="align-center"><?php echo $lang['store_trade_amount_max'];?></th>
+          <!-- <th class="align-center"><?php echo $lang['optional_template_num'];?></th>
+          <th class="align-center"><?php echo $lang['charges_standard'];?></th> -->
           <th><?php echo $lang['nc_handle'];?></th>
         </tr>
       </thead>
@@ -47,19 +47,19 @@
           <td><?php if($v['sg_id'] > 1){ ?>
             <input type="checkbox" name='check_sg_id[]' value="<?php echo $v['sg_id'];?>" class="checkitem">
             <?php } ?></td>
-          <td class="w36"><?php echo $v['sg_sort'];?></td>
+          <!-- <td class="w36"><?php echo $v['sg_sort'];?></td> -->
           <td><?php echo $v['sg_name'];?></td>
-          <td class="align-center"><?php echo $v['sg_goods_limit'];?></td>
-          <td class="align-center"><?php echo $v['sg_album_limit'];?></td>
-          <td class="align-center"><?php echo $v['sg_template_number'];?></td>
-          <td class="align-center"><?php echo $v['sg_price'];?> 元/年</td>
+          <td class="align-center"><?php echo $v['sg_trade_amount_min'];?></td>
+          <td class="align-center"><?php echo $v['sg_trade_amount_max'];?></td>
+          <!-- <td class="align-center"><?php echo $v['sg_template_number'];?></td>
+          <td class="align-center"><?php echo $v['sg_price'];?> 元/年</td> -->
           <td class="w270"><a href="index.php?act=store_grade&op=store_grade_edit&sg_id=<?php echo $v['sg_id'];?>"><?php echo $lang['nc_edit'];?></a> |
             <?php if($v['sg_id'] == '1'){ ?>
             <?php echo $lang['default_store_grade_no_del'];?> |
             <?php }else { ?>
             <a href="javascript:if(confirm('<?php echo $lang['problem_del'];?>'))window.location = 'index.php?act=store_grade&op=store_grade_del&sg_id=<?php echo $v['sg_id'];?>';"><?php echo $lang['nc_del'];?></a> |
             <?php } ?>
-            <a href="index.php?act=store_grade&op=store_grade_templates&sg_id=<?php echo $v['sg_id'];?>"><?php echo $lang['set_template'];?></a></td>
+            <!-- <a href="index.php?act=store_grade&op=store_grade_templates&sg_id=<?php echo $v['sg_id'];?>"><?php echo $lang['set_template'];?></a> --></td>
         </tr>
         <?php } ?>
         <?php }else { ?>

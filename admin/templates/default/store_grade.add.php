@@ -23,18 +23,18 @@
           <td class="vatop tips"></td>
         </tr>
         <tr>
-          <td colspan="2" class="required"><label for="sg_goods_limit"><?php echo $lang['allow_pubilsh_product_num'];?>:</label></td>
+          <td colspan="2" class="required"><label for="sg_goods_limit"><?php echo $lang['store_trade_amount_min'];?>:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="0" id="sg_goods_limit" name="sg_goods_limit" class="txt"></td>
+          <td class="vatop rowform"><input type="text" value="0" id="trade_amount_min" name="trade_amount_min" class="txt">元</td>
           <td class="vatop tips"><?php echo $lang['zero_said_no_limit'];?></td>
         </tr>
-        <tr><td colspan="2" class="required"><label> <?php echo $lang['allow_upload_album_num'];?>:</label></td>
+        <tr><td colspan="2" class="required"><label> <?php echo $lang['store_trade_amount_max'];?>:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="1000" id="sg_album_limit" name="sg_album_limit" class="txt"></td><td class="vatop tips"><?php echo $lang['zero_said_no_limit'];?></td>
+          <td class="vatop rowform"><input type="text" value="30000" id="trade_amount_max" name="trade_amount_max" class="txt">元</td><td class="vatop tips"><?php echo $lang['zero_said_no_limit'];?></td>
 		</tr>
-        <tr>
+        <!-- <tr>
           <td colspan="2" class="required"><label for="skin_limit"><?php echo $lang['optional_template_num'];?>:</label>
             </label></td>
         </tr>
@@ -67,15 +67,15 @@
         <tr class="noborder">
           <td class="vatop rowform"><textarea rows="6" class="tarea" id="sg_description" name="sg_description"></textarea></td>
           <td class="vatop tips"><?php echo $lang['application_note_notice'];?></td>
-        </tr>
-        <tr>
-          <!-- <td colspan="2" class="required"><label><?php echo $lang['nc_sort'];?>:</label></td> -->
+        </tr>-->
+        <!--<tr>
+           <td colspan="2" class="required"><label><?php echo $lang['nc_sort'];?>:</label></td> 
           <td colspan="2" class="required"><label class="validation"><?php echo $lang['grade_sortname']; //级别?>: </label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><input type="text" id="sg_sort" name="sg_sort" class="txt"></td>
           <td class="vatop tips"><?php echo $lang['grade_sort_tip']; //数值越大表明级别越高?></td>
-        </tr>
+        </tr> -->
       </tbody>
       <tfoot>
         <tr class="tfoot">

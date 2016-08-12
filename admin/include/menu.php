@@ -161,7 +161,7 @@ $arr = array(
 					array('args'=>'index,authentication,operation',            'text'=>'会员认证'),
 					/* array('args'=>'index,bill,operation',					    'text'=>$lang['nc_bill_manage']),
 					array('args'=>'index,vr_bill,operation',					'text'=>'虚拟订单结算'),*/
-					array('args'=>'activity,activity,operation',				'text'=>$lang['nc_activity_manage']),
+// 					array('args'=>'activity,activity,operation',				'text'=>$lang['nc_activity_manage']),
 					//array('args'=>'pointprod,pointprod,operation',				'text'=>$lang['nc_pointprod']), 
 					array('args'=>'index,mall_consult,operation',               'text'=>'平台客服'),
                     /* array('args'=>'index,rechargecard,operation',               'text'=>'平台充值卡'),*/

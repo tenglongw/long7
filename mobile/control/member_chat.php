@@ -98,8 +98,14 @@ class member_chatControl extends mobileMemberControl {
 		}
 		$condition['msg_id'] = $msg_id;
 		$msg_list = $model_chat->getMsgToList($condition);
-		$result['msg_list'] = $msg_list;
-		if(!empty($msg_list)){
+		
+		foreach ($msg_list as $key=>$val){
+			$val['f_avatar'] = getMemberAvatarForID($val['f_id']);
+			$val['t_avatar'] = getMemberAvatarForID($val['t_id']);
+			$temp_msg_list[] = $val;
+		}
+		$result['msg_list'] = $temp_msg_list;
+		if(!empty($temp_msg_list)){
 			$result['last_msg_id'] = $msg_list[0]['m_id'];
 		}else{
 			$result['last_msg_id'] = $msg_id;

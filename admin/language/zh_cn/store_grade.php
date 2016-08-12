@@ -11,6 +11,9 @@ $lang['sort_only_lnteger']                      = '排序仅能为整数';
 $lang['back_store_grade_list']                  = '返回店铺等级列表';
 $lang['illegal_parameter']                      = '参数非法';
 
+$lang['store_trade_amount_min_only_lnteger']  = '最近30天最低成交金额仅能为整数';
+$lang['store_trade_amount_max_only_lnteger']  = '最近30天最高成交金额仅能为整数';
+
 $lang['store_grade']                = '店铺等级';
 $lang['store_grade_tpl']            = '店铺等级模板';
 $lang['manage']                     = '管理';
@@ -23,6 +26,9 @@ $lang['charges_standard']           = '收费标准';
 $lang['charges_standard_notice']           = '例如:100元/年';
 $lang['need_audit']                 = '需要审核';
 $lang['default_store_grade_no_del'] = '默认等级不能删除';
+
+$lang['store_trade_amount_min']  = '最近30天最低成交金额';
+$lang['store_trade_amount_max']  = '最近30天最高成交金额';
 //$lang['problem_del']                = '您确定要删除该店铺等级吗？删除该店铺等级下的所有店铺会自动改为默认等级';
 $lang['problem_del']                = '您确定要删除该店铺等级吗？';
 $lang['set_template']               = '设置可选模板';

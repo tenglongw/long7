@@ -68,8 +68,21 @@ class lotnumberModel extends Model{
      * @return array 抢购列表
 	 *
 	 */
-	public function getLotnumberList($condition, $page = null, $order = 'state asc', $field = '*', $limit = 0) {
+	public function getLotnumberList($condition, $page = 100000, $order = 'state asc', $field = '*', $limit = 0) {
         return $this->field($field)->where($condition)->page($page)->order($order)->limit($limit)->select();
+	}
+	
+	/**
+	 * 活动到期列表
+	 * @param array $condition 查询条件
+	 * @param int $page 分页数
+	 * @param string $order 排序
+	 * @param string $field 所需字段
+	 * @return array 抢购列表
+	 *
+	 */
+	public function getEndDateLotnumberList($condition, $order = 'state asc', $field = '*', $limit = 0) {
+		return $this->field($field)->where($condition)->order($order)->select();
 	}
 
 	/**

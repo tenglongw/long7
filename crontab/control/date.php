@@ -94,6 +94,106 @@ class dateControl extends BaseCronControl {
     }
 
     /**
+     * 摇号活动结束，抽取中奖用户
+     */
+    private function _lotnumber_win(){
+    	//查询结束的活动
+    	$lotnumber_model = Model('lotnumber');
+    	$model = Model();
+    	$condition = array();
+    	$condition['end_time'] = array('gt',time());
+    	$lotnumber_list = $lotnumber_model->getEndDateLotnumberList($condition);
+    	foreach ($lotnumber_list as $key=>$val){
+    		$rule_id = $val['rule_id'];//中奖规则-0:自定义中奖人数  1:设定中奖率
+    		//获取中奖人数
+    		if($rule_id == 0){
+    			$win_count = intval($val['win_quantity']);
+    		}else{
+    			$win_count = round($val['apply_count']*($val['win_rate']/100));
+    		}
+	    	//查询参与活动用户
+    		$member_list = $model->table('member_lotnumber')->where(array('lotnumber_id'=>$val['lotnumber_id']))->select();
+    		//获取中奖用户 随机抽取中奖数量的用户
+    		$member_list_win = array_rand($member_list,$win_count);
+    		//修改用户报名状态为已中奖
+    		foreach ($member_list_win as $wkey=>$wval){
+    			$result = $model->table('member_lotnumber')->where(array('ml_id'=>$wval['ml_id']))->update(array('state'=>'3'));
+    			if(!$result){
+    				$this->log('修改中奖用户状态失败 ML_ID'.$wval['ml_id']);
+    			}
+    		}
+    	}
+    }
+    
+    /**
+     * 时间到期，更新预售商品
+     */
+    private function _update_goods_pre(){
+    	$app_key = '3fb20ce689bd2157aa354838';
+    	$master_secret = 'bf731192df66a613b2d9087f';
+	    $client = new JPush($app_key, $master_secret);
+    	//查询发售列表
+    	//查询条件
+    	$where = array('is_appoint' => '1');
+    	//所需字段
+    	$fieldstr = "goods_commonid,store_id,goods_name,goods_image,appoint_satedate";
+    	//商品主键搜索
+    	$goods_list = $model_goods->getGoodsCommonList($where, $fieldstr, 100000, null);
+    	//如果发售日期小于当前日期则向客户端推送消息，商品上架
+    	foreach ($goods_list as $key=>$val){
+    		if(intval($val['appoint_satedate'])<time()){
+	    		$cron[] = $val['goods_commonid'];
+	    		//推送内容
+	    		$content = '您好，商品:'.$val['goods_name'].'已经上架，欢迎购买。';
+	    		//推送消息告诉客户商品已经上架
+	    		// 简单推送示例
+	    		$result = $client->push()
+	    		->setPlatform('all')
+	    		->addAllAudience()
+	    		->setNotificationAlert($content)
+	    		->send();
+    		}
+    	}
+    	//存在上架商品
+    	if(!empty($cron)){
+    		$this->_cron_1($cron);
+    	}
+    }
+    /**
+     * 更新店铺等级
+     */
+    private function _store_grade_update(){
+    	
+    }
+    
+    /**
+     * 更新会员等级
+     */
+    private function _member_grade_update(){
+    	 
+    }
+    
+    /**
+     * 上架
+     *
+     * @param array $cron
+     */
+    private function _cron_1($cron = array()){
+    	$condition = array('goods_commonid' => array('in',array_keys($cron)));
+    	$update = Model('goods')->editProducesOnline($condition);
+    	if ($update){
+    		//返回执行成功的cronid
+    		$cronid = array();
+    		foreach ($cron as $v) {
+    			$cronid[] = $v['id'];
+    		}
+    	}else{
+    		return false;
+    	}
+    	return $cronid;
+    }
+    
+    /**
      * 未付款订单超期自动关闭
      */
     private function _order_timeout_cancel() {

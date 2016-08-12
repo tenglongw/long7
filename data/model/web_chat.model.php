@@ -102,7 +102,7 @@ class web_chatModel extends Model{
 	* @return array
 	*/
 	public function getMsgList($condition = array()) {
-		$list = $this->table('chat_msg')->where($condition)->order('m_id desc')->select();
+		$list = $this->table('chat_msg')->where($condition)->order('m_id ')->select();
 		if(!empty($list) && is_array($list)) {
 			foreach($list as $k => $v) {
 				$v['add_time'] = date("Y-m-d H:i:s",$v['add_time']);
