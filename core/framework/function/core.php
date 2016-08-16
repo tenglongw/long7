@@ -926,9 +926,22 @@ function getMemberAvatar($member_avatar){
   * @param string $member_id
  * @return string
  */
-function getMemberAvatarForID($id){
+/* function getMemberAvatarForID($id){
 	if(file_exists(BASE_UPLOAD_PATH.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.jpg')){
 		return UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.jpg';
+	}else{
+		return UPLOAD_SITE_URL.'/'.ATTACH_COMMON.DS.C('default_user_portrait');
+	}
+} */
+
+/**
+ * 成员头像
+ * @param string $member_id
+ * @return string
+ */
+function getMemberAvatarForID($id,$ext='jpg'){
+	if(file_exists(BASE_UPLOAD_PATH.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.'.$ext)){
+		return UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.'.$ext;
 	}else{
 		return UPLOAD_SITE_URL.'/'.ATTACH_COMMON.DS.C('default_user_portrait');
 	}

@@ -14,6 +14,15 @@ $lang['link_index_category']	= '分类';
 $lang['link_index_pic_sign']	= '展示图片';
 $lang['link_all']               = '全部';
 $lang['link_help1']				= '设置的广告信息将显示在手机端首页';
+
+
+/**
+ * index
+ */
+$lang['link_sell_index_title']		= '商品名字';
+$lang['link_sell_index_date']		= '发售日期';
+$lang['link_index_mb_welcome']		= '欢迎页设置';
+$lang['link_welcome_help1']				= '设置的信息将显示在手机端欢迎首页面';
 /**
  * 添加
  */
@@ -39,6 +48,13 @@ $lang['link_add_pic_sign_error']	= '只接受图片文件gif, jpg, jpeg, png';
 $lang['link_index_mb_category']	= '分类图片设置';
 $lang['link_index_category']	= '分类';
 $lang['link_help1']				= '设置的广告信息将显示在手机端首页';
+
+/**
+ * index
+ */
+$lang['link_index_mb_sell']	= '发售列表设置';
+$lang['link_index_sell']	= '发售列表';
+$lang['link_sell_help1']				= '设置的信息将显示在手机端发售列表页显示';
 /**
  * 添加
  */

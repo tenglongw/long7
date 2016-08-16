@@ -46,7 +46,6 @@ class member_indexControl extends mobileMemberControl {
 		Language::read('member_home_member,cut');
 		$lang	= Language::getLangContent();
 		$member_id = $_POST['member_id'];
-	
 		//上传图片
 		$upload = new UploadFile();
 		$ext = strtolower(pathinfo($_FILES['pic']['name'], PATHINFO_EXTENSION));
@@ -108,21 +107,45 @@ class member_indexControl extends mobileMemberControl {
 		Language::read('member_home_member');
 		$lang	= Language::getLangContent();
 	
-		$model_member	= Model('member');
-		$model = Model();
-		$member_array	= array();
-		$member_array['member_name']	= $_POST['member_name'];
-		$member_array['member_avatar']	= $_POST['member_avatar'];
-		$update = $model_member->editMember(array('member_id'=>$_POST['member_id']),$member_array);
-		//修改社区名字
-		$model->table('circle_theme')->where(array('member_id'=>$_POST['member_id']))->update(array('member_name'=>$_POST['member_name']));
-		if($update){
-			$result['status'] = 0;
-			$result['message'] = '更新成功';
-		}else{
-			$result['status'] = 1;
-			$result['message'] = '更新失败';
+		$member_id = $_POST['member_id'];
+		if (!empty($_FILES['pic']['tmp_name'])){
+			$data['msg']				= 'error';
+			$data['origin_file_name']	= $_FILES["uploadFile".$i]["name"];
+			//上传图片
+			$upload = new UploadFile();
+			$ext = strtolower(pathinfo($_FILES['pic']['name'], PATHINFO_EXTENSION));
+			$upload->set('file_name',"avatar_$member_id.$ext");
+			$upload->set('default_dir',ATTACH_AVATAR);
+			$result = $upload->upfile('pic');
+			if ($result){
+// 				$data['msg'] = 'succeed';
+// 				$data['default_dir'] = getMemberAvatarForID($this->member_info['member_id'],$ext);
+				$return['status'] = '0';
+				$return['message'] = '上传头像成功';
+			}else{
+				$return['status'] = '1';
+				$return['message'] = '上传头像失败';
+			}
+// 			$return['upload_pic'] = $data;
 		}
-		echo json_encode($result);
+		if(!empty($_POST['member_name'])){
+			$model_member	= Model('member');
+			$model = Model();
+			$member_array	= array();
+			$member_array['member_name']	= $_POST['member_name'];
+			$member_array['member_avatar']	= $_POST['member_avatar'];
+			$update = $model_member->editMember(array('member_id'=>$member_id),$member_array);
+			//修改社区名字
+			$model->table('circle_theme')->where(array('member_id'=>$member_id))->update(array('member_name'=>$_POST['member_name']));
+			if($update){
+				$return['status'] = 0;
+				$return['message'] = '更新成功';
+			}else{
+				$return['status'] = 1;
+				$return['message'] = '更新失败';
+			}
+// 			$return['update_name'] = $data1;
+		}
+		echo json_encode($return);
 	}
 }

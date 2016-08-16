@@ -223,6 +223,7 @@ class themeControl extends mobileHomeControl{
 			foreach ($affix_list as $key => $affix){
 				$insert = array();
 				$insert['affix_filename']	= $affix['affix_filename'];
+				$insert['affix_filethumb']	= $affix['affix_filethumb'];
 				$insert['affix_filesize']	= $affix['affix_filesize'];
 				$insert['affix_addtime']	= time();
 				$insert['affix_type']		= $affix['affix_type'];

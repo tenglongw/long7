@@ -174,6 +174,36 @@ class indexControl extends mobileHomeControl{
         }
     }
 
+    
+    /**
+     * android客户端版本号
+     */
+    public function welcomeOp() {
+    	$model_link = Model('mb_welcome');
+    	$link_list = $model_link->getLinkList(array('order'=>'w_type,w_sort'));
+    	/**
+    	 * 整理图片链接
+    	 */
+    	$welcome_list = array();
+    	;
+    	if (is_array($link_list)){
+    		foreach ($link_list as $k => $v){
+    			if (!empty($v['w_image'] )){
+    				$v['w_image'] = UPLOAD_SITE_URL.'/'.ATTACH_MOBILE.'/welcome'.'/'.$v['w_image'];
+    				$v['w_thumb_image'] = UPLOAD_SITE_URL.'/'.ATTACH_MOBILE.'/welcome'.'/'.$v['w_thumb_image'];
+    			}
+    			if($v['w_type'] == '0'){
+    				$welcome_list[] = $v;
+    			}else{
+    				$flash = $v;
+    			}
+    		}
+    	}
+    	$return['welcome_list'] = $welcome_list;
+    	$return['flash'] = $flash;
+    	output_data($return);
+    }
+    
     /**
      * android客户端版本号
      */
