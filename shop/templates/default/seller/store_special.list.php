@@ -20,7 +20,7 @@
         <td><?php echo $value['sp_sort'];?></td>
         <?php $sp_href = empty($value['sp_url'])?urlShop('show_store', 'show_article', array('store_id' => $_SESSION['store_id'], 'ssp_id' => $value['ssp_id'])):$value['sp_url'];?>
         <td class="tl"><dl class="goods-name"><dt><a href="<?php echo $sp_href;?>" ><?php echo $value['sp_title'];?></a></dt></dl></td>
-        <td><?php if($value['sp_if_show']){echo $lang['nc_yes'];}else{echo $lang['nc_no'];}?></td>
+        <td><?php if($value['sp_if_show']==1){echo $lang['nc_yes'];}else{echo $lang['nc_no'];}?></td>
         <td class="nscs-table-handle"><span><a href="<?php echo urlShop('store_special', 'special_edit', array('ssp_id' => $value['ssp_id']));?>" class="btn-blue"><i class="icon-edit"></i>
           <p> <?php echo $lang['nc_edit'];?></p>
           </a></span><span> <a href="javascript:;" nctype="btn_del" data-sp-id="<?php echo $value['ssp_id'];?>"class="btn-red"><i class="icon-trash"></i>

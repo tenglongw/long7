@@ -939,11 +939,22 @@ function getMemberAvatar($member_avatar){
  * @param string $member_id
  * @return string
  */
-function getMemberAvatarForID($id,$ext='jpg'){
-	if(file_exists(BASE_UPLOAD_PATH.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.'.$ext)){
-		return UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.'.$ext;
+function getMemberAvatarForID($id){
+	if(file_exists(BASE_UPLOAD_PATH.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.jpg')){
+		return UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.jpg';
+	}if(file_exists(BASE_UPLOAD_PATH.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.png')){
+		return UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.png';
 	}else{
 		return UPLOAD_SITE_URL.'/'.ATTACH_COMMON.DS.C('default_user_portrait');
+	}
+}
+
+function unlinkMemberAvatarForID($id){
+	if(file_exists(BASE_UPLOAD_PATH.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.jpg')){
+		@unlink(UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.jpg');
+	}
+	if(file_exists(BASE_UPLOAD_PATH.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.png')){
+		@unlink(UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.png');
 	}
 }
 

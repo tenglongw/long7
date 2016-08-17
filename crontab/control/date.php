@@ -7,6 +7,7 @@
  *
  
  */
+require_once("../JPush/JPush.php");
 defined('InWrzcNet') or exit('Access Invalid!');
 
 class dateControl extends BaseCronControl {
@@ -44,53 +45,59 @@ class dateControl extends BaseCronControl {
      */
     public function indexOp() {
 
-        //更新订单商品佣金值
-        $this->_order_commis_rate_update();
+//         //更新订单商品佣金值
+//         $this->_order_commis_rate_update();
 
-        //订单超期后不允许评价
-        $this->_order_eval_expire_update();
+//         //订单超期后不允许评价
+//         $this->_order_eval_expire_update();
 
-        //未付款订单超期自动关闭
-        $this->_order_timeout_cancel();
+//         //未付款订单超期自动关闭
+//         $this->_order_timeout_cancel();
 
-         //增加会员积分和经验值
+//          //增加会员积分和经验值
 //         $this->_add_points();
 
-        //订单自动完成
-        $this->_order_auto_complete();
+//         //订单自动完成
+//         $this->_order_auto_complete();
 
-        //自提点中，已经关闭的订单删除
-        $this->_order_delivery_cancel_del();
+//         //自提点中，已经关闭的订单删除
+//         $this->_order_delivery_cancel_del();
 
-        //更新订单扩展表收货人所在省份ID
-        $this->_order_reciver_provinceid_update();
+//         //更新订单扩展表收货人所在省份ID
+//         $this->_order_reciver_provinceid_update();
 
-        //更新退款申请超时处理
-        Model('trade')->editRefundConfirm();
+//         //更新退款申请超时处理
+//         Model('trade')->editRefundConfirm();
 
-        //代金券即将过期提醒
-        $this->_voucher_will_expire();
+//         //代金券即将过期提醒
+//         $this->_voucher_will_expire();
 
-        //虚拟兑换码即将过期提醒
-        $this->_vr_code_will_expire();
+//         //虚拟兑换码即将过期提醒
+//         $this->_vr_code_will_expire();
 
-        //更新商品访问量
-        $this->_goods_click_update();
+//         //更新商品访问量
+//         $this->_goods_click_update();
 
-        //更新商品促销到期状态
-        $this->_goods_promotion_state_update();
+//         //更新商品促销到期状态
+//         $this->_goods_promotion_state_update();
 
-        //商品到货通知提醒
-        $this->_arrival_notice();
+//         //商品到货通知提醒
+//         $this->_arrival_notice();
 
-        //更新浏览量
-        $this->_goods_browse_update();
+//         //更新浏览量
+//         $this->_goods_browse_update();
 
-        //缓存订单及订单商品相关数据
-        $this->_order_goods_cache();
+//         //缓存订单及订单商品相关数据
+//         $this->_order_goods_cache();
 
-        //会员相关数据统计
-        $this->_member_stat();
+//         //会员相关数据统计
+//         $this->_member_stat();
+			//推送发售列表消息
+//     	$this->_push_goods_pre_message();
+			//计算店铺等级
+// 			$this->_store_grade_update();
+			//更新会员等级
+			$this->_member_grade_update();
     }
 
     /**
@@ -126,43 +133,63 @@ class dateControl extends BaseCronControl {
     }
     
     /**
-     * 时间到期，更新预售商品
+     * 时间到期，推送预售商品消息
      */
-    private function _update_goods_pre(){
+    private function _push_goods_pre_message(){
     	$app_key = '3fb20ce689bd2157aa354838';
     	$master_secret = 'bf731192df66a613b2d9087f';
+    	$model_link = Model('mb_sell');
 	    $client = new JPush($app_key, $master_secret);
     	//查询发售列表
     	//查询条件
-    	$where = array('is_appoint' => '1');
-    	//所需字段
-    	$fieldstr = "goods_commonid,store_id,goods_name,goods_image,appoint_satedate";
-    	//商品主键搜索
-    	$goods_list = $model_goods->getGoodsCommonList($where, $fieldstr, 100000, null);
+    	$where['s_time'] = array('elt',time());
+    	$where['s_ispush'] = 0;
+    	$link_list = $model_link->getPushMsgList($where);
     	//如果发售日期小于当前日期则向客户端推送消息，商品上架
-    	foreach ($goods_list as $key=>$val){
-    		if(intval($val['appoint_satedate'])<time()){
-	    		$cron[] = $val['goods_commonid'];
-	    		//推送内容
-	    		$content = '您好，商品:'.$val['goods_name'].'已经上架，欢迎购买。';
-	    		//推送消息告诉客户商品已经上架
-	    		// 简单推送示例
-	    		$result = $client->push()
-	    		->setPlatform('all')
-	    		->addAllAudience()
-	    		->setNotificationAlert($content)
-	    		->send();
-    		}
-    	}
-    	//存在上架商品
-    	if(!empty($cron)){
-    		$this->_cron_1($cron);
+    	foreach ($link_list as $key=>$val){
+    		//推送内容
+    		$content = '您好，商品:'.$val['s_name'].'已经上架，欢迎购买。';
+    		//推送消息告诉客户商品已经上架
+    		// 简单推送示例
+    		$result = $client->push()
+    		->setPlatform('all')
+    		->addAllAudience()
+    		->setNotificationAlert($content)
+    		->send();
+    		//修改推送状态
+    		$param['s_id'] = $val['s_id'];
+    		$param['s_ispush'] = 1;
+    		$model_link->update($param);
     	}
     }
     /**
      * 更新店铺等级
      */
     private function _store_grade_update(){
+    	//店铺交易
+    	$model = Model('stat');
+    	//店铺等级
+    	$model_grade = Model('store_grade');
+    	//店铺
+    	$model_store = Model('store');
+    	$where = array();
+    	$where['order_isvalid'] = 1;//计入统计的有效订单
+    	$where['order_add_time'] = array('between',array(strtotime("-1 month"),time()));
+    	//列表字段
+    	$field = " store_id,store_name,SUM(order_amount) as orderamount, COUNT(*) as ordernum, COUNT(DISTINCT buyer_id) as membernum";
+    	$orderby_arr = array('membernum asc','membernum desc','ordernum asc','ordernum desc','orderamount asc','orderamount desc');
+    	$statlist = $model->statByStatorder($where, $field, 0, 0, $orderby, 'store_id');
+    	//修改店铺等级
+    	foreach ($statlist as $key=>$val){
+    		//查询店铺等级
+    		$where1['sg_trade_amount_min'] = array('elt',round($val['orderamount']));
+    		$where1['sg_trade_amount_max'] = array('egt',round($val['orderamount']));
+    		$grade_info = $model_grade->getGradeByTradeAmount($where1);
+    		//修改店铺等级
+    		$where2['store_id'] = $val['store_id'];
+    		$update['grade_id'] = $grade_info['sg_id'];
+    		$result = $model_store->editStore($update,$where2);
+    	}
     	
     }
     
@@ -170,7 +197,38 @@ class dateControl extends BaseCronControl {
      * 更新会员等级
      */
     private function _member_grade_update(){
-    	 
+    	//会员
+    	$model_member	= Model('member');
+    	//获取会员等级设置
+    	$model_setting = Model('setting');
+    	$list_setting = $model_setting->getListSetting();
+    	$list_setting['member_grade'] = $list_setting['member_grade']?unserialize($list_setting['member_grade']):array();
+    	//查询近一个月消费金额
+    	$model = Model('stat');
+    	$where = array();
+    	$where['statm_time'] = array('between',array(strtotime("-1 month"),time()));
+    	//列表字段
+    	$field = ' statm_memberid, statm_membername, statm_time, SUM(statm_orderamount) as orderamount, SUM(statm_predincrease) as predincrease, -SUM(statm_predreduce) as predreduce, SUM(statm_pointsincrease) as pointsincrease, -SUM(statm_pointsreduce) as pointsreduce ';
+    	$orderby = trim('statm_memberid desc');
+    	$statlist = $model->statByStatmember($where, $field, 0, 0, $orderby, 'statm_memberid');
+    	foreach ($statlist as $key=>$val){
+    		//计算会员等级
+    		$v_level = $this->getMember_grade(round($val['orderamount']),$list_setting['member_grade']);
+    		//修改会员等级
+    		$model = Model();
+    		$member_array	= array();
+    		$member_array['member_grade']	= $v_level;
+    		$update = $model_member->editMember(array('member_id'=>$val['statm_memberid']),$member_array);
+    	}
+    }
+    
+    private function getMember_grade($orderamount,$member_grade){
+    	foreach ($member_grade as $key=>$val){
+    		if($val['exppoints']<=$orderamount){
+    			$v_level = $val['level'];
+    		}
+    	}
+    	return $v_level;
     }
     
     /**

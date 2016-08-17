@@ -39,13 +39,26 @@ class indexControl extends mobileHomeControl{
         	if($key==0){
         		$result['adv_list'] = $value['adv_list']['item'];
         		foreach ($result['adv_list'] as $akey=>$aval){
+        			if($aval['type']=='special'){
+        				//查询专题页title
+        				$special_info = $model_mb_special->getMbSpecialById(intval($aval['data']));
+        				$result['adv_list'][$akey]['title'] = $special_info['special_desc'];
+        			}
         			$name_array = explode('.', $aval['image']);
         			$size = count($name_array);
         			$result['adv_list'][$akey]['image'] =str_replace('.'.$name_array[$size-1],'_640x350.'.$name_array[$size-1],  $aval['image']);
         		}
         	}
         }
-        $result['article_list'] = $article_list;
+        foreach ($article_list as $key=>$val){
+        	if($key==0){
+        		$article_one = $val;
+        	}else{
+        		$article_other[] = $val;
+        	}
+        }
+        $result['article_one'] = $article_one;
+        $result['article_list'] = $article_other;
         echo json_encode($result);exit;
 	}
 	
@@ -103,7 +116,14 @@ class indexControl extends mobileHomeControl{
 		foreach ($data as $key=>$value){
 			$result['status'] = 200;
 			if($key==0){
-				$result['adv_list'] = $value['adv_list']['item'];
+				foreach ($value['adv_list']['item'] as $akey=>$aval){
+					if($aval['type']=='special'){
+						//查询专题页title
+						$special_info = $model_mb_special->getMbSpecialById(intval($aval['data']));
+						$aval['title'] = $special_info['special_desc'];
+					}
+					$result['adv_list'][] = $aval;
+				}
 			}else{
 				$temp=$value['home1'];
 				$result['special'][] = $temp;
@@ -199,8 +219,8 @@ class indexControl extends mobileHomeControl{
     			}
     		}
     	}
-    	$return['welcome_list'] = $welcome_list;
-    	$return['flash'] = $flash;
+    	$return['guide_list'] = $welcome_list;
+    	$return['welcome'] = $flash;
     	output_data($return);
     }
     

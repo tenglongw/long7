@@ -108,13 +108,15 @@ class member_indexControl extends mobileMemberControl {
 		$lang	= Language::getLangContent();
 	
 		$member_id = $_POST['member_id'];
+		//删除图片
+		//unlinkMemberAvatarForID($member_id);
 		if (!empty($_FILES['pic']['tmp_name'])){
 			$data['msg']				= 'error';
 			$data['origin_file_name']	= $_FILES["uploadFile".$i]["name"];
 			//上传图片
 			$upload = new UploadFile();
 			$ext = strtolower(pathinfo($_FILES['pic']['name'], PATHINFO_EXTENSION));
-			$upload->set('file_name',"avatar_$member_id.$ext");
+			$upload->set('file_name',"avatar_$member_id.".".jpg");
 			$upload->set('default_dir',ATTACH_AVATAR);
 			$result = $upload->upfile('pic');
 			if ($result){

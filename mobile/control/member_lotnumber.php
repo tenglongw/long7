@@ -24,12 +24,12 @@ class member_lotnumberControl extends mobileMemberControl {
 		$model_lotnumber = Model('lotnumber');
 		$model = Model();
 		$condition	= array();
-		$condition ['field'] = 'DISTINCT lotnumber.lotnumber_id,lotnumber.lotnumber_name,lotnumber.lotnumber_image,lotnumber.lotnumber_price,lotnumber.store_id';
+		$condition ['field'] = 'DISTINCT lotnumber.lotnumber_id,lotnumber.lotnumber_name,lotnumber.lotnumber_image,lotnumber.lotnumber_price,lotnumber.store_id, member_lotnumber.state';
         $condition['limit'] = '300';
         $condition['state'] = '1';
         $condition['join_type'] = $_POST['join_type'];//'left join'
 		if('join' == $_POST['join_type']){
-			$condition['field'] = $condition ['field'].','.'(case member_lotnumber.state when "0" then "已报名" when "1" then "已中奖" when "2" then "已购买" end) state_text';
+			$condition['field'] = $condition ['field'].','.'(case member_lotnumber.state when "0" then "已报名" when "1" then "中奖" when "2" then "未中签" when "3" then "完成" end) state_text';
 		}
         $lotnumber_list = $model_lotnumber->getJoinList($condition, $this->page);
         //$page_count = $model_lotnumber->getLotnumberCount();

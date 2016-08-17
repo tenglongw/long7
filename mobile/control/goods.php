@@ -77,23 +77,22 @@ class goodsControl extends mobileHomeControl{
      * 商品发售列表
      */
     public function goods_list_preOp() {
-    	//echo TIMESTAMP;exit;
-    	$model_goods = Model('goods');
-    
+    	$model_link = Model('mb_sell');
+    	//查询发售列表
     	//查询条件
-    	$where = array('is_appoint' => '1');
-    	//所需字段
-    	$fieldstr = "goods_commonid,store_id,goods_name,goods_image,appoint_satedate";
-    	//商品主键搜索
-    	$goods_list = $model_goods->getGoodsCommonList($where, $fieldstr, $this->page, null);
-    	$page_count = $model_goods->gettotalpage();
-    
-    	//处理商品列表(抢购、限时折扣、商品图片)
-    	$goods_list = $this->_goods_list_extend($goods_list);
-    	//echo json_encode($goods_list);exit;
-    
-    	//output_data(array('goods_list' => $goods_list), mobile_page($page_count));
-    	output_data($goods_list);
+    	$where['s_ispush'] = 0;
+    	$link_list = $model_link->getPushMsgList($where);
+    	/**
+    	 * 整理图片链接
+    	 */
+    	if (is_array($link_list)){
+    		foreach ($link_list as $k => $v){
+    			if (!empty($v['s_image'])){
+    				$link_list[$k]['s_image'] = UPLOAD_SITE_URL.'/'.ATTACH_MOBILE.'/sell'.'/'.$v['s_image'];
+    			}
+    		}
+    	}
+    	output_data($link_list);
     }
 
     /**
@@ -292,7 +291,7 @@ class goodsControl extends mobileHomeControl{
         unset($goods_detail['goods_info']['brand_name']);
         unset($goods_detail['goods_info']['type_id']);
         unset($goods_detail['goods_info']['goods_image']);
-        unset($goods_detail['goods_info']['goods_body']);
+        unset($goods_detail['goods_info']['mobile_body']);
         unset($goods_detail['goods_info']['goods_state']);
         unset($goods_detail['goods_info']['goods_stateremark']);
         unset($goods_detail['goods_info']['goods_verify']);

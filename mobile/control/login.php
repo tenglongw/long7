@@ -150,7 +150,7 @@ class loginControl extends mobileHomeControl {
     		$res['verify'] = $verify;
     		$temp['verify'] = $verify;
     		$temp['time'] = time();
-    		setNcCookie($mobile,json_encode($temp),600);
+    		setNcCookie($mobile,json_encode($temp),600*60*24*30);
     	}
     	echo json_encode($res);exit;
     }

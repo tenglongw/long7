@@ -8,7 +8,7 @@
     <table class="table tb-type2 nobdb">
       <tbody>
         <tr class="noborder">
-          <td colspan="2"><label for="link_catetory"> 欢迎页名称:</label></td>
+          <td colspan="2"><label for="link_catetory"> 页面名称:</label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform">
@@ -40,8 +40,8 @@
         <tr class="noborder">
           <td class="vatop rowform">
           	<select id="link_type" name="link_type">
-          		<option value="0">欢迎页 </option>
-          		<option value="1">flash页 </option>
+          		<option value="0">引导页 </option>
+          		<option value="1">欢迎页 </option>
           	</select>
           </td>
           <td class="vatop tips"></td>

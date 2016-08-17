@@ -119,7 +119,6 @@ class mb_specialModel extends Model{
         $condition['item_usable'] = self::SPECIAL_ITEM_USABLE;
         $item_list = $this->_getMbSpecialItemList($condition);
         if(!empty($item_list)) {
-        //echo json_encode($item_list);exit;
             $new_item_list = array();
             foreach ($item_list as $value) {
                 //处理图片
@@ -138,6 +137,15 @@ class mb_specialModel extends Model{
      */
     public function getMbSpecialIndex() {
         return $this->getMbSpecialItemUsableListByID(self::INDEX_SPECIAL_ID);
+    }
+    
+    /**
+     * 查询专题页信息
+     */
+    public function getMbSpecialById($special_id) {
+    	$condition['special_id'] = $special_id;
+    	$result = $this->table('mb_special')->where($condition)->find();
+    	return $result;
     }
     /**
      * 商城页专题
@@ -180,6 +188,9 @@ class mb_specialModel extends Model{
                 }
                 $item_data['item'] = $new_item;
                 break;
+                case 'content':
+                	$item_data['content'] = $item_content;
+                	break;
             default:
                 $new_item = array();
                 foreach ((array) $item_data['item'] as $key => $value) {

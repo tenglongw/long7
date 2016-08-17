@@ -26,8 +26,8 @@ class member_gradeControl extends SystemControl{
     	        $mg_arr = array();
     	        $i = 0;
     	        foreach($_POST['mg'] as $k=>$v){
-    	            $mg_arr[$i]['level'] = $i;
-    	            $mg_arr[$i]['level_name'] = 'V'.$i;
+    	            $mg_arr[$i]['level'] = ($i+1);
+    	            $mg_arr[$i]['level_name'] = 'V'.($i+1);
         			//所需经验值
         			$mg_arr[$i]['exppoints'] = intval($v['exppoints']);
         			$i++;

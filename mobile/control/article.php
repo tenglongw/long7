@@ -44,7 +44,14 @@ class articleControl extends mobileHomeControl{
 			//$article_list = $article_model->getArticleList($condition);	
 			//处理图片地址
 			$article_list = $this->article_extend($article_list);
-			output_data(array('article_list' => $article_list));		
+			foreach ($article_list as $key=>$val){
+				if($key==0){
+					$article_one = $val;
+				}else{
+					$article_other[] = $val;
+				}
+			}
+			output_data(array('article_one'=>$article_one,'article_list' => $article_other));		
 		}
 		else {
 			output_error('缺少参数:文章类别编号');

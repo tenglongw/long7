@@ -958,6 +958,9 @@ class goodsModel extends Model{
         $goods_info = $this->_rGoodsCache($goods_id, $fields);
         if (empty($goods_info)) {
             $goods_info = $this->getGoodsInfo(array('goods_id'=>$goods_id));
+            if(empty($goods_info)){
+            	$goods_info = $this->getGoodsInfo(array('goods_commonid'=>$goods_id));
+            }
             $this->_wGoodsCache($goods_id, $goods_info);
         }
         return $goods_info;

@@ -26,6 +26,19 @@ class mb_sellModel{
 	}
 	
 	/**
+	 * 列表
+	 *
+	 * @param array $condition 检索条件
+	 * @param obj $page 分页
+	 * @return array 数组结构的返回结果
+	 */
+	public function getPushMsgList($where,$page=''){
+		$model = Model();
+		$result =$model->table('mb_sell')->where($where)->select();
+		return $result;
+	}
+	
+	/**
 	 * 取单个内容
 	 *
 	 * @param int $id ID

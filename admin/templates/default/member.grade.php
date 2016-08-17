@@ -19,7 +19,7 @@
         <td>
         <ul>
         	<li class="tips">“会员级别设置”提交后，当会员符合某个级别后将自动升至该级别，请谨慎设置会员级别</li>
-            <li class="tips">建议：一、级别应该是逐层递增，例如“级别2”所需经验值高于“级别1”；二、设置的第一个级别所需经验值应为0；三、信息应填写完整</li>
+            <li class="tips">建议：一、级别应该是逐层递增，例如“级别2”所需消费金额高于“级别1”；二、设置的第一个级别所需消费金额应为0；三、信息应填写完整</li>
           </ul></td>
       </tr>
     </tbody>
@@ -36,25 +36,29 @@
           </tr>
           <tr class="thead">
             <th class="align-center">级别</th>
-            <th class="align-left">经验值</th>
+            <th class="align-left">消费金额</th>
           </tr>
         </thead>
         <tbody id="mg_tbody">
             <tr id="row_0">
-        		<td class="w108 align-center">V0</td>
+        		<td class="w108 align-center">V1</td>
         		<td class="align-left"><input type="text" name="mg[0][exppoints]" value="<?php echo $output['list_setting']['member_grade'][0]['exppoints'];?>" class="w60" readonly/></td>
         	</tr>
         	<tr id="row_1">
-        		<td class="w108 align-center">V1</td>
+        		<td class="w108 align-center">V2</td>
         		<td class="align-left"><input type="text" name="mg[1][exppoints]" value="<?php echo $output['list_setting']['member_grade'][1]['exppoints'];?>" class="w60" nc_type="verify" data-param='{"name":"经验值","type":"int"}'/></td>
         	</tr>
         	<tr id="row_2">
-        		<td class="w108 align-center">V2</td>
+        		<td class="w108 align-center">V3</td>
         		<td class="align-left"><input type="text" name="mg[2][exppoints]" value="<?php echo $output['list_setting']['member_grade'][2]['exppoints'];?>" class="w60" nc_type="verify" data-param='{"name":"经验值","type":"int"}'/></td>
         	</tr>
         	<tr id="row_3">
-        		<td class="w108 align-center">V3</td>
+        		<td class="w108 align-center">V4</td>
         		<td class="align-left"><input type="text" name="mg[3][exppoints]" value="<?php echo $output['list_setting']['member_grade'][3]['exppoints'];?>" class="w60" nc_type="verify" data-param='{"name":"经验值","type":"int"}'/></td>
+        	</tr>
+        	<tr id="row_3">
+        		<td class="w108 align-center">V5</td>
+        		<td class="align-left"><input type="text" name="mg[4][exppoints]" value="<?php echo $output['list_setting']['member_grade'][4]['exppoints'];?>" class="w60" nc_type="verify" data-param='{"name":"经验值","type":"int"}'/></td>
         	</tr>
         </tbody>
         <tfoot>

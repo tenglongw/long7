@@ -10,7 +10,7 @@
     <table class="table tb-type2">
       <tbody>
         <tr class="noborder">
-           <td colspan="2" class="required">欢迎页名称</td>
+           <td colspan="2" class="required">页面名称</td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform">
@@ -42,8 +42,8 @@
         <tr class="noborder">
           <td class="vatop rowform">
           	<select id="link_type" name="link_type">
-          		<option value="0" <?php if($output['link_array']['w_type']==0){?>checked<?php }?>>欢迎页 </option>
-          		<option value="1"<?php if($output['link_array']['w_type']==1){?>checked<?php }?>>flash页 </option>
+          		<option value="0" <?php if($output['link_array']['w_type']=='0'){?>selected=true<?php }?>>引导页 </option>
+          		<option value="1"<?php if($output['link_array']['w_type']=='1'){?>selected=true<?php }?>>欢迎页 </option>
           	</select>
           </td>
           <td class="vatop tips"></td>

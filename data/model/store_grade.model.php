@@ -165,4 +165,14 @@ class store_gradeModel{
 		$result = Db::select($param,$page);
 		return $result;
 	}
+	
+	/**
+	 * 根据交易金额获取店铺等级
+	 * @param unknown $condition
+	 */
+	public function getGradeByTradeAmount($where){
+		$model = Model();
+		$result =$model->table('store_grade')->where($where)->find();
+		return $result;
+	}
 }

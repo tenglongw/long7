@@ -32,7 +32,7 @@
         <tr class="thead">
           <th>&nbsp;</th>
           <th>排序</th>
-          <th>欢迎页名字</th>
+          <th>页面名字</th>
           <th><?php echo $lang['link_index_pic_sign'];?></th>
           <th>类型</th>
           <th>创建日期</th>
@@ -51,7 +51,7 @@
 					echo "<div class='size-88x31'><span class='thumb size-88x31'><i></i><img width=\"88\" height=\"31\" src='".$v['w_image']."' onload='javascript:DrawImage(this,88,31);' /></span></div>";
 				}
 				?></td>
-		  <td><?php if($v['w_type']==0){?>欢迎页<?php }else{?>flash页<?php }?></td>
+		  <td><?php if($v['w_type']==0){?>引导页<?php }else{?>欢迎页<?php }?></td>
 			<td><?php echo @date('Y-m-d',$v['w_time']);?></td>
           <td class="w96 align-center"><a href="index.php?act=mb_welcome&op=mb_welcome_edit&w_id=<?php echo $v['w_id'];?>"><?php echo $lang['nc_edit'];?></a> | <a href="javascript:if(confirm('<?php echo $lang['nc_ensure_del'];?>'))window.location = 'index.php?act=mb_welcome&op=mb_welcome_del&w_id=<?php echo $v['w_id'];?>';"><?php echo $lang['nc_del'];?></a></td>
         </tr>
