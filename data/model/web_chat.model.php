@@ -292,19 +292,36 @@ class web_chatModel extends Model{
 	 * @param
 	 * @return array
 	 */
-	public function getMsgToList($condition = array(),$page = 10) {
+	public function getMsgToList($condition = array()) {
 		$list = array();
-		$t_id = intval($condition['t_id']);
-		if ($t_id > 0) {
-			$condition_sql = " (t_id = '".$t_id."' or f_id = '".$t_id."' )";
-		} else {
-			$condition_sql = " (f_id = '".$f_id."' or t_id = '".$f_id."')";
-		}
-		$msg_id = intval($condition['msg_id']);
-		if (!empty($msg_id)) {
-			$condition_sql .= " and m_id > '".$msg_id."'";
-		}
-		$list = $this->getMsgList($condition_sql);
+		$f_id = intval($condition['f_id']);
+	    if ($f_id > 0) {
+	        $t_id = intval($condition['t_id']);
+			if ($t_id > 0) {
+			    $condition_sql = " ((f_id = '".$f_id."' and t_id = '".$t_id."') or (f_id = '".$t_id."' and t_id = '".$f_id."'))";
+			} else {
+			    $condition_sql = " (f_id = '".$f_id."' or t_id = '".$f_id."')";
+			}
+			$msg_id = intval($condition['msg_id']);
+			if($msg_id>0){
+				$condition_sql .= " and m_id >'".$msg_id."'";
+			}
+	        $add_time_from = trim($condition['add_time_from']);
+	        if (!empty($add_time_from)) {
+	            $add_time_from = strtotime($add_time_from);
+	            $condition_sql .= " and add_time >= '".$add_time_from."'";
+			}
+	        $add_time_to = trim($condition['add_time_to']);
+	        if (!empty($add_time_to)) {
+	            $add_time_to = strtotime($add_time_to)+60*60*24;
+	            $condition_sql .= " and add_time <= '".$add_time_to."'";
+			}
+			$t_msg = trim($condition['t_msg']);
+	        if (!empty($t_msg)) {
+	            $condition_sql .= " and t_msg like '%".$t_msg."%'";
+			}
+			$list = $this->getMsgList($condition_sql);
+	    }
 		return $list;
 	}
 	/**

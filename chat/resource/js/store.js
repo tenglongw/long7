@@ -82,9 +82,17 @@
 			dataType:"jsonp",
 			async: true,
 		    success: function(m_list){
-		    	msg_list = m_list['msg_list'];
-		    	console.log(msg_list);
-		    	if(last_msg_id>0){
+		    	var temp_list = m_list['msg_list'];
+		    	//$m_list = array();
+				for(var i=0;i<temp_list.length;i++){
+					if(temp_list[i]['f_id']==user['u_id']){
+						msg_list[temp_list[i]['t_id']].push(temp_list[i]);
+					}else{
+						//$m_list[$val['f_id']][] = $val;
+						msg_list[temp_list[i]['f_id']].push(temp_list[i]);
+					}
+				}
+		    	if(last_msg_id>0 && temp_list.length>0){
 		    		get_msg(msg_list);
 		    	}
 		    	last_msg_id = m_list['last_msg_id'];
@@ -134,6 +142,9 @@
 			      get_state(u_list);
 			      update_sellers();
 			    });*/
+		
+		
+		
 		send_state();
 //		get_state(u_list);
 		update_sellers();

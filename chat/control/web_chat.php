@@ -117,24 +117,17 @@ class web_chatControl extends BaseControl {
 	public function get_msgOp(){
 		$member = array();
 		$model_chat	= Model('web_chat');
-		$condition['t_id'] = $_GET['t_id'];
+		//$condition['t_id'] = $_GET['t_id'];
+		$condition['f_id'] = $_SESSION['member_id'];
 		$msg_id = 0;
 		if(!empty($_GET['msg_id'])){
 			$msg_id = $_GET['msg_id'];
 		}
 		$condition['msg_id'] = $msg_id;
 		$msg_list = $model_chat->getMsgToList($condition);
-		$m_list = array();
-		foreach ($msg_list as $key=>$val){
-			if($val['f_id']==$_SESSION['member_id']){
-				$m_list[$val['t_id']][] = $val;
-			}else{
-				$m_list[$val['f_id']][] = $val;
-			}
-		}
-		$result['msg_list'] = $m_list;
+		$result['msg_list'] = $msg_list;
 		if(!empty($msg_list)){
-			$result['last_msg_id'] = $msg_list[0]['m_id'];
+			$result['last_msg_id'] = $msg_list[count($msg_list)-1]['m_id'];
 		}else{
 			$result['last_msg_id'] = $msg_id;
 		}

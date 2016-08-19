@@ -35,7 +35,7 @@
       <input nctype="image_data" name="item_data[item][<?php echo $item_key;?>][data]" type="hidden" value="<?php echo $item_value['data'];?>">
       <div class="handle">
       </div>
-      <a nctype="btn_del_item_image" href="javascript:;"><i class="icon-trash"></i>删除</a>
+      <a nctype="btn_del_item_image" href="javascript:;" style='top:35px;'><i class="icon-trash"></i>删除</a>
       <a nctype="btn_edit_item_image" data-desc="640*240" href="javascript:;"><i class="icon-edit"></i>编辑</a>
       <?php } ?>
     </div>

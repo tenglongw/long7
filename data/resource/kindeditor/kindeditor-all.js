@@ -6163,8 +6163,8 @@ KindEditor.lang({
 	'media.autostart' : '自动播放',
 	'media.upload' : '上传',
 	'media.viewServer' : '文件空间',
-	'image.localImage' : '本地上传',
 	'image.remoteImage' : '网络图片',
+	'image.localImage' : '本地上传',
 	'image.remoteUrl' : '图片地址',
 	'image.localUrl' : '上传文件',
 	'image.size' : '图片大小',
@@ -7289,14 +7289,14 @@ KindEditor.plugin('image', function(K) {
 				afterSelect : function(i) {}
 			});
 			tabs.add({
-				title : lang.localImage,
-				panel : K('.tab2', div)
-			});
-			tabs.add({
 				title : lang.remoteImage,
 				panel : K('.tab1', div)
 			});
-			tabs.select(tabIndex);
+			tabs.add({
+				title : lang.localImage,
+				panel : K('.tab2', div)
+			});
+			tabs.select(1);
 		} else if (showRemote) {
 			K('.tab1', div).show();
 		} else if (showLocal) {

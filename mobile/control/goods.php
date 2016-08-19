@@ -199,8 +199,8 @@ class goodsControl extends mobileHomeControl{
         $goods_detail['store_info']['store_id'] = $store_info['store_id'];
         $goods_detail['store_info']['store_name'] = $store_info['store_name'];
         $goods_detail['store_info']['store_description'] = $store_info['store_description'];
-        $goods_detail['store_info']['member_id'] = $store_info['member_id'];
-        $goods_detail['store_info']['member_name'] = $store_info['member_name'];
+        $goods_detail['store_info']['t_id'] = $store_info['member_id'];
+        $goods_detail['store_info']['t_name'] = $store_info['member_name'];
 	/* //显示QQ及旺旺 创智凌云B2B2C多用户商城系统
 	$goods_detail['store_info']['store_qq'] = $store_info['store_qq'];
 	$goods_detail['store_info']['store_ww'] = $store_info['store_ww'];

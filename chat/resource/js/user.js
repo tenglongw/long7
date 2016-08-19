@@ -298,7 +298,7 @@
 			if(m_list.length<=0){
 				continue;
 			}
-			msg = m_list[0];
+			msg = m_list[m_list.length-1];
 			var m_id = msg['m_id'];
 			var u_id = msg['f_id'];
 			set_user(u_id,msg['f_name']);
@@ -795,11 +795,14 @@
 			msg = ''+msg;
 			for(var i in smilies_array[1]) {
 				var s = smilies_array[1][i];
-				var re = new RegExp(""+s[1],"g");
+				var re = new RegExp(""+s[6],"g");
 				var smilieimg = '<img width="28" height="28" title="'+s[6]+'" alt="'+s[6]+'" src="'+RESOURCE_SITE_URL+'/js/smilies/images/'+s[2]+'">';
-				msg = msg.replace(re,smilieimg);
+				if(s[1]==msg){
+					msg = smilieimg;
+				}
 			}
 		}
+		console.log('msg=='+msg);
 		return msg;
 	}
 	function update_friends(){

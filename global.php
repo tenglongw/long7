@@ -96,9 +96,9 @@ define('DEFAULT_SPEC_COLOR_ID', 1);
 /**
  * 商品图片
  */
-define('GOODS_IMAGES_WIDTH', '60,240,360,1280');
-define('GOODS_IMAGES_HEIGHT', '60,240,360,12800');
-define('GOODS_IMAGES_EXT', '_60,_240,_360,_1280');
+define('GOODS_IMAGES_WIDTH', '60,240,360,800,1280');
+define('GOODS_IMAGES_HEIGHT', '60,240,360,800,1280');
+define('GOODS_IMAGES_EXT', '_60,_240,_360,_800,_1280');
 
 /**
  *  订单状态

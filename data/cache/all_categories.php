@@ -1,7 +1,7 @@
 <?php defined('InWrzcNet') or exit('Access Invalid!'); return array (
-  1097 => 
+  0 => 
   array (
-    'gc_id' => '1097',
+    'gc_id' => '0',
     'gc_name' => '全部',
     'type_id' => '0',
     'type_name' => '',

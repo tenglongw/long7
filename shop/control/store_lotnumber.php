@@ -91,15 +91,15 @@ class store_lotnumberControl extends BaseSellerControl {
     public function lotnumber_addOp() {
         $model_groupbuy_quota = Model('groupbuy_quota');
 
-        if (checkPlatformStore()) {
+//         if (checkPlatformStore()) {
             Tpl::output('isOwnShop', true);
-        } else {
-            $current_groupbuy_quota = $model_groupbuy_quota->getGroupbuyQuotaCurrent($_SESSION['store_id']);
-            if(empty($current_groupbuy_quota)) {
-                showMessage('当前没有可用套餐，请先购买套餐',urlShop('store_groupbuy', 'groupbuy_quota_add'),'','error');
-            }
-            Tpl::output('current_groupbuy_quota', $current_groupbuy_quota);
-        }
+//         } else {
+//             $current_groupbuy_quota = $model_groupbuy_quota->getGroupbuyQuotaCurrent($_SESSION['store_id']);
+//             if(empty($current_groupbuy_quota)) {
+//                 showMessage('当前没有可用套餐，请先购买套餐',urlShop('store_groupbuy', 'groupbuy_quota_add'),'','error');
+//             }
+//             Tpl::output('current_groupbuy_quota', $current_groupbuy_quota);
+//         }
 
         // 根据后台设置的审核期重新设置抢购开始时间
         Tpl::output('groupbuy_start_time', TIMESTAMP + intval(C('groupbuy_review_day')) * 86400);

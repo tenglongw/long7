@@ -91,7 +91,9 @@ class member_chatControl extends mobileMemberControl {
 		$model_chat	= Model('web_chat');
 		$member_id = $this->member_info['member_id'];
 		$member_name = $this->member_info['member_name'];
-		$condition['t_id'] = $member_id;
+		$goods_id = $_POST['goods_id'];
+		$condition['f_id'] = $member_id;
+		$condition['t_id'] = $_POST['t_id'];
 		$msg_id = 0;
 		if(!empty($_POST['msg_id'])){
 			$msg_id = $_POST['msg_id'];
@@ -106,7 +108,7 @@ class member_chatControl extends mobileMemberControl {
 		}
 		$result['msg_list'] = $temp_msg_list;
 		if(!empty($temp_msg_list)){
-			$result['last_msg_id'] = $msg_list[0]['m_id'];
+			$result['last_msg_id'] = $msg_list[count($msg_list)-1]['m_id'];
 		}else{
 			$result['last_msg_id'] = $msg_id;
 		}

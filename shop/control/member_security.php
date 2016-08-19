@@ -146,7 +146,7 @@ class member_securityControl extends BaseMemberControl {
 
             Tpl::output('member_info',$member_info);
 
-            Tpl::showpage('member_security.auth');
+            Tpl::showpage('member_security.modify_pwd');
         }
 
     }
@@ -199,9 +199,9 @@ class member_securityControl extends BaseMemberControl {
         $model_member = Model('member');
 
         //身份验证后，需要在30分钟内完成修改密码操作
-        if (TIMESTAMP - $_SESSION['auth_modify_pwd'] > 1800) {
-            showMessage('操作超时，请重新获得验证码','index.php?act=member_security&op=auth&type=modify_pwd','html','error');
-        }
+//         if (TIMESTAMP - $_SESSION['auth_modify_pwd'] > 1800) {
+//             showMessage('操作超时，请重新获得验证码','index.php?act=member_security&op=auth&type=modify_pwd','html','error');
+//         }
 
         if(!chksubmit()) exit();
 

@@ -32,9 +32,9 @@ class mb_sellModel{
 	 * @param obj $page 分页
 	 * @return array 数组结构的返回结果
 	 */
-	public function getPushMsgList($where,$page=''){
+	public function getPushMsgList($where,$page='',$order='s_time'){
 		$model = Model();
-		$result =$model->table('mb_sell')->where($where)->select();
+		$result =$model->table('mb_sell')->where($where)->order($order)->select();
 		return $result;
 	}
 	

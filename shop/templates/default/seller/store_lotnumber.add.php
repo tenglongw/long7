@@ -13,18 +13,18 @@
       </dd>
     </dl>
     <!--<dl>
-      <dt>抢购副标题<?php echo $lang['nc_colon'];?></dt>
+      <dt>摇号副标题<?php echo $lang['nc_colon'];?></dt>
       <dd>
         <input class="w400 text" name="remark" type="text" id="remark" value="" maxlength="30"  />
         <span></span>
-        <p class="hint">抢购活动副标题最多可输入30个字符</p>
+        <p class="hint">摇号活动副标题最多可输入30个字符</p>
       </dd>
     </dl> -->
     <dl>
       <dt><i class="required">*</i><?php echo $lang['start_time'];?><?php echo $lang['nc_colon'];?></dt>
       <dd>
           <input id="start_time" name="start_time" type="text" class="text w130" /><em class="add-on"><i class="icon-calendar"></i></em><span></span>
-          <p class="hint"><?php echo '抢购开始时间不能小于'.date('Y-m-d H:i', $output['groupbuy_start_time']);?></p>
+          <p class="hint"><?php echo '摇号开始时间不能小于'.date('Y-m-d H:i', time());?></p>
       </dd>
     </dl>
     <dl>
@@ -33,7 +33,7 @@
           <input id="end_time" name="end_time" type="text" class="text w130"/><em class="add-on"><i class="icon-calendar"></i></em><span></span>
           <p class="hint">
 <?php if (!$output['isOwnShop']) { ?>
-          <?php echo '抢购开始时间不能大于'.date('Y-m-d H:i', $output['current_groupbuy_quota']['end_time']);?>
+          <?php echo '摇号开始时间不能大于'.date('Y-m-d H:i', $output['current_groupbuy_quota']['end_time']);?>
           </p>
 <?php } ?>
 
@@ -72,7 +72,7 @@
             <div id="div_goods_search_result" class="search-result" style="width:739px;"></div>
             <a id="btn_hide_search_goods" class="close" href="javascript:void(0);">X</a>
         </div>
-        <p class="hint"><?php echo $lang['groupbuy_goods_explain'];?></br><span class="red">抢购生效后该商品的所有规格SKU都将执行统一的抢购价格</span></p>
+        <p class="hint"><?php echo $lang['groupbuy_goods_explain'];?></br><span class="red">摇号生效后该商品的所有规格SKU都将执行统一的摇号价格</span></p>
         </dd>
     </dl> -->
     <dl nctype="groupbuy_goods_info" style="display:none;">
@@ -360,13 +360,13 @@ $(document).ready(function(){
                 required : '<i class="icon-exclamation-sign"></i><?php echo $lang['group_name_error'];?>'
             },
             start_time : {
-                required : '<i class="icon-exclamation-sign"></i>抢购开始时间不能为空',
-                greaterThanDate : '<i class="icon-exclamation-sign"></i><?php echo sprintf('抢购开始时间必须大于{0}',date('Y-m-d H:i',$output['current_groupbuy_quota']['start_time']));?>'
+                required : '<i class="icon-exclamation-sign"></i>摇号开始时间不能为空',
+                greaterThanDate : '<i class="icon-exclamation-sign"></i><?php echo sprintf('摇号开始时间必须大于{0}',date('Y-m-d H:i',time()));?>'
             },
             end_time : {
-                required : '<i class="icon-exclamation-sign"></i>抢购结束时间不能为空',
+                required : '<i class="icon-exclamation-sign"></i>摇号结束时间不能为空',
 <?php if (!$output['isOwnShop']) { ?>
-                lessThanDate : '<i class="icon-exclamation-sign"></i><?php echo sprintf('抢购结束时间必须小于{0}',date('Y-m-d H:i',$output['current_groupbuy_quota']['end_time']));?>',
+                lessThanDate : '<i class="icon-exclamation-sign"></i><?php echo sprintf('摇号结束时间必须小于{0}',date('Y-m-d H:i',time()));?>',
 <?php } ?>
                 greaterThanStartDate : '<i class="icon-exclamation-sign"></i>结束时间必须大于开始时间'
             },
@@ -377,7 +377,7 @@ $(document).ready(function(){
             groupbuy_price: {
                 required : '<i class="icon-exclamation-sign"></i><?php echo $lang['groupbuy_price_error'];?>',
                 number : '<i class="icon-exclamation-sign"></i><?php echo $lang['groupbuy_price_error'];?>',
-                lessThanGoodsPrice: '<i class="icon-exclamation-sign"></i>抢购价格必须小于商品价格',
+                lessThanGoodsPrice: '<i class="icon-exclamation-sign"></i>摇号价格必须小于商品价格',
                 min : '<i class="icon-exclamation-sign"></i><?php echo $lang['groupbuy_price_error'];?>',
                 max : '<i class="icon-exclamation-sign"></i><?php echo $lang['groupbuy_price_error'];?>'
             },
@@ -390,7 +390,7 @@ $(document).ready(function(){
                 digits : '<i class="icon-exclamation-sign"></i><?php echo $lang['sale_quantity_error'];?>'
             },
             groupbuy_image: {
-                required : '<i class="icon-exclamation-sign"></i>抢购图片不能为空'
+                required : '<i class="icon-exclamation-sign"></i>摇号图片不能为空'
             }
         }
     });
