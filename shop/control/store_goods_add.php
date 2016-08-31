@@ -126,10 +126,14 @@ class store_goods_addControl extends BaseSellerControl {
 		// 获取类型相关数据
 		$typeinfo = Model ( 'type' )->getAttr ( $goods_class ['type_id'], $_SESSION ['store_id'], $gc_id );
 		list ( $spec_json, $spec_list, $attr_list, $brand_list ) = $typeinfo;
+		//查询客户条款
+		$model_link = Model('mb_clause');
+		$link_list = $model_link->getLinkList(array());
 		Tpl::output ( 'sign_i', count ( $spec_list ) );
 		Tpl::output ( 'spec_list', $spec_list );
 		Tpl::output ( 'attr_list', $attr_list );
 		Tpl::output ( 'brand_list', $brand_list );
+		Tpl::output ( 'clause_list', $link_list );//客户条款
 		// echo json_encode($spec_list);exit;
 		
 		// 实例化店铺商品分类模型
@@ -218,7 +222,7 @@ class store_goods_addControl extends BaseSellerControl {
 			}
 			$model_goods = Model ( 'goods' );
 			$model_type = Model ( 'type' );
-			
+			$g_clause_str=implode(';',$_POST['g_clause']);
 			// 分类信息
 			$goods_class = Model ( 'goods_class' )->getGoodsClassLineForTag ( intval ( $_POST ['cate_id'] ) );
 			
@@ -242,6 +246,8 @@ class store_goods_addControl extends BaseSellerControl {
 			$common_array ['goods_storage_alarm'] = intval ( $_POST ['g_alarm'] );
 			$common_array ['goods_attr'] = serialize ( $_POST ['attr'] );
 			$common_array ['goods_body'] = $_POST ['g_body'];
+			$common_array ['goods_size_remark'] = $_POST ['g_size_remark'];
+			$common_array['goods_clause'] = serialize ( $_POST ['g_clause'] );//客户条款
 			// 序列化保存手机端商品描述数据
 			if ($_POST ['m_body'] != '') {
 				$_POST ['m_body'] = str_replace ( '&quot;', '"', $_POST ['m_body'] );
@@ -365,6 +371,8 @@ class store_goods_addControl extends BaseSellerControl {
 						$goods ['is_appoint'] = $common_array ['is_appoint'];
 						$goods ['is_presell'] = $common_array ['is_presell'];
 						$goods ['is_own_shop'] = $common_array ['is_own_shop'];
+						$goods ['goods_size_remark'] = $common_array ['goods_size_remark'];
+						$goods['goods_clause'] = $common_array['goods_clause'];//客户条款
 						$goods_id = $model_goods->addGoods ( $goods );
 						$model_type->addGoodsType ( $goods_id, $common_id, array (
 								'cate_id' => $_POST ['cate_id'],
@@ -418,6 +426,8 @@ class store_goods_addControl extends BaseSellerControl {
 					$goods ['is_appoint'] = $common_array ['is_appoint'];
 					$goods ['is_presell'] = $common_array ['is_presell'];
 					$goods ['is_own_shop'] = $common_array ['is_own_shop'];
+					$goods ['goods_size_remark'] = $common_array ['goods_size_remark'];
+					$goods['goods_clause'] = $common_array['goods_clause'];//客户条款
 					$goods_id = $model_goods->addGoods ( $goods );
 					$model_type->addGoodsType ( $goods_id, $common_id, array (
 							'cate_id' => $_POST ['cate_id'],

@@ -792,30 +792,30 @@ class store_albumControl extends BaseSellerControl {
             exit();
         }
         // 判断图片数量是否超限
-        $album_limit = $this->store_grade['sg_album_limit'];
-        if ($album_limit > 0) {
-	        $album_count = Model('album')->getCount(array('store_id' => $store_id));
-	        if ($album_count >= $album_limit) {
-	            // 目前并不出该提示，而是提示上传0张图片
-	            $error = L('store_goods_album_climit');
-	            if (strtoupper ( CHARSET ) == 'GBK') {
-	                $error = Language::getUTF8($error);
-	            }
-	            $data['state'] = 'false';
-	            $data['message'] = $error;
-	            $data['origin_file_name'] = $_FILES["file"]["name"];
-	            $data['state'] = 'true';
-	            echo json_encode($data);
-	            exit();
-	        }
-        }
+//         $album_limit = $this->store_grade['sg_album_limit'];
+//         if ($album_limit > 0) {
+// 	        $album_count = Model('album')->getCount(array('store_id' => $store_id));
+// 	        if ($album_count >= $album_limit) {
+// 	            // 目前并不出该提示，而是提示上传0张图片
+// 	            $error = L('store_goods_album_climit');
+// 	            if (strtoupper ( CHARSET ) == 'GBK') {
+// 	                $error = Language::getUTF8($error);
+// 	            }
+// 	            $data['state'] = 'false';
+// 	            $data['message'] = $error;
+// 	            $data['origin_file_name'] = $_FILES["file"]["name"];
+// 	            $data['state'] = 'true';
+// 	            echo json_encode($data);
+// 	            exit();
+// 	        }
+//         }
 
         /**
          * 上传图片
          */
         $upload = new UploadFile();
         $upload->set('default_dir', ATTACH_GOODS . DS . $store_id . DS . $upload->getSysSetPath());
-        $upload->set('max_size', C('image_max_filesize'));
+       // $upload->set('max_size', C('image_max_filesize'));
         $upload->set('thumb_width', GOODS_IMAGES_WIDTH);
         $upload->set('thumb_height', GOODS_IMAGES_HEIGHT);
         $upload->set('thumb_ext', GOODS_IMAGES_EXT);

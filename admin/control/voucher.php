@@ -261,15 +261,21 @@ class voucherControl extends SystemControl{
         } elseif ($_GET['recommend'] === '0'){
             $param['voucher_t_recommend'] = 0;
         }
+        if($_GET['type'] == 'coupon'){
+        	$param['voucher_t_type'] = 1;
+        }else{
+        	$param['voucher_t_type'] = 0;
+        }
         $list = $model->table('voucher_template')->where($param)->order('voucher_t_state asc,voucher_t_id desc')->page(10)->select();
         Tpl::output('show_page',$model->showpage(2));
         $this->show_menu('voucher','templatelist');
         Tpl::output('list',$list);
-
+		Tpl::output('type',$_GET['type']);
         // 输出自营店铺IDS
         Tpl::output('flippedOwnShopIds', array_flip(model('store')->getOwnShopIds()));
         Tpl::showpage('voucher.templatelist');
     }
+    
 
     /*
 	 * 代金券模版添加
@@ -355,6 +361,7 @@ class voucherControl extends SystemControl{
 	        	$insert_arr['voucher_t_quotaid'] = $quotainfo['quota_id'] ? $quotainfo['quota_id'] : 0;
 	        	$insert_arr['voucher_t_points'] = $chooseprice['voucher_defaultpoints'];
 	        	$insert_arr['voucher_t_eachlimit'] = intval($_POST['eachlimit'])>0?intval($_POST['eachlimit']):0;
+	        	$insert_arr['voucher_t_type'] = 0;
 	        	//自定义图片
 		        if (!empty($_FILES['customimg']['name'])){
 		        	$upload = new UploadFile();
@@ -402,6 +409,130 @@ class voucherControl extends SystemControl{
 	        Tpl::showpage('voucher.templateadd');
         }
     }
+    
+    /*
+     * 代金券模版添加
+     */
+    public function couponTemplateaddOp(){
+    	$model = Model('voucher');
+    	/* if ($isOwnShop = checkPlatformStore()) {
+    	 Tpl::output('isOwnShop', true);
+    	 } else {
+    	 //查询当前可以套餐
+    	 $quotainfo = $model->getCurrentQuota($_SESSION['store_id']);
+    	 if(empty($quotainfo)){
+    	 showMessage(Language::get('voucher_template_quotanull'),'index.php?act=store_voucher&op=quotaadd','html','error');
+    	 }
+    
+    	 //查询该套餐下代金券模板列表
+    	 $count = $model->table('voucher_template')->where(array('voucher_t_quotaid'=>$quotainfo['quota_id'],'voucher_t_state'=>$this->templatestate_arr['usable'][0]))->count();
+    	 if ($count >= C('promotion_voucher_storetimes_limit')){
+    	 $message = sprintf(Language::get('voucher_template_noresidual'),C('promotion_voucher_storetimes_limit'));
+    	 showMessage($message,'index.php?act=store_voucher&op=templatelist','html','error');
+    	 }
+    	 } */
+    	//echo 1;exit;
+    
+    	//查询面额列表
+    	$pricelist =  $model->table('voucher_price')->order('voucher_price asc')->select();
+    	if(empty($pricelist)){
+    		showMessage(Language::get('voucher_template_pricelisterror'),'index.php?act=store_voucher&op=templatelist','html','error');
+    	}
+    	if(chksubmit()){
+    		//验证提交的内容面额不能大于限额
+    		$obj_validate = new Validate();
+    		$obj_validate->validateparam = array(
+    				array("input"=>$_POST['txt_template_title'], "require"=>"true","validator"=>"Length","min"=>"1","max"=>"50","message"=>Language::get('voucher_template_title_error')),
+    				//array("input"=>$_POST['txt_template_total'], "require"=>"true","validator"=>"Number","message"=>Language::get('voucher_template_total_error')),
+    				array("input"=>$_POST['select_template_price'], "require"=>"true","validator"=>"Number","message"=>Language::get('voucher_template_price_error')),
+    				array("input"=>$_POST['txt_template_limit'], "require"=>"true","validator"=>"Double","message"=>Language::get('voucher_template_limit_error')),
+    				//array("input"=>$_POST['txt_template_describe'], "require"=>"true","validator"=>"Length","min"=>"1","max"=>"255","message"=>Language::get('voucher_template_describe_error')),
+    		);
+    		$error = $obj_validate->validate();
+    		//金额验证
+    		$price = intval($_POST['select_template_price'])>0?intval($_POST['select_template_price']):0;
+    		foreach($pricelist as $k=>$v){
+    			if($v['voucher_price'] == $price){
+    				$chooseprice = $v;//取得当前选择的面额记录
+    			}
+    		}
+    		if(empty($chooseprice)){
+    			$error.=Language::get('voucher_template_pricelisterror');
+    		}
+    		$limit = intval($_POST['txt_template_limit'])>0?intval($_POST['txt_template_limit']):0;
+    		if($price>=$limit) $error.=Language::get('voucher_template_price_error');
+    		if ($error){
+    			showDialog($error,'reload','error');
+    		}else {
+    			$insert_arr = array();
+    			$insert_arr['voucher_t_title'] = trim($_POST['txt_template_title']);
+    			$insert_arr['voucher_t_desc'] = trim($_POST['txt_template_describe']);
+    			$insert_arr['voucher_t_start_date'] = time();//默认代金券模板的有效期为当前时间
+    			if ($_POST['txt_template_enddate']){
+    				$enddate = strtotime($_POST['txt_template_enddate']);
+    				/* if (!$isOwnShop && $enddate > $quotainfo['quota_endtime']){
+    				 $enddate = $quotainfo['quota_endtime'];
+    				 } */
+    				$insert_arr['voucher_t_end_date'] = $enddate;
+    			}else {//如果没有添加有效期则默认为套餐的结束时间
+    				if ($isOwnShop)
+    					$insert_arr['voucher_t_end_date'] = time() + 2592000; // 自营店 默认30天到期
+    					else
+    						$insert_arr['voucher_t_end_date'] = $quotainfo['quota_endtime'];
+    			}
+    			$insert_arr['voucher_t_price'] = $price;
+    			$insert_arr['voucher_t_limit'] = $limit;
+    			$insert_arr['voucher_t_store_id'] = $_SESSION['store_id'];
+    			$insert_arr['voucher_t_storename'] = $_SESSION['store_name'];
+    			$insert_arr['voucher_t_sc_id'] = intval($_POST['sc_id']);
+    			$insert_arr['voucher_t_creator_id'] = $_SESSION['member_id'];
+    			$insert_arr['voucher_t_state'] = $this->templatestate_arr['usable'][0];
+    			$insert_arr['voucher_t_total'] = intval($_POST['txt_template_total'])>0?intval($_POST['txt_template_total']):0;
+    			$insert_arr['voucher_t_giveout'] = 0;
+    			$insert_arr['voucher_t_used'] = 0;
+    			$insert_arr['voucher_t_add_date'] = time();
+    			$insert_arr['voucher_t_quotaid'] = $quotainfo['quota_id'] ? $quotainfo['quota_id'] : 0;
+    			$insert_arr['voucher_t_points'] = $chooseprice['voucher_defaultpoints'];
+    			$insert_arr['voucher_t_eachlimit'] = intval($_POST['eachlimit'])>0?intval($_POST['eachlimit']):0;
+    			$insert_arr['voucher_t_type'] = 1;
+    			//自定义图片
+    			if (!empty($_FILES['customimg']['name'])){
+    				$upload = new UploadFile();
+    				$upload->set('default_dir',	ATTACH_VOUCHER.DS.$_SESSION['store_id']);
+    				$upload->set('thumb_width','160');
+    				$upload->set('thumb_height','160');
+    				$upload->set('thumb_ext','_small');
+    				$result = $upload->upfile('customimg');
+    				if ($result){
+    					$insert_arr['voucher_t_customimg'] =  $upload->file_name;
+    				}
+    			}
+    			$rs = $model->table('voucher_template')->insert($insert_arr);
+    			$insert_arr['voucher_t_id'] = $rs;
+    			// echo json_encode($rs);exit;
+    			if($rs){
+    				showDialog(Language::get('nc_common_save_succ'),'index.php?act=voucher&op=templatelist','succ');
+    			}else{
+    				showDialog(Language::get('nc_common_save_fail'),'index.php?act=voucher&op=templatelist','error');
+    			}
+    		}
+    	}else{
+    		//店铺分类
+    		$store_class = rkcache('store_class', true);
+    		Tpl::output('store_class', $store_class);
+    		//查询店铺详情
+    		$store_info = Model('store')->getStoreInfoByID($_SESSION['store_id']);
+    		TPL::output('store_info',$store_info);
+    
+    		TPL::output('type','add');
+    		TPL::output('ttype','coupon');
+    		TPL::output('quotainfo',$quotainfo);
+    		TPL::output('pricelist',$pricelist);
+    		//echo json_encode($pricelist);exit;
+    		//$this->profile_menu('template','templateadd');
+    		Tpl::showpage('voucher.templateadd');
+    	}
+    }
     /*
 	 * 代金券模版编辑
 	 */
@@ -448,6 +579,9 @@ class voucherControl extends SystemControl{
 	        	$t_info['voucher_t_customimg'] = UPLOAD_SITE_URL.DS.ATTACH_VOUCHER.DS.$t_info['voucher_t_store_id'].DS.$t_info['voucher_t_customimg'];
 	        }
 	        TPL::output('t_info',$t_info);
+	        if(!empty($_GET['type'])){
+		        TPL::output('ttype',$_GET['type']);
+	        }
 	        $this->show_menu('templateedit','templateedit');
 	        Tpl::showpage('voucher.templateedit');
         }
@@ -486,9 +620,11 @@ class voucherControl extends SystemControl{
 				$menu_array = array(
 				3=>array('menu_key'=>'templatelist','menu_name'=>Language::get('admin_voucher_template_manage'), 'menu_url'=>'index.php?act=voucher&op=templatelist'),
 				2=>array('menu_key'=>'quotalist','menu_name'=>Language::get('admin_voucher_template_add'), 'menu_url'=>'index.php?act=voucher&op=templateadd'),
+				7=>array('menu_key'=>'coupontemplatelist','menu_name'=>'优惠码', 'menu_url'=>'index.php?act=voucher&op=templatelist&type=coupon'),
+				8=>array('menu_key'=>'quotalist','menu_name'=>'添加优惠码', 'menu_url'=>'index.php?act=voucher&op=couponTemplateadd'),
 				5=>array('menu_key'=>'pricelist','menu_name'=>Language::get('admin_voucher_pricemanage'), 'menu_url'=>'index.php?act=voucher&op=pricelist'),
 				6=>array('menu_key'=>'priceadd','menu_name'=>Language::get('admin_voucher_priceadd'), 'menu_url'=>'index.php?act=voucher&op=priceadd'),
-				4=>array('menu_key'=>'setting','menu_name'=>Language::get('admin_voucher_setting'),	'menu_url'=>'index.php?act=voucher&op=setting'),
+				//4=>array('menu_key'=>'setting','menu_name'=>Language::get('admin_voucher_setting'),	'menu_url'=>'index.php?act=voucher&op=setting'),
 				);
 				break;
 			case 'priceedit':

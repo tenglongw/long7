@@ -122,11 +122,15 @@ class storeControl extends mobileHomeControl{
         $store_id = intval($_GET ['store_id']);
         // 商品详细信息
         $model_store = Model('store');
+        $model_grade = Model('store_grade');
         $store_info = $model_store->getStoreOnlineInfoByID($store_id);
         if (empty($store_info)) {
             output_error('店铺不存在');
         }
-        $store_detail['store_pf'] = $store_info['store_credit_average'].'.0';
+        //店铺等级
+        $store_grade = $model_grade->getOneGrade($store_info['grade_id']);
+		//$store_detail['store_pf'] = $store_info['store_credit_average'].'.0';
+		$store_detail['store_grade'] = $store_grade['sg_name'];
        // $store_detail['store_info'] = $store_info;
         //店铺导航
 //         $model_store_navigation = Model('store_navigation');

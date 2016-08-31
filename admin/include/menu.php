@@ -215,6 +215,7 @@ if(C('mobile_isuse')){
 					array('args'=>'goods_edit,mb_special,mobile',				'text'=>'商城编辑'),
 					array('args'=>'special_list,mb_special,mobile',				'text'=>'专题设置'),
 					array('args'=>'mb_sell_list,mb_sell,mobile',	'text'=>'发售列表设置'),
+					array('args'=>'mb_clause_list,mb_clause,mobile',	'text'=>'客户条款设置'),
 					array('args'=>'mb_welcome_list,mb_welcome,mobile',	'text'=>'欢迎页设置'),
 					//array('args'=>'mb_category_list,mb_category,mobile',	'text'=>$lang['nc_mobile_catepic']),
 					array('args'=>'mb_app,mb_app,mobile',				'text'=>'下载设置'),

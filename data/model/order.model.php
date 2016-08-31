@@ -59,6 +59,10 @@ class orderModel extends Model {
     public function getOrderCommonInfo($condition = array(), $field = '*') {
         return $this->table('order_common')->where($condition)->find();
     }
+    
+    public function getShippingName($condition = array(), $field = '*') {
+    	return $this->table('order_common,express')->join('inner')->on('order_common.shipping_express_id=express.id')->where($condition)->field('express.e_name')->find();
+    }
 
     public function getOrderPayInfo($condition = array(), $master = false) {
         return $this->table('order_pay')->where($condition)->master($master)->find();

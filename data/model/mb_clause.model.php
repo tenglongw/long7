@@ -9,7 +9,7 @@
 
 defined('InWrzcNet') or exit('Access Invalid!');
 
-class mb_sellModel{
+class mb_clauseModel{
 	/**
 	 * 列表
 	 *
@@ -19,7 +19,7 @@ class mb_sellModel{
 	 */
 	public function getLinkList($condition,$page=''){
 		$param = array();
-		$param['table'] = 'mb_sell';
+		$param['table'] = 'mb_clause';
 //		$param['where'] = $condition_str;
 		$result = Db::select($param,$page);
 		return $result;
@@ -34,7 +34,7 @@ class mb_sellModel{
 	 */
 	public function getPushMsgList($where,$page='',$order='s_time desc'){
 		$model = Model();
-		$result =$model->table('mb_sell')->where($where)->order($order)->select();
+		$result =$model->table('mb_clause')->where($where)->order($order)->select();
 		return $result;
 	}
 	
@@ -47,8 +47,8 @@ class mb_sellModel{
 	public function getOneLink($id){
 		if (intval($id) > 0){
 			$param = array();
-			$param['table'] = 'mb_sell';
-			$param['field'] = 's_id';
+			$param['table'] = 'mb_clause';
+			$param['field'] = 'c_id';
 			$param['value'] = intval($id);
 			$result = Db::getRow($param);
 			return $result;
@@ -63,7 +63,7 @@ class mb_sellModel{
 	 * @return array 数组类型的返回结果
 	 */
 	public function getCount(){
-		return Db::getCount('mb_sell');
+		return Db::getCount('mb_clause');
 	}
 	/**
 	 * 新增
@@ -80,7 +80,7 @@ class mb_sellModel{
 			foreach ($param as $k => $v){
 				$tmp[$k] = $v;
 			}
-			$result = Db::insert('mb_sell',$tmp);
+			$result = Db::insert('mb_clause',$tmp);
 			return $result;
 		}else {
 			return false;
@@ -102,8 +102,8 @@ class mb_sellModel{
 			foreach ($param as $k => $v){
 				$tmp[$k] = $v;
 			}
-			$where = " s_id = '". $param['s_id'] ."'";
-			$result = Db::update('mb_sell',$tmp,$where);
+			$where = " c_id = '". $param['c_id'] ."'";
+			$result = Db::update('mb_clause',$tmp,$where);
 			return $result;
 		}else {
 			return false;
@@ -118,8 +118,8 @@ class mb_sellModel{
 	 */
 	public function del($id){
 		if (intval($id) > 0){
-			$where = " s_id = '". intval($id) ."'";
-			$result = Db::delete('mb_sell',$where);
+			$where = " c_id = '". intval($id) ."'";
+			$result = Db::delete('mb_clause',$where);
 			return $result;
 		}else {
 			return false;

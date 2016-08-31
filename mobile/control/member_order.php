@@ -52,7 +52,8 @@ class member_orderControl extends mobileMemberControl {
             $value['if_lock'] = $model_order->getOrderOperateState('lock',$value);
             //显示物流跟踪
             $value['if_deliver'] = $model_order->getOrderOperateState('deliver',$value);
-
+            $temp = $model_order->getShippingName(array('order_id'=>$value['order_id']));
+			$value['shipping_name'] = $temp['e_name'];
             //商品图
             foreach ($value['extend_order_goods'] as $k => $goods_info) {
                 $value['extend_order_goods'][$k]['goods_image_url'] = cthumb($goods_info['goods_image'], 240, $value['store_id']);

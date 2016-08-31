@@ -55,14 +55,15 @@ class goodsControl extends mobileHomeControl{
         } else {
         	$current_page = intval($_POST['curpage']);
         	//计算记录偏移量
-        	if($current_page == 1){
-        		$goods_list = $model_goods->getGoodsListByColorDistinct($condition, $fieldstr, $order, $this->page,null);
-        	}else{
-        		$offset = $this->page*($current_page - 1);
-        		$limit = $offset.','.$current_page*$this->page;
-	        	//echo $limit;exit;
-	            $goods_list = $model_goods->getGoodsListByColorDistinct($condition, $fieldstr, $order, null,$limit);
-        	}
+//         	if($current_page == 1){
+        	$offset = $this->page*($current_page - 1);
+        	$limit = $current_page*$this->page.','.$offset;
+        		$goods_list = $model_goods->getGoodsListByColorDistinct($condition, $fieldstr, $order, 10000,null);
+//         	}else{
+//         		$offset = $this->page*($current_page - 1);
+//         		$limit = $offset.','.$current_page*$this->page;
+// 	            $goods_list = $model_goods->getGoodsListByColorDistinct($condition, $fieldstr, $order, null,$limit);
+//         	}
         }
         $page_count = $model_goods->gettotalpage();
 
@@ -180,7 +181,14 @@ class goodsControl extends mobileHomeControl{
         if (empty($goods_detail)) {
             output_error('商品不存在');
         }
-       // echo json_encode($goods_detail);exit;
+        if(empty($goods_detail['goods_info']['goods_size_remark'])){
+        	$goods_detail['goods_info']['goods_size_remark'] = '正常';
+        }
+        if(!unserialize($goods_detail['goods_info']['goods_clause'])){
+        	$goods_detail['goods_info']['goods_clause'] = array();
+        }else{
+	        $goods_detail['goods_info']['goods_clause'] = unserialize($goods_detail['goods_info']['goods_clause']);
+        }
 
         //推荐商品
          $model_store = Model('store');

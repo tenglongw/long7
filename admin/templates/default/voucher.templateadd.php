@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="fixed-empty"></div>
-  <form id="add_form" method="post" action="index.php?act=voucher&op=templateadd">
+  <form id="add_form" method="post" action=<?php if($output['ttype']=='coupon'){?>"index.php?act=voucher&op=couponTemplateadd"<?php }else{?>"index.php?act=voucher&op=templateadd"<?php }?>>
     <input type="hidden" id="form_submit" name="form_submit" value="ok"/>
     <table class="table tb-type2">
       <tbody>
@@ -28,7 +28,11 @@
           <td class="vatop tips"></td>
         </tr> -->
         <tr class="noborder">
-          <td colspan="2" class="required"><label><?php echo $lang['admin_voucher_template_title'].$lang['nc_colon'];?></label></td>
+        	<?php if($output['ttype']=='coupon'){?>
+        	 <td colspan="2" class="required"><label><?php echo 优惠码.$lang['nc_colon'];?></label></td>
+        	<?php }else{?>
+	          <td colspan="2" class="required"><label><?php echo $lang['admin_voucher_template_title'].$lang['nc_colon'];?></label></td>
+        	<?php }?>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><input type="text" name="txt_template_title" class="required txt" value=""  ></td>
@@ -69,15 +73,23 @@
           <td class="vatop rowform"><input type="text" class="  txt" value="<?php echo $output['t_info']['voucher_t_eachlimit'];?>"  ></td>
           <td class="vatop tips"></td>
         </tr>-->
+        <?php if($output['ttype']=='coupon'){?>
+        	<?php }else{?>
+	          <tr class="noborder">
+		          <td colspan="2" class="required"><label><?php echo $lang['admin_voucher_template_orderpricelimit'].$lang['nc_colon'];?></label></td>
+		        </tr>
+		        <tr class="noborder">
+		          <td class="vatop rowform"><input name="txt_template_limit" id = "txt_template_limit" type="text" class="required  txt" value=""  ></td>
+		          <td class="vatop tips"></td>
+		        </tr>
+        	<?php }?>
+       
         <tr class="noborder">
-          <td colspan="2" class="required"><label><?php echo $lang['admin_voucher_template_orderpricelimit'].$lang['nc_colon'];?></label></td>
-        </tr>
-        <tr class="noborder">
-          <td class="vatop rowform"><input name="txt_template_limit" id = "txt_template_limit" type="text" class="required  txt" value=""  ></td>
-          <td class="vatop tips"></td>
-        </tr>
-        <tr class="noborder">
+        <?php if($output['ttype']=='coupon'){?>
+        	<td colspan="2" class="required"><label><?php echo 优惠码描述.$lang['nc_colon'];?></label></td>
+        	<?php }else{?>
           <td colspan="2" class="required"><label><?php echo $lang['admin_voucher_template_describe'].$lang['nc_colon'];?></label></td>
+        	<?php }?>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><textarea rows="6"  name="txt_template_describe" id = "txt_template_describe" class="required  tarea"><?php echo $output['t_info']['voucher_t_desc'];?></textarea></td>
@@ -127,6 +139,11 @@
           </td>
           <td class="vatop tips"></td>
         </tr>
+        	<?php if($output['ttype']=='coupon'){?>
+        		<input type="hidden" value="1" id="type" name="type" >
+        	<?php }else{?>
+        	<input type="hidden" value="0" id="type" name="type">
+        	<?php }?>
         <!-- 
         <tr class="noborder">
           <td colspan="2" class="required"><label><?php echo '是否推荐'.$lang['nc_colon'];?></label></td>

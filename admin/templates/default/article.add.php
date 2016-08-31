@@ -19,8 +19,8 @@
           <td colspan="2" class="required"><label class="validation"><?php echo $lang['article_index_title'];?>:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="" name="article_title" id="article_title" class="txt"></td>
-          <td class="vatop tips"></td>
+          <td class="vatop rowform"><input type="text" value="" name="article_title" id="article_title" maxlength="12" class="txt"></td>
+          <td class="vatop tips"><span>文章标题字数限制为12个汉子</span></td>
         </tr>
         <!-- <tr>
           <td colspan="2" class="required"><label class="validation" for="cate_id"><?php echo $lang['article_add_class'];?>:</label></td>

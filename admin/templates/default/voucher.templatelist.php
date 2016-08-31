@@ -22,6 +22,9 @@
   <form method="get" name="formSearch">
     <input type="hidden" name="act" value="voucher">
     <input type="hidden" name="op" value="templatelist">
+    <?php if($output['type'] == 'coupon'){?>
+    	<input type="hidden" name="type" value="coupon">
+    <?php }?>
     <table class="tb-type1 noborder search">
       <tbody>
         <tr>
@@ -71,9 +74,15 @@
           <tr class="thead">
           	  <th class="w24">&nbsp;</th>
               <!-- <th class="align-left"><span><?php echo $lang['admin_voucher_storename'];?></span></th> -->
+              <?php if($output['type'] == 'coupon'){?>
+		    	<th class="align-left"><span>优惠码</span></th>
+		    <?php }else{?>
               <th class="align-left"><span><?php echo $lang['admin_voucher_template_title'];?></span></th>
+		    <?php }?>
               <th class="align-center"><span><?php echo $lang['admin_voucher_template_price'];?></span></th>
+              <?php if($output['type'] != 'coupon'){?>
               <th class="align-center"><span><?php echo $lang['admin_voucher_template_orderpricelimit'];?></span></th>
+		    <?php }?>
               <th class="align-center"><span><?php echo $lang['admin_voucher_template_enddate'];?></span></th>
               <th class="align-center"><span><?php echo $lang['admin_voucher_template_adddate'];?></span></th>
               <th class="align-center"><span><?php echo $lang['nc_state'];?></span></th>
@@ -93,7 +102,9 @@
             </td> -->
             <td class="align-left"><span><?php echo $val['voucher_t_title'];?></span></td>
             <td class="align-center"><span><?php echo $val['voucher_t_price'];?></span></td>
+            <?php if($output['type'] != 'coupon'){?>
             <td class="align-center"><span><?php echo $val['voucher_t_limit'];?></span></td>
+		    <?php }?>
             <td class="align-center"><span><?php echo @date('Y-m-d',$val['voucher_t_start_date']);?>~<?php echo @date('Y-m-d',$val['voucher_t_end_date']);?></span></td>
             <td class="align-center"><span><?php echo @date('Y-m-d',$val['voucher_t_add_date']);?></span></td>
             <td class="align-center"><span>
@@ -108,7 +119,7 @@
             <?php }else{ ?>
             <a href="JavaScript:void(0);" class="enabled" ajax_branch='voucher_t_recommend' nc_type="inline_edit" fieldname="voucher_t_recommend" fieldid="<?php echo $val['voucher_t_id']?>" fieldvalue="1"  title="<?php echo $lang['nc_editable'];?>"><img src="<?php echo ADMIN_TEMPLATES_URL;?>/images/transparent.gif"></a>
             <?php } ?></td> -->
-            <td class="nowrap align-center"><a href="index.php?act=voucher&op=templateedit&tid=<?php echo $val['voucher_t_id'];?>"><?php echo $lang['nc_edit'];?></a></td>
+            <td class="nowrap align-center"><a href="index.php?act=voucher&op=templateedit&tid=<?php echo $val['voucher_t_id'];if(!empty($output['type'])){?>&type=<?php echo $output['type']?><?php }?>"><?php echo $lang['nc_edit'];?></a></td>
         </tr>
         <?php } ?>
         <?php }else { ?>

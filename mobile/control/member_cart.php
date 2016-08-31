@@ -143,6 +143,7 @@ class member_cartControl extends mobileMemberControl {
         $cart_info['spec_value'] = $goods_detail['goods_info']['spec_value'];
         $cart_info['goods_spec'] = $goods_detail['goods_info']['goods_spec'];
         $cart_info['goods_image'] =  cthumb($cart_info['goods_image'], $cart_info['store_id']);
+        $cart_info['goods_storage'] = $goods_detail['goods_info']['goods_storage'];
         output_data($cart_info);
     }
     

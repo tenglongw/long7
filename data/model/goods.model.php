@@ -95,7 +95,7 @@ class goodsModel extends Model{
         $count = $this->getGoodsOnlineCount($condition,"distinct CONCAT(goods_commonid,',',color_id)");
         $goods_list = array();
         if ($count != 0) {
-            $goods_list = $this->getGoodsOnlineList($condition, $field, $page, $order, $limit, 'nc_distinct', false, $count);
+            $goods_list = $this->getGoodsOnlineList($condition, $field, $page, $order, $limit, 'goods_commonid', false, $count);
         }
         return $goods_list;
     }

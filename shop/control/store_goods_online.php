@@ -98,8 +98,13 @@ class store_goods_onlineControl extends BaseSellerControl {
         Tpl::output('attr_list', $attr_list);
         Tpl::output('brand_list', $brand_list);
         Tpl::output('spec_value', unserialize($goodscommon_info['spec_value']));
+        //查询客户条款
+        $model_link = Model('mb_clause');
+        $link_list = $model_link->getLinkList(array());
+        Tpl::output ( 'clause_list', $link_list );//客户条款
+        Tpl::output ( 'goods_clause', unserialize($goodscommon_info['goods_clause']) );//客户条款
         
-		//echo json_encode(unserialize($goodscommon_info['spec_value']));exit;
+// 		echo json_encode(unserialize($goodscommon_info['goods_clause']));exit;
         // 取得商品规格的输入值
         $goods_array = $model_goods->getGoodsList($where, 'goods_id,goods_marketprice,goods_price,goods_storage,goods_serial,goods_storage_alarm,goods_spec');
         $sp_value = array();
@@ -321,6 +326,8 @@ class store_goods_onlineControl extends BaseSellerControl {
         $update_common['goods_storage_alarm']= intval($_POST['g_alarm']);
         $update_common['goods_attr']         = serialize($_POST['attr']);
         $update_common['goods_body']         = $_POST['g_body'];
+        $update_common['goods_size_remark']         = $_POST['g_size_remark'];
+        $update_common['goods_clause'] = serialize($_POST['g_clause']);//客户条款
         // 序列化保存手机端商品描述数据
         if ($_POST['m_body'] != '') {
             $_POST['m_body'] = str_replace('&quot;', '"', $_POST['m_body']);
@@ -438,6 +445,8 @@ class store_goods_onlineControl extends BaseSellerControl {
                     $update['is_fcode']          = $update_common['is_fcode'];
                     $update['is_appoint']        = $update_common['is_appoint'];
                     $update['is_presell']        = $update_common['is_presell'];
+                    $update['goods_size_remark']        = $update_common['goods_size_remark'];
+                    $update['goods_clause'] =  $update_common['goods_clause'] ;
                     // 虚拟商品不能有赠品
                     if ($update_common['is_virtual'] == 1) {
                         $update['have_gift']    = 0;
@@ -489,6 +498,8 @@ class store_goods_onlineControl extends BaseSellerControl {
                     $insert['is_appoint']        = $update_common['is_appoint'];
                     $insert['is_presell']        = $update_common['is_presell'];
                     $insert['is_own_shop']       = $update_common['is_own_shop'];
+                    $insert['goods_size_remark']       = $update_common['goods_size_remark'];
+                    $insert['goods_clause'] =  $update_common['goods_clause'] ;
                     $goods_id = $model_goods->addGoods($insert);
                         // 生成商品二维码
                         $PhpQRCode->set('date',WAP_SITE_URL . '/tmpl/product_detail.html?goods_id='.$goods_id);
@@ -670,6 +681,7 @@ class store_goods_onlineControl extends BaseSellerControl {
         Tpl::output('value', $spec_value['1']);
 
         $image_list = $model_goods->getGoodsImageList(array('goods_commonid' => $common_id));
+        echo json_encode($image_list);exit;
         $image_list = array_under_reset($image_list, 'color_id', 2);
 
         $img_array = $model_goods->getGoodsList(array('goods_commonid' => $common_id), 'color_id,goods_image', 'color_id');

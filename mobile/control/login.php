@@ -25,28 +25,42 @@ class loginControl extends mobileHomeControl {
 	 * 登录
 	 */
 	public function indexOp(){
-		
-        if(empty($_POST['username']) || empty($_POST['password'])) {
-        	//output_error('登录失败');
-        	$result['status']=1;
-        	$result['message']='登陆失败';
-        	echo json_encode($result);exit;
-        }
-        $memberTemp = (Array)json_decode(cookie($_POST['username']));
-       // echo json_encode($memberTemp);
-        if(empty($memberTemp)){
-        	$result['status']=1;
-        	$result['message']='输入验证码已经失效，请重新获取';
-        	echo json_encode($result);exit;
-        }
-        if($_POST['password'] != $memberTemp['verify']){
-        	$result['status']=1;
-        	$result['message']='请输入正确的短信验证码！';
-        	echo json_encode($result);exit;
-        }
-		$model_member = Model('member');
+		$type = $_POST['type'];//0:手机验证码,1:qq,2:微信
         $array = array();
-        $array['member_mobile']	= $_POST['username'];
+		if(intval($type)==1 || intval($type)==2){
+			$uid = $_POST['uid'];
+			$avatar = $_POST['avatar'];
+			$name = $_POST['name'];
+			$array['member_uid']	= $uid;
+			$array['member_name']	= $name;
+			$array['member_avatar']	= $avatar;
+			$array['member_type'] = intval($type);
+		}else{
+	        $array['member_mobile']	= $_POST['username'];
+           	$array['member_name']	= $_POST['username'];
+           	$array['member_type']	= 0;
+	        if(empty($_POST['username']) || empty($_POST['password'])) {
+	        	//output_error('登录失败');
+	        	$result['status']=1;
+	        	$result['message']='登陆失败';
+	        	echo json_encode($result);exit;
+	        }
+	        $memberTemp = (Array)json_decode(cookie($_POST['username']));
+	       // echo json_encode($memberTemp);
+	        if(empty($memberTemp)){
+	        	$result['status']=1;
+	        	$result['message']='输入验证码已经失效，请重新获取';
+	        	echo json_encode($result);exit;
+	        }
+	        if($_POST['password'] != $memberTemp['verify']){
+	        	$result['status']=1;
+	        	$result['message']='请输入正确的短信验证码！';
+	        	echo json_encode($result);exit;
+	        }
+		}
+		
+		
+		$model_member = Model('member');
         $member_info = $model_member->getMemberInfo($array);
        // echo json_encode($array);exit;
         if(!empty($member_info)) {
@@ -54,7 +68,7 @@ class loginControl extends mobileHomeControl {
         	$return = $model_member->editMember(array('member_id'=>$member_info['member_id']),$array);
         	
         } else {
-           	$array['member_name']	= $_POST['username'];
+           	
         	$member_info = $model_member->registerSms($array);
         }
         $token = $this->_get_token($member_info['member_id'], $member_info['member_name'], $_POST['client']);

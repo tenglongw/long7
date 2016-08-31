@@ -15,7 +15,7 @@
       </div>
       <div nctype="file_msg"></div>
       <div class="upload-pmgressbar" nctype="file_loading"></div>
-      <div class="upload-txt"><span><?php echo $lang['album_batch_upload_description'].$output['setting_config']['image_max_filesize'].'KB'.$lang['album_batch_upload_description_1'];?></span> </div>
+      <div class="upload-txt"><span>支持Jpg、Gif、Png格式，的图片上传；浏览文件时可以按住ctrl或shift键多选。</span> </div>
     </form>
   </div>
 </div>

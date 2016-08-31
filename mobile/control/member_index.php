@@ -25,7 +25,11 @@ class member_indexControl extends mobileMemberControl {
 		$model = Model();
         $member_info = array();
         $member_info['user_name'] = $this->member_info['member_name'];
-        $member_info['avator'] = getMemberAvatarForID($this->member_info['member_id']);//头像
+        if(empty($this->member_info['member_avatar'])){
+	        $member_info['avator'] = getMemberAvatarForID($this->member_info['member_id']);//头像
+        }else{
+        	$member_info['avator'] = $this->member_info['member_avatar'];
+        }
         $member_info['background'] = getMemberBackgroundForID($this->member_info['member_id']);//头像
         //$member_info['point'] = $this->member_info['member_points'];
         //$member_info['predepoit'] = $this->member_info['available_predeposit'];
@@ -116,7 +120,7 @@ class member_indexControl extends mobileMemberControl {
 			//上传图片
 			$upload = new UploadFile();
 			$ext = strtolower(pathinfo($_FILES['pic']['name'], PATHINFO_EXTENSION));
-			$upload->set('file_name',"avatar_$member_id.".".jpg");
+			$upload->set('file_name',"avatar_$member_id".".jpg");
 			$upload->set('default_dir',ATTACH_AVATAR);
 			$result = $upload->upfile('pic');
 			if ($result){

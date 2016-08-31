@@ -174,17 +174,30 @@ catch(e){}
 	              </span><span nctype="pv_name"><?php echo $value['sp_value_name']?></span></li>
 				<?php 
 	              }?>
-	               <li data-param="{gc_id:<?php echo $output['goods_class']['gc_id']?>,sp_id:<?php echo $key?>,url:&#39;http://121.43.96.196/long7/shop/index.php?act=store_goods_add&amp;op=ajax_add_spec&#39;}">
+	               <li data-param="{gc_id:<?php echo $output['goods_class']['gc_id']?>,sp_id:<?php echo $key?>,url:&#39;http://121.43.96.196/long7/shop/index.php?act=store_goods_add&amp;op=ajax_add_spec&#39;,sp_name:&#39;<?php echo $val['sp_name']?>&#39;}">
 	              <div nctype="specAdd1" style="display: block;"><a href="javascript:void(0);" class="ncsc-btn" nctype="specAdd"><i class="icon-plus"></i>添加规格值</a></div>
 	              <div nctype="specAdd2" style="display: none;">
 	                <input class="text w60" type="text" placeholder="规格值名称" maxlength="20">
 	                <a href="javascript:void(0);" nctype="specAddSubmit" class="ncsc-btn ncsc-btn-acidblue ml5 mr5">确认</a><a href="javascript:void(0);" nctype="specAddCancel" class="ncsc-btn ncsc-btn-orange">取消</a></div>
 	            </li>
 	          </ul>
+	           <?php if($val['sp_name']=='尺码' || $val['sp_name']=='尺寸'){?><p class="hint">尺码顺序请按照从小到大添加</p><?php }?>
 	                  </dd>
 	      </dl>
      <?php }?>
-            
+         <dl>
+        <dt>尺码备注：</dt>
+        <dd>
+          <input name="g_size_remark" value="<?php echo $output['goods']['goods_size_remark']?>" type="text" class="text w400" /> <span></span>
+          <p class="hint">(尺码偏大或偏小)-大半码、大一码、正常、小一码、小半码</p>
+        </dd>
+        <dt>客户条款：</dt>
+        <dd>
+        <?php foreach ($output['clause_list'] as $key=>$val){?>
+          <input name="g_clause[<?php echo $key?>]" value="<?php echo $val['c_name']?>" <?php if(!empty($output['goods_clause'])){foreach ($output['goods_clause'] as $ckey=>$cval) if($cval==$val['c_name']){?>checked=true<?php }}?> type="checkbox" class="clause_val" /> <span><?php echo $val['c_name']?></span>
+        <?php }?>
+        </dd>
+      </dl>
                 <!--   <dl nc_type="spec_group_dl_3" nctype="spec_group_dl" class="spec-bg">
         <dt>
           <input name="sp_name[27]" type="text" class="text w60 tip2 tr" title="自定义规格类型名称，规格值名称最多不超过4个字" value="材质" maxlength="4" nctype="spec_name" data-param="{id:27,name:&#39;材质&#39;}">
@@ -637,7 +650,7 @@ catch(e){}
           <ul class="ncsc-form-radio-list">
             <li>
               <label>
-                <input name="g_state" value="1" type="radio" <?php if($output['goods']['goods_state']=="1"){?>checked<?php }?>  />
+                <input name="g_state" value="1" type="radio" <?php if(empty($output['goods']['goods_state']) || $output['goods']['goods_state']=="1"){?>checked<?php }?>  />
                 立即发布 </label>
             </li>
             <li>
@@ -702,7 +715,7 @@ catch(e){}
               <label for="is_appoint_1">是</label>
             </li>
             <li>
-              <input type="radio" name="is_appoint" id="is_appoint_0" value="0"  <?php if($output['goods']['is_appoint']=="0"){?>checked<?php }?>>
+              <input type="radio" name="is_appoint" id="is_appoint_0" value="0"  <?php if(empty($output['goods']['is_appoint']) || $output['goods']['is_appoint']=="0"){?>checked<?php }?>>
               <label for="is_appoint_0">否</label>
             </li>
           </ul>
@@ -723,7 +736,7 @@ catch(e){}
           <ul class="ncsc-form-radio-list">
             <li>
               <label>
-                <input name="g_commend" value="1" <?php if($output['goods']['goods_commend']=="1"){?>checked<?php }?>  type="radio" />
+                <input name="g_commend" value="1" <?php if(empty($output['goods']['goods_commend']) || $output['goods']['goods_commend']=="1"){?>checked<?php }?>  type="radio" />
                 是</label>
             </li>
             <li>

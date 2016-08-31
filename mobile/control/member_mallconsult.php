@@ -27,7 +27,7 @@ class member_mallconsultControl extends mobileMemberControl {
         $where = array();
         $where['member_id'] = $this->member_info['member_id'];
         $where['mc_id'] = array('gt',$msg_id);
-        $consult_list = Model('mall_consult')->getMallConsultList($where);
+        $consult_list = Model('mall_consult')->getMallConsultList($where,null,null,'mc_id ASC');
         foreach ($consult_list as $key=>$val){
         	$val1['msg_id'] = $val['mc_id'];
         	$val1['f_id'] = $val['member_id'];

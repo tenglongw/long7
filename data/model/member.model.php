@@ -193,6 +193,9 @@ class memberModel extends Model {
 		// 会员添加
 		$member_info	= array();
 		$member_info['member_name']		= $register_info['member_name'];
+		$member_info['member_avatar']   = $register_info['member_avatar'];
+		$member_info['member_uid']		= $register_info['member_uid'];
+		$member_info['member_type']		= $register_info['member_type'];
 		$member_info['member_mobile']	= $register_info['member_mobile'];
 		//$member_info['member_passwd']	= $register_info['password'];
 		//$member_info['member_email']		= $register_info['email'];

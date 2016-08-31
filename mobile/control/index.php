@@ -234,4 +234,18 @@ class indexControl extends mobileHomeControl{
 
         output_data(array('version' => $version, 'url' => $url));
     }
+    
+    /**
+     * 机型统计
+     */
+    public function client_statOp() {
+    	$model = Model();
+    	$name = $_POST['name'];
+    	$time = time();
+    	$insert = array();
+    	$insert['c_name'] = $name;
+    	$insert['c_time'] = $time;
+    	$model->table('client_name')->insert($insert);
+    	output_data("成功");
+    }
 }

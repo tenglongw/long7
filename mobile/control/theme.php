@@ -104,6 +104,8 @@ class themeControl extends mobileHomeControl{
 		$insert['member_name']	= $_POST['member_name'];
 		$insert['theme_addtime']= time();
 		$insert['lastspeak_time']= time();
+		
+		$file_type = $_POST['file_type'];//视频vide；图片image
 		$themeid = $model->table('circle_theme')->insert($insert);
 		if($themeid){
 			import("manyUploadfile");
@@ -123,18 +125,24 @@ class themeControl extends mobileHomeControl{
 				$count = Model()->table('circle_affix')->where($where)->count();
 				if($count < 10){
 					$partpath = themePartPath($_POST['member_id']);
-					//$upload = new ManyUploadFile();
-					$upload = new UploadFile();
-					$upload->set('default_dir', ATTACH_CIRCLE.'/theme/'.$partpath);
-					$upload->set('thumb_width',	160);
-					$upload->set('thumb_height', 160);
-					$upload->set('thumb_ext', '_160x160');
 					$file['tmp_name']= $_FILES["uploadFile".$i]["tmp_name"];
 					$file['name']= $_FILES["uploadFile".$i]["name"];
 					$file['type']= $_FILES["uploadFile".$i]["type"];
 					$file['size']= $_FILES["uploadFile".$i]["size"];
-					$result = $upload->upfile("uploadFile".$i);		// 暂时的名字
-					//echo json_encode($result);exit;
+					$domain = strstr($data['origin_file_name'], 'mp4');
+					if($file_type == 'video'){
+						import("manyUploadfile");
+						$upload = new ManyUploadFile();
+						$upload->set('default_dir', ATTACH_CIRCLE.'/theme/'.$partpath);
+						$result = $upload->upfile($file);		// 暂时的名字
+					}else{
+						$upload = new UploadFile();
+						$upload->set('default_dir', ATTACH_CIRCLE.'/theme/'.$partpath);
+						$upload->set('thumb_width',	160);
+						$upload->set('thumb_height', 160);
+						$upload->set('thumb_ext', '_160x160');
+						$result = $upload->upfile("uploadFile".$i);		// 暂时的名字
+					}
 					if ($result){
 						$insert = array();
 						$insert['affix_filename']	= $partpath.'/'.$upload->file_name;
@@ -146,7 +154,13 @@ class themeControl extends mobileHomeControl{
 						$insert['theme_id']			= $themeid;
 						$insert['reply_id']			= 0;
 						$insert['circle_id']		= 1;
-						$id = Model()->table('circle_affix')->insert($insert);
+						if($file_type == 'video' && !$domain){
+							$update = array();
+							$update['affix_filethumb']	= $partpath.'/'.$upload->file_name;
+							$id = Model()->table('circle_affix')->where(array('theme_id'=>$themeid))->update($update);
+						}else{
+							$id = Model()->table('circle_affix')->insert($insert);
+						}
 						if($id){
 							$data['msg']		= 'success';
 							//$data['file_id']	= $id;

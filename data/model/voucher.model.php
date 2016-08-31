@@ -333,6 +333,13 @@ class voucherModel extends Model {
     public function getVoucherPriceList(){
         return $this->table('voucher_price')->order('voucher_price asc')->select();
     }
+    
+    /**
+     * 获得代金券面额列表
+     */
+    public function getVoucherCount($where){
+    	return $this->table('voucher')->where($where)->count();
+    }
     /**
      * 获得推荐的热门代金券列表
      * @param int $num 查询条数
