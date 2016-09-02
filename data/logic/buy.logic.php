@@ -955,6 +955,7 @@ class buyLogic {
                 $goods_list[$i]['store_id'] = $cart['store_id'];
                 $goods_list[$i]['gc_id'] = $cart['gc_id'];
                 $goods_list[$i]['goods_name'] = $cart['goods_name'];
+                $goods_list[$i]['goods_jingle'] = $cart['goods_jingle'];
                 $goods_list[$i]['goods_price'] = $cart['goods_price'];
                 $goods_list[$i]['store_name'] = $cart['store_name'];
                 $goods_list[$i]['goods_image'] = $cart['goods_image'];

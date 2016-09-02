@@ -19,6 +19,12 @@ class dateControl extends BaseCronControl {
     const EXE_TIMES = 86400;
     
     /**
+     * 该文件中所有任务执行频率，默认1分钟，单位：秒
+     * @var int
+     */
+    const EXE_TIMES_MINUTES = 60;
+    
+    /**
      * 优惠券即将到期提醒时间，单位：天
      * @var int
      */
@@ -51,8 +57,8 @@ class dateControl extends BaseCronControl {
 //         //订单超期后不允许评价
 //         $this->_order_eval_expire_update();
 
-//         //未付款订单超期自动关闭
-//         $this->_order_timeout_cancel();
+        //未付款订单超期自动关闭
+        $this->_order_timeout_cancel();
 
 //          //增加会员积分和经验值
 //         $this->_add_points();
@@ -262,7 +268,7 @@ class dateControl extends BaseCronControl {
         $logic_order = Logic('order');
         $condition = array();
         $condition['order_state'] = ORDER_STATE_NEW;
-        $condition['add_time'] = array('lt',TIMESTAMP - ORDER_AUTO_CANCEL_DAY * self::EXE_TIMES);
+        $condition['add_time'] = array('lt',TIMESTAMP - ORDER_AUTO_CANCEL_MINUTES * self::EXE_TIMES_MINUTES);
         //分批，每批处理100个订单，最多处理5W个订单
         for ($i = 0; $i < 500; $i++){
             if ($_break) {

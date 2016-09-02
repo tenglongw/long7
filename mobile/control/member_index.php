@@ -143,6 +143,12 @@ class member_indexControl extends mobileMemberControl {
 			$update = $model_member->editMember(array('member_id'=>$member_id),$member_array);
 			//修改社区名字
 			$model->table('circle_theme')->where(array('member_id'=>$member_id))->update(array('member_name'=>$_POST['member_name']));
+			//修改点赞名字
+			$model->table('circle_like')->where(array('member_id'=>$member_id))->update(array('member_name'=>$_POST['member_name']));
+			//回复名字
+			$model->table('circle_threply')->where(array('member_id'=>$member_id))->update(array('member_name'=>$_POST['member_name']));
+			//转发名字
+			$model->table('circle_theme')->where(array('forward_member_id'=>$member_id))->update(array('forward_member_name'=>$_POST['member_name']));
 			if($update){
 				$return['status'] = 0;
 				$return['message'] = '更新成功';

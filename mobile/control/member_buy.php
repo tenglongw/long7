@@ -79,6 +79,9 @@ class member_buyControl extends mobileMemberControl {
         		}
         	}
         }
+        if(empty($freight)){
+        	$freight = 0;
+        }
         $buy_list['freight'] = $freight;
         output_data($buy_list);
     }
@@ -122,8 +125,7 @@ class member_buyControl extends mobileMemberControl {
         if(!$result['state']) {
             output_error($result['msg']);
         }
-
-        output_data(array('pay_sn' => $result['data']['pay_sn']));
+        output_data(array('pay_sn' => $result['data']['pay_sn'],'goods_list'=>$result['data']['goods_list']));
     }
 
     /**

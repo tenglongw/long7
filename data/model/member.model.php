@@ -180,10 +180,10 @@ class memberModel extends Model {
 		}
 
         // 验证用户名是否重复
-		$check_member_name	= $this->getMemberInfo(array('member_mobile'=>$register_info['member_mobile']));
-		if(is_array($check_member_name) and count($check_member_name) > 0) {
-            return array('error' => '用户名已存在');
-		}
+// 		$check_member_name	= $this->getMemberInfo(array('member_mobile'=>$register_info['member_mobile']));
+// 		if(is_array($check_member_name) and count($check_member_name) > 0) {
+//             return array('error' => '用户名已存在');
+// 		}
 
        /*  // 验证邮箱是否重复
 		$check_member_email	= $this->getMemberInfo(array('member_email'=>$register_info['email']));
@@ -193,10 +193,18 @@ class memberModel extends Model {
 		// 会员添加
 		$member_info	= array();
 		$member_info['member_name']		= $register_info['member_name'];
-		$member_info['member_avatar']   = $register_info['member_avatar'];
-		$member_info['member_uid']		= $register_info['member_uid'];
-		$member_info['member_type']		= $register_info['member_type'];
-		$member_info['member_mobile']	= $register_info['member_mobile'];
+		if(!empty($register_info['member_avatar'])){
+			$member_info['member_avatar']   = $register_info['member_avatar'];
+		}
+		if(!empty($register_info['member_uid'])){
+			$member_info['member_uid']   = $register_info['member_uid'];
+		}
+		if(!empty($register_info['member_type'])){
+			$member_info['member_type']   = $register_info['member_type'];
+		}
+		if(!empty($register_info['member_mobile'])){
+			$member_info['member_mobile']   = $register_info['member_mobile'];
+		}
 		//$member_info['member_passwd']	= $register_info['password'];
 		//$member_info['member_email']		= $register_info['email'];
 		//添加邀请人(推荐人)会员积分 by mall.wrtx.cn
@@ -326,6 +334,9 @@ class memberModel extends Model {
 		    $member_info['member_qqinfo']		= $param['member_qqinfo'];
 		    $member_info['member_sinaopenid']	= $param['member_sinaopenid'];
 		    $member_info['member_sinainfo']	= $param['member_sinainfo'];
+		    
+		    $member_info['member_type']	= $param['member_type'];
+		    $member_info['member_uid']	= $param['member_uid'];
 		    //添加邀请人(推荐人)会员积分 by mall.wrtx.cn
 		    $member_info['inviter_id']	        = $param['inviter_id'];
 		    $insert_id	= $this->table('member')->insert($member_info);

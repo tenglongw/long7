@@ -115,6 +115,8 @@ define('ORDER_STATE_SEND', 30);
 define('ORDER_STATE_SUCCESS', 40);
 //未付款订单，自动取消的天数
 define('ORDER_AUTO_CANCEL_DAY', 3);
+//未付款订单，自动取消的分钟数
+define('ORDER_AUTO_CANCEL_MINUTES', 30);
 //已发货订单，自动确认收货的天数
 define('ORDER_AUTO_RECEIVE_DAY', 7);
 //兑换码支持过期退款，可退款的期限，默认为7天

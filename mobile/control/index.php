@@ -20,20 +20,20 @@ class indexControl extends mobileHomeControl{
      */
 	public function indexOp() {
         $model_mb_special = Model('mb_special'); 
-//         $article_model	= Model('article');
+         $article_model	= Model('article');
         $data = $model_mb_special->getMbSpecialIndex();
         //查询文章列表
-//         $condition	= array();
-//         $condition['article_show'] = '1';
-//         //$condition['home_index'] = 'home_index';
-//         $condition['field'] = 'article.article_id,article.ac_id,article.article_url,article.article_title,article.article_time,upload.file_name';
-//         $condition['order'] = 'article_sort asc,article_time desc';
-//         $condition['limit'] = '300';
-//         $article_list	= $article_model->getWapJoinList($condition);
+        $condition	= array();
+        $condition['article_show'] = '1';
+        //$condition['home_index'] = 'home_index';
+        $condition['field'] = 'article.article_id,article.ac_id,article.article_url,article.article_title,article.article_time,upload.file_name';
+        $condition['order'] = 'article_sort asc,article_time desc';
+        $condition['limit'] = '300';
+        $article_list	= $article_model->getWapJoinList($condition);
         
-//         //$article_list = $article_model->getArticleList($condition);
-//         //处理图片地址
-//         $article_list = $this->article_extend($article_list);
+        //$article_list = $article_model->getArticleList($condition);
+        //处理图片地址
+        $article_list = $this->article_extend($article_list);
         foreach ($data as $key=>$value){
         	$result['status'] = 200;
         	if($key==0){
@@ -50,15 +50,15 @@ class indexControl extends mobileHomeControl{
         		}
         	}
         }
-//         foreach ($article_list as $key=>$val){
-//         	if($key==0){
-//         		$article_one = $val;
-//         	}else{
-//         		$article_other[] = $val;
-//         	}
-//         }
-        //$result['article_one'] = $article_one;
-        //$result['article_list'] = $article_other;
+        foreach ($article_list as $key=>$val){
+        	if($key==0){
+        		$article_one = $val;
+        	}else{
+        		$article_other[] = $val;
+        	}
+        }
+        $result['article_one'] = $article_one;
+        $result['article_list'] = $article_other;
         echo json_encode($result);exit;
 	}
 	

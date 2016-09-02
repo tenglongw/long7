@@ -75,7 +75,11 @@ class groupControl extends mobileHomeControl{
 		$reply_list = $model->table('circle_threply')->where(array('theme_id'=>array('in', $themeid_array)))->order('reply_id desc')->select();
 		if(!empty($reply_list)){
 			foreach($reply_list as $key=>$val){
-				$reply_list[$key]['member_avatar'] = getMemberAvatarForID($val['member_id']);
+				if(empty($val['member_avatar'])){
+					$reply_list[$key]['member_avatar'] = getMemberAvatarForID($val['member_id']);
+				}else{
+					$reply_list[$key]['member_avatar'] = $val['member_avatar'];
+				}
 				$reply_list[$key]['reply_addtime'] = date('Y-m-d H:i', $val['reply_addtime']);
 				$reply_list[$key]['reply_content'] = removeUBBTag($val['reply_content']);
 			}
@@ -89,7 +93,12 @@ class groupControl extends mobileHomeControl{
 				$result[$key]['theme_content'] = $val['theme_content'];
 				$result[$key]['member_id'] = $val['member_id'];
 				$result[$key]['member_name'] = $val['member_name'];
-				$result[$key]['member_image'] = getMemberAvatarForID($val['member_id']);
+				if(empty($val['member_avatar'])){
+					$reply_list[$key]['member_avatar'] = getMemberAvatarForID($val['member_id']);
+					$result[$key]['member_image'] = getMemberAvatarForID($val['member_id']);
+				}else{
+					$reply_list[$key]['member_avatar'] = $val['member_avatar'];
+				}
 				$result[$key]['theme_addtime'] = $date3=date('m-d H:i',$val['theme_addtime']);
 				$result[$key]['theme_likecount'] = $val['theme_likecount'];
 				$result[$key]['theme_commentcount'] = $val['theme_commentcount'];

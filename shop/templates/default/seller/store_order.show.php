@@ -60,27 +60,27 @@ catch(e){}
       <div class="content">
         <dl>
           <dt>收&nbsp;&nbsp;货&nbsp;&nbsp;人：</dt>
-          <dd>张三&nbsp; 13527894748&nbsp; 北京	北京市	东城区 四合路88号</dd>
+          <dd><?php echo $output['order_info']['extend_order_common']['reciver_name']?>&nbsp; <?php echo $output['order_info']['extend_order_common']['reciver_info']['phone']?>&nbsp; <?php echo $output['order_info']['extend_order_common']['reciver_info']['address']?></dd>
         </dl>
-        <dl>
+        <!-- <dl>
           <dt>发&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：</dt>
           <dd>
                         <span>类型 (<strong>普通发票 </strong>)</span>
                         <span>抬头 (<strong>个人</strong>)</span>
                         <span>内容 (<strong>明细</strong>)</span>
                 </dd>
-        </dl>
+        </dl> -->
         <dl>
           <dt>买家留言：</dt>
           <dd>&nbsp;</dd>
         </dl>
         <dl class="line">
           <dt>订单编号：</dt>
-          <dd>7000000000000401<a href="javascript:void(0);">更多<i class="icon-angle-down"></i>
+          <dd><?php echo $output['order_info']['order_sn']?><a href="javascript:void(0);">更多<i class="icon-angle-down"></i>
             <div class="more"><span class="arrow"></span>
               <ul>
-                                <li>支付方式：<span>在线付款                                    </span></li>
-                                <li>下单时间：<span>2015-12-24 17:40:50</span></li>
+                                <li>支付方式：<span><?php echo $output['order_info']['payment_name']?>                                   </span></li>
+                                <li>下单时间：<span><?php echo date('Y-m-d H:i:s',$output['order_info']['add_time'])?></span></li>
                     </ul>
             </div>
             </a></dd>
@@ -94,36 +94,38 @@ catch(e){}
             <div class="ncsc-order-condition">
       <dl>
         <dt><i class="icon-ok-circle green"></i>订单状态：</dt>
-        <dd>订单已经提交，等待买家付款</dd>
+        <dd><?php echo $output['order_info']['state_desc']?></dd>
       </dl>
-      <ul>
-        <li>1. 买家尚未对该订单进行支付。</li>
-        <li>2. 如果买家未对该笔订单进行支付操作，系统将于
-          <time>2015-12-27 17:40:53</time>
-          自动关闭该订单。</li>
-      </ul>
+      <?php if($output['order_info']['order_state']=='10'){?>
+	      <ul>
+	        <li>1. 买家尚未对该订单进行支付。</li>
+	        <li>2. 如果买家未对该笔订单进行支付操作，系统将于
+	          <time><?php echo date('Y-m-d H:i:s',$output['order_info']['add_time']+30*6*10)?></time>
+	          自动关闭该订单。</li>
+	      </ul>
+      <?php }?>
     </div>
         </div>
     <div id="order-step" class="ncsc-order-step">
-    <dl class="step-first current">
+    <dl class="step-first <?php if($output['order_info']['order_state'] == '10'){?>current<?php }?>">
       <dt>提交订单</dt>
       <dd class="bg"></dd>
-      <dd class="date" title="下单时间">2015-12-24 17:40:50</dd>
+      <dd class="date" title="下单时间"><?php echo date('Y-m-d H:i:s', $output['order_info']['add_time'])?></dd>
     </dl>
-        <dl class="">
+        <dl class=" <?php if($output['order_info']['order_state'] == '20'){?>current<?php }?>">
       <dt>支付订单</dt>
       <dd class="bg"> </dd>
-      <dd class="date" title="付款时间">1970-01-01 08:00:00</dd>
+      <dd class="date" title="付款时间"><?php echo date('Y-m-d H:i:s', $output['order_info']['payment_time'])?></dd>
     </dl>
-        <dl class="">
+      	<dl class="<?php if($output['order_info']['order_state'] == '30'){?>current<?php }?>">
       <dt>商家发货</dt>
       <dd class="bg"> </dd>
-      <dd class="date" title="发货时间">1970-01-01 08:00:00</dd>
+      <dd class="date" title="发货时间"><?php echo date('Y-m-d H:i:s', $output['order_info']['delay_time'])?></dd>
     </dl>
-    <dl class="">
+    <dl class="<?php if($output['order_info']['order_state'] == '40'){?>current<?php }?>">
       <dt>确认收货</dt>
       <dd class="bg"> </dd>
-      <dd class="date" title="完成时间">1970-01-01 08:00:00</dd>
+      <dd class="date" title="完成时间"><?php echo date('Y-m-d H:i:s', $output['order_info']['finnshed_time'])?></dd>
     </dl>
     <dl class="">
       <dt>评价</dt>
@@ -139,60 +141,40 @@ catch(e){}
           <th colspan="2">商品</th>
           <th class="w120">单价(元)</th>
           <th class="w60">数量</th>
-          <th class="w100">优惠活动</th>
-          <th class=""><strong>实付 * 佣金比 = 应付佣金(元)</strong></th>
+         <!--  <th class="w100">优惠活动</th> -->
+          <!-- <th class=""><strong>实付 * 佣金比 = 应付佣金(元)</strong></th> -->
           <th>交易操作</th>
         </tr>
       </thead>
       <tbody>
-                                        <tr class="bd-line">
+      <?php foreach ($output['order_info']['goods_list'] as $key => $val){?>
+         <tr class="bd-line">
           <td>&nbsp;</td>
-          <td class="w50"><div class="pic-thumb"><a target="_blank" href="/shop/index.php?act=goods&op=index&goods_id=40"><img src="/data/upload/shop/store/goods/1/1_04418207471410641_60.jpg" /></a></div></td>
+          <td class="w50"><div class="pic-thumb"><a target="_blank" href="/shop/index.php?act=goods&op=index&goods_id=<?php echo $val['goods_id']?>"><img src="<?php echo $val['image_60_url']?>" /></a></div></td>
           <td class="tl"><dl class="goods-name">
-              <dt><a target="_blank" href="/shop/index.php?act=goods&op=index&goods_id=40">正品 2014春装新款 女 绣花针织衫 开衫外套浮桑初 梅红</a></dt>
+              <dt><a target="_blank" href="/shop/index.php?act=goods&op=index&goods_id=<?php echo $val['goods_id']?>"><?php echo $val['goods_name']?></a></dt>
               <dd>
                     </dl></td>
-          <td>189.00            <p class="green">
+          <td><?php echo $val['goods_price']?>            <p class="green">
                           </p></td>
-          <td>1</td>
-          <td></td>
-          <td class="commis bdl bdr">
+          <td><?php echo $val['goods_num']?> </td>
+          <!-- <td class="commis bdl bdr">
                     189.00 * 0% = <b>0.00</b>
-                    </td>
+                    </td> -->
 
           <!-- S 合并TD -->
-                    <td class="bdl bdr" rowspan="2"><span style="color:#36C">待付款</span>            
+                    <td class="bdl bdr" rowspan="2"><span style="color:#36C"><?php echo $output['order_info']['state_desc']?></span>            
             <!-- 修改价格 -->
             
             <!-- 取消订单 -->
-                        <p><a href="javascript:void(0)" style="color:#F30; text-decoration:underline;" nc_type="dialog" uri="index.php?act=store_order&op=change_state&state_type=order_cancel&order_sn=7000000000000401&order_id=2" dialog_title="取消订单" dialog_id="seller_order_cancel_order" dialog_width="400" id="order2_action_cancel" />取消订单</a></p>
+                        <p><a href="javascript:void(0)" style="color:#F30; text-decoration:underline;" nc_type="dialog" uri="index.php?act=store_order&op=change_state&state_type=order_cancel&order_sn=<?php echo $output['order_info']['order_sn']?>&order_id=<?php echo $output['order_info']['order_id']?>" dialog_title="取消订单" dialog_id="seller_order_cancel_order" dialog_width="400" id="order2_action_cancel" />取消订单</a></p>
             
             <!-- 发货 -->
             </td>
-                    <!-- E 合并TD -->
+           <!-- E 合并TD -->
         </tr>
+      <?php }?>
 
-        <!-- S 赠品列表 -->
-                <!-- E 赠品列表 -->
-
-                        <tr class="bd-line">
-          <td>&nbsp;</td>
-          <td class="w50"><div class="pic-thumb"><a target="_blank" href="/shop/index.php?act=goods&op=index&goods_id=46"><img src="/data/upload/shop/store/goods/1/1_04418240378724556_60.jpg" /></a></div></td>
-          <td class="tl"><dl class="goods-name">
-              <dt><a target="_blank" href="/shop/index.php?act=goods&op=index&goods_id=46">春装 披肩式 超短款 针织 衫开衫 女装 青鸟 绿色</a></dt>
-              <dd>
-                    </dl></td>
-          <td>129.00            <p class="green">
-                          </p></td>
-          <td>1</td>
-          <td></td>
-          <td class="commis bdl bdr">
-                    129.00 * 0% = <b>0.00</b>
-                    </td>
-
-          <!-- S 合并TD -->
-                    <!-- E 合并TD -->
-        </tr>
 
         <!-- S 赠品列表 -->
                 <!-- E 赠品列表 -->
@@ -202,7 +184,7 @@ catch(e){}
                 <tr>
           <td colspan="20"><dl class="freight">
               <dd>
-                                （免运费）                                              </dd>
+                                运费：<?php echo $output['order_info']['shipping_fee']?>  元                                             </dd>
             </dl>
             <dl class="sum">
             
@@ -210,7 +192,7 @@ catch(e){}
                                            
                
               <dt>订单金额：</dt>
-              <dd><em>189.00</em>元</dd>
+              <dd><em><?php echo $output['order_info']['order_amount']?></em>元</dd>
             </dl></td>
         </tr>
       </tfoot>
@@ -295,6 +277,7 @@ $(function(){
 .tr_southidc {BACKGROUND-COLOR: ECF5FF;}
 -->
 </style>
+<!-- 
 <div align="center">
   
   <table width="816" border="0" align="center" cellpadding="2" cellspacing="1" class="table_southidc">
@@ -317,6 +300,6 @@ $(function(){
     </tr>
   </table>
  
-</div>
+</div> -->
 </body>
 </html>

@@ -197,7 +197,7 @@ class store_orderControl extends BaseSellerControl {
             $daddress_info = Model('daddress')->getAddressInfo(array('address_id'=>$order_info['extend_order_common']['daddress_id']));
             Tpl::output('daddress_info',$daddress_info);
         }
-
+		//echo json_encode($order_info);exit;
 		Tpl::showpage('store_order.show');
 	}
 
