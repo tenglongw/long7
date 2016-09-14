@@ -70,7 +70,7 @@
           <td colspan="2" class="required"><?php echo $lang['article_add_upload'];?>:</td>
         </tr>
         <tr class="noborder">
-          <td colspan="3" id="divComUploadContainer"><input type="file" multiple="multiple" id="fileupload" name="fileupload" /></td>
+          <td colspan="3" id="divComUploadContainer"><input type="file" multiple="multiple" id="fileupload" name="fileupload" />大图：750*330  小图：375*240</td>
         </tr>
         <tr>
           <td colspan="2" class="required"><?php echo $lang['article_add_uploaded'];?>:</td>
@@ -86,7 +86,6 @@
               <?php } ?>
               <?php } ?>
             </ul><div class="tdare">
-              
           </div></td>
         </tr>
       </tbody>

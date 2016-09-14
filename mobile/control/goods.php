@@ -290,6 +290,9 @@ class goodsControl extends mobileHomeControl{
         //商品链接
         $goods_detail['goods_info']['goods_url'] = urlShop('goods', 'index', array('goods_id' => $goods_detail['goods_info']['goods_id']));
 
+        if(empty($goods_detail['goods_info']['freight_aging'])){
+        	$goods_detail['goods_info']['freight_aging'] = '';
+        }
         //整理数据
         unset($goods_detail['goods_info']['goods_commonid']);
         unset($goods_detail['goods_info']['gc_id']);

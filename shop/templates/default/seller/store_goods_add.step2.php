@@ -102,7 +102,7 @@ catch(e){}
 <?php }?>
 <div class="item-publish">
 
-  <form method="post" id="goods_form" action="http://localhost/long7/shop/index.php?<?php if ($output['goods']['goods_commonid']!='') echo 'act=store_goods_online&op=edit_save_goods'; else echo 'act=store_goods_add&op=save_goods' ?>">
+  <form method="post" id="goods_form" action="http://121.43.96.196/long7/shop/index.php?<?php if ($output['goods']['goods_commonid']!='') echo 'act=store_goods_online&op=edit_save_goods'; else echo 'act=store_goods_add&op=save_goods' ?>">
     <input type="hidden" name="form_submit" value="ok" />
    <input type="hidden" name="commonid" value="<?php echo $output['goods']['goods_commonid']?>" />
     <input type="hidden" name="type_id" value="<?php echo $output['goods']['type_id']?>" />
@@ -111,7 +111,7 @@ catch(e){}
       <h3 id="demo1">商品基本信息</h3>
       <dl>
         <dt>商品分类：</dt>
-        <dd id="gcategory"><?php echo $output['goods_class']['gc_tag_name']?> 
+        <dd id="gcategory"><?php echo $output['goods_class']['gc_tag_name']?> <a class="ncsc-btn" href="http://121.43.96.196/long7/shop/index.php?act=store_goods_online&op=edit_class&commonid=<?php echo $output['goods']['goods_commonid']?>&ref_url=">编辑</a>
           <input type="hidden" id="cate_id" name="cate_id" value="<?php echo $output['goods_class']['gc_id']?>" class="text" />
           <input type="hidden" name="cate_name" value="<?php echo $output['goods_class']['gc_tag_name']?>" class="text"/>
         </dd>
@@ -583,6 +583,14 @@ catch(e){}
                 <input id="transport_id" type="hidden" value="<?php echo $output['goods']['transport_id']?>" name="transport_id">
                 <input id="transport_title" type="hidden" value="<?php echo $output['goods']['transport_title']?>" name="transport_title">
                 <span id="postageName" class="transport-name" <?php if($output['goods']['transport_id'] != "0"){?>style="display: inline-block;"<?php }?> ><?php echo $output['goods']['transport_title']?></span><a href="JavaScript:void(0);" onClick="window.open('index.php?act=store_transport&type=select')" class="ncsc-btn" id="postageButton"><i class="icon-truck"></i>选择运费模板</a> </div>
+            </li>
+            <li>
+              <label for="freight_0">发货时效</label>
+				<select name="freight_aging">
+					<option value="24小时发货" <?php if($output['goods']['freight_aging'] == "24小时发货"){?>selected<?php }?>>24小时</option>
+					<option value="48小时发货" <?php if($output['goods']['freight_aging'] == "48小时发货"){?>selected<?php }?>>48小时</option>
+					<option value="72小时发货" <?php if($output['goods']['freight_aging'] == "72小时发货"){?>selected<?php }?>>72小时</option>
+				</select>                
             </li>
           </ul>
           <p class="hint">运费设置为 0 元，前台商品将显示为免运费。</p>

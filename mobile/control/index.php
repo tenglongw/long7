@@ -44,16 +44,25 @@ class indexControl extends mobileHomeControl{
         				$special_info = $model_mb_special->getMbSpecialById(intval($aval['data']));
         				$result['adv_list'][$akey]['title'] = $special_info['special_desc'];
         			}
+        			if($aval['type']=='article'){
+        				//查询专题页title
+        				$article_info = $article_model->getOneArticle(intval($aval['data']));
+        				$result['adv_list'][$akey]['title'] = $article_info['article_title'];
+        			}
         			$name_array = explode('.', $aval['image']);
         			$size = count($name_array);
-        			$result['adv_list'][$akey]['image'] =str_replace('.'.$name_array[$size-1],'_640x350.'.$name_array[$size-1],  $aval['image']);
+        			$result['adv_list'][$akey]['image'] =str_replace('.'.$name_array[$size-1],'_750x398.'.$name_array[$size-1],  $aval['image']);
         		}
         	}
         }
         foreach ($article_list as $key=>$val){
+        	$name_array = explode('.', $val['file_name']);
+        	$size = count($name_array);
         	if($key==0){
+        		$val['file_name'] =str_replace('.'.$name_array[$size-1],'_750_330.'.$name_array[$size-1],  $val['file_name']);
         		$article_one = $val;
         	}else{
+        		$val['file_name'] =str_replace('.'.$name_array[$size-1],'_375_240.'.$name_array[$size-1],  $val['file_name']);
         		$article_other[] = $val;
         	}
         }
@@ -116,6 +125,9 @@ class indexControl extends mobileHomeControl{
 						//查询专题页title
 						$special_info = $model_mb_special->getMbSpecialById(intval($aval['data']));
 						$aval['title'] = $special_info['special_desc'];
+						$name_array = explode('.', $aval['image']);
+						$size = count($name_array);
+						$aval['image'] =str_replace('.'.$name_array[$size-1],'_750x398.'.$name_array[$size-1],  $aval['image']);
 					}
 					$result['adv_list'][] = $aval;
 				}
@@ -166,7 +178,10 @@ class indexControl extends mobileHomeControl{
 	public function specialOp() {
         $model_mb_special = Model('mb_special'); 
         $data = $model_mb_special->getMbSpecialItemUsableListByID($_GET['special_id']);
-        $this->_output_special($data, $_GET['type'], $_GET['special_id']);
+        $special_info = $model_mb_special->getMbSpecialById($_GET['special_id']);
+        //$this->_output_special($data, $_GET['type'], $_GET['special_id']);
+        $data[1]['special_info'] = $special_info;
+        output_data($data);
 	}
 
     /**

@@ -328,6 +328,7 @@ class store_goods_onlineControl extends BaseSellerControl {
         $update_common['goods_body']         = $_POST['g_body'];
         $update_common['goods_size_remark']         = $_POST['g_size_remark'];
         $update_common['goods_clause'] = serialize($_POST['g_clause']);//客户条款
+        $update_common['freight_aging'] = $_POST['freight_aging'];//发货时效性
         // 序列化保存手机端商品描述数据
         if ($_POST['m_body'] != '') {
             $_POST['m_body'] = str_replace('&quot;', '"', $_POST['m_body']);
@@ -447,6 +448,7 @@ class store_goods_onlineControl extends BaseSellerControl {
                     $update['is_presell']        = $update_common['is_presell'];
                     $update['goods_size_remark']        = $update_common['goods_size_remark'];
                     $update['goods_clause'] =  $update_common['goods_clause'] ;
+                    $update['freight_aging'] = $update_common['freight_aging'];//发货时效性
                     // 虚拟商品不能有赠品
                     if ($update_common['is_virtual'] == 1) {
                         $update['have_gift']    = 0;
@@ -500,6 +502,7 @@ class store_goods_onlineControl extends BaseSellerControl {
                     $insert['is_own_shop']       = $update_common['is_own_shop'];
                     $insert['goods_size_remark']       = $update_common['goods_size_remark'];
                     $insert['goods_clause'] =  $update_common['goods_clause'] ;
+                    $insert['freight_aging'] = $update_common['freight_aging'];//发货时效性
                     $goods_id = $model_goods->addGoods($insert);
                         // 生成商品二维码
                         $PhpQRCode->set('date',WAP_SITE_URL . '/tmpl/product_detail.html?goods_id='.$goods_id);

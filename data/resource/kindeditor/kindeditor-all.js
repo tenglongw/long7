@@ -6726,7 +6726,7 @@ KindEditor.plugin('emoticons', function(K) {
 				K(this).removeClass('ke-on');
 			});
 			cell.click(function(e) {
-				self.insertHtml('<img src="' + path + num + '.gif" border="0" alt="" />').hideMenu().focus();
+				self.insertHtml('<img class="icon_smile" src="' + path + num + '.gif" border="0" alt="" />').hideMenu().focus();
 				e.stop();
 			});
 		}

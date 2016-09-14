@@ -27,7 +27,7 @@
             </span> <span class="type-file-box">
             <input name="link_pic" type="file" class="type-file-file" id="link_pic" size="30">
             </span></td>
-          <td class="vatop tips">展示图片，建议大小500px*220px</td>
+          <td class="vatop tips">展示图片，建议大小582px*256px</td>
         </tr>
         <tr class="noborder">
           <td colspan="2" class="required"><label class="validation" for="link_date"> <?php echo $lang['link_sell_index_date'];?>:</label></td>

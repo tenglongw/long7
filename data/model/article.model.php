@@ -27,6 +27,15 @@ class articleModel{
 		$result = Db::select($param,$page);
 		return $result;
 	}
+	
+	/**
+	 * 查询专题页信息
+	 */
+	public function getArticleById($article_id) {
+		$condition['article_id'] = $article_id;
+		$result = Db::getRow($condition);
+		return $result;
+	}
 
 	/**
 	 * 连接查询列表

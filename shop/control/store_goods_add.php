@@ -248,6 +248,7 @@ class store_goods_addControl extends BaseSellerControl {
 			$common_array ['goods_body'] = $_POST ['g_body'];
 			$common_array ['goods_size_remark'] = $_POST ['g_size_remark'];
 			$common_array['goods_clause'] = serialize ( $_POST ['g_clause'] );//客户条款
+			$common_array['freight_aging'] = $_POST ['freight_aging'] ;//发货时效性
 			// 序列化保存手机端商品描述数据
 			if ($_POST ['m_body'] != '') {
 				$_POST ['m_body'] = str_replace ( '&quot;', '"', $_POST ['m_body'] );
@@ -373,6 +374,7 @@ class store_goods_addControl extends BaseSellerControl {
 						$goods ['is_own_shop'] = $common_array ['is_own_shop'];
 						$goods ['goods_size_remark'] = $common_array ['goods_size_remark'];
 						$goods['goods_clause'] = $common_array['goods_clause'];//客户条款
+						$goods['freight_aging'] = $common_array['freight_aging'];//发货时效性
 						$goods_id = $model_goods->addGoods ( $goods );
 						$model_type->addGoodsType ( $goods_id, $common_id, array (
 								'cate_id' => $_POST ['cate_id'],
@@ -428,6 +430,7 @@ class store_goods_addControl extends BaseSellerControl {
 					$goods ['is_own_shop'] = $common_array ['is_own_shop'];
 					$goods ['goods_size_remark'] = $common_array ['goods_size_remark'];
 					$goods['goods_clause'] = $common_array['goods_clause'];//客户条款
+					$goods['freight_aging'] = $common_array['freight_aging'];//发货时效性
 					$goods_id = $model_goods->addGoods ( $goods );
 					$model_type->addGoodsType ( $goods_id, $common_id, array (
 							'cate_id' => $_POST ['cate_id'],

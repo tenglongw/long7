@@ -36,13 +36,13 @@
       <div class="handle">
       </div>
       <a nctype="btn_del_item_image" href="javascript:;" style='top:35px;'><i class="icon-trash"></i>删除</a>
-      <a nctype="btn_edit_item_image" data-desc="640*240" href="javascript:;"><i class="icon-edit"></i>编辑</a>
+      <a nctype="btn_edit_item_image" data-desc="750*398,图片大小小于100k" href="javascript:;"><i class="icon-edit"></i>编辑</a>
       <?php } ?>
     </div>
     <?php } ?>
     <?php } ?>
   </div>
   <?php if($item_edit_flag) { ?>
-  <a nctype="btn_add_item_image" class="btn-add" data-desc="640*240" href="javascript:;">添加新的广告条</a>
+  <a nctype="btn_add_item_image" class="btn-add" data-desc="750*398,图片大小小于100k" href="javascript:;">添加新的广告条</a>
   <?php } ?>
 </div>

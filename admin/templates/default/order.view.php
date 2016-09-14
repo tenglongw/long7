@@ -48,23 +48,23 @@ if (cookie_skin) {
       <tr>
         <td colspan="2"><ul>
             <li>
-            <strong>订单号:</strong>7000000000000301            ( 支付单号 ： 420504293552000005 )
+            <strong>订单号:</strong><?php echo $output['order_info']['order_sn']?>            ( 支付单号 ： <?php echo $output['order_info']['pay_sn']?> )
             </li>
-            <li><strong>订单状态:</strong>待付款</li>
-            <li><strong>订单总额:</strong><span class="red_common">￥2709.00 </span>
+            <li><strong>订单状态:</strong><?php echo $output['order_info']['state_desc']?></li>
+            <li><strong>订单总额:</strong><span class="red_common">￥<?php echo $output['order_info']['order_amount']?> </span>
              <!--//zmr>v80-->
                                           
               
             	</li>
-            <li><strong>运费:</strong>￥10.00</li>
+            <li><strong>运费:</strong>￥<?php echo $output['order_info']['shipping_fee']?></li>
           </ul></td>
       </tr>
       <tr>
         <td><ul>
-            <li><strong>买家：</strong>wrzcnet</li>
-            <li><strong>店铺：</strong>创智凌云-专业建站公司</li>
-            <li><strong>支付方式：</strong>在线付款</li>
-            <li><strong>下单时间：</strong>2015-12-24 17:32:30</li>
+            <li><strong>买家：</strong><?php echo $output['order_info']['buyer_name']?></li>
+            <li><strong>店铺：</strong><?php echo $output['order_info']['store_name']?></li>
+            <li><strong>支付方式：</strong><?php echo $output['order_info']['payment_name']?></li>
+            <li><strong>下单时间：</strong><?php echo date('Y-m-d H:i:s',$output['order_info']['payment_time'])?></li>
                                                           </ul></td>
       </tr>
       <tr>
@@ -72,12 +72,12 @@ if (cookie_skin) {
       </tr>
       <tr>
         <td><ul>
-            <li><strong>收货人姓名：</strong>张三</li>
-            <li><strong>电话号码：</strong>13527894748</li>
-            <li><strong>详细地址：</strong>北京	北京市	东城区 四合路88号</li>
+            <li><strong>收货人姓名：</strong><?php echo $output['order_info']['extend_order_common']['reciver_name']?></li>
+            <li><strong>电话号码：</strong><?php echo $output['order_info']['extend_order_common']['reciver_info']['phone']?></li>
+            <li><strong>详细地址：</strong><?php echo $output['order_info']['extend_order_common']['reciver_info']['address']?></li>
                       </ul></td>
           </tr>
-              <tr>
+            <!--   <tr>
       	<th>发票信息</th>
       </tr>
       <tr>
@@ -86,7 +86,7 @@ if (cookie_skin) {
           <li><strong>抬头：</strong>个人</li>
           <li><strong>内容：</strong>明细</li>
               </ul></td>
-      </tr>
+      </tr> -->
           <tr>
         <th>商品信息</th>
       </tr>
@@ -102,24 +102,17 @@ if (cookie_skin) {
                 <th class="align-center">佣金比例</th>
                 <th class="align-center">收取佣金</th>
               </tr>
-                            <tr>
-                <td class="w60 picture"><div class="size-56x56"><span class="thumb size-56x56"><i></i><a href="/shop/index.php?act=goods&goods_id=100085" target="_blank"><img alt="" src="/data/upload/shop/store/goods/1/1_04956521033378313_60.jpg" /> </a></span></div></td>
-                <td class="w50pre"><p><a href="/shop/index.php?act=goods&goods_id=100085" target="_blank">TCL BCD-288KR50 288升法式对开多门冰箱家用大四门 欧洲工艺设计 不锈钢 不锈钢</a></p><p></p></td>
-                <td class="w96 align-center"><span class="red_common">￥2699.00</span></td>
-                <td class="w96 align-center"><span class="red_common">￥2699.00</span></td>
-                <td class="w96 align-center">1</td>
-                <td class="w96 align-center">0%</td>
-                <td class="w96 align-center">0.00</td>
-              </tr>
-                            <tr>
-                <td class="w60 picture"><div class="size-56x56"><span class="thumb size-56x56"><i></i><a href="/shop/index.php?act=goods&goods_id=46" target="_blank"><img alt="" src="/data/upload/shop/store/goods/1/1_04418240378724556_60.jpg" /> </a></span></div></td>
-                <td class="w50pre"><p><a href="/shop/index.php?act=goods&goods_id=46" target="_blank">春装 披肩式 超短款 针织 衫开衫 女装 青鸟 绿色</a></p><p></p></td>
-                <td class="w96 align-center"><span class="red_common">￥129.00</span></td>
-                <td class="w96 align-center"><span class="red_common">￥129.00</span></td>
-                <td class="w96 align-center">1</td>
-                <td class="w96 align-center">0%</td>
-                <td class="w96 align-center">0.00</td>
-              </tr>
+              <?php foreach ($output['order_info']['extend_order_goods'] as $key=>$val){?>
+	              <tr>
+	                <td class="w60 picture"><div class="size-56x56"><span class="thumb size-56x56"><i></i><a href="/shop/index.php?act=goods&goods_id=<?php echo $val['goods_id']?>" target="_blank"><img style="width: 56px" alt="" src="/long7/data/upload/shop/store/goods/<?php echo $val['store_id']?>/<?php echo $val['goods_image']?>" /> </a></span></div></td>
+	                <td class="w50pre"><p><a href="/long7/shop/index.php?act=goods&goods_id=<?php echo $val['goods_id']?>" target="_blank"><?php echo $val['goods_name']?></a></p><p></p></td>
+	                <td class="w96 align-center"><span class="red_common">￥<?php echo $val['goods_price']?></span></td>
+	                <td class="w96 align-center"><span class="red_common">￥<?php echo $val['goods_pay_price']?></span></td>
+	                <td class="w96 align-center"><?php echo $val['goods_num']?></td>
+	                <td class="w96 align-center">0%</td>
+	                <td class="w96 align-center">0.00</td>
+	              </tr>
+              <?php }?>
                           </tbody>
           </table></td>
       </tr>
@@ -144,25 +137,6 @@ if (cookie_skin) {
 </style>
 <div align="center">
   
-  <table width="816" border="0" align="center" cellpadding="2" cellspacing="1" class="table_southidc">
-    <tr>
-      <td height="25" colspan="2" class="back_southidc"><div align="center"><span style="font-weight: bold">免费版不能保存！需要请联系注册正式版！</span></div></td>
-    </tr>
-    <tr class="tr_southidc">
-    
-        <td width="650"><div align="left"><span class="tit"><span class="style6">欢迎注册《创智凌云B2B2C多用户商城网站系统 V2030》每套5800元<br>
-          
-          联系QQ：<span class="style11">38306293<a target=blank href=tencent://message/?uin=38306293&Site=创智凌云客服为你服务&Menu=yes><img border="0" src=/qq_online.gif alt="创智凌云客服为你服务"></a>417586492</span><FONT face=Verdana><a target=blank href=tencent://message/?uin=417586492&Site=创智凌云客服为你服务&Menu=yes><img border="0" src=/qq_online.gif alt="创智凌云客服为你服务"></a></FONT><span class="style11">657248708</span><FONT face=Verdana><FONT face=Verdana><a target=blank href=tencent://message/?uin=657248708&Site=创智凌云客服为你服务&Menu=yes><img border="0" src=/qq_online.gif alt="创智凌云客服为你服务"></a></FONT><br>
-          </FONT><span class="style11">电话：020-34506590,34700400,34709708 34700400,13527894748<br>
-          此版演示：<a href="http://b2b2c.wrtx.cn">http://b2b2c.wrtx.cn</a><br>
-          </span></span></span>
-        官方网址: <a href="http://www.wrzc.net">http://www.wrzc.net </a><br>
-        <br>
-        </div></td>
-        <td width="127"><div align="center"></div></td>
-   
-    </tr>
-  </table>
  
 </div>
 </body>

@@ -168,6 +168,7 @@ class mb_specialModel extends Model{
      * 处理专题数据，拼接图片URL
      */
     private function _formatMbSpecialData($item_data, $item_type,$item_content,$item_count) {
+    	$model_goods = Model('goods');
         switch ($item_type) {
             case 'home1':
             	$item_data['image'] = getMbSpecialImageUrl($item_data['image']);
@@ -195,6 +196,10 @@ class mb_specialModel extends Model{
                 $new_item = array();
                 foreach ((array) $item_data['item'] as $key => $value) {
                     $value['image'] = getMbSpecialImageUrl($value['image']);
+                    if($value['type'] == 'goods'){
+                    	$goods_info = $model_goods->getGoodsInfo(array('goods_commonid'=>$value['data']));
+                    	$value['data'] = $goods_info['goods_id'];
+                    }
                     $new_item[] = $value;
                 }
                 $item_data['item'] = $new_item;

@@ -321,6 +321,9 @@ class articleControl extends SystemControl{
 		 * 上传图片
 		 */
 		$upload = new UploadFile();
+		$upload->set('thumb_width', ARTICLE_IMAGES_WIDTH);
+		$upload->set('thumb_height', ARTICLE_IMAGES_HEIGHT);
+		$upload->set('thumb_ext', ARTICLE_IMAGES_EXT );
 		$upload->set('default_dir',ATTACH_ARTICLE);
 		$result = $upload->upfile('fileupload');
 		if ($result){

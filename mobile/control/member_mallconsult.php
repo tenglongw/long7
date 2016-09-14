@@ -42,7 +42,7 @@ class member_mallconsultControl extends mobileMemberControl {
 	        	$val2['f_name'] = $val['admin_name'];
 	        	$val2['mc_content'] = $val['mc_reply'];
 	        	$val2['f_addtime'] = date('Y-m-d H:i', $val['mc_reply_time']);
-	        	$val2['f_avatar'] = getMemberAvatarForID($this->member_info['member_id']);
+	        	$val2['f_avatar'] = getMemberAvatarForID($val['admin_id']);
 	        	$temp[] = $val2;
         	}
         }

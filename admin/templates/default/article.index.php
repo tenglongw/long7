@@ -57,8 +57,8 @@
         <tr class="thead">
           <th class="w24"></th>
           <th class="w48"><?php echo $lang['nc_sort'];?></th>
+          <th>文章编号</th>
           <th><?php echo $lang['article_index_title'];?></th>
-          <th><?php echo $lang['article_index_class'];?></th>
           <th class="align-center"><?php echo $lang['article_index_show'];?></th>
           <th class="align-center"><?php echo $lang['article_index_addtime'];?></th>
           <th class="w60 align-center"><?php echo $lang['nc_handle'];?></th>
@@ -70,8 +70,8 @@
         <tr class="hover">
           <td><input type="checkbox" name='del_id[]' value="<?php echo $v['article_id']; ?>" class="checkitem"></td>
           <td><?php echo $v['article_sort']; ?></td>
+          <td><?php echo $v['article_id']; ?></td>
           <td><?php echo $v['article_title']; ?></td>
-          <td><?php echo $v['ac_name']; ?></td>
           <td class="align-center"><?php if($v['article_show'] == '0'){echo $lang['nc_no'];}else{echo $lang['nc_yes'];} ?></td>
           <td class="nowrap align-center"><?php echo $v['article_time']; ?></td>
           <td class="align-center"><a href="index.php?act=article&op=article_edit&article_id=<?php echo $v['article_id']; ?>"><?php echo $lang['nc_edit'];?></a></td>

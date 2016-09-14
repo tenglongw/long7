@@ -224,9 +224,9 @@ class mb_specialControl extends SystemControl{
             $upload->set('default_dir', ATTACH_MOBILE . DS . 'special' . DS . $prefix);
             $upload->set('fprefix', $prefix);
             $upload->set('allow_type', array('gif', 'jpg', 'jpeg', 'png'));
-            $upload->set('thumb_width',	640);
-            $upload->set('thumb_height', 350);
-            $upload->set('thumb_ext', '_640x350');
+            $upload->set('thumb_width',	750);
+            $upload->set('thumb_height', 398);
+            $upload->set('thumb_ext', '_750x398');
             $result = $upload->upfile('special_image');
             if(!$result) {
                 $data['error'] = $upload->error;

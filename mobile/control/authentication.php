@@ -11,12 +11,14 @@ class authenticationControl extends mobileHomeControl{
     public function __construct() {
         parent::__construct();
     }
+    
     /**
      * 查询用户是否认证
      */
     public function indexOp() {
     	$model = Model('authentication');
     	$where ['member_id'] = $_POST ['member_id']; // 真实姓名
+    	//$where ['atct_state'] = array('neq','2');
     	$atct = $model->getAuthenticationInfo($where);
     	if(empty($atct)){
     		$result['isExist'] = "false";
@@ -26,6 +28,7 @@ class authenticationControl extends mobileHomeControl{
     	}
     	echo json_encode($result);exit;
     }
+    
     /**
      * 提交认证
      */
@@ -56,7 +59,12 @@ class authenticationControl extends mobileHomeControl{
 			}
 		}
 		$insert['atct_addtime'] = time();
-		$model->addAuthentication($insert);
+		if(empty($_POST['act_id'])){
+			$model->addAuthentication($insert);
+		}else {
+			$condition ['act_id'] = $_POST ['act_id'];
+			$model->editAuthentication($insert, $condition);
+		}
 		echo json_encode ($return);exit;
 	}
 }
