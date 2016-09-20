@@ -20,7 +20,10 @@
       <td><?php echo $member['member_phone']?></td>
       <td><?php echo date('Y-m-d H:i:s', $member['add_time']); ?></td>
       <td><?php echo $member['state_msg']?></td>
-      <td><?php if($member['state']=='1'){?><a href="<?php echo urlShop('store_lotnumber', 'get_prize', array('ml_id' => $member['ml_id'],'lotnumber_id'=>$output['lotnumber_id']));?>">领取</a><?php }else {?>领取<?php }?></td>
+      <td>
+      <?php if($member['state']=='1'){?><a href="<?php echo urlShop('store_lotnumber', 'get_prize', array('ml_id' => $member['ml_id'],'lotnumber_id'=>$output['lotnumber_id']));?>">领取</a><?php }else {?>领取<?php }?>
+      <?php  if($output['rule_id'] =='2'){ ?><a href="<?php echo urlShop('store_lotnumber', 'set_prize', array('ml_id' => $member['ml_id'],'lotnumber_id'=>$output['lotnumber_id']));?>">设为中奖</a><?php }?>
+      </td>
     </tr>
     <?php }?>
     <?php }else{?>

@@ -221,6 +221,7 @@ if(C('mobile_isuse')){
 					array('args'=>'mb_app,mb_app,mobile',				'text'=>'下载设置'),
                     array('args'=>'flist,mb_feedback,mobile',					'text'=>$lang['nc_mobile_feedback']),
 					array('args'=>'mb_payment,mb_payment,mobile',				'text'=>'手机支付'),
+					array('args'=>'index,jpush,mobile',            'text'=>'消息推送管理'),
 				)
 			);
 }

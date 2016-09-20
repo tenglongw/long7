@@ -125,6 +125,7 @@ $lang['text_start_time'] = '距离本期开始';
 $lang['text_no_limit'] = '不限';
 $lang['text_no_rule1'] = '自定义中奖人数';
 $lang['text_no_rule2'] = '自定义中奖率';
+$lang['text_no_rule3'] = '自定义中奖用户';
 $lang['text_class'] = '分类';
 $lang['text_price'] = '价格';
 $lang['text_unit_price'] = '单价';

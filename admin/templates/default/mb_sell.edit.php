@@ -38,6 +38,24 @@
           </td>
           <td class="vatop tips"></td>
         </tr>
+         <tr class="noborder">
+           <td colspan="2" class="required">操作类型</td>
+        </tr>
+        <tr class="noborder">
+        <td>
+        	<select name="operation">
+        		<option value="">请选择...</option>
+        		<option value="keyword" <?php if($output['link_array']['s_operation']=='keyword'){?>selected<?php }?>>关键字</option>
+        		<option value="goods" <?php if($output['link_array']['s_operation']=='goods'){?>selected<?php }?>>平台货号</option>
+        		<option value="special" <?php if($output['link_array']['s_operation']=='special'){?>selected<?php }?>>专题编号</option>
+        		<option value="article" <?php if($output['link_array']['s_operation']=='article'){?>selected<?php }?>>文章编号</option>
+        	</select>
+        </td>
+          <td class="vatop rowform">
+ 			<input type="text" name="operation_value" id="operation_value" value="<?php echo $output['link_array']['s_operation_value'];?>">
+          </td>
+          <td class="vatop tips"></td>
+        </tr>
       <tfoot>
         <tr class="tfoot">
           <td colspan="15"><a href="JavaScript:void(0);" class="btn" id="submitBtn"><span><?php echo $lang['nc_submit'];?></span></a></td>

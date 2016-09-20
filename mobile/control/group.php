@@ -50,7 +50,7 @@ class groupControl extends mobileHomeControl{
 		$current_page = intval($_POST['curpage']);
 		//计算记录偏移量
 // 		if($current_page == 1){
-			$theme_list = $model->table('circle_theme')->where($where)->order('is_stick desc,lastspeak_time desc')->page(50)->select();
+			$theme_list = $model->table('circle_theme')->where($where)->order('is_stick desc,theme_addtime desc')->page(50)->select();
 // 		}else{
 // 			$offset = $this->page*($current_page - 1);
 // 			$limit = $offset.','.$current_page*$this->page;

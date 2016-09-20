@@ -50,7 +50,7 @@
       <td><?php echo date('Y-m-d H:i:s', $group['end_time']); ?></td>
       <td><?php echo $group['apply_count'];?></td>
       <td><?php echo $output['groupbuy_state_array'][$group['state']]; ?></td>
-      <td><a href="<?php echo urlShop('store_lotnumber', 'get_memberlist', array('lotnumber_id' => $group['lotnumber_id']));?>">查看报名人数</a></td>
+      <td><a href="<?php echo urlShop('store_lotnumber', 'get_memberlist', array('lotnumber_id' => $group['lotnumber_id'],'rule_id' => $group['rule_id']));?>">查看报名人数</a></td>
     </tr>
     <?php }?>
     <?php }else{?>

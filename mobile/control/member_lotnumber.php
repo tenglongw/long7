@@ -57,7 +57,7 @@ class member_lotnumberControl extends mobileMemberControl {
 		$store_info = $store_model->getStoreInfoByID($store_id);
 		$result['store_name'] = $lotnumber_info['store_name'];
 		$result['area_info'] = $store_info['area_info'];
-		$result['store_avatar_url'] = $lotnumber_info['store_avatar_url'];
+		$result['store_avatar_url'] = lthumb($lotnumber_info['lotnumber_image'], 'small');
 		$result['lotnumber_id'] = $lotnumber_info['lotnumber_id'];
 		$result['apply_count'] = $lotnumber_info['apply_count'];
 		$result['state_text'] = $lotnumber_info['button_text'];
@@ -72,7 +72,6 @@ class member_lotnumberControl extends mobileMemberControl {
 		$authentication_model = Model('authentication');
 		$lotnumber_model = Model('lotnumber');
 		$lotnumber_id = intval($_POST['lotnumber_id']);
-		$lotnumber_model = Model('lotnumber');
 		$authentication_info = $authentication_model->getAuthenticationInfo(array('member_id'=>$_POST['member_id'],'atct_state'=>'1'));
 		$insert['member_id'] = $this->member_info['member_id'];
         $insert['member_name'] = $this->member_info['member_name'];

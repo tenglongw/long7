@@ -36,6 +36,21 @@
           </td>
           <td class="vatop tips"></td>
         </tr>
+        <tr class="noborder">
+        <td>
+        	<select name="operation">
+        		<option value="">请选择...</option>
+        		<option value="keyword">关键字</option>
+        		<option value="goods">平台货号</option>
+        		<option value="special">专题编号</option>
+        		<option value="article">文章编号</option>
+        	</select>
+        </td>
+          <td class="vatop rowform">
+ 			<input type="text" name="operation_value" id="operation_value" value="<?php echo $output['link_array']['operation_value'];?>">
+          </td>
+          <td class="vatop tips"></td>
+        </tr>
       </tbody>
       <tfoot>
         <tr class="tfoot">

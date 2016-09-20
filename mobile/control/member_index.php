@@ -19,20 +19,47 @@ class member_indexControl extends mobileMemberControl {
 	}
 
     /**
-     * 我的商城
+     * 获取新数量
      */
+	public function new_countOp() {
+		$model = Model();
+		// 话题列表
+		$where = array();
+		$where['circle_id']	= 1;
+		$where['member_id']	= $_POST['member_id'];
+		$where['theme_newcount'] = array('gt','0');
+		$field = 'theme_id,theme_newcount';
+		$theme_list = $model->table('circle_theme')->where($where)->field($field)->order('is_stick desc,lastspeak_time desc')->select();
+        output_data(array('theme_list' => $theme_list));
+	}
+	/**
+	 * 更新数量
+	 */
+	public function update_countOp() {
+		$theme_id = $_POST['theme_id'];
+		$theme_newcount = intval($_POST['theme_newcount']);
+		Model()->table('circle_theme')->update(array('theme_id'=>$theme_id, 'theme_newcount'=>array('exp', 'theme_newcount-'.$theme_newcount)));
+		//output_data(array('theme_list' => $theme_list));
+		$result['status'] = 0;
+		$result['message'] = '更新成功';
+		echo json_encode($result);exit;
+	}
+	
+	/**
+	 *更新数量
+	 */
 	public function indexOp() {
 		$model = Model();
-        $member_info = array();
-        $member_info['user_name'] = $this->member_info['member_name'];
-        if(empty($this->member_info['member_avatar'])){
-	        $member_info['avator'] = getMemberAvatarForID($this->member_info['member_id']);//头像
-        }else{
-        	$member_info['avator'] = $this->member_info['member_avatar'];
-        }
-        $member_info['background'] = getMemberBackgroundForID($this->member_info['member_id']);//头像
-        //$member_info['point'] = $this->member_info['member_points'];
-        //$member_info['predepoit'] = $this->member_info['available_predeposit'];
+		$member_info = array();
+		$member_info['user_name'] = $this->member_info['member_name'];
+		if(empty($this->member_info['member_avatar'])){
+			$member_info['avator'] = getMemberAvatarForID($this->member_info['member_id']);//头像
+		}else{
+			$member_info['avator'] = $this->member_info['member_avatar'];
+		}
+		$member_info['background'] = getMemberBackgroundForID($this->member_info['member_id']);//头像
+		//$member_info['point'] = $this->member_info['member_points'];
+		//$member_info['predepoit'] = $this->member_info['available_predeposit'];
 		//v3-b11 显示充值卡
 		//$member_info['available_rc_balance'] = $this->member_info['available_rc_balance'];
 		//粉丝数
@@ -41,7 +68,7 @@ class member_indexControl extends mobileMemberControl {
 		//关注数
 		$attention_count = $model->table('sns_friend')->where(array('friend_frommid'=>$this->member_info['member_id']))->count();
 		$member_info['attention_count'] = $attention_count;
-        output_data(array('member_info' => $member_info));
+		output_data(array('member_info' => $member_info));
 	}
 	
 	//上传头像
@@ -100,6 +127,7 @@ class member_indexControl extends mobileMemberControl {
 		}
 		echo json_encode($return);exit;
 	}
+	
 	/**
 	 * 我的资料【用户中心】
 	 *
@@ -160,4 +188,6 @@ class member_indexControl extends mobileMemberControl {
 		}
 		echo json_encode($return);
 	}
+	
+	
 }

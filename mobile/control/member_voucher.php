@@ -43,7 +43,10 @@ class member_voucherControl extends mobileMemberControl {
     	$param['voucher_t_title'] = $coupon_code_name;
     	$t_info = $model_voucher->table('voucher_template')->where($param)->find();
     	if(empty($t_info)){
-    		output_error('优惠码错误');
+    		//output_error('优惠码错误');
+    		$return['status'] = 1;
+    		$return['message'] = "优惠码错误";
+    		echo json_encode($return);exit;
     	}
     	//判断该优惠券是否已经领取
     	$voucherCount = $model_voucher->getVoucherCount(array('voucher_owner_id'=>$this->member_info['member_id'],'voucher_t_id'=>$t_info['voucher_t_id']));

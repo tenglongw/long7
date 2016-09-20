@@ -61,6 +61,19 @@ class store_lotnumberControl extends BaseSellerControl {
             showDialog('修改失败','index.php?act=store_lotnumber&op=get_memberlist&lotnumber_id='.$_GET[lotnumber_id]);
         }
     }
+    
+    /**
+     * 抢购列表
+     **/
+    public function set_prizeOp() {
+    	$model = Model();
+    	$result = $model->table('member_lotnumber')->where(array('ml_id'=>$_GET['ml_id']))->update(array('state'=>'1'));
+    	if($result){
+    		showDialog('修改成功','index.php?act=store_lotnumber&op=get_memberlist&lotnumber_id='.$_GET[lotnumber_id],'succ');
+    	}else {
+    		showDialog('修改失败','index.php?act=store_lotnumber&op=get_memberlist&lotnumber_id='.$_GET[lotnumber_id]);
+    	}
+    }
     /**
      * 抢购列表
      **/
@@ -79,6 +92,7 @@ class store_lotnumberControl extends BaseSellerControl {
     	}
     	Tpl::output('member_list',$result);
     	Tpl::output('lotnumber_id',$_GET['lotnumber_id']);
+    	Tpl::output('rule_id',$_GET['rule_id']);
     	Tpl::output('show_page',$model->showpage());
     	//echo json_encode($groupbuy_list);exit;
     	self::profile_menu('groupbuy_list');

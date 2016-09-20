@@ -116,6 +116,8 @@ class mb_sellControl extends SystemControl{
 			$insert_array['s_name'] = trim($_POST['link_name']);
 			$insert_array['s_image'] = trim($_POST['link_pic']);
 			$insert_array['s_time'] = strtotime($_POST['link_date']);
+			$insert_array['s_operation'] = trim($_POST['operation']);
+			$insert_array['s_operation_value'] = trim($_POST['operation_value']);
 			$result = $model_link->add($insert_array);
 			if ($result){
 				$url = array(
@@ -167,6 +169,8 @@ class mb_sellControl extends SystemControl{
 				$update_array['s_image'] = trim($_POST['link_pic']);
 			}
 			$update_array['s_time'] = strtotime($_POST['link_date']);
+			$update_array['s_operation'] = trim($_POST['operation']);
+			$update_array['s_operation_value'] = trim($_POST['operation_value']);
 			$result = $model_link->update($update_array);
 			if ($result){
 				/**

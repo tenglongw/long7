@@ -132,6 +132,7 @@
         <select id="rule_id" name="rule_id" class="w120">
           <option value="0"><?php echo $lang['text_no_rule1']; ?></option>
           <option value="1"><?php echo $lang['text_no_rule2']; ?></option>
+          <option value="2"><?php echo $lang['text_no_rule3']; ?></option>
         </select>
         <span></span>
         <p class="hint"><?php echo $lang['lotnumber_rule_tip'];?></p>
@@ -426,9 +427,12 @@ $(document).ready(function(){
         if('0'==val){
             $('#win_rate').parent().parent().attr('style','display:none');
             $('#win_quantity').parent().parent().attr('style','');
-        }else{
+        }else if('1'==val){
         	$('#win_quantity').parent().parent().attr('style','display:none');
         	$('#win_rate').parent().parent().attr('style','');
+        }else{
+        	$('#win_rate').parent().parent().attr('style','display:none');
+        	$('#win_quantity').parent().parent().attr('style','display:none');
         }
      });
     $('#rule_id').trigger("change");

@@ -5,18 +5,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>创智凌云B2B2C多用户商城系统</title>
-<script type="text/javascript" src="/data/resource/js/jquery.js"></script>
-<script type="text/javascript" src="/data/resource/js/jquery.validation.min.js"></script>
-<script type="text/javascript" src="/data/resource/js/admincp.js"></script>
-<script type="text/javascript" src="/data/resource/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="/data/resource/js/common.js" charset="utf-8"></script>
-<link href="/admin/templates/default/css/skin_0.css" rel="stylesheet" type="text/css" id="cssfile2" />
-<link href="/data/resource/js/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
-<link href="/admin/templates/default/css/font/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<script type="text/javascript" src="/long7/data/resource/js/jquery.js"></script>
+<script type="text/javascript" src="/long7/data/resource/js/jquery.validation.min.js"></script>
+<script type="text/javascript" src="/long7/data/resource/js/admincp.js"></script>
+<script type="text/javascript" src="/long7/data/resource/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/long7/data/resource/js/common.js" charset="utf-8"></script>
+<link href="/long7/admin/templates/default/css/skin_0.css" rel="stylesheet" type="text/css" id="cssfile2" />
+<link href="/long7/data/resource/js/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
+<link href="/long7/admin/templates/default/css/font/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 <!--[if IE 7]>
   <link rel="stylesheet" href="/admin/templates/default/css/font/font-awesome/css/font-awesome-ie7.min.css">
 <![endif]-->
-<script type="text/javascript" src="/data/resource/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="/long7/data/resource/js/perfect-scrollbar.min.js"></script>
 
 <script type="text/javascript">
 SITEURL = '/shop';
@@ -48,7 +48,7 @@ if (cookie_skin) {
       <ul class="tab-base">
         <li><a href="index.php?act=store&op=store"><span>管理</span></a></li>
         <li><a href="index.php?act=store&op=store_joinin"><span>开店申请</span></a></li>
-        <li><a href="index.php?act=store&op=reopen_list" ><span>续签申请</span></a></li>
+        <!-- <li><a href="index.php?act=store&op=reopen_list" ><span>续签申请</span></a></li> -->
         <li><a href="index.php?act=store&op=store_bind_class_applay_list" ><span>经营类目申请</span></a></li>
         <li><a href="JavaScript:void(0);" class="current"><span>编辑</span></a></li>
       </ul>
@@ -58,41 +58,41 @@ if (cookie_skin) {
   <div class="homepage-focus" nctype="editStoreContent">
     <ul class="tab-menu">
       <li class="current">店铺信息</li>
-      <li>注册信息</li>
+     <!-- <li>注册信息</li> --> 
     </ul>
     <form id="store_form" method="post">
     <input type="hidden" name="form_submit" value="ok" />
-    <input type="hidden" name="store_id" value="1" />
+    <input type="hidden" name="store_id" value="<?php echo $output['store_array']['store_id']?>" />
     <table class="table tb-type2">
       <tbody>
         <tr class="noborder">
           <td colspan="2" class="required"><label>店主账号:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform">admin</td>
+          <td class="vatop rowform"><?php echo $output['store_array']['seller_name']?></td>
           <td class="vatop tips"></td>
         </tr>
         <tr>
           <td colspan="2" class="required"><label class="validation" for="store_name">店铺名称:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="演示店铺" id="store_name" name="store_name" class="txt"></td>
+          <td class="vatop rowform"><input type="text" value="<?php echo $output['store_array']['store_name']?>" id="store_name" name="store_name" class="txt"></td>
           <td class="vatop tips"></td>
         </tr>
        <!-- //zmr>v95-->
         
-         <tr>
+        <!--  <tr>
           <td colspan="2" class="required"><label class="validation" for="store_company_name">公司名称:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="广州创智凌云信息科技有限公司" id="store_company_name" name="store_company_name" class="txt"></td>
+          <td class="vatop rowform"><input type="text" value="北京创智凌云信息科技有限公司" id="store_company_name" name="store_company_name" class="txt"></td>
           <td class="vatop tips"></td>
         </tr>
-        
+         -->
         
         
          <tr>
-          <td colspan="3" class="required"><label class="validation" for="store_name">公司所在地区:</label></td>
+          <td colspan="3" class="required"><label class="validation" for="store_name">店铺所在地区:</label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform">
@@ -100,50 +100,39 @@ if (cookie_skin) {
           <span id="region" class="w400">
           
             <input type="hidden" value="289" name="province_id" id="province_id" class="area_ids" />
-            <input type="hidden" value="广东省	广州市" name="area_info" id="area_info" class="area_names" />
-                        <span>广东省	广州市</span>
-            <input type="button" value="编辑" style="background-color: #F5F5F5; width: 60px; height: 32px; border: solid 1px #E7E7E7; cursor: pointer" class="edit_region" />
-            <select style="display:none;">
-            </select>
+            <input type="hidden" value="<?php echo $output['store_array']['area_info']?>" name="area_info" id="area_info" class="area_names" />
+                        <span><?php echo $output['store_array']['area_info']?></span>
                         </span>
             </td>
           
         </tr>
         
          <tr>
-          <td colspan="2" class="required"><label class="validation" for="store_address">公司详细地址:</label></td>
+          <td colspan="2" class="required"><label class="validation" for="store_address">店铺详细地址:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><input style="width:700px" type="text" value="广州市天河区国家软件园产业基地8栋502" id="store_address" name="store_address" class="txt"></td>
+          <td class="vatop rowform"><input style="width:700px" type="text" value="<?php echo $output['store_array']['store_address']?>" id="store_address" name="store_address" class="txt"></td>
           <td class="vatop tips"></td>
         </tr>
-        
-        
         
         <tr>
           <td colspan="2" class="required"><label for="store_name">开店时间:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform">2015-06-16</td>
+          <td class="vatop rowform"><?php echo  date('Y-m-d H:i',$output['store_array']['store_time'])?></td>
           <td class="vatop tips"></td>
         </tr>
         <tr>
           <td colspan="2" class="required"><label>所属分类:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><select name="sc_id">
-              <option value="0">请选择...</option>
-                                          <option  value="2">服装鞋包</option>
-                            <option  value="3">3C数码</option>
-                            <option  value="4">美容护理</option>
-                            <option  value="5">家居用品</option>
-                            <option  value="6">食品/保健</option>
-                            <option  value="7">母婴用品</option>
-                            <option  value="8">文体/汽车</option>
-                            <option  value="1">珠宝/首饰</option>
-                            <option  value="9">收藏/爱好</option>
-                            <option selected="selected" value="10">生活/服务</option>
-                                        </select></td>
+          <td class="vatop rowform">
+          <select name="sc_id">
+             <option value="0">请选择...</option>
+          	<?php foreach ($output['class_list'] as $key=>$val){?>
+            	<option  value="<?php echo $val['sc_id']?>" <?php if($val['sc_id'] == $output['store_array']['sc_id']){?>selected<?php }?>><?php echo $val['sc_name']?></option>
+          	<?php }?>
+           </select></td>
           <td class="vatop tips"></td>
         </tr>
       </tbody>
@@ -154,18 +143,37 @@ if (cookie_skin) {
             </label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><select id="grade_id" name="grade_id">
-                                          <option selected="selected" value="1">系统默认</option>
-                            <option  value="2">白金店铺</option>
-                            <option  value="3">钻石店铺</option>
-                                        </select></td>
+          <td class="vatop rowform">
+          <select id="grade_id" name="grade_id">
+             <option value="0">请选择...</option>
+          	<?php foreach ($output['grade_list'] as $key=>$val){?>
+            	<option  value="<?php echo $val['sg_id']?>" <?php if($val['sg_id'] == $output['store_array']['grade_id']){?>selected<?php }?>><?php echo $val['sg_name']?></option>
+          	<?php }?>
+           </select></td>
           <td class="vatop tips"></td>
         </tr>
         <tr>
           <td colspan="2" class="required">有效期至:</td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="2025-09-30" id="end_time" name="end_time" class="txt date"></td>
+          <td class="vatop rowform"><input type="text" value="" id="end_time" name="end_time" class="txt date"></td>
+          <td class="vatop tips"></td>
+        </tr>
+        
+        
+        <tr>
+          <td colspan="2" class="required">店铺横坐标:</td>
+        </tr>
+        <tr class="noborder">
+          <td class="vatop rowform"><input type="text" value="<?php echo $output['store_array']['store_x']?>" id="store_x" name="store_x" class="txt"></td>
+          <td class="vatop tips"></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="required">店铺纵坐标:</td>
+        </tr>
+        <tr class="noborder">
+          <td class="vatop rowform"><input type="text" value="<?php echo $output['store_array']['store_y']?>" id="store_y" name="store_y" class="txt"></td>
           <td class="vatop tips"></td>
         </tr>
 <!--店铺保障开-by mall.wrtx.cn-->
@@ -353,7 +361,7 @@ if (cookie_skin) {
         <th>营业执照<br />
 电子版：</th>
         <td colspan="20">
-          <a nctype="nyroModal"  href="/data/upload/shop/store_joinin/"> <img src="/data/upload/shop/store_joinin/" alt="" /> </a>
+          <a nctype="nyroModal"  href="/long7/data/upload/shop/store_joinin/"> <img src="/long7/data/upload/shop/store_joinin/" alt="" /> </a>
           <input class="w200" type="file" name="business_licence_number_electronic">
         </td>
       </tr>
@@ -478,7 +486,7 @@ if (cookie_skin) {
         <th>税务登记证号<br />
 电子版：</th>
         <td>
-          <a nctype="nyroModal"  href="/data/upload/shop/store_joinin/"> <img src="/data/upload/shop/store_joinin/" alt="" /> </a>
+          <a nctype="nyroModal"  href="/long7/data/upload/shop/store_joinin/"> <img src="/long7/data/upload/shop/store_joinin/" alt="" /> </a>
           <input type="file" name="tax_registration_certificate_electronic">
         </td>
       </tr>
@@ -488,12 +496,12 @@ if (cookie_skin) {
 </form>
 </div>
 </div>
-<script type="text/javascript" src="/data/resource/js/common_select.js" charset="utf-8"></script>
-<script type="text/javascript" src="/data/resource/js/jquery-ui/jquery.ui.js"></script>
-<script src="/data/resource/js/jquery-ui/i18n/zh-CN.js" charset="utf-8"></script>
-<link rel="stylesheet" type="text/css" href="/data/resource/js/jquery-ui/themes/ui-lightness/jquery.ui.css"  />
-<script type="text/javascript" src="/data/resource/js/jquery.nyroModal/custom.min.js" charset="utf-8"></script>
-<link href="/data/resource/js/jquery.nyroModal/styles/nyroModal.css" rel="stylesheet" type="text/css" id="cssfile2" />
+<script type="text/javascript" src="/long7/data/resource/js/common_select.js" charset="utf-8"></script>
+<script type="text/javascript" src="/long7/data/resource/js/jquery-ui/jquery.ui.js"></script>
+<script src="/long7/data/resource/js/jquery-ui/i18n/zh-CN.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="/long7/data/resource/js/jquery-ui/themes/ui-lightness/jquery.ui.css"  />
+<script type="text/javascript" src="/long7/data/resource/js/jquery.nyroModal/custom.min.js" charset="utf-8"></script>
+<link href="/long7/data/resource/js/jquery.nyroModal/styles/nyroModal.css" rel="stylesheet" type="text/css" id="cssfile2" />
 <script type="text/javascript">
 var SHOP_SITE_URL = '/shop';
 $(function(){
@@ -530,7 +538,7 @@ $(function(){
         rules : {
              store_name: {
                  required : true,
-                 remote : '/admin/index.php?act=store&op=ckeck_store_name&store_id=1'
+                 remote : '/long7/admin/index.php?act=store&op=ckeck_store_name'
               }
         },
         messages : {

@@ -252,8 +252,8 @@ class themeControl extends mobileHomeControl{
 				}
 				$theme_affix[$key]=$data;
 			}
-			Model()->table('circle_theme')->update(array('theme_id'=>$t_id, 'theme_sharecount'=>array('exp', 'theme_sharecount+1')));
-			Model()->table('circle_theme')->update(array('theme_id'=>$t_id, 'theme_forwardcount'=>array('exp', 'theme_forwardcount+1')));
+			//Model()->table('circle_theme')->update(array('theme_id'=>$t_id, 'theme_sharecount'=>array('exp', 'theme_sharecount+1')));
+			Model()->table('circle_theme')->update(array('theme_id'=>$t_id, 'theme_sharecount'=>array('exp', 'theme_sharecount+1'),'theme_forwardcount'=>array('exp', 'theme_forwardcount+1'),'theme_newcount'=>array('exp', 'theme_newcount+1')));
 			$return['status']=0;
 			$return['message']='成功';
 			$return['attachment'] = $theme_affix;
@@ -268,7 +268,7 @@ class themeControl extends mobileHomeControl{
 	//更新分享次数
 	public function update_shareCountOp(){
 		$t_id = $_POST['t_id'];
-		Model()->table('circle_theme')->update(array('theme_id'=>$t_id, 'theme_sharecount'=>array('exp', 'theme_sharecount+1')));
+		Model()->table('circle_theme')->update(array('theme_id'=>$t_id, 'theme_sharecount'=>array('exp', 'theme_sharecount+1'),'theme_newcount'=>array('exp', 'theme_newcount+1')));
 		$result['status'] = 0;
 		$result['message'] = '成功';
 		echo json_encode($result);exit;
@@ -1014,7 +1014,7 @@ class themeControl extends mobileHomeControl{
 			// 插入话题赞表
 			Model()->table('circle_like')->insert(array('theme_id'=>$this->t_id, 'member_id'=>$_POST['member_id'], 'member_name'=>$_POST['member_name'], 'circle_id'=>1));
 			// 更新赞数量
-			Model()->table('circle_theme')->update(array('theme_id'=>$this->t_id, 'theme_likecount'=>array('exp', 'theme_likecount+1')));
+			Model()->table('circle_theme')->update(array('theme_id'=>$this->t_id, 'theme_likecount'=>array('exp', 'theme_likecount+1'),'theme_newcount'=>array('exp', 'theme_newcount+1')));
 			$like_list = Model()->table('circle_like')->where(array('theme_id'=>$this->t_id))->select();
 			foreach ($like_list as $lkey=>$lval){
 				if($val['theme_id'] == $lval['theme_id']){
@@ -1275,9 +1275,11 @@ class themeControl extends mobileHomeControl{
 					$reply_list[$key]['reply_content'] = removeUBBTag($val['reply_content']);
 				}
 			}
+			Model()->table('circle_theme')->update(array('theme_id'=>$this->t_id,'theme_newcount'=>array('exp', 'theme_newcount+1')));
 			$result['status'] = 0;
 			$result['message'] = '成功';
 			$result['reply_list'] = $reply_list;
+			
 
 		}else{
 			$result['status'] = 1;

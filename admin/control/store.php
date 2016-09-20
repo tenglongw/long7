@@ -126,6 +126,9 @@ class storeControl extends SystemControl{
 			
 			$update_array['province_id'] = trim($_POST['province_id']);//公司名称
 			$update_array['area_info'] = trim($_POST['area_info']);//公司地址
+			
+			$update_array['store_x'] = trim($_POST['store_x']);//公司名称
+			$update_array['store_y'] = trim($_POST['store_y']);//公司地址
 			//zmr>v95
 			if ($update_array['store_state'] == 0){
 				//根据店铺状态修改该店铺所有商品状态
@@ -192,6 +195,7 @@ class storeControl extends SystemControl{
 
 		$joinin_detail = Model('store_joinin')->getOne(array('member_id'=>$store_array['member_id']));
         Tpl::output('joinin_detail', $joinin_detail);
+       // echo json_encode($grade_list);exit;
 		Tpl::showpage('store.edit');
 	}
 
