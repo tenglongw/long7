@@ -59,7 +59,7 @@ class memberModel extends Model {
      * @param string $order
      */
     public function getMemberAllList($condition = array(), $field = '*', $order = 'member_id desc') {
-    	return $this->table('member')->where($condition)->order($order)->select();
+    	return $this->table('member')->field($field)->limit('0,100000')->select();
     }
 
     /**

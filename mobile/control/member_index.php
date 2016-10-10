@@ -18,6 +18,93 @@ class member_indexControl extends mobileMemberControl {
 		parent::__construct();
 	}
 
+	/**
+	 * 获取新动态列表
+	 */
+	public function new_listOp(){
+		$model = Model();
+		// 话题列表
+		$where = array();
+		$where['circle_id']	= 1;
+		$where['member_id']	= $_POST['member_id'];
+		$where['theme_newcount'] = array('gt','0');
+		$field = '*';
+		$theme_list = $model->table('circle_theme')->where($where)->field($field)->order('is_stick desc,lastspeak_time desc')->select();
+		if(!empty($theme_list)){
+			foreach($theme_list as $key=>$val){
+				$themeid_array[$key] = $theme_list[$key]['theme_id'];
+			}
+		}
+		//附件列表
+		$affix_list = $model->table('circle_affix')->where(array('affix_type'=>1,'theme_id'=>array('in', $themeid_array)))->select();
+		//回复列表
+		$reply_list = $model->table('circle_threply')->where(array('theme_id'=>array('in', $themeid_array)))->order('reply_id desc')->select();
+		if(!empty($reply_list)){
+			foreach($reply_list as $key=>$val){
+				if(empty($val['member_avatar'])){
+					$reply_list[$key]['member_avatar'] = getMemberAvatarForID($val['member_id']);
+				}else{
+					$reply_list[$key]['member_avatar'] = $val['member_avatar'];
+				}
+				$reply_list[$key]['reply_addtime'] = date('Y-m-d H:i', $val['reply_addtime']);
+				$reply_list[$key]['reply_content'] = removeUBBTag($val['reply_content']);
+			}
+		}
+		//点赞列表
+		$like_list = $model->table('circle_like')->where(array('theme_id'=>array('in', $themeid_array)))->select();
+		$result = array();
+		foreach ($theme_list as $key=>$val){
+			//附件
+			foreach ($affix_list as $akey=>$aval){
+				//foreach ($aval as $avkey=>$avval){
+				if($val['theme_id']== $aval['theme_id']){
+					$affix['affix_id'] = $aval['affix_id'];
+					$affix['affix_filename'] = themeImageUrl($partpath.'/'.$aval['affix_filename']);
+					$affix['affix_filethumb'] = themeImageUrl($partpath.'/'.$aval['affix_filethumb']);
+					$theme_list[$key]['affix_list'][] = $affix;
+				}
+					
+				//}
+			}
+		}
+		
+		foreach ($theme_list as $key=>$val){
+			if(!empty($val['affix_list'])){
+				$theme['theme_affix'] = $val['affix_list'][0]['affix_filethumb'];
+			}else{
+				$theme['theme_affix'] = '';
+			}
+			$theme['theme_content'] = $val['theme_content'];
+			//回复
+			foreach ($reply_list as $rkey=>$rval){
+				if($val['theme_id']== $rval['theme_id']){
+					$reply['type'] = 'reply';
+					$reply['reply_content'] = $rval['reply_content'];
+					$reply['member_avatar'] = getMemberAvatarForID($rval['member_id']);
+					$reply['member_name'] = $rval['member_name'];
+					$reply['add_time'] = date(' H:i',$rval['reply_addtime']);
+					$reply['theme'] = $theme;
+					$result[] = $reply;
+				}
+			}
+			//点赞
+			foreach ($like_list as $lkey=>$lval){
+				if($val['theme_id'] == $lval['theme_id']){
+					$like['type'] = 'like';
+					$like['member_avatar'] = getMemberAvatarForID($lval['member_id']);
+					$like['member_name'] = $lval['member_name'];
+					$like['member_id'] = $lval['member_id'];
+					$like['add_time'] = date(' H:i',$val['theme_addtime']);
+					$like['theme'] = $theme;
+					$result[] = $like;
+				}
+			}
+		}
+		//Model()->table('circle_theme')->update(array('member_id'=>$_POST['member_id'], 'theme_newcount'=>'0'));
+		Model()->table('circle_theme')->where(array('member_id'=>$_POST['member_id']))->update(array('theme_newcount'=>'0'));
+		output_data(array('theme_list' => $result));
+	}
+	
     /**
      * 获取新数量
      */

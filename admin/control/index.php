@@ -65,4 +65,30 @@ class indexControl extends SystemControl{
 			Tpl::showpage('admin.modifypw');
 		}
 	}
+	
+	/**
+	 * 修改头像
+	 */
+	public function modifyimgOp(){
+		if (chksubmit()){
+			/**
+			 * 上传图片
+			 */
+			if ($_FILES['link_pic']['name'] != ''){
+				$upload = new UploadFile();
+				$ext = strtolower(pathinfo($_FILES['link_pic']['name'], PATHINFO_EXTENSION));
+				$upload->set('file_name',"avatar_1.$ext");
+				$upload->set('default_dir',ATTACH_AVATAR);
+				$result = $upload->upfile('link_pic');
+			}
+			if ($result){
+				showMessage('头像上传成功');
+			}else{
+				showMessage('头像上传失败');
+			}
+		}else{
+			Language::read('admin');
+			Tpl::showpage('admin.modifyimg');
+		}
+	}
 }

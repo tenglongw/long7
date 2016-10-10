@@ -39,7 +39,7 @@ class loginControl extends mobileHomeControl {
 			$where['member_uid'] = $uid;
 		}else{
 	        $array['member_mobile']	= $_POST['username'];
-           //	$array['member_name']	= $_POST['username'];
+           	$array['member_name']	= $_POST['username'];
            	$array['member_type']	= 0;
            	$where['member_mobile'] = $_POST['username'];
 	        if(empty($_POST['username']) || empty($_POST['password'])) {
@@ -68,13 +68,11 @@ class loginControl extends mobileHomeControl {
 		
 		$model_member = Model('member');
         $member_info = $model_member->getMemberInfo($where);
-        //echo json_encode($array);exit;
         if(!empty($member_info)) {
         	//$array['member_name']	= $_POST['username'];
-        	$return = $model_member->editMember(array('member_id'=>$member_info['member_id']),$array);
+        	//$return = $model_member->editMember(array('member_id'=>$member_info['member_id']),$array);
         	
         } else {
-           	
         	$member_info = $model_member->registerSms($array);
         }
         if(intval($type)==1 || intval($type)==2){

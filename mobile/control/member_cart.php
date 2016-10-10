@@ -29,6 +29,12 @@ class member_cartControl extends mobileMemberControl {
         foreach ($cart_list as $key => $value) {
             $cart_list[$key]['goods_image_url'] = cthumb($value['goods_image'], $value['store_id']);
             $cart_list[$key]['goods_sum'] = ncPriceFormat($value['goods_price'] * $value['goods_num']);
+            if(empty($value['goods_spec'])){
+            	$cart_list[$key]['is_goods_spec'] = 0;
+            }else{
+            	$cart_list[$key]['is_goods_spec'] = 1;
+            }
+            $cart_list[$key]['goods_spec'] = unserialize($value['goods_spec']);
             $sum += $cart_list[$key]['goods_sum'];
         }
 
@@ -84,6 +90,18 @@ class member_cartControl extends mobileMemberControl {
         $param['goods_image'] = $goods_info['goods_image'];
         $param['goods_jingle'] = $goods_info['goods_jingle'];
         $param['store_name'] = $goods_info['store_name'];
+        $param['goods_spec'] = $goods_info['goods_spec'];
+        $check_cart	= $model_cart->checkCart(array('goods_id'=>$goods_info['goods_id'],'buyer_id'=>$_POST['member_id']));
+        if (!empty($check_cart)){
+        	if(intval($goods_info['goods_storage']) < 1 || intval($goods_info['goods_storage']) < (intval($check_cart['goods_num'])+$quantity)) {
+        		//output_error('库存不足');
+        		$return['status'] = 1;
+        		$return['message'] = '库存不足';
+        		echo json_encode($return);exit;
+        	}
+        	//修改购物车数量
+        	$this->where(array('goods_id'=>$goods_info['goods_id'],'buyer_id'=>$_POST['member_id']))->update(array('goods_num'=>array('exp', 'goods_num+'.$quantity)));
+        }
 		//echo json_encode($param);exit;
         $result = $model_cart->addCart($param, 'db', $quantity);
         if($result) {

@@ -684,7 +684,6 @@ class store_goods_onlineControl extends BaseSellerControl {
         Tpl::output('value', $spec_value['1']);
 
         $image_list = $model_goods->getGoodsImageList(array('goods_commonid' => $common_id));
-        echo json_encode($image_list);exit;
         $image_list = array_under_reset($image_list, 'color_id', 2);
 
         $img_array = $model_goods->getGoodsList(array('goods_commonid' => $common_id), 'color_id,goods_image', 'color_id');

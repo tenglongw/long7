@@ -16,46 +16,52 @@ class articleControl extends mobileHomeControl{
      * 文章列表
      */
     public function article_listOp() {
-        if(!empty($_GET['ac_id']) && intval($_GET['ac_id']) > 0) {
-			$article_class_model	= Model('article_class');
 			$article_model	= Model('article');
-			//$condition	= array();
-			
-			$child_class_list = $article_class_model->getChildClass(intval($_GET['ac_id']));
-			$ac_ids	= array();
-			if(!empty($child_class_list) && is_array($child_class_list)){
-				foreach ($child_class_list as $v){
-					$ac_ids[]	= $v['ac_id'];
-				}
-			}
-			$ac_ids	= implode(',',$ac_ids);
-			//$condition['ac_ids']	= $ac_ids;
-			//$condition['article_show']	= '1';
-			
-			
 			$condition	= array();
 			$condition['article_show'] = '1';
 			//$condition['home_index'] = 'home_index';
 			$condition['field'] = 'article.article_id,article.ac_id,article.article_url,article.article_title,article.article_time,upload.file_name';
 			$condition['order'] = 'article_sort asc,article_time desc';
-			$condition['limit'] = '300';
-			$article_list	= $article_model->getWapJoinList($condition);
-			
+			//$condition['limit'] = '300';
+			//总数
+			$count = $article_model->getWapJoinCount($condition);
+			if(empty($_POST['page'])){
+				$pagesize = 50;
+			}else{
+				$pagesize = $_POST['page'];
+			}
+			$pages=intval($count/$pagesize);
+			if($page_count%$pagesize){
+				$pages++;
+			}
+			$current_page = intval($_POST['curpage']);
+			if(isset($_POST['curpage'])){
+				$current_page = intval($_POST['curpage']);
+			}else{
+				$current_page = 1;
+			}
+			//计算记录偏移量
+			$offset = $pagesize*($current_page-1)+1;
+			if($current_page == 1){
+				$offset = 1;
+			}
+			$condition['limit'] = $offset.','.$pagesize;
+			$article_list = $article_model->getWapJoinList($condition);
 			//$article_list = $article_model->getArticleList($condition);	
 			//处理图片地址
 			$article_list = $this->article_extend($article_list);
-			foreach ($article_list as $key=>$val){
-				if($key==0){
-					$article_one = $val;
-				}else{
-					$article_other[] = $val;
-				}
-			}
-			output_data(array('article_one'=>$article_one,'article_list' => $article_other));		
-		}
-		else {
-			output_error('缺少参数:文章类别编号');
-		}    	
+// 			foreach ($article_list as $key=>$val){
+// 				if($key==0){
+// 					$article_one = $val;
+// 				}else{
+// 					$article_other[] = $val;
+// 				}
+// 			}
+			output_data(array('article_list' => $article_list),mobile_page($pages));		
+// 		}
+// 		else {
+// 			output_error('缺少参数:文章类别编号');
+// 		}    	
     }
 
     private function article_extend($article_list){

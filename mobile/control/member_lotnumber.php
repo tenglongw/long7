@@ -22,20 +22,24 @@ class member_lotnumberControl extends mobileMemberControl {
      */
     public function lotnumber_listOp() {
 		$model_lotnumber = Model('lotnumber');
-		$model = Model();
 		$condition	= array();
-		$condition ['field'] = 'DISTINCT lotnumber.lotnumber_id,lotnumber.lotnumber_name,lotnumber.lotnumber_image,lotnumber.lotnumber_price,lotnumber.store_id, member_lotnumber.state';
+		$condition ['field'] = 'DISTINCT lotnumber.lotnumber_id,lotnumber.lotnumber_name,lotnumber.lotnumber_image,lotnumber.lotnumber_price,lotnumber.store_id';
         $condition['limit'] = '300';
         $condition['state'] = '1';
         $condition['join_type'] = $_POST['join_type'];//'left join'
 		if('join' == $_POST['join_type']){
 			$condition['field'] = $condition ['field'].','.'(case member_lotnumber.state when "0" then "已报名" when "1" then "中奖" when "2" then "未中签" when "3" then "完成" end) state_text';
+		}else{
+			$condition['field'] = $condition ['field']. ', lotnumber.state,'.'(case lotnumber.state when "1" then "正常" when "2" then "已结束" end) state_text';
 		}
         $lotnumber_list = $model_lotnumber->getJoinList($condition, $this->page);
         //$page_count = $model_lotnumber->getLotnumberCount();
 		foreach ($lotnumber_list as $key=>$val){
 			$val['lotnumber_image_url'] = lthumb($val['lotnumber_image'], 'small');
 			$result[] = $val;
+		}
+		if(empty($result)){
+			$result = array();
 		}
         output_data(array('lotnumber_list' => $result));
     }
@@ -55,8 +59,13 @@ class member_lotnumberControl extends mobileMemberControl {
 			$lotnumber_info['store_avatar_url'] = UPLOAD_SITE_URL . '/' . ATTACH_STORE . '/' . $lotnumber_info['store_avatar'];
 		}
 		$store_info = $store_model->getStoreInfoByID($store_id);
-		$result['store_name'] = $lotnumber_info['store_name'];
-		$result['area_info'] = $store_info['area_info'];
+		$store_name = $lotnumber_info['store_name'];
+		$area_info = $store_info['area_info'];
+		if(empty($area_info)){
+			$area_info = '';
+		}
+		$result['store_name'] = $store_name;
+		$result['area_info'] = $area_info;
 		$result['store_avatar_url'] = lthumb($lotnumber_info['lotnumber_image'], 'small');
 		$result['lotnumber_id'] = $lotnumber_info['lotnumber_id'];
 		$result['apply_count'] = $lotnumber_info['apply_count'];
@@ -86,6 +95,11 @@ class member_lotnumberControl extends mobileMemberControl {
 		}
 		//检查报名数量
 		$lotnumber_info = $lotnumber_model->getLotnumberInfo(array('lotnumber_id'=>$lotnumber_id));
+		if(intval($lotnumber_info['end_time']) < time()){
+			$return['status'] = 1;
+			$return['message'] = "活动已结束，不允许报名。";
+			echo json_encode($return);exit;
+		}
 		if($lotnumber_info['apply_count']>=$lotnumber_info['apply_quantity']){
 			$return['status'] = 1;
 			$return['message'] = "报名人数已满";

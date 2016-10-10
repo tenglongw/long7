@@ -20,6 +20,7 @@ class mb_welcomeModel{
 	public function getLinkList($condition,$page=''){
 		$param = array();
 		$param['table'] = 'mb_welcome';
+		$param['order']	= $condition['order'];
 //		$param['where'] = $condition_str;
 		$result = Db::select($param,$page);
 		return $result;

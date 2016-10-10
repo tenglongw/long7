@@ -34,6 +34,9 @@ class authenticationControl extends mobileHomeControl{
      */
     public function save_atctOp() {
     	$model = Model('authentication');
+    	$where ['member_id'] = $_POST ['member_id']; // 真实姓名
+    	//$where ['atct_state'] = array('neq','2');
+    	$atct = $model->getAuthenticationInfo($where);
 		$insert = array ();
 		$insert ['member_id'] = $_POST ['member_id']; // 真实姓名
 		$insert ['atct_name'] = $_POST ['atct_name']; // 真实姓名
@@ -59,11 +62,13 @@ class authenticationControl extends mobileHomeControl{
 			}
 		}
 		$insert['atct_addtime'] = time();
-		if(empty($_POST['act_id'])){
+		if(empty($atct)){
 			$model->addAuthentication($insert);
 		}else {
-			$condition ['act_id'] = $_POST ['act_id'];
-			$model->editAuthentication($insert, $condition);
+			$condition ['atct_id'] = $atct['atct_id'];
+			$insert ['atct_state'] = 0;
+			//echo json_encode($insert);exit;
+			$updateR = $model->editAuthentication($insert, $condition);
 		}
 		echo json_encode ($return);exit;
 	}

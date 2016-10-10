@@ -30,7 +30,7 @@ class groupControl extends mobileHomeControl{
 		$model = Model();
 		// 话题列表
 		$where = array();
-		$where['circle_id']	= $_GET['c_id'];
+		$where['circle_id']	= 1;
 		if(!empty($_POST['member_id'])){
 			$where['member_id']	= $_POST['member_id'];
 		}
@@ -43,14 +43,28 @@ class groupControl extends mobileHomeControl{
 		//	$where['is_digest'] = 1;
 		//}
 		$page_count = $model->table('circle_theme')->where($where)->count();
-		$pages=intval($page_count/50);
-		if($page_count%50){
+		if(empty($_POST['page'])){
+				$pagesize = 50;
+		}else{
+			$pagesize = $_POST['page'];
+		}
+		$pages=intval($page_count/$pagesize);
+		if($page_count%$pagesize){
 			$pages++;
 		}
 		$current_page = intval($_POST['curpage']);
+		if(isset($_POST['curpage'])){
+			$current_page = intval($_POST['curpage']);
+		}else{
+			$current_page = 1;
+		}
+		//计算记录偏移量
+		$offset = $pagesize*($current_page-1);
+		$limit = $offset.','.$pagesize;
 		//计算记录偏移量
 // 		if($current_page == 1){
-			$theme_list = $model->table('circle_theme')->where($where)->order('is_stick desc,theme_addtime desc')->page(50)->select();
+		//echo json_encode($where);exit;
+		$theme_list = $model->table('circle_theme')->where($where)->order('is_stick desc,theme_addtime desc')->limit($limit)->select();
 // 		}else{
 // 			$offset = $this->page*($current_page - 1);
 // 			$limit = $offset.','.$current_page*$this->page;

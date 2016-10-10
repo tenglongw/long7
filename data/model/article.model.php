@@ -82,6 +82,21 @@ class articleModel{
 	}
 
 	/**
+	 * 总数
+	 *
+	 */
+	public function getWapJoinCount($condition,$page='') {
+		$condition_str	= $this->_condition($condition);
+// 		$param	= array();
+// 		$param['table'] = 'article,upload';
+// 		$param['field']	= empty($condition['field'])?'*':$condition['field'];;
+// 		$param['join_type']	= empty($condition['join_type'])?'join':$condition['join_type'];
+// 		$param['join_on']	= array('article.article_id=upload.item_id');
+// 		$param['where'] = $condition_str;
+		$count	= Db::getCount('article',$condition_str);
+		return $count;
+	}
+	/**
 	 * 构造检索条件
 	 *
 	 * @param int $id 记录ID

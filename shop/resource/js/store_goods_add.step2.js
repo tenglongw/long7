@@ -170,13 +170,13 @@ $(function(){
         _parent.find('div[nctype="specAdd1"]').show();
         _parent.find('div[nctype="specAdd2"]').hide();
         //尺码规格名称不允许有中文
-        if(data_str.sp_name !='颜色'){
-        	//校验是否为数字
-        	if(!isDigit(_input.val())){
-        		alert('规格名称填写不合法，请重新输入');
-        		return false;
-        	}
-        }
+//        if(data_str.sp_name !='颜色'){
+//        	//校验是否为数字
+//        	if(!isDigit(_input.val())){
+//        		alert('规格名称填写不合法，请重新输入');
+//        		return false;
+//        	}
+//        }
         $.getJSON(data_str.url, {gc_id : data_str.gc_id , sp_id : data_str.sp_id , name : _input.val()}, function(data){
             if (data.done) {
                 _parent.before('<li><span nctype="input_checkbox"><input type="checkbox" name="sp_val[' + data_str.sp_id + '][' + data.value_id + ']" nc_type="' + data.value_id + '" value="' +_input.val()+ '" /></span><span nctype="pv_name">' + _input.val() + '</span></li>');

@@ -777,7 +777,7 @@ class goodsModel extends Model{
      * @param string $field
      * @return array
      */
-    public function getGoodsImageList($condition, $field = '*', $order = 'is_default desc,goods_image_sort asc') {
+    public function getGoodsImageList($condition, $field = '*', $order = 'goods_image_sort asc') {
         $this->cls();
         return $this->table('goods_images')->field($field)->where($condition)->order($order)->select();
     }

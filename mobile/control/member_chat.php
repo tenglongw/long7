@@ -106,6 +106,9 @@ class member_chatControl extends mobileMemberControl {
 			$val['t_avatar'] = getMemberAvatarForID($val['t_id']);
 			$temp_msg_list[] = $val;
 		}
+		if(empty($temp_msg_list)){
+			$temp_msg_list = array();
+		}
 		$result['msg_list'] = $temp_msg_list;
 		if(!empty($temp_msg_list)){
 			$result['last_msg_id'] = $msg_list[count($msg_list)-1]['m_id'];

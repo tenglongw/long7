@@ -61,13 +61,9 @@ class indexControl extends mobileHomeControl{
         	if($key==0){
         		$val['file_name'] =str_replace('.'.$name_array[$size-1],'_750_330.'.$name_array[$size-1],  $val['file_name']);
         		$article_one = $val;
-        	}else{
-        		$val['file_name'] =str_replace('.'.$name_array[$size-1],'_375_240.'.$name_array[$size-1],  $val['file_name']);
-        		$article_other[] = $val;
         	}
         }
         $result['article_one'] = $article_one;
-        $result['article_list'] = $article_other;
         echo json_encode($result);exit;
 	}
 	

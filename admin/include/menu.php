@@ -47,7 +47,7 @@ $arr = array(
 					array('args'=>'welcome,dashboard,dashboard',			'text'=>$lang['nc_welcome_page']),
 					//array('args'=>'aboutus,dashboard,dashboard',			'text'=>$lang['nc_aboutus']),
 					array('args'=>'base,setting,dashboard',	'text'=>$lang['nc_web_set']),
-					array('args'=>'member,member,dashboard',				'text'=>$lang['nc_member_manage']),
+// 					array('args'=>'member,member,dashboard',				'text'=>$lang['nc_member_manage']),
 					array('args'=>'store,store,dashboard',					'text'=>$lang['nc_store_manage']),
 					array('args'=>'goods,goods,dashboard',					'text'=>$lang['nc_goods_manage']),
 					array('args'=>'index,order,dashboard',			        'text'=>$lang['nc_order_manage']),
@@ -280,8 +280,8 @@ if(C('circle_isuse') !== null){
 					//3 => array('args'=>'circle_list,circle_manage,circle','text'=>$lang['nc_circle_manage']),
 					4 => array('args'=>'theme_list,circle_theme,circle','text'=>$lang['nc_circle_thememanage']),
 					5 => array('args'=>'member_list,circle_member,circle','text'=>$lang['nc_circle_membermanage']),
-					6 => array('args'=>'inform_list,circle_inform,circle','text'=>$lang['nc_circle_informnamage']),
-					7 => array('args'=>'adv_manage,circle_setting,circle','text'=>$lang['nc_circle_advmanage']),
+// 					6 => array('args'=>'inform_list,circle_inform,circle','text'=>$lang['nc_circle_informnamage']),
+// 					7 => array('args'=>'adv_manage,circle_setting,circle','text'=>$lang['nc_circle_advmanage']),
 					8 => array('args'=>'index,circle_cache,circle','text'=>$lang['nc_circle_cache'])
 			)
 	);

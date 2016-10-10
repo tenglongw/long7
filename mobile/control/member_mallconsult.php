@@ -46,6 +46,9 @@ class member_mallconsultControl extends mobileMemberControl {
 	        	$temp[] = $val2;
         	}
         }
+        if(empty($temp)){
+        	$temp = array();
+        }
 		$result['msg_list'] = $temp;
 		if(!empty($temp)){
 			$result['last_msg_id'] = $temp[0]['msg_id'];

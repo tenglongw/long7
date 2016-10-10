@@ -96,6 +96,7 @@ class cartModel extends Model {
 		$array['goods_image'] = $goods_info['goods_image'];
 		$array['store_name'] = $goods_info['store_name'];
 		$array['goods_jingle'] = $goods_info['goods_jingle'];
+		$array['goods_spec'] = $goods_info['goods_spec'];
 		$array['bl_id'] = isset($goods_info['bl_id']) ? $goods_info['bl_id'] : 0;
 		return $this->insert($array);
 	}

@@ -287,7 +287,6 @@ class statModel extends Model{
 	 * 获得查询的开始和结束时间
 	 */
 	public function getStarttimeAndEndtime($search_arr){
-		echo json_encode($search_arr);exit;
 	    if($search_arr['search_type'] == 'day'){
 			$stime = $search_arr['day']['search_time'];//今天0点
 			$etime = $search_arr['day']['search_time'] + 86400 - 1;//今天24点

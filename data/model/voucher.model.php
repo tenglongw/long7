@@ -256,10 +256,10 @@ class voucherModel extends Model {
 
 		$where = array('voucher_owner_id'=>$member_id);
         $voucher_state  = intval($voucher_state);
-        if (intval($voucher_state) > 0 && array_key_exists($voucher_state, $this->voucher_state_array)){
-			$where['voucher_state'] = $voucher_state;
-		}
-
+//         if (intval($voucher_state) > 0 && array_key_exists($voucher_state, $this->voucher_state_array)){
+			$where['voucher_template.voucher_state'] = 2;
+// 		}
+		$where['voucher_end_date'] = array('egt', strtotime(date("Y-m-d",time())));
 		$list = $this->table('voucher,voucher_template')->field($field)->join('inner')->on($on)->where($where)->order('voucher_id desc')->page($page)->select();
 		//echo json_encode($where);exit;
 		if(!empty($list) && is_array($list)){

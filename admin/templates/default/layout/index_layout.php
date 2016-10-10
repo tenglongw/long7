@@ -236,7 +236,9 @@ function addFavorite(url, title) {
           <!-- Top navigation -->
           <div id="topnav" class="top-nav">
             <ul>
+              <li><img style="width: 20px" src="<?php echo getMemberAvatarForID($output['admin_info']['id'])?>" alt="" /></li>
               <li class="adminid" title="<?php echo $lang['nc_hello'];?>:<?php echo $output['admin_info']['name'];?>"><?php echo $lang['nc_hello'];?>&nbsp;:&nbsp;<strong><?php echo $output['admin_info']['name'];?></strong></li>
+              <li><a href="index.php?act=index&op=modifyimg" target="workspace" ><span>上传头像</span></a></li>
               <li><a href="index.php?act=index&op=modifypw" target="workspace" ><span><?php echo $lang['nc_modifypw']; ?></span></a></li>
               <li><a href="index.php?act=index&op=logout" title="<?php echo $lang['nc_logout'];?>"><span><?php echo $lang['nc_logout'];?></span></a></li>
               <!-- <li><a href="<?php echo BASE_SITE_URL;?>" target="_blank" title="<?php echo $lang['nc_homepage'];?>"><span><?php echo $lang['nc_homepage'];?></span></a></li> -->

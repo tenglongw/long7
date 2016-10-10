@@ -943,11 +943,11 @@ function getMemberAvatarForID($id,$member_avatar=""){
 	if($member_avatar && file_exists(BASE_UPLOAD_PATH.'/'.ATTACH_AVATAR.'/'.$member_avatar)){
 		return UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/'.$member_avatar;
 	}if(file_exists(BASE_UPLOAD_PATH.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.jpg')){
-		return UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.jpg';
+		return UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.jpg?time='.time();
 	}if(file_exists(BASE_UPLOAD_PATH.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.png')){
-		return UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.png';
+		return UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.png?time='.time();
 	}else{
-		return UPLOAD_SITE_URL.'/'.ATTACH_COMMON.DS.C('default_user_portrait');
+		return UPLOAD_SITE_URL.'/'.ATTACH_COMMON.DS.C('default_user_portrait?time='.time());
 	}
 }
 
