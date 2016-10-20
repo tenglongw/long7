@@ -5,6 +5,14 @@
 	var last_msg_id = 0;//最后一次消息id
 	var store_msg_obj = {};
 	$(function(){
+//		initMsg();
+		setInterval("initMsg()",3000);
+		$("#im").click(function() {
+			chat_show_list();
+		});
+	});
+	
+	function initMsg(){
 		if(user['seller_id'] != '') {
 		    web_info['html_title'] = $(document).attr('title');
             web_info['html_store_msg'] = '<div id="store_msg_dialog" class="dialog_wrapper" style="z-index: 3100; float: right; margin: 0; position: fixed; width: 280px; right: 50px; bottom: 0;display: none;">'+
@@ -48,17 +56,14 @@
 				  	}
 				  	if ( user_info['recent'] == 1 ) recent_list[u_id] = user_info;
 				}
-			  	setInterval("getconnect()",6000);
+			  	getconnect()
 				$("#web_chat_dialog").prepend(chat_user_list);
 				$("#web_chat_dialog").after(web_info['html_store_msg']);
 
 				$('#chat_user_list').perfectScrollbar();
-				setInterval( function () {
-					$.get(CHAT_SITE_URL+'/index.php?act=web_chat&op=get_session&key=member_id');
-				}, time_max*60000);
-				$("#im").click(function() {
-				    chat_show_list();
-				});
+//				setInterval( function () {
+//					$.get(CHAT_SITE_URL+'/index.php?act=web_chat&op=get_session&key=member_id');
+//				}, time_max*60000);
 			  }
 			});
 		}
@@ -72,7 +77,7 @@
 		        msg_limits[k] = 1;
 		    }
 		}
-	});
+	}
 	
 	function get_new_msg(){
 		var ajaxurl = CHAT_SITE_URL+'/index.php?act=web_chat&op=get_msg&n=99&t_id='+user['u_id']+'&msg_id='+last_msg_id;

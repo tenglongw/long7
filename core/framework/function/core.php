@@ -947,7 +947,7 @@ function getMemberAvatarForID($id,$member_avatar=""){
 	}if(file_exists(BASE_UPLOAD_PATH.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.png')){
 		return UPLOAD_SITE_URL.'/'.ATTACH_AVATAR.'/avatar_'.$id.'.png?time='.time();
 	}else{
-		return UPLOAD_SITE_URL.'/'.ATTACH_COMMON.DS.C('default_user_portrait?time='.time());
+		return UPLOAD_SITE_URL.'/'.ATTACH_COMMON.'/default_user_portrait.gif?time='.time();
 	}
 }
 

@@ -33,14 +33,35 @@ class member_cartControl extends mobileMemberControl {
             	$cart_list[$key]['is_goods_spec'] = 0;
             }else{
             	$cart_list[$key]['is_goods_spec'] = 1;
+            	$specKeyArray = array_keys(unserialize($value['goods_spec']));
+            	$specValueArray = array_values(unserialize($value['goods_spec']));
+            	$spec = $this->instanceSpece($specKeyArray,$specValueArray);
+	            $cart_list[$key]['goods_spec'] = $spec;
             }
-            $cart_list[$key]['goods_spec'] = unserialize($value['goods_spec']);
             $sum += $cart_list[$key]['goods_sum'];
         }
 
         output_data(array('cart_list' => $cart_list, 'sum' => ncPriceFormat($sum)));
     }
 
+    public function instanceSpece($specKeyArray,$specValueArray){
+    	$model_spec = Model('spec');
+    	$array = array();
+    	foreach ($specKeyArray as $key=>$value){
+	    	$where['sp_value_id'] = $value;
+	    	//查询sp_id
+	    	$sp_value = $model_spec->specValueOne($where);
+	    	//查询spec
+	    	$spec = $model_spec->getSpecInfo($sp_value['sp_id']);
+	    	if(strcasecmp( $spec['sp_name'],"颜色")>=0){
+	    		$array['color'] = $specValueArray[$key];
+	    	}else{
+	    		$array['size'] = $specValueArray[$key];
+	    	}
+    	}
+    	return $array;
+    }
+    
     /**
      * 购物车添加
      */

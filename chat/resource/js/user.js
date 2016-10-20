@@ -55,12 +55,12 @@
 					  	if ( user_info['friend'] == 1 ) friend_list[u_id] = user_info;
 					  	if ( user_info['recent'] == 1 ) recent_list[u_id] = user_info;
 					}
-					setTimeout("getconnect()",1000);
+//					setTimeout("getconnect()",1000);
 					$("#web_chat_dialog").prepend(chat_user_list);
 					$('#chat_user_list').perfectScrollbar();
-					setInterval( function () {
-						$.get(CHAT_SITE_URL+'/index.php?act=web_chat&op=get_session&key=member_id');
-					}, time_max*60000);
+//					setInterval( function () {
+//						$.get(CHAT_SITE_URL+'/index.php?act=web_chat&op=get_session&key=member_id');
+//					}, time_max*60000);
 					$("#chat_show_user").click(function() {
 					    chat_show_list();
 					});
@@ -302,9 +302,9 @@
 			var m_id = msg['m_id'];
 			var u_id = msg['f_id'];
 			set_user(u_id,msg['f_name']);
-			if (typeof msg_list[u_id][m_id] === "object") {//防止重复计数
-				continue;
-			}
+//			if (typeof msg_list[u_id][m_id] === "object") {//防止重复计数
+//				continue;
+//			}
 			if (typeof msg['user'] === "object" && typeof msg['user']['avatar'] !== "undefined" ) {
 				var user_info = msg['user'];
 		  	    var u_name = user_info['u_name'];
@@ -706,7 +706,7 @@
 	}
 	function alert_msg(){
 	    var new_n = 0;
-	    clearInterval(new_interval);
+	    //clearInterval(new_interval);
 		if ( new_msg > 0 ) {//消息提醒
 			new_interval = setInterval( function () {
 				new_n++;
@@ -802,7 +802,7 @@
 				}
 			}
 		}
-		console.log('msg=='+msg);
+//		console.log('msg=='+msg);
 		return msg;
 	}
 	function update_friends(){
