@@ -62,6 +62,26 @@ class member_cartControl extends mobileMemberControl {
     	return $array;
     }
     
+    public function instanceSpece_key($specKeyArray,$specValueArray){
+    	$model_spec = Model('spec');
+    	$array = array();
+    	foreach ($specKeyArray as $key=>$value){
+    		$where['sp_value_id'] = $value;
+    		//查询sp_id
+    		$sp_value = $model_spec->specValueOne($where);
+    		//查询spec
+    		$spec = $model_spec->getSpecInfo($sp_value['sp_id']);
+    		if(strcasecmp( $spec['sp_name'],"颜色")>=0){
+    			$array['color'] = $specKeyArray[$key];
+    			$array['color_value'] = $specValueArray[$key];
+    		}else{
+    			$array['size'] = $specKeyArray[$key];
+    			$array['size_value'] = $specValueArray[$key];
+    		}
+    	}
+    	return $array;
+    }
+    
     /**
      * 购物车添加
      */
@@ -180,9 +200,17 @@ class member_cartControl extends mobileMemberControl {
         $cart_info['spec_list'] = $goods_detail['spec_list'];
         $cart_info['spec_name'] = $goods_detail['goods_info']['spec_name'];
         $cart_info['spec_value'] = $goods_detail['goods_info']['spec_value'];
-        $cart_info['goods_spec'] = $goods_detail['goods_info']['goods_spec'];
         $cart_info['goods_image'] =  cthumb($cart_info['goods_image'], $cart_info['store_id']);
         $cart_info['goods_storage'] = $goods_detail['goods_info']['goods_storage'];
+        	if(empty($goods_detail['goods_info']['goods_spec'])){
+        		$cart_info['is_goods_spec'] = 0;
+        	}else{
+        		$cart_info['is_goods_spec'] = 1;
+        		$specKeyArray = array_keys(($goods_detail['goods_info']['goods_spec']));
+        		$specValueArray = array_values(($goods_detail['goods_info']['goods_spec']));
+        		$spec = $this->instanceSpece_key($specKeyArray,$specValueArray);
+        		$cart_info['goods_spec'] = $spec;
+        	}
         output_data($cart_info);
     }
     
@@ -244,6 +272,7 @@ class member_cartControl extends mobileMemberControl {
     	$param['goods_image'] = $goods_info['goods_image'];
     	$param['goods_jingle'] = $goods_info['goods_jingle'];
     	$param['store_name'] = $goods_info['store_name'];
+    	$param['goods_spec'] = $goods_info['goods_spec'];
     	$param['goods_num'] = $quantity;
     	$update = $model_cart->editCart($param, array('cart_id'=>$cart_id));
     	if ($update) {

@@ -54,6 +54,17 @@ class member_buyControl extends mobileMemberControl {
 	        	$store_cart_list[] = $gvalue;
         	}
         }
+        foreach ($store_cart_list as $key => $value) {
+        	if(empty($value['goods_spec'])){
+        		$store_cart_list[$key]['is_goods_spec'] = 0;
+        	}else{
+        		$store_cart_list[$key]['is_goods_spec'] = 1;
+        		$specKeyArray = array_keys(unserialize($value['goods_spec']));
+        		$specValueArray = array_values(unserialize($value['goods_spec']));
+        		$spec = $this->instanceSpece($specKeyArray,$specValueArray);
+        		$store_cart_list[$key]['goods_spec'] = $spec;
+        	}
+        }
         $buy_list = array();
         $buy_list['store_voucher_list'] = $result['store_voucher_list'];
         $buy_list['goods_list'] = $store_cart_list;
@@ -84,6 +95,24 @@ class member_buyControl extends mobileMemberControl {
         }
         $buy_list['freight'] = $freight;
         output_data($buy_list);
+    }
+    
+    public function instanceSpece($specKeyArray,$specValueArray){
+    	$model_spec = Model('spec');
+    	$array = array();
+    	foreach ($specKeyArray as $key=>$value){
+    		$where['sp_value_id'] = $value;
+    		//查询sp_id
+    		$sp_value = $model_spec->specValueOne($where);
+    		//查询spec
+    		$spec = $model_spec->getSpecInfo($sp_value['sp_id']);
+    		if(strcasecmp( $spec['sp_name'],"颜色")>=0){
+    			$array['color'] = $specValueArray[$key];
+    		}else{
+    			$array['size'] = $specValueArray[$key];
+    		}
+    	}
+    	return $array;
     }
 
     /**
@@ -151,6 +180,7 @@ class member_buyControl extends mobileMemberControl {
      */
     public function change_addressOp() {
         $logic_buy = Logic('buy');
+        $freight = '0';
         $data = $logic_buy->changeAddr($_POST['freight_hash'], $_POST['city_id'], $_POST['area_id'], $this->member_info['member_id']);
         if(!empty($data) && $data['state'] == 'success' ) {
         	foreach ($data['content'] as $store_id=>$val){
